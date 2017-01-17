@@ -60,7 +60,7 @@ public class OI {
 	public static OI getInstance(){
 		if(instance == null)
 			instance = new OI();
-		
+
 		return instance;
 	}
 }

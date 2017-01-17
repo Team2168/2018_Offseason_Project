@@ -39,6 +39,8 @@ public class RobotMap {
 	
 	public static final int HOPPER_MOTOR = 9;
 	
+	
+	/////////////DIO///////////////
 	public static final int LEFT_DRIVE_ENCODER_A = 0;
 	public static final int LEFT_DRIVE_ENCODER_B = 1;
 	public static final int RIGHT_DRIVE_ENCODER_A = 2;
@@ -48,5 +50,6 @@ public class RobotMap {
 
 	
 	public static final boolean PRINT_SD_DEBUG_DATA = true;
+	public static final long CONSOLE_PRINTER_LOG_RATE_MS = 100;
 	
 }

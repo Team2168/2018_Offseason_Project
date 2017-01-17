@@ -10,6 +10,7 @@ import org.team2168.robot.subsystems.Drivetrain;
 import org.team2168.robot.subsystems.Hopper;
 import org.team2168.robot.subsystems.Intake;
 import org.team2168.robot.subsystems.Shooter;
+import org.team2168.robot.utils.consoleprinter.ConsolePrinter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,12 +34,17 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	ConsolePrinter.init();
+    	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
+    	
 		oi = OI.getInstance();
         // instantiate the command used for the autonomous period
         drivetrain = new Drivetrain();
         intake = new Intake();
         hopper = new Hopper();
         shooter = new Shooter();
+        
+		ConsolePrinter.startThread();
     }
 	
 	public void disabledPeriodic() {

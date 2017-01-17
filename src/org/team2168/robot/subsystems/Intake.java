@@ -11,15 +11,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 
-	Victor IntakeMotor1;
-	Victor IntakeMotor2;
+	private static Victor intakeMotor1;
+	private static Victor intakeMotor2;
 	
 	private static Intake instance = null;
 	
 	public Intake() {
-		
-		IntakeMotor1 = new Victor(RobotMap.INTAKE_MOTOR_1);
-		IntakeMotor2 = new Victor(RobotMap.INTAKE_MOTOR_2);
+		intakeMotor1 = new Victor(RobotMap.INTAKE_MOTOR_1);
+		intakeMotor2 = new Victor(RobotMap.INTAKE_MOTOR_2);
 		
 	}
 	
@@ -31,13 +30,17 @@ public class Intake extends Subsystem {
 	}
 	
 	public void driveIntakeMotor1(double speed) {
-		IntakeMotor1.set(speed);
+		intakeMotor1.set(speed);
 	}
 	
 	public void driveIntakeMotor2(double speed) {
-		IntakeMotor2.set(speed);
+		intakeMotor2.set(speed);
 	}
 
+	/**
+	 * 
+	 * @param speed positive values shoot a ball out of the robot
+	 */
 	public void driveIntake(double speed) {
 		driveIntakeMotor1(speed);
 		driveIntakeMotor2(speed);
