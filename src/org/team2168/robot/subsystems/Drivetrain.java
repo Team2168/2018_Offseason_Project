@@ -1,6 +1,7 @@
 package org.team2168.robot.subsystems;
 
 import org.team2168.robot.subsystems.Drivetrain;
+import org.team2168.robot.utils.consoleprinter.ConsolePrinter;
 import org.team2168.robot.RobotMap;
 import org.team2168.robot.commands.DriveWithJoystick;
 
@@ -14,21 +15,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	
-	Victor LeftMotor1;
-	Victor LeftMotor2;
-	Victor LeftMotor3;
+	private static Victor LeftMotor1;
+	private static Victor LeftMotor2;
+	private static Victor LeftMotor3;
 	
-	Victor RightMotor1;
-	Victor RightMotor2;
-	Victor RightMotor3;
+	private static Victor RightMotor1;
+	private static Victor RightMotor2;
+	private static Victor RightMotor3;
 	
-	Encoder RightEncoder;
-	Encoder LeftEncoder;
+	private static Encoder RightEncoder;
+	private static Encoder LeftEncoder;
 	
 	private static Drivetrain instance = null;
 	
 	public Drivetrain() {
-		
 		LeftMotor1 = new Victor(RobotMap.LEFT_DRIVE_MOTOR_1);
 		LeftMotor2 = new Victor(RobotMap.LEFT_DRIVE_MOTOR_2);
 		LeftMotor3 = new Victor(RobotMap.LEFT_DRIVE_MOTOR_3);
@@ -40,6 +40,9 @@ public class Drivetrain extends Subsystem {
 		RightEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A, RobotMap.RIGHT_DRIVE_ENCODER_B);
 		LeftEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A, RobotMap.LEFT_DRIVE_ENCODER_B);
 		
+		//Log sensor data
+		ConsolePrinter.putNumber("Drivetrain Right Encoder", Drivetrain::getRightEncoder, true, false);
+		ConsolePrinter.putNumber("Drivetrain Left Encoder", Drivetrain::getLeftEncoder, true, false);
 	}
 	
 	public static Drivetrain getInstance(){
@@ -90,11 +93,11 @@ public class Drivetrain extends Subsystem {
     	driveRightSide(rightSpeed);
     }
 
-    public int getLeftEncoder() {
+    public static double getLeftEncoder() {
     	return LeftEncoder.get();
     }
     
-    public int getRightEncoder() {
+    public static double getRightEncoder() {
     	return RightEncoder.get();
     }
     

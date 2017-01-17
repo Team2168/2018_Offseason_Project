@@ -1,6 +1,7 @@
 package org.team2168.robot.subsystems;
 
 import org.team2168.robot.RobotMap;
+import org.team2168.robot.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
@@ -11,18 +12,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
 
-	Victor ShooterMotor;
-	
-	Encoder ShooterEncoder;
-	
+	private static Victor shooterMotor;
+	private static Encoder shooterEncoder;
 	private static Shooter instance = null;
 	
 	public Shooter() {
+		shooterMotor = new Victor(RobotMap.SHOOTER_MOTOR);
+		shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
 		
-		ShooterMotor = new Victor(RobotMap.SHOOTER_MOTOR);
-
-		ShooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
-		
+		//Log sensor data
+		ConsolePrinter.putNumber("Shooter Encoder", Shooter::getShooterEncoder, true, false);
 	}
 	
 	public static Shooter getInstance(){
@@ -33,11 +32,11 @@ public class Shooter extends Subsystem {
 	}
 	
 	public void driveShooterMotor(double speed) {
-		ShooterMotor.set(speed);
+		shooterMotor.set(speed);
 	}
 	
-	public double getShooterEncoder() {
-		return ShooterEncoder.get();
+	public static double getShooterEncoder() {
+		return shooterEncoder.get();
 	}
 	
     public void initDefaultCommand() {
