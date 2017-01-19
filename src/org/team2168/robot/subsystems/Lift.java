@@ -1,7 +1,7 @@
-package org.usfirst.frc.team2168.robot.subsystems;
+package org.team2168.robot.subsystems;
 
-import org.usfirst.frc.team2168.robot.RobotMap;
-import org.usfirst.frc.team2168.robot.lift.commands.DriveLiftWithJoystick;
+import org.team2168.robot.RobotMap;
+import org.team2168.robot.commands.DriveLiftWithJoystick;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,7 +21,7 @@ public class Lift extends Subsystem {
 	static Lift instance = null;
 
 	
-	private Lift(){
+	public Lift(){
 		
 		liftMotor1 = new Victor(RobotMap.LIFT_MOTOR_1);
 		liftMotor2 = new Victor(RobotMap.LIFT_MOTOR_2);
@@ -37,13 +37,13 @@ public class Lift extends Subsystem {
 	
 	public void drive(double speed){
 		
-		if(RobotMap.REVERSE_LIFT_MOTORS){
+		if(RobotMap.REVERSE_LIFT){
 			speed = -speed;
 			
 		}
 		
 		liftMotor1.set(speed);
-		liftMotor2.set(-speed);
+		liftMotor2.set(speed);
 		
 	}
 	

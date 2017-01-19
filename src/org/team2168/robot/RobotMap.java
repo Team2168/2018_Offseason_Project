@@ -24,13 +24,11 @@ public class RobotMap {
 	
 	
 	/////////////PWM//////////////
-	public static final int LEFT_DRIVE_MOTOR_1 = 0;
-	public static final int LEFT_DRIVE_MOTOR_2 = 1;
-	public static final int LEFT_DRIVE_MOTOR_3 = 2;
+	public static final int LEFT_DRIVE_MOTOR_1 = 4;
+	public static final int LEFT_DRIVE_MOTOR_2 = 3;
 	
-	public static final int RIGHT_DRIVE_MOTOR_1 = 3;
-	public static final int RIGHT_DRIVE_MOTOR_2 = 4;
-	public static final int RIGHT_DRIVE_MOTOR_3 = 5;
+	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
+	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
 	
 	public static final int SHOOTER_MOTOR = 6;
 	
@@ -39,6 +37,12 @@ public class RobotMap {
 	
 	public static final int HOPPER_MOTOR = 9;
 	
+	public static final int LIFT_MOTOR_1 = 2;
+	public static final int LIFT_MOTOR_2 = 5;
+	
+	
+	///////////Booleans////////////
+	public static final boolean REVERSE_LIFT = true;
 	
 	/////////////DIO///////////////
 	public static final int LEFT_DRIVE_ENCODER_A = 0;

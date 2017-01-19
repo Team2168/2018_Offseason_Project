@@ -31,11 +31,11 @@ public class Drivetrain extends Subsystem {
 	public Drivetrain() {
 		LeftMotor1 = new Victor(RobotMap.LEFT_DRIVE_MOTOR_1);
 		LeftMotor2 = new Victor(RobotMap.LEFT_DRIVE_MOTOR_2);
-		LeftMotor3 = new Victor(RobotMap.LEFT_DRIVE_MOTOR_3);
+		//LeftMotor3 = new Victor(RobotMap.LEFT_DRIVE_MOTOR_3);
 		
 		RightMotor1 = new Victor(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		RightMotor2 = new Victor(RobotMap.RIGHT_DRIVE_MOTOR_2);
-		RightMotor3 = new Victor(RobotMap.RIGHT_DRIVE_MOTOR_3);
+		//RightMotor3 = new Victor(RobotMap.RIGHT_DRIVE_MOTOR_3);
 		
 		RightEncoder = new Encoder(RobotMap.RIGHT_DRIVE_ENCODER_A, RobotMap.RIGHT_DRIVE_ENCODER_B);
 		LeftEncoder = new Encoder(RobotMap.LEFT_DRIVE_ENCODER_A, RobotMap.LEFT_DRIVE_ENCODER_B);
@@ -60,14 +60,14 @@ public class Drivetrain extends Subsystem {
     	LeftMotor2.set(speed);
     }
     
-    public void driveLeftMotor3(double speed) {
-    	LeftMotor3.set(speed);
-    }
+//    public void driveLeftMotor3(double speed) {
+//    	LeftMotor3.set(speed);
+//    }
     
     public void driveLeftSide(double speed) {
     	driveLeftMotor1(speed);
     	driveLeftMotor2(speed);
-    	driveLeftMotor3(speed);
+    	//driveLeftMotor3(speed);
     }
     
     public void driveRightMotor1(double speed) {
@@ -78,14 +78,14 @@ public class Drivetrain extends Subsystem {
     	RightMotor2.set(speed);
     }
     
-    public void driveRightMotor3(double speed) {
-    	RightMotor3.set(speed);
-    }
+//    public void driveRightMotor3(double speed) {
+//    	RightMotor3.set(speed);
+//    }
     
     public void driveRightSide(double speed) {
     	driveRightMotor1(speed);
     	driveRightMotor2(speed);
-    	driveRightMotor3(speed);
+    	//driveRightMotor3(speed);
     }
     
     public void driveRobot(double leftSpeed, double rightSpeed) {
