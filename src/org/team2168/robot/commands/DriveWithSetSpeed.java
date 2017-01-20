@@ -1,5 +1,7 @@
 package org.team2168.robot.commands;
 
+import org.team2168.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,6 +12,7 @@ public class DriveWithSetSpeed extends Command {
     public DriveWithSetSpeed() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time

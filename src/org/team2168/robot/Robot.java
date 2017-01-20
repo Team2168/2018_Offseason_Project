@@ -21,12 +21,12 @@ import org.team2168.robot.utils.consoleprinter.ConsolePrinter;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
 	public static Drivetrain drivetrain;
 	public static Intake intake;
 	public static Hopper hopper;
 	public static Shooter shooter;
-
+	public static OI oi;
+	
     Command autonomousCommand;
 
     /**
@@ -37,12 +37,12 @@ public class Robot extends IterativeRobot {
     	ConsolePrinter.init();
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
     	
-		oi = OI.getInstance();
         // instantiate the command used for the autonomous period
         drivetrain = new Drivetrain();
         intake = new Intake();
         hopper = new Hopper();
         shooter = new Shooter();
+        oi = OI.getInstance();
         
 		ConsolePrinter.startThread();
     }
