@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import org.team2168.robot.utils.BNO055;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Timer;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -52,4 +53,7 @@ public class RobotMap {
 	public static final boolean PRINT_SD_DEBUG_DATA = true;
 	public static final long CONSOLE_PRINTER_LOG_RATE_MS = 100;
 	
+	/////////////I2C///////////////
+	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
+	public static final int I2C_ADDRESS = 10;
 }
