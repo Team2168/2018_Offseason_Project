@@ -2,7 +2,7 @@
 Code for the Steamworks game. This readme provide all of the information required to get started and programming for the 2017 season. 
 
 ## Requirements for Robot
-1. RoboRio must be flashed to latest 2017 image (This only needs to be done once for the season): 
+1. RoboRio must be flashed to latest 2017 image using USB (This only needs to be done once for the season): (http://wpilib.screenstepslive.com/s/4485/m/13503/l/144984-imaging-your-roborio)
 2. Radio must be programed (https://wpilib.screenstepslive.com/s/4485/m/13503/l/144986-programming-your-radio-for-home-use)
 3. Roborio IP on ethernet must be set to static using web dashboard to : 10.21.68.2
 4. Any IP Camera must be set to 10.21.68.90
