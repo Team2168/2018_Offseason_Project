@@ -13,7 +13,7 @@ Code for the Steamworks game. This readme provide all of the information require
 2. Use JDK 8, and try to use latest Eclipse if possible
 3. If you would like to have the driverstation on your computer as well then install NI Update suite, but this is not a requirement to run programs, only to flash robot images (https://wpilib.screenstepslive.com/s/4485/m/13809/l/599671-installing-the-frc-2017-update-suite-all-languages)
 4. For returning students: understand what has changed in WPI Librarary since 2016 season (https://wpilib.screenstepslive.com/s/4485/m/13503/l/681378-new-for-2017)
-
+5. Understand how the robot is wired as it affects your code. (https://wpilib.screenstepslive.com/s/4485/m/13503/l/599673-wiring-the-2017-frc-control-system)
 ## Cool things to know
 ### Radio
 1. You can access radio web page by logging into http://10.21.68.1 root/admin
