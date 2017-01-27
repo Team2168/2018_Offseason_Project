@@ -35,15 +35,28 @@ Code for the Steamworks game. This readme provide all of the information require
 
 #Robot Design (TBD)
 ## Subsystems
-### Drivetrain
+### Drivetrain (Aiden)
+The drivetrain for 2017, will be largely based off the 2016 drivetrain with minimal changes. Use the 2016 Drivetrain as a reference when developing the 2017 drivetrain. The Drivetrain will have the following member variables
+- 6 Victor SP Motor Controllers
+- 2 AverageEncoders (one right, one left)
+- 1 Gyro (ADRX453) to sense heading of robot 
 
-### Shooter
+### Shooter (Krystina)
+The shooter for 2017 will be largely based off the 2016 shooter with minimal changes. Use the 2016 Shooter subsystem as a reference when developing the 2017 shooter code. The Shooter will have the following features:
+- 2 Talon SRX Motor Controller
+- 1 AverageEncoder 
+
+### Shooter Hood (Ben)
 
 ### Turret
 
 ### ShooterIndexer
 
-### BallIntake
+### BallIntake (Kyle)
+The Fuel Ball Intake will be largely based off the 2016 intake with minimal changes. Use the 2016 intake subsystem as a reference when developing the 2017 intake code. The intake will have the following features:
+- 1 Victor Motor controller for intake roller
+- 2 Analog SHARP IR sensors to detect ball presence
+
 
 ### GearIntake
 
