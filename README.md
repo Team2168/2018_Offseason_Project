@@ -52,7 +52,7 @@ The shooter for 2017 will be largely based off the 2016 shooter with minimal cha
 ### Turret
 - 1 Spark Motor Controller
 - 1 Analog Input - potentiometer for rotational position feedback (turret angle)
-- 2 discrete inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
+- 2 Digital inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
 
 ### Shooter Indexer
 - 1 Spark Motor Controller for the indexer roller
@@ -63,7 +63,6 @@ The Fuel Ball Intake will be largely based off the 2016 intake with minimal chan
 - 1 Spark Motor controller for intake roller
 - 1 Double Solenoid to extend/retract the intake
 - 1 Digital Input - Hall effect sensor - that indicates when the intake is in the retracted position. (this will be used to interlock gear manipulator actuation)
-- 1 Analog Input - SHARP IR sensors to detect ball presence (TBD - I don't think there's going to be a reason to know if we're intaking balls or not).
 
 ### Gear Intake/Manipulator
 - 1 Spark Motor Controller for intaking a gear 
@@ -73,6 +72,7 @@ The Fuel Ball Intake will be largely based off the 2016 intake with minimal chan
 
 ### Ball Hopper
 - 1 Spark Motor controller to feed balls into the shooter
+- 2 Analog inputs for ball presence. Sharp IR ranging sensors.
 
 ### Climber
 - 2 Spark Motor Controllers to raise/lower the robot
