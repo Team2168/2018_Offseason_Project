@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
     	
         // instantiate the command used for the autonomous period
-        drivetrain = drivetrain.getInstance();
+        drivetrain = Drivetrain.getInstance();
         
         oi = OI.getInstance();
 		ConsolePrinter.startThread();
