@@ -17,19 +17,19 @@ Code for the Steamworks game. This readme provide all of the information require
 ## Cool things to know
 ### Radio
 1. You can access radio web page by logging into http://10.21.68.1 root/admin
-2. Roborio should always be plugged into POE port of the radio only!!!
+2. Roborio should always be plugged into the port on the radio labeled "18-24 vPOE" only!
 
 ### Roborio
-1. You can access roborio diagnostics webpage by http://roboRIO-2168-FRC.local or http://10.21.68.2
+1. You can access roborio diagnostics webpage by http://roboRIO-2168-FRC.local (using IE web browser) or http://10.21.68.2
 2. You can program roborio over ethernet, usb, or wifi (if USB, NI Update suite needs to be installed to get usb drivers)
 3. More information on the control system can be found at our controls website at http://controls.team2168.org
 4. Files will be logged to /home/lvuser/Logs
-5. You can ftp to files on roborio using filezilla, winscp, or simple ftp at ftp://10.21.68.2
-6. You can ssh into roborio using putty or linux at ssh 10.21.68.2 username:lvuser password: blank
+5. You can ftp files to/from the roborio using filezilla, winscp, web browser, or your local file explorer at ftp://10.21.68.2:21
+6. You can ssh into roborio using putty or console application at ssh 10.21.68.2:22 username:lvuser password: blank
 
 ### Dashboard (on driver station)
 1. Java dashboard will open if Java is selected from the driverstation menu
-2. Python dash (if it installed) will open if "default" dashboard is selected from drivestation menue
+2. Python dash (if it installed) will open if "default" dashboard is selected from drivestation menu
 3. If smartdashboard doesn't update, but you have robot comms, in smart dash preferences toggle "use mDNS" until it does. 
 
 
@@ -47,24 +47,37 @@ The shooter for 2017 will be largely based off the 2016 shooter with minimal cha
 - 1 AverageEncoder 
 
 ### Shooter Hood (Ben)
+- 1 linear servo actuator
 
 ### Turret
+- 1 Spark Motor Controller
+- 1 Analog Input - potentiometer for rotational position feedback (turret angle)
+- 2 discrete inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
 
-### ShooterIndexer
+### Shooter Indexer
+- 1 Spark Motor Controller for the indexer roller
+- 2 Digital Inputs. Wired to Infrared poximity sensors that identify ball presence/abscence. Ball present = sensor1 OR sensor2. Ball abscent = !sensor1 AND !sensor2
 
-### BallIntake (Kyle)
+### Ball Intake (Kyle)
 The Fuel Ball Intake will be largely based off the 2016 intake with minimal changes. Use the 2016 intake subsystem as a reference when developing the 2017 intake code. The intake will have the following features:
-- 1 Victor Motor controller for intake roller
-- 2 Analog SHARP IR sensors to detect ball presence
+- 1 Spark Motor controller for intake roller
+- 1 Double Solenoid to extend/retract the intake
+- 1 Digital Input - Hall effect sensor - that indicates when the intake is in the retracted position. (this will be used to interlock gear manipulator actuation)
+- 1 Analog Input - SHARP IR sensors to detect ball presence (TBD - I don't think there's going to be a reason to know if we're intaking balls or not).
 
+### Gear Intake/Manipulator
+- 1 Spark Motor Controller for intaking a gear 
+- 1 Double Solenoid. This raises and lowers the gear intake allowing it to be picked up from the floow & scored on the peg
+- 1 Analog Input - Sharp IR distance sensor for detecting the presence of a gear in the intake. This sensor will be used to automatically run the intake motors and to auto-raise the intake after capturing the gear.
+- 1 Digital Input - Hall effect sensor - indicates when the gear manipulator is in the raised position. (this will be used to interlock lowering the intake)
 
-### GearIntake
+### Ball Hopper
+- 1 Spark Motor controller to feed balls into the shooter
 
-### BallHopper
-
-### GearManipulator
+### Climber
+- 2 Spark Motor Controllers to raise/lower the robot
 
 ### Vision
 
-
-
+### Flashlight
+- 1 Spike Relay Controller to turn the flashlight on/off.
