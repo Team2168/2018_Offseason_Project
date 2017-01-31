@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Subsystem class for the Drivetrain
+ * @author Aidan Sullivan
  */
 public class Drivetrain extends Subsystem {
 	
@@ -43,7 +44,9 @@ public class Drivetrain extends Subsystem {
 	public volatile double RightMotor3Voltage;
 
 	
-	
+	/**
+	 * Default constructors for Drivetrain
+	 */
 	private Drivetrain() {
 		
 		LeftMotor1 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_1);
@@ -90,6 +93,10 @@ public class Drivetrain extends Subsystem {
 				
 	}
 	
+	/**
+	 * Calls instance object and makes it a singleton object of type Drivetrain
+	 * @returns Drivetrain object "instance"
+	 */
 	public static Drivetrain getInstance(){
 		if(instance == null)
 			instance = new Drivetrain();
@@ -109,13 +116,18 @@ public class Drivetrain extends Subsystem {
     	LeftMotor3.set(speed);
     }
     
+    /**
+     * Take in double speed and sets it to left motors 1, 2, and 3
+     * @param speed is a double in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void driveLeftSide(double speed) {
     	driveLeftMotor1(speed);
     	driveLeftMotor2(speed);
     	driveLeftMotor3(speed);
     }
     
-    public void driveRightMotor1(double speed) {
+   public void driveRightMotor1(double speed) {
     	RightMotor1.set(speed);
     }
     
@@ -127,121 +139,249 @@ public class Drivetrain extends Subsystem {
     	RightMotor3.set(speed);
     }
     
+    /**
+     * Takes in a double speed and sets it to their right motors 1, 2, and 3
+     * @param speed is a double in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void driveRightSide(double speed) {
     	driveRightMotor1(speed);
     	driveRightMotor2(speed);
     	driveRightMotor3(speed);
     }
     
+    /**
+     * Takes in speed for right and speed for left and sets them to their respective sides 
+     * @param leftSpeed is a double between -1 and 1 in feet per second
+     * @param rightSpeed is a double between -1 and 1 between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void driveRobot(double leftSpeed, double rightSpeed) {
     	driveLeftSide(leftSpeed);
     	driveRightSide(rightSpeed);
     }
     
+    /**
+     * Calls left motor 1 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to left motor 1
+     * @param double speed in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void getLeftMotor1(double speed){
     	if(RobotMap.DT_REVERSE_LEFT)
     	speed = -speed;
     	LeftMotor1.set(speed);
     }
+    
+    /**
+     * Calls left motor 2 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to left motor 2
+     * @param double speed in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void getLeftMotor2(double speed){
     	if(RobotMap.DT_REVERSE_LEFT)
     	speed = -speed;
     	LeftMotor2.set(speed);
     } 
+    
+    /**
+     * Calls left motor 3 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to left motor 3
+     * @param double speed in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void getLeftMotor3(double speed){
     	if(RobotMap.DT_REVERSE_LEFT)
     	speed = -speed;
     	LeftMotor3.set(speed);
     }
+    
+    /**
+     * Calls right motor 1 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to right motor 1
+     * @param double speed in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void getRightMotor1(double speed){
-    	if(RobotMap.DT_REVERSE_LEFT)
+    	if(RobotMap.DT_REVERSE_RIGHT)
     	speed = -speed;
     	RightMotor1.set(speed);
     }
+    
+    /**
+     * Calls right motor 2 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to right motor 2
+     * @param double speed in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void getrightmotor2(double speed){
-    	if(RobotMap.DT_REVERSE_LEFT)
+    	if(RobotMap.DT_REVERSE_RIGHT)
     	speed = -speed;
     	RightMotor2.set(speed);
     }
+    
+    /**
+     * Calls right motor 3 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to right motor 3
+     * @param double speed in feet per second between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void getrightmotor3(double speed){
-    	if(RobotMap.DT_REVERSE_LEFT)
+    	if(RobotMap.DT_REVERSE_RIGHT)
     	speed = -speed;
     	RightMotor3.set(speed);
     }
-
-    
     		
 
     public static double getLeftEncoder() {
     	return LeftEncoder.get();
     }
     
+    
     public static double getRightEncoder() {
     	return RightEncoder.get();
     }
     
+    /**
+     * Calls for default command of the drivetrain to be DriveWithJoystick
+     */
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithJoystick());
     }
     
+    /**
+     * returns total distance traveled by right side of drivetrain
+     * @return double in inches of total distance traveled by right encoder
+     */
     public double getRightPosition(){
     	return RightEncoder.getPos();
     }
+    
+    /**
+     * returns total distance traveled by left side of drivetrain
+     * @return double in inches of total distance traveled by left encoder
+     */
     public double getLeftPosition(){
     	return LeftEncoder.getPos();
     }
+    
+    /**
+     * returns total distance traveled by drivetrain
+     * @return double in inches of average distance traveled by both encoders
+     */
     public double getAverageDistance(){
     	return (getRightPosition() + getLeftPosition())/2.0;
     }
     
+    /**
+     * resets position of right encoder to 0 inches
+     */
     public void resetRightPosition(){
     	RightEncoder.reset();
     }
+    /**
+     * resets position of left encoder to 0 inches
+     */
     public void resetLeftPosition(){
     	LeftEncoder.reset();
     }
+    
+    /**
+     * resets position of both Encoders to 0 inches
+     */
     public void resetPosition(){
     	resetLeftPosition();
     	resetRightPosition();
     }
     
+    /**
+     * returns heading of robot
+     * @return double between 0 degrees and 360 degrees
+     */
     public double getHeading(){
     	return gyroSPI.getPos();		
     }
+    
+    /**
+     * Resets heading of IMU to 0 degrees
+     */
     public void resetHeading(){
     	gyroSPI.reset();
     }
     
+    /**
+     * calls to calibrate gyro
+     * Only used when robot is stationary
+     */
     public void calibrateGyro(){
     	gyroSPI.calibrate();
     }
     
+    /**
+     * Terminates active gyro calibration sequence
+     */
     public void stopGyroCalibrating(){
     	gyroSPI.stopCalibrating();
     }
+    
+    /**
+     * Returns true if Gyro has calibrated
+     */
     public boolean isGyroCalibrated(){
     	return gyroSPI.hasCompletedCalibration();
     }
     
     /**
-     * 
-     * @return
+     * Returns the last commanded voltage of Left Motor 1
+     * @return Double in volts between 0 and 12
      */
     public double getLeftMotor1Voltage(){
     	return LeftMotor1Voltage;
     }
+    
+    /**
+     * Returns the last commanded voltage of Left Motor 2
+     * @return Double in volts between 0 and 12
+     */
     public double getLeftMotor2Voltage(){
     	return LeftMotor1Voltage;
-    } 
+    }
+    
+    /**
+     * Returns the last commanded voltage of Left Motor 3 
+     * @return Double in volts between 0 and 12
+     */
     public double getLeftMotor3Voltage(){
     	return LeftMotor1Voltage;
     } 
+    
+    /**
+     * Returns the last commanded voltage of Right Motor 1
+     * @return Double in volts between 0 and 12
+     */
     public double getRightMotor1Voltage(){
     	return RightMotor1Voltage;
     } 
+    
+    /**
+     * Returns the last commanded voltage of Right Motor 2
+     * @return Double in volts between 0 and 12
+     */
     public double getRightMotor2Voltage(){
     	return RightMotor2Voltage;
     } 
+    
+    /**
+     * Returns the last commanded voltage of Right Motor 3
+     * @return Double in volts between 0 and 12
+     */
     public double getRightMotor13Voltage(){
     	return RightMotor3Voltage;
     }
