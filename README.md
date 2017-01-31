@@ -46,10 +46,10 @@ The shooter for 2017 will be largely based off the 2016 shooter with minimal cha
 - 2 Talon SRX Motor Controller
 - 1 AverageEncoder 
 
-### Shooter Hood (Ben)
+### Shooter Hood (Peter)
 - 1 linear servo actuator
 
-### Turret
+### Turret (Ben)
 - 1 Spark Motor Controller
 - 1 Analog Input - potentiometer for rotational position feedback (turret angle)
 - 2 Digital inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
