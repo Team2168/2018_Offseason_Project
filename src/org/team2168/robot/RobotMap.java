@@ -40,6 +40,8 @@ public class RobotMap {
 	public static final int LIFT_MOTOR_1 = 2;
 	public static final int LIFT_MOTOR_2 = 5;
 	
+	public static final int SHOOTER_HOOD_SERVO = -1; // port & component not yet used
+	
 	
 	///////////Booleans////////////
 	public static final boolean REVERSE_LIFT = true;
@@ -55,5 +57,14 @@ public class RobotMap {
 	
 	public static final boolean PRINT_SD_DEBUG_DATA = true;
 	public static final long CONSOLE_PRINTER_LOG_RATE_MS = 100;
+	
+	
+	
+	///////// Turret Shooter Hood Parameters /////////////
+	
+	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
+	public static final double MIN_HOOD_VALUE = 0;
+	public static final double MAX_HOOD_VALUE = 0;
+	
 	
 }

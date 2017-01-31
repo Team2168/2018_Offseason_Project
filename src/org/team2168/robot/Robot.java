@@ -11,6 +11,7 @@ import org.team2168.robot.subsystems.Hopper;
 import org.team2168.robot.subsystems.Intake;
 import org.team2168.robot.subsystems.Lift;
 import org.team2168.robot.subsystems.Shooter;
+import org.team2168.robot.subsystems.ShooterHood;
 import org.team2168.robot.utils.consoleprinter.ConsolePrinter;
 
 /**
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static Hopper hopper;
 	public static Shooter shooter;
 	public static Lift lift;
+	public static ShooterHood shooterhood;
 
     Command autonomousCommand;
 
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
         hopper = new Hopper();
         shooter = new Shooter();
         lift = new Lift();
+        shooterhood = ShooterHood.getInstance();
         
 		ConsolePrinter.startThread();
     }
