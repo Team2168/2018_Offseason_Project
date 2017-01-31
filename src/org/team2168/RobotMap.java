@@ -29,7 +29,6 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_MOTOR_2 = 4;
 	public static final int LEFT_DRIVE_MOTOR_3 =5;
 	public static final int INTAKE_MOTOR_1= 7;
-	public static final int INTAKE_MOTOR_2= 15;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 18;
 
@@ -52,7 +51,6 @@ public class RobotMap {
 	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 3;
 	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 4;
 	public final static int INTAKE_MOTOR_1_PDP = 11;
-	public final static int INTAKE_MOTOR_2_PDP = 5;
 	public final static int INDEXER_MOTOR_PDP = 10;
 	public final static int SHOOTER_MOTOR_FWD_PDP = 0;
 	public final static int SHOOTER_MOTOR_AFT_PDP = 15;
