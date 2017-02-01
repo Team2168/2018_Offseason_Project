@@ -28,6 +28,8 @@ public class Intake extends Subsystem {
 	}
 	
 	public void driveIntakeMotor1(double speed) {
+		if(RobotMap.REVERSE_INTAKE_WHEEL_1)
+			speed = -speed;
 		intakeMotor1.set(speed);
 	}
 	
@@ -37,7 +39,7 @@ public class Intake extends Subsystem {
 	 * @param speed positive values shoot a ball out of the robot
 	 */
 	public void driveIntake(double speed) {
-		driveIntakeMotor1(-speed);
+		driveIntakeMotor1(speed);
 	}
 	
     public void initDefaultCommand() {
