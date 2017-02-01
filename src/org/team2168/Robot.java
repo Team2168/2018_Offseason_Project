@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Intake;
+import org.team2168.subsystems.Turret;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -21,6 +22,7 @@ public class Robot extends IterativeRobot {
 
 	public static Drivetrain drivetrain;
 	public static Intake intake;
+	public static Turret turret;
 
 	public static OI oi;
 	
@@ -36,6 +38,7 @@ public class Robot extends IterativeRobot {
     	
         // instantiate the command used for the autonomous period
         drivetrain = drivetrain.getInstance();
+        turret = turret.getInstance();
         
         oi = OI.getInstance();
 		ConsolePrinter.startThread();

@@ -21,7 +21,7 @@ public class RobotMap {
 	public static final int OPERATOR_JOYSTICK = 1;
 	public static final int COMMANDS_TEST_JOYSTICK = 4;
 
-	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
+	// PWM (0 to 9(???)) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
 	public static final int RIGHT_DRIVE_MOTOR_3 =2;
@@ -32,7 +32,7 @@ public class RobotMap {
 	public static final int INTAKE_MOTOR_2= 15;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 18;
-
+	public static final int TURRET_MOTOR = 9;
 
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
@@ -70,10 +70,13 @@ public class RobotMap {
 	public static final int SHOOTER_ENCODER_A = 4;
 	public static final int SHOOTER_ENCODER_B = 5;
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
+	public static final int TURRET_LIMIT_SWITCH_1 = 6;
+	public static final int TURRET_LIMIT_SWITCH_2 = 7;
 
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
+	public static final int TURRET_POTENTIOMETER = 0;
 
 
 

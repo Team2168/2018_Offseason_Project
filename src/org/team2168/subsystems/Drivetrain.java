@@ -3,7 +3,7 @@ package org.team2168.subsystems;
 import edu.wpi.first.wpilibj.Victor;
 
 import org.team2168.RobotMap;
-import org.team2168.commands.DriveWithJoystick;
+import org.team2168.commands.drivetrain.DriveWithJoystick;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
