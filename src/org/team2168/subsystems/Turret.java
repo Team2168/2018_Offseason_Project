@@ -17,10 +17,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Turret extends Subsystem {
 
-    private static Spark TurretMotor;
-    private static AnalogInput Potentiometer;
-    private static DigitalInput LimitSwitchRight;
-    private static DigitalInput LimitSwitchLeft;
+    private static Spark turretMotor;
+    private static AnalogInput potentiometer;
+    private static DigitalInput limitSwitchRight;
+    private static DigitalInput limitSwitchLeft;
 
     private static Turret instance = null;
     
@@ -34,11 +34,14 @@ public class Turret extends Subsystem {
      * Default constructor for Turret subsystem
      */
     private Turret() {
-    	TurretMotor = new Spark(RobotMap.TURRET_MOTOR);
-    	Potentiometer = new AnalogInput(RobotMap.TURRET_POTENTIOMETER);
-    	LimitSwitchRight = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_1);
-    	LimitSwitchLeft = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_2);
+    	turretMotor = new Spark(RobotMap.TURRET_MOTOR);
+    	potentiometer = new AnalogInput(RobotMap.TURRET_POTENTIOMETER);
+    	limitSwitchRight = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_1);
+    	limitSwitchLeft = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_2);
     	turretInterpolator = new LinearInterpolator(turretRange);
+    	
+    	//For to be the very safest and to not break robot
+    	turretMotor.setSafetyEnabled(true);
     }
     
     /**
@@ -58,10 +61,10 @@ public class Turret extends Subsystem {
 	 */
 	public void setSpeed(double speed) {
 		if((speed > 0 && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
-			TurretMotor.set(0);
+			turretMotor.set(0);
 		}
 		else {
-			TurretMotor.set(speed);
+			turretMotor.set(speed);
 		}
 	}
 	
@@ -79,7 +82,7 @@ public class Turret extends Subsystem {
 	 * @return true if pressed, false if unpressed
 	 */
 	public boolean isLimitSwitchRightActive() {
-		return LimitSwitchRight.get();
+		return limitSwitchRight.get();
 	}
 	
 	/**
@@ -87,7 +90,7 @@ public class Turret extends Subsystem {
 	 * @return true if pressed, false if unpressed
 	 */
 	public boolean isLimitSwitchLeftActive() {
-		return LimitSwitchLeft.get();
+		return limitSwitchLeft.get();
 	}
 	
     public void initDefaultCommand() {
