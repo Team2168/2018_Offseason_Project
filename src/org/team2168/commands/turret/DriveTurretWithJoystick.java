@@ -22,6 +22,9 @@ public class DriveTurretWithJoystick extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
+    /**
+     * Controls turret with operator left joystick
+     */
     protected void execute() {
     	//TODO set this to whatever we need
     	Robot.turret.setSpeed(OI.operatorJoystick.getLeftStickRaw_X());
@@ -33,12 +36,18 @@ public class DriveTurretWithJoystick extends Command {
     }
 
     // Called once after isFinished returns true
+    /**
+     * Stops turret motor
+     */
     protected void end() {
     	Robot.turret.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
+    /**
+     * calls to stop when interrupted
+     */
     protected void interrupted() {
     	end();
     }
