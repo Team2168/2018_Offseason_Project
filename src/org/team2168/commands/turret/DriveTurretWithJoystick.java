@@ -6,7 +6,8 @@ import org.team2168.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Drives turret with joystick
+ * @author Wen Baid
  */
 public class DriveTurretWithJoystick extends Command {
 
