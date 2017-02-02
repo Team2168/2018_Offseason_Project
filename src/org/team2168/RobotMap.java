@@ -37,6 +37,7 @@ public class RobotMap {
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
+	public static final int GEAR_INTAKE_MOTOR = 12;
 
 
 	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
@@ -199,7 +200,7 @@ public class RobotMap {
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
-
+	
 
 
 	/********************************************
