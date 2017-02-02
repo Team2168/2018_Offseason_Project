@@ -201,7 +201,12 @@ public class RobotMap {
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
 	
-
+	/********************************************
+	 * 				Large Sanchez PARAMETERS			*
+	 ********************************************/
+	public static final int THINGS_ALREADY_KNOWN = 860;
+	public static final String BIG_MAMAS_LOCATION = "Outside of G-Town";
+	public static final String TYPE_OF_BOYZ = "Mystic";
 
 	/********************************************
 	 * 				Lights I2C					*

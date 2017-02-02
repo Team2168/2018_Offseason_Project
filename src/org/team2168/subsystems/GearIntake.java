@@ -25,7 +25,6 @@ public class GearIntake extends Subsystem {
 		
 	}
 	
-	
 	public GearIntake getInstance(){
 		if(instance == null)
 			instance = new GearIntake();
