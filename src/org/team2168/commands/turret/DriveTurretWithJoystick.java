@@ -1,23 +1,19 @@
 package org.team2168.commands.turret;
 
+import org.team2168.OI;
 import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Runs turret with constant
- * @author Wen Baid
+ *
  */
-public class DriveTurretWithConstant extends Command {
+public class DriveTurretWithJoystick extends Command {
 
-	double speed;
-	
-    public DriveTurretWithConstant(double turretSpeed) {
+    public DriveTurretWithJoystick() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.turret);
-    	
-    	speed = turretSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -26,7 +22,8 @@ public class DriveTurretWithConstant extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.turret.setSpeed(speed);
+    	//TODO set this to whatever we need
+    	Robot.turret.setSpeed(OI.operatorJoystick.getLeftStickRaw_X());
     }
 
     // Make this return true when this Command no longer needs to run execute()

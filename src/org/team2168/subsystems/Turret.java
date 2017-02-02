@@ -34,7 +34,7 @@ public class Turret extends Subsystem {
 		return instance;
 	}
 	
-	public void driveTurretMotor(double speed) {
+	public void setSpeed(double speed) {
 		TurretMotor.set(speed);
 	}
 	
