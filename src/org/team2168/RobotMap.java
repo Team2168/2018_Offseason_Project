@@ -69,9 +69,9 @@ public class RobotMap {
 	public static final int RIGHT_DRIVE_ENCODER_B = 3;
 	public static final int SHOOTER_ENCODER_A = 4;
 	public static final int SHOOTER_ENCODER_B = 5;
+	public static final int TURRET_LIMIT_SWITCH_RIGHT = 6;
+	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
-	public static final int TURRET_LIMIT_SWITCH_1 = 6;
-	public static final int TURRET_LIMIT_SWITCH_2 = 7;
 
 
 	//Analog Input Channels////////////////////////////////////////////////////

@@ -1,7 +1,5 @@
 package org.team2168.subsystems;
 
-import javax.swing.text.Utilities;
-
 import org.team2168.RobotMap;
 import org.team2168.commands.turret.DriveTurretWithJoystick;
 import org.team2168.utils.LinearInterpolator;
@@ -25,7 +23,7 @@ public class Turret extends Subsystem {
     private static Turret instance = null;
     
     private static LinearInterpolator turretInterpolator;
-    //TODO get these values plez
+    //TODO get these values plez format for points: (volts, degrees)
     private double[][] turretRange = {{-1.0,-100.0},
     		                          {0.0,0.0},
     		                          {1.0,100.0}};
@@ -36,14 +34,15 @@ public class Turret extends Subsystem {
     private Turret() {
     	turretMotor = new Spark(RobotMap.TURRET_MOTOR);
     	potentiometer = new AnalogInput(RobotMap.TURRET_POTENTIOMETER);
-    	limitSwitchRight = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_1);
-    	limitSwitchLeft = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_2);
+    	limitSwitchRight = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_RIGHT);
+    	limitSwitchLeft = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_LEFT);
     	turretInterpolator = new LinearInterpolator(turretRange);
     	
     	//For to be the very safest and to not break robot
+    	turretMotor.setExpiration(0.1);
     	turretMotor.setSafetyEnabled(true);
     }
-    
+
     /**
      * Returns turret singleton object
      * @return turret singleton object
@@ -54,7 +53,7 @@ public class Turret extends Subsystem {
 		
 		return instance;
 	}
-	
+
 	/**
 	 * Sets the speed of the motor
 	 * @param speed of -1.0 (left) to 1.0 (right)
@@ -67,7 +66,7 @@ public class Turret extends Subsystem {
 			turretMotor.set(speed);
 		}
 	}
-	
+
 	/**
 	 * Returns the current position of the turret
 	 * @param x is voltage
@@ -76,7 +75,7 @@ public class Turret extends Subsystem {
 	public double getPosition() {
 		return turretInterpolator.interpolate(potentiometer.getVoltage());
 	}
-	
+
 	/**
 	 * Returns status of limit switch
 	 * @return true if pressed, false if unpressed
@@ -84,7 +83,7 @@ public class Turret extends Subsystem {
 	public boolean isLimitSwitchRightActive() {
 		return limitSwitchRight.get();
 	}
-	
+
 	/**
 	 * Returns status of limit switch
 	 * @return true if pressed, false if unpressed
@@ -92,9 +91,8 @@ public class Turret extends Subsystem {
 	public boolean isLimitSwitchLeftActive() {
 		return limitSwitchLeft.get();
 	}
-	
+
     public void initDefaultCommand() {
         setDefaultCommand(new DriveTurretWithJoystick());
     }
 }
-
