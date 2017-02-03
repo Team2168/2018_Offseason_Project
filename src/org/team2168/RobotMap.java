@@ -60,7 +60,9 @@ public class RobotMap {
 	public final static int PCM_POWER = 7;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
-
+	public final static int GEAR_INTAKE_PISTON_EXTEND = 0;
+	public final static int GEAR_INTAKE_PISTON_RETRACT = 1;
+	
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
