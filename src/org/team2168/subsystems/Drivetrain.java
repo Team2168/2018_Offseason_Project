@@ -21,15 +21,13 @@ public class Drivetrain extends Subsystem {
 	
 	private static VictorSP LeftMotor1;
 	private static VictorSP LeftMotor2;
-	private static VictorSP LeftMotor3;
-	
 	private static VictorSP RightMotor1;
 	private static VictorSP RightMotor2;
-	private static VictorSP RightMotor3;
+
 	
 	public ADXRS453Gyro gyroSPI;
 	
-	private DoubleSolenoid GearChanger;
+	private DoubleSolenoid gearChanger;
 
 	
 	private static AverageEncoder RightEncoder;
@@ -40,11 +38,9 @@ public class Drivetrain extends Subsystem {
 	//For debugging only
 	public volatile double LeftMotor1Voltage;
 	public volatile double LeftMotor2Voltage;
-	public volatile double LeftMotor3Voltage;
 	public volatile double RightMotor1Voltage;
 	public volatile double RightMotor2Voltage;
-	public volatile double RightMotor3Voltage;
-
+	
 	
 	/**
 	 * Default constructors for Drivetrain
@@ -53,14 +49,12 @@ public class Drivetrain extends Subsystem {
 		
 		LeftMotor1 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_1);
 		LeftMotor2 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_2);
-		LeftMotor3 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_3);
-		
 		RightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		RightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
-		RightMotor3 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_3);
 		
 		
-		GearChanger = new DoubleSolenoid(RobotMap.DOUBLE_SOLENOID_LEFT, RobotMap.DOUBLE_SOLENOID_RIGHT);
+		
+		gearChanger = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
 		
 		
 		
@@ -93,10 +87,8 @@ public class Drivetrain extends Subsystem {
 		
 		LeftMotor1Voltage = 0;
 		LeftMotor2Voltage = 0;
-		LeftMotor3Voltage= 0;
 		RightMotor1Voltage = 0;
 		RightMotor2Voltage = 0;
-		RightMotor3Voltage = 0;
 				
 	}
 	
@@ -122,7 +114,7 @@ public class Drivetrain extends Subsystem {
     	if(RobotMap.DT_REVERSE_LEFT)
         	speed = -speed;
         	LeftMotor1.set(speed);
-        	LeftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
+        	LeftMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
 
     }
     
@@ -142,21 +134,6 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
-     * Calls left motor 3 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to left motor 3
-     * @param double speed between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    private void driveLeftMotor3(double speed) {
-    	if(RobotMap.DT_REVERSE_LEFT)
-        	speed = -speed;
-        	LeftMotor3.set(speed);
-        	LeftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
-
-    }
-    
-    /**
      * Take in double speed and sets it to left motors 1, 2, and 3
      * @param speed is a double between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
@@ -164,7 +141,6 @@ public class Drivetrain extends Subsystem {
     public void driveLeftSide(double speed) {
     	driveLeftMotor1(speed);
     	driveLeftMotor2(speed);
-    	driveLeftMotor3(speed);
     }
     
     /**
@@ -196,20 +172,6 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
-     * Calls right motor 3 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to right motor 3
-     * @param double speed between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    public void driveRightMotor3(double speed) {
-    	if(RobotMap.DT_REVERSE_RIGHT)
-        	speed = -speed;
-        	RightMotor3.set(speed);
-        	RightMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
-    }
-    
-    /**
      * Takes in a double speed and sets it to their right motors 1, 2, and 3
      * @param speed is a double  between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
@@ -217,7 +179,6 @@ public class Drivetrain extends Subsystem {
     public void driveRightSide(double speed) {
     	driveRightMotor1(speed);
     	driveRightMotor2(speed);
-    	driveRightMotor3(speed);
     }
     
     /**
@@ -349,14 +310,6 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
-     * Returns the last commanded voltage of Left Motor 3 
-     * @return Double in volts between 0 and 12
-     */
-    public double getLeftMotor3Voltage(){
-    	return LeftMotor3Voltage;
-    } 
-    
-    /**
      * Returns the last commanded voltage of Right Motor 1
      * @return Double in volts between 0 and 12
      */
@@ -372,19 +325,11 @@ public class Drivetrain extends Subsystem {
     	return RightMotor2Voltage;
     } 
     
-    /**
-     * Returns the last commanded voltage of Right Motor 3
-     * @return Double in volts between 0 and 12
-     */
-    public double getRightMotor3Voltage(){
-    	return RightMotor3Voltage;
-    }
-    
 	/**
 	 * Shifts the Drivetrain from High to Low Gear
 	 */
     public void shiftGearsHighToLow(){
-    	GearChanger.set(DoubleSolenoid.Value.kForward);
+    	gearChanger.set(DoubleSolenoid.Value.kForward);
     }
     
 	/**
@@ -392,22 +337,22 @@ public class Drivetrain extends Subsystem {
 	 */
     public boolean gearIsHigh()
     {
-    	return GearChanger.get()==DoubleSolenoid.Value.kReverse;
+    	return gearChanger.get()==DoubleSolenoid.Value.kReverse;
     }
     
 	/**
 	 * Shifts the Drivetrain from Low to High Gear
 	 */
     public void shiftGearsLowToHigh(){
-    	GearChanger.set(DoubleSolenoid.Value.kReverse);
+    	gearChanger.set(DoubleSolenoid.Value.kReverse);
     }
     
 	/**
 	 * Returns true if last commanded shift was Low Gear
-	 */s
+	 */
     public boolean gearIsLow()
     {
-    	return GearChanger.get()==DoubleSolenoid.Value.kForward;
+    	return gearChanger.get()==DoubleSolenoid.Value.kForward;
     }
     
     

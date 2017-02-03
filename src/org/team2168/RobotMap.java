@@ -59,8 +59,8 @@ public class RobotMap {
 	public final static int PCM_POWER = 7;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
-	public final static int DOUBLE_SOLENOID_LEFT = 0;
-	public final static int DOUBLE_SOLENOID_RIGHT = 1;
+	public final static int DRIVETRAIN_HIGH_GEAR = 0;
+	public final static int DRIVETRAIN_LOW_GEAR= 1;
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
