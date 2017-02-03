@@ -46,7 +46,7 @@ public class Drivetrain extends Subsystem {
 		ConsolePrinter.putNumber("Drivetrain Left Encoder", Drivetrain::getLeftEncoder, true, false);
 	}
 	
-	public Drivetrain getInstance(){
+	public static Drivetrain getInstance(){
 		if(instance == null)
 			instance = new Drivetrain();
 		

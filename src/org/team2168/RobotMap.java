@@ -28,7 +28,7 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_MOTOR_1 = 3;
 	public static final int LEFT_DRIVE_MOTOR_2 = 4;
 	public static final int LEFT_DRIVE_MOTOR_3 =5;
-	public static final int INTAKE_MOTOR_1= 7;
+	public static final int INTAKE_MOTOR= 7;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 18;
 
@@ -144,7 +144,7 @@ public class RobotMap {
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
-	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL = false;
 
 
 	/*************************************************************************

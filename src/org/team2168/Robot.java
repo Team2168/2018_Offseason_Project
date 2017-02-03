@@ -2,7 +2,7 @@
 package org.team2168;
 
 import org.team2168.subsystems.Drivetrain;
-import org.team2168.subsystems.Intake;
+import org.team2168.subsystems.BallIntake;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static Drivetrain drivetrain;
-	public static Intake intake;
+	public static BallIntake ballIntake;
 
 	public static OI oi;
 	
@@ -35,7 +35,8 @@ public class Robot extends IterativeRobot {
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
     	
         // instantiate the command used for the autonomous period
-        drivetrain = drivetrain.getInstance();
+        drivetrain = Drivetrain.getInstance();
+        ballIntake = BallIntake.getInstance();
         
         oi = OI.getInstance();
 		ConsolePrinter.startThread();
