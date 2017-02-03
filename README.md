@@ -93,7 +93,7 @@ The Fuel Ball Intake will be largely based off the 2016 intake with minimal chan
 This is a roller system in the bellypan of the robot which feeds balls from the hopper into the lift
 - 1 Spark Motor controller
 
-### Elevator (Peter, David)
+### Elevator (David)
 This is a vertical roller system that takes balls from the conveyor and brings them up into the indexer, and ultimately the shooter wheel.
 - 1 Spark Motor Controller
 - 2 Analog SHARP IR sensors, for ball detection. These are TBD, contingency - not sure if we're goign to need them.
@@ -109,4 +109,4 @@ It can only rotate in one direction. So make sure negative values commanded don'
 ### ArduinoLights (Elijah)
 
 
-### Vision (David)
+### Vision (Peter, David)
