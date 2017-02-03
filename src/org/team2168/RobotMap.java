@@ -201,7 +201,7 @@ public class RobotMap {
 	 * 				Kevin PARAMETERS			*
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
-	public static final boolean GUYANA_HAS_SUNK = false;
+	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 
 
 
