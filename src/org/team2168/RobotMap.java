@@ -77,7 +77,7 @@ public class RobotMap {
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
-
+	public static final int GEAR_INTAKE_ROLLER_IR = 0;
 
 
 
@@ -152,6 +152,13 @@ public class RobotMap {
 
 
 	/*************************************************************************
+	 *                         Gear Intake PARAMETERS
+	 *************************************************************************/
+	public static final double GEAR_INTAKE_IR_THRESHOLD = 2;
+
+
+	
+	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
 
@@ -209,6 +216,7 @@ public class RobotMap {
 	public static final int THINGS_ALREADY_KNOWN = 860;
 	public static final String BIG_MAMAS_LOCATION = "Outside of G-Town";
 	public static final String TYPE_OF_BOYZ = "Mystic";
+	public static final boolean IS_BIG_SANCH_ON_THE_TRACK = true;
 
 	/********************************************
 	 * 				Lights I2C					*

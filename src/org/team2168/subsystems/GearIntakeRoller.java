@@ -17,7 +17,7 @@ public class GearIntakeRoller extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	private Spark GearIntakeMotor ;
+	private Spark GearIntakeMotor;
 	
 	private AnalogInput GearIntakeMotorIRSensor;
 	
@@ -26,6 +26,7 @@ public class GearIntakeRoller extends Subsystem {
 	
 	private GearIntakeRoller() {
 		GearIntakeMotor  = new Spark(RobotMap.GEAR_INTAKE_MOTOR);
+		GearIntakeMotorIRSensor = new AnalogInput(RobotMap.GEAR_INTAKE_ROLLER_IR);
 	}
 	
 	public GearIntakeRoller getInstance(){
@@ -34,6 +35,20 @@ public class GearIntakeRoller extends Subsystem {
 		
 		return instance;
 	}
+	
+	public double getIRVoltage(){
+		return GearIntakeMotorIRSensor.getVoltage();
+	}
+	
+	public boolean isGearPresent(){
+		return (GearIntakeMotorIRSensor.getVoltage() >= RobotMap.GEAR_INTAKE_IR_THRESHOLD);
+	}
+	
+	public void setMotorSpeed(double speed){
+		GearIntakeMotor.set(speed);
+	}
+	
+	
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
