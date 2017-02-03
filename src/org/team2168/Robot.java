@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Intake;
+import org.team2168.subsystems.ShooterHood;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;

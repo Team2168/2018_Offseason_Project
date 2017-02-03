@@ -156,7 +156,9 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Hood PARAMETERS
 	 *************************************************************************/
-
+	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
+	public static final double MIN_HOOD_VALUE = 0;
+	public static final double MAX_HOOD_VALUE = 0;
 
 	/*************************************************************************
 	 *                         Vision PARAMETERS

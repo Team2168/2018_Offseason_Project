@@ -1,29 +1,33 @@
-package org.team2168.robot.commands;
+package org.team2168.commands.shooterHood;
 
-import org.team2168.robot.Robot;
+import org.team2168.Robot;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Command to move the turret shooter hood with a controller joystick
  */
-public class DriveLiftWithJoystick extends Command {
+public class DriveHoodWithJoystick extends Command {
 
-    public DriveLiftWithJoystick() {
+    public DriveHoodWithJoystick() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.lift);
+        requires(Robot.shooterhood);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     }
 
+    // Takes the current angle of the shooter hood servo and adds to it based on
+    // how far the right operator joystick is pushed on the Y-axis
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double upSpeed = Robot.oi.driverJoystick.getRightTriggerAxisRaw();
-    	double downSpeed = Robot.oi.driverJoystick.getLeftTriggerAxisRaw();
     	
-    	Robot.lift.drive(upSpeed - downSpeed);
+    	if(Math.abs(Robot.oi.operatorJoystick.getRightStickRaw_Y()) > 0.1)
+    		Robot.shooterhood.setAngle(Robot.shooterhood.getAngle()
+    				- (RobotMap.HOOD_JOYSTICK_MULTIPLIER * Robot.oi.operatorJoystick.getRightStickRaw_Y()));
     	
     }
 
@@ -34,12 +38,10 @@ public class DriveLiftWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.lift.drive(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

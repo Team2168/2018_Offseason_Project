@@ -1,7 +1,7 @@
-package org.team2168.robot.subsystems;
+package org.team2168.subsystems;
 
-import org.team2168.robot.RobotMap;
-import org.team2168.robot.commands.ShooterHood.DriveHoodWithJoystick;
+import org.team2168.commands.shooterHood.DriveHoodWithJoystick;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -59,7 +59,6 @@ public class ShooterHood extends Subsystem {
 	 * @return the angle in degrees that servo motor was last commanded to
 	 */
 	public double getAngle(){
-		
 		return hoodServo.getAngle();
 	}
 	
