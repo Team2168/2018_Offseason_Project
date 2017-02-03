@@ -1,6 +1,7 @@
 
 package org.team2168;
 
+import org.team2168.subsystems.Climber;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Intake;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
@@ -21,6 +22,7 @@ public class Robot extends IterativeRobot {
 
 	public static Drivetrain drivetrain;
 	public static Intake intake;
+	public static Climber climber;
 
 	public static OI oi;
 	
@@ -36,6 +38,7 @@ public class Robot extends IterativeRobot {
     	
         // instantiate the command used for the autonomous period
         drivetrain = drivetrain.getInstance();
+        climber = climber.getInstance();
         
         oi = OI.getInstance();
 		ConsolePrinter.startThread();
