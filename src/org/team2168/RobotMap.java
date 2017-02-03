@@ -21,26 +21,50 @@ public class RobotMap {
 	public static final int OPERATOR_JOYSTICK = 1;
 	public static final int COMMANDS_TEST_JOYSTICK = 4;
 
-	// PWM (0 to 9(???)) on RoboRio//////////////////////////////////////////////////
+	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
 	public static final int RIGHT_DRIVE_MOTOR_3 =2;
 	public static final int LEFT_DRIVE_MOTOR_1 = 3;
 	public static final int LEFT_DRIVE_MOTOR_2 = 4;
 	public static final int LEFT_DRIVE_MOTOR_3 =5;
-	public static final int INTAKE_MOTOR_1= 7;
-	public static final int INTAKE_MOTOR_2= 15;
+	public static final int INTAKE_MOTOR_1= 6;
+	public static final int INTAKE_MOTOR_2= 7;
 	public static final int INDEXER_WHEEL = 8;
-	public static final int SHOOTER_HOOD_SERVO = 18;
 	public static final int TURRET_MOTOR = 9;
 
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
+	public static final int SHOOTER_HOOD_SERVO = 12;
 
 
-	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
+	//Solenoid Channels////////////////////////////////////////////////////////
 
+
+	//Digital IO Channels//////////////////////////////////////////////////////
+	//Channels 0-9 on RoboRio
+	public static final int LEFT_DRIVE_ENCODER_A = 0;
+	public static final int LEFT_DRIVE_ENCODER_B = 1;
+	public static final int RIGHT_DRIVE_ENCODER_A = 2;
+	public static final int RIGHT_DRIVE_ENCODER_B = 3;
+	public static final int SHOOTER_ENCODER_A = 4;
+	public static final int SHOOTER_ENCODER_B = 5;
+	public static final int TURRET_LIMIT_SWITCH_RIGHT = 6;
+	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
+	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
+	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
+	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
+
+
+	//Analog Input Channels////////////////////////////////////////////////////
+	//Channels 0-3 on Roborio
+	public static final int TURRET_POTENTIOMETER = 0;
+
+
+
+
+	//Channels 4-7 on MXP
 
 
 	//TODO: Confirm PDP Ports
@@ -58,32 +82,7 @@ public class RobotMap {
 	public final static int SHOOTER_MOTOR_AFT_PDP = 15;
 	public final static int PCM_POWER = 7;
 
-	//Solenoid Channels////////////////////////////////////////////////////////
-
-
-	//Digital IO Channels//////////////////////////////////////////////////////
-	//Channels 0-9 on RoboRio
-	public static final int LEFT_DRIVE_ENCODER_A = 0;
-	public static final int LEFT_DRIVE_ENCODER_B = 1;
-	public static final int RIGHT_DRIVE_ENCODER_A = 2;
-	public static final int RIGHT_DRIVE_ENCODER_B = 3;
-	public static final int SHOOTER_ENCODER_A = 4;
-	public static final int SHOOTER_ENCODER_B = 5;
-	public static final int TURRET_LIMIT_SWITCH_RIGHT = 6;
-	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
-	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
-
-
-	//Analog Input Channels////////////////////////////////////////////////////
-	//Channels 0-3 on Roborio
-	public static final int TURRET_POTENTIOMETER = 0;
-
-
-
-
-	//Channels 4-7 on MXP
-
-
+	
 	//CAN Device IDs///////////////////////////////////////////////////////////
 
 
@@ -154,7 +153,9 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-
+	public static final double INDEXER_SPEED_CONSTANT = 0.5;
+	public static final boolean REVERSE_INDEXER = false;
+	
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
