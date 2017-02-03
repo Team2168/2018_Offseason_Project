@@ -66,7 +66,7 @@ public class ShooterIndexer extends Subsystem {
 	 * Checks if ball is present
 	 * @return if ball is present (true=present, false=not present)
 	 */
-	private boolean isBallPresent() {
+	public boolean isBallPresent() {
 		if(isSensor1Active() || isSensor2Active()) {
 			return true;
 		}
@@ -77,7 +77,7 @@ public class ShooterIndexer extends Subsystem {
 	 * Checks if ball is absent
 	 * @return if ball is absent (true=present, false=not present)
 	 */
-	private boolean isBallAbsent() {
+	public boolean isBallAbsent() {
 		if(!isSensor1Active() && !isSensor2Active()) {
 			return true;
 		}
