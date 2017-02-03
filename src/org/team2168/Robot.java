@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Intake;
+import org.team2168.utils.PowerDistribution;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -21,7 +22,9 @@ public class Robot extends IterativeRobot {
 
 	public static Drivetrain drivetrain;
 	public static Intake intake;
-
+	
+	public static PowerDistribution pdp;
+	
 	public static OI oi;
 	
     Command autonomousCommand;
@@ -39,6 +42,9 @@ public class Robot extends IterativeRobot {
         
         oi = OI.getInstance();
 		ConsolePrinter.startThread();
+		
+		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
+		pdp.startThread();
 		
 		System.out.println("Robot Finished Loading");
     }

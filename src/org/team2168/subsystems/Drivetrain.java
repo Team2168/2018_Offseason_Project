@@ -1,8 +1,9 @@
 package org.team2168.subsystems;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.sensors.ADXRS453Gyro;
 import org.team2168.PID.sensors.AverageEncoder;
@@ -10,8 +11,6 @@ import org.team2168.commands.DriveWithJoystick;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -29,6 +28,9 @@ public class Drivetrain extends Subsystem {
 	private static VictorSP RightMotor3;
 	
 	public ADXRS453Gyro gyroSPI;
+	
+	private DoubleSolenoid GearChanger;
+
 	
 	private static AverageEncoder RightEncoder;
 	private static AverageEncoder LeftEncoder;
@@ -57,6 +59,11 @@ public class Drivetrain extends Subsystem {
 		RightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
 		RightMotor3 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_3);
 		
+		
+		GearChanger = new DoubleSolenoid(RobotMap.DOUBLE_SOLENOID_LEFT, RobotMap.DOUBLE_SOLENOID_RIGHT);
+		
+		
+		
 		RightEncoder = new AverageEncoder(
 				RobotMap.RIGHT_DRIVE_ENCODER_A,
 				RobotMap.RIGHT_DRIVE_ENCODER_B,
@@ -70,11 +77,11 @@ public class Drivetrain extends Subsystem {
 				
 				
 		LeftEncoder = new AverageEncoder(
-				RobotMap.RIGHT_DRIVE_ENCODER_A, 
-				RobotMap.RIGHT_DRIVE_ENCODER_B,
+				RobotMap.LEFT_DRIVE_ENCODER_A, 
+				RobotMap.LEFT_DRIVE_ENCODER_B,
 				RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
 				RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
-				RobotMap.RIGHT_DRIVE_TRAIN_ENCODER_REVERSE,
+				RobotMap.LEFT_DRIVE_TRAIN_ENCODER_REVERSE,
 				RobotMap.DRIVE_ENCODING_TYPE,
 				RobotMap.DRIVE_SPEED_RETURN_TYPE,
 				RobotMap.DRIVE_POS_RETURN_TYPE,
@@ -104,21 +111,54 @@ public class Drivetrain extends Subsystem {
 		return instance;
 	}
     
-    public void driveLeftMotor1(double speed) {
-    	LeftMotor1.set(speed);
+	   /**
+     * Calls left motor 1 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to left motor 1
+     * @param double speed between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
+    private void driveLeftMotor1(double speed) {
+    	if(RobotMap.DT_REVERSE_LEFT)
+        	speed = -speed;
+        	LeftMotor1.set(speed);
+        	LeftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
+
     }
     
-    public void driveLeftMotor2(double speed) {
-    	LeftMotor2.set(speed);
+    /**
+     * Calls left motor 2 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to left motor 2
+     * @param double speed between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
+    private void driveLeftMotor2(double speed) {
+    	if(RobotMap.DT_REVERSE_LEFT)
+        	speed = -speed;
+        	LeftMotor2.set(speed);
+        	LeftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
+
     }
     
-    public void driveLeftMotor3(double speed) {
-    	LeftMotor3.set(speed);
+    /**
+     * Calls left motor 3 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to left motor 3
+     * @param double speed between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
+    private void driveLeftMotor3(double speed) {
+    	if(RobotMap.DT_REVERSE_LEFT)
+        	speed = -speed;
+        	LeftMotor3.set(speed);
+        	LeftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
+
     }
     
     /**
      * Take in double speed and sets it to left motors 1, 2, and 3
-     * @param speed is a double in feet per second between -1 and 1
+     * @param speed is a double between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
     public void driveLeftSide(double speed) {
@@ -127,21 +167,51 @@ public class Drivetrain extends Subsystem {
     	driveLeftMotor3(speed);
     }
     
-   public void driveRightMotor1(double speed) {
-    	RightMotor1.set(speed);
+    /**
+     * Calls right motor 1 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to right motor 1
+     * @param double speed between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
+   private void driveRightMotor1(double speed) {
+	   if(RobotMap.DT_REVERSE_RIGHT)
+	    	speed = -speed;
+	    	RightMotor1.set(speed);
+	    	RightMotor1Voltage = Robot.pdp.getBatteryVoltage() *speed;
     }
     
-    public void driveRightMotor2(double speed) {
-    	RightMotor2.set(speed);
+   /**
+    * Calls right motor 2 and creates a local variable "speed"
+    * Refers to boolean in Robot map and if true, speed = - speed
+    * Uses set() command to assign the new speed to right motor 2
+    * @param double speed between -1 and 1
+    * negative is reverse, positive if forward, 0 is stationary
+    */
+    private void driveRightMotor2(double speed) {
+    	if(RobotMap.DT_REVERSE_RIGHT)
+        	speed = -speed;
+        	RightMotor2.set(speed);
+        	RightMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
+    /**
+     * Calls right motor 3 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to right motor 3
+     * @param double speed between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
     public void driveRightMotor3(double speed) {
-    	RightMotor3.set(speed);
+    	if(RobotMap.DT_REVERSE_RIGHT)
+        	speed = -speed;
+        	RightMotor3.set(speed);
+        	RightMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
     /**
      * Takes in a double speed and sets it to their right motors 1, 2, and 3
-     * @param speed is a double in feet per second between -1 and 1
+     * @param speed is a double  between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
     public void driveRightSide(double speed) {
@@ -152,8 +222,8 @@ public class Drivetrain extends Subsystem {
     
     /**
      * Takes in speed for right and speed for left and sets them to their respective sides 
-     * @param leftSpeed is a double between -1 and 1 in feet per second
-     * @param rightSpeed is a double between -1 and 1 between -1 and 1
+     * @param leftSpeed is a double between -1 and 1 
+     * @param rightSpeed is a double between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
     public void driveRobot(double leftSpeed, double rightSpeed) {
@@ -161,84 +231,8 @@ public class Drivetrain extends Subsystem {
     	driveRightSide(rightSpeed);
     }
     
-    /**
-     * Calls left motor 1 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to left motor 1
-     * @param double speed in feet per second between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    public void getLeftMotor1(double speed){
-    	if(RobotMap.DT_REVERSE_LEFT)
-    	speed = -speed;
-    	LeftMotor1.set(speed);
-    }
-    
-    /**
-     * Calls left motor 2 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to left motor 2
-     * @param double speed in feet per second between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    public void getLeftMotor2(double speed){
-    	if(RobotMap.DT_REVERSE_LEFT)
-    	speed = -speed;
-    	LeftMotor2.set(speed);
-    } 
-    
-    /**
-     * Calls left motor 3 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to left motor 3
-     * @param double speed in feet per second between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    public void getLeftMotor3(double speed){
-    	if(RobotMap.DT_REVERSE_LEFT)
-    	speed = -speed;
-    	LeftMotor3.set(speed);
-    }
-    
-    /**
-     * Calls right motor 1 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to right motor 1
-     * @param double speed in feet per second between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    public void getRightMotor1(double speed){
-    	if(RobotMap.DT_REVERSE_RIGHT)
-    	speed = -speed;
-    	RightMotor1.set(speed);
-    }
-    
-    /**
-     * Calls right motor 2 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to right motor 2
-     * @param double speed in feet per second between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    public void getrightmotor2(double speed){
-    	if(RobotMap.DT_REVERSE_RIGHT)
-    	speed = -speed;
-    	RightMotor2.set(speed);
-    }
-    
-    /**
-     * Calls right motor 3 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to right motor 3
-     * @param double speed in feet per second between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-    public void getrightmotor3(double speed){
-    	if(RobotMap.DT_REVERSE_RIGHT)
-    	speed = -speed;
-    	RightMotor3.set(speed);
-    }
-    		
+ 
+   
 
     public static double getLeftEncoder() {
     	return LeftEncoder.get();
@@ -351,7 +345,7 @@ public class Drivetrain extends Subsystem {
      * @return Double in volts between 0 and 12
      */
     public double getLeftMotor2Voltage(){
-    	return LeftMotor1Voltage;
+    	return LeftMotor2Voltage;
     }
     
     /**
@@ -359,7 +353,7 @@ public class Drivetrain extends Subsystem {
      * @return Double in volts between 0 and 12
      */
     public double getLeftMotor3Voltage(){
-    	return LeftMotor1Voltage;
+    	return LeftMotor3Voltage;
     } 
     
     /**
@@ -382,8 +376,38 @@ public class Drivetrain extends Subsystem {
      * Returns the last commanded voltage of Right Motor 3
      * @return Double in volts between 0 and 12
      */
-    public double getRightMotor13Voltage(){
+    public double getRightMotor3Voltage(){
     	return RightMotor3Voltage;
+    }
+    
+	/**
+	 * Shifts the Drivetrain from High to Low Gear
+	 */
+    public void shiftGearsHighToLow(){
+    	GearChanger.set(DoubleSolenoid.Value.kForward);
+    }
+    
+	/**
+	 * Returns true if last commanded shift was High Gear
+	 */
+    public boolean gearIsHigh()
+    {
+    	return GearChanger.get()==DoubleSolenoid.Value.kReverse;
+    }
+    
+	/**
+	 * Shifts the Drivetrain from Low to High Gear
+	 */
+    public void shiftGearsLowToHigh(){
+    	GearChanger.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+	/**
+	 * Returns true if last commanded shift was Low Gear
+	 */s
+    public boolean gearIsLow()
+    {
+    	return GearChanger.get()==DoubleSolenoid.Value.kForward;
     }
     
     
