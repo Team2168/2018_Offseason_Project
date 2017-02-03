@@ -15,8 +15,8 @@ public class ShooterIndexer extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private static Spark indexerMotor;
-	private static DigitalInput sensor1;
-	private static DigitalInput sensor2;
+	private static DigitalInput upperBallPresentSensor;
+	private static DigitalInput lowerBallPresentSensor;
 	
 	private static ShooterIndexer instance = null;
 	
@@ -25,6 +25,8 @@ public class ShooterIndexer extends Subsystem {
 	 */
 	private ShooterIndexer() {
 		indexerMotor = new Spark(RobotMap.INDEXER_WHEEL);
+		upperBallPresentSensor = new DigitalInput(RobotMap.INDEXER_UPPER_BALL_PRESENT);
+		lowerBallPresentSensor = new DigitalInput(RobotMap.INDEXER_LOWER_BALL_PRESENT);
 	}
 	
 	/**
@@ -51,7 +53,7 @@ public class ShooterIndexer extends Subsystem {
 	 * @return if ball is present (true=present, false=not present)
 	 */
 	private boolean isSensor1Active() {
-		return sensor1.get();
+		return upperBallPresentSensor.get();
 	}
 	
 	/**
@@ -59,7 +61,7 @@ public class ShooterIndexer extends Subsystem {
 	 * @return if ball is present (true=present, false=not present)
 	 */
 	private boolean isSensor2Active() {
-		return sensor2.get();
+		return lowerBallPresentSensor.get();
 	}
 	
 	/**
