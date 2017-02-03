@@ -73,8 +73,8 @@ public class Turret extends Subsystem {
 	 * @param x is voltage
 	 * @return Potentiometer position
 	 */
-	public double getPosition(double x) {
-		return turretInterpolator.interpolate(x);
+	public double getPosition() {
+		return turretInterpolator.interpolate(potentiometer.getVoltage());
 	}
 	
 	/**
