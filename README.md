@@ -55,7 +55,7 @@ The shooter for 2017 will be largely based off the 2016 shooter with minimal cha
 - 1 Analog Input - potentiometer for rotational position feedback (turret angle)
 - 2 Digital inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
 
-### Shooter Indexer
+### Shooter Indexer (Ben)
 - 1 Spark Motor Controller for the indexer roller
 - 2 Digital Inputs. Wired to Infrared poximity sensors that identify ball presence/abscence. Ball present = sensor1 OR sensor2. Ball abscent = !sensor1 AND !sensor2
 
@@ -79,12 +79,12 @@ The Fuel Ball Intake will be largely based off the 2016 intake with minimal chan
 This is a roller system in the bellypan of the robot which feeds balls from the hopper into the lift
 - 1 Spark Motor controller
 
-### Elevator
+### Elevator (david)
 This is a vertical roller system that takes balls from the conveyor and brings them up into the indexer, and ultimately the shooter wheel.
 - 1 Spark Motor Controller
-- 2 Analog 
+- 2 Analog SHARP IR sensors, for ball detection. These are TBD, contingency - not sure if we're goign to need them.
 
-### Climber
+### Climber (John)
 This is a simple drum roller that will lift the robot off the ground.
 It can only rotate in one direction. So make sure negative values commanded don't actually go out to a motor controller.
 - 2 Victor SP Motor Controllers to raise the robot
@@ -92,7 +92,7 @@ It can only rotate in one direction. So make sure negative values commanded don'
 ### Flashlight
 - 1 Spike Relay Controller to turn the flashlight on/off.
 
-### ArduinoLights
+### ArduinoLights (Elijah)
 
 
-### Vision
+### Vision (David)
