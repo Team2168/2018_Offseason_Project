@@ -11,6 +11,10 @@ public class DriveShooterIndexerWithConstant extends Command {
 
 	double speed;
 	
+	/**
+	 * 
+	 * @param inputSpeed
+	 */
     public DriveShooterIndexerWithConstant(double inputSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

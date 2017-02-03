@@ -42,25 +42,28 @@ public class ShooterIndexer extends Subsystem {
 	
 	/**
 	 * Sets the speed of the indexer motor
-	 * @param speed
+	 * @param speed 1.0 to -1.0. Positive values bring the balls up into the shooter.
 	 */
 	public void setSpeed(double speed) {
+		if(RobotMap.REVERSE_INDEXER)
+			speed = -speed;
+
 		indexerMotor.set(speed);
 	}
 	
 	/**
-	 * Checks if sensor1 is activated
+	 * Checks if the upper ball sensor is activated
 	 * @return if ball is present (true=present, false=not present)
 	 */
-	private boolean isSensor1Active() {
+	private boolean isUpperSensorActive() {
 		return upperBallPresentSensor.get();
 	}
 	
 	/**
-	 * Checks if sensor2 is activated
+	 * Checks if the lower ball sensor is activated
 	 * @return if ball is present (true=present, false=not present)
 	 */
-	private boolean isSensor2Active() {
+	private boolean isLowerSensorActive() {
 		return lowerBallPresentSensor.get();
 	}
 	
@@ -69,7 +72,8 @@ public class ShooterIndexer extends Subsystem {
 	 * @return if ball is present (true=present, false=not present)
 	 */
 	public boolean isBallPresent() {
-		if(isSensor1Active() || isSensor2Active()) {
+		if(isUpperSensorActive() || isLowerSensorActive()) {
+			//Either sensor sees a ball
 			return true;
 		}
 		else return false;
@@ -80,7 +84,8 @@ public class ShooterIndexer extends Subsystem {
 	 * @return if ball is absent (true=present, false=not present)
 	 */
 	public boolean isBallAbsent() {
-		if(!isSensor1Active() && !isSensor2Active()) {
+		if(!isUpperSensorActive() && !isLowerSensorActive()) {
+			//Neither sensor sees a ball
 			return true;
 		}
 		else return false;

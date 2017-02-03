@@ -1,6 +1,7 @@
-package org.team2168.commands;
+package org.team2168.commands.indexer;
 
 import org.team2168.RobotMap;
+import org.team2168.commands.DriveShooterIndexerWithConstant;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

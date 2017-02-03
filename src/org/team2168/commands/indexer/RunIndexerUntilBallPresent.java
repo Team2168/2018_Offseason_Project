@@ -1,17 +1,21 @@
-package org.team2168.commands;
+package org.team2168.commands.indexer;
 
 import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Runs indexer until a ball is not present
+ * Runs indexer until a ball is present
  * @author Wen Baid
  */
-public class RunIndexerUntilBallNotPresent extends Command {
-double speed;
+public class RunIndexerUntilBallPresent extends Command {
+	double speed;
 	
-    public RunIndexerUntilBallNotPresent(double speed) {
+	/**
+	 * 
+	 * @param speed -1.0 to 1.0. Positive values bring a ball into the shooter.
+	 */
+    public RunIndexerUntilBallPresent(double speed) {
     	requires(Robot.shooterIndexer);
     	this.speed = speed;
     }
@@ -27,7 +31,7 @@ double speed;
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.shooterIndexer.isBallAbsent();
+    	return Robot.shooterIndexer.isBallPresent();
     }
 
     // Called once after isFinished returns true
@@ -38,5 +42,6 @@ double speed;
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
