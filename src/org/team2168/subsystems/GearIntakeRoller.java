@@ -14,16 +14,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class GearIntakeRoller extends Subsystem {
 	
+	//create variables, acquire female dogs.
 	private static Spark GearIntakeMotor;
 	private static AnalogInput GearIntakeMotorIRSensor;
 	
 	private static GearIntakeRoller instance = null;
 	
+	/**
+	 * Want to hear a construction joke? Sorry, I'm still working on it.
+	 * @author Elijah Reeds
+	 */
 	private GearIntakeRoller() {
 		GearIntakeMotor  = new Spark(RobotMap.GEAR_INTAKE_MOTOR);
 		GearIntakeMotorIRSensor = new AnalogInput(RobotMap.GEAR_INTAKE_ROLLER_IR);
 	}
 	
+	/**
+	 * Creates the singleton instance of the GearIntakeRoller subsystem.
+	 * @return Returns the current instance of the GearIntakeRoller.
+	 * @author Elijah Reeds
+	 */
 	public static GearIntakeRoller getInstance(){
 		if(instance == null)
 			instance = new GearIntakeRoller();
@@ -32,7 +42,7 @@ public class GearIntakeRoller extends Subsystem {
 	}
 	
 	/**
-	 * 
+	 * Gets the voltage given by the Sharp IR sensor on the Gear Intake.
 	 * @return the raw voltage from the gear presence sensor
 	 */
 	public double getIRVoltage(){
@@ -40,13 +50,19 @@ public class GearIntakeRoller extends Subsystem {
 	}
 	
 	/**
-	 * 
+	 * Automatically determines if the gear is present by contrasting the IR Sensor voltage to a threshold set in the RobotMap.java 
 	 * @return true if a gear is present within the gear intake
+	 * @author Elijah Reeds
 	 */
 	public boolean isGearPresent(){
-		return (GearIntakeMotorIRSensor.getVoltage() >= RobotMap.GEAR_INTAKE_IR_THRESHOLD);
+		return (getIRVoltage() >= RobotMap.GEAR_INTAKE_IR_THRESHOLD);
 	}
 	
+	/**
+	 * Sets the speed of the roller.
+	 * @param The speed in which you wish to spin the roller motor.
+	 * @author Elijah Reeds
+	 */
 	public void setMotorSpeed(double speed){
 		GearIntakeMotor.set(speed);
 	}
