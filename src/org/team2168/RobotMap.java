@@ -40,6 +40,8 @@ public class RobotMap {
 
 
 	//Solenoid Channels////////////////////////////////////////////////////////
+	public final static int DRIVETRAIN_HIGH_GEAR = 0;
+	public final static int DRIVETRAIN_LOW_GEAR= 1;
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
@@ -176,7 +178,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                            PID PARAMETERS
 	 *************************************************************************/
-
+	
 
 
 

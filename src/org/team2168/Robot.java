@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Intake;
+import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.Turret;
 import org.team2168.subsystems.ShooterIndexer;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
@@ -25,7 +26,9 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Turret turret;
 	public static ShooterIndexer shooterIndexer;
-
+	
+	public static PowerDistribution pdp;
+	
 	public static OI oi;
 	
     Command autonomousCommand;
@@ -35,16 +38,19 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-        ConsolePrinter.init();
+    	ConsolePrinter.init();
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
-    	
+
     	// instantiate the command used for the autonomous period
     	turret = Turret.getInstance();
         drivetrain = Drivetrain.getInstance();       
         shooterIndexer = ShooterIndexer.getInstance();	
-        
+
         oi = OI.getInstance();
 		ConsolePrinter.startThread();
+		
+		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
+		pdp.startThread();
 		
 		System.out.println("Robot Finished Loading");
     }
