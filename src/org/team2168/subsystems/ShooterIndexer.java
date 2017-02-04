@@ -33,7 +33,7 @@ public class ShooterIndexer extends Subsystem {
 	 * Singleton getter for ShooterIndexer
 	 * @return ShooterIndexer singleton
 	 */
-	public ShooterIndexer getInstance(){
+	public static ShooterIndexer getInstance(){
 		if(instance == null)
 			instance = new ShooterIndexer();
 		

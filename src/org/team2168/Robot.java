@@ -35,13 +35,13 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	ConsolePrinter.init();
+        ConsolePrinter.init();
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
     	
-        // instantiate the command used for the autonomous period
-        drivetrain = drivetrain.getInstance();
-        turret = turret.getInstance();
-        shooterIndexer = shooterIndexer.getInstance();
+    	// instantiate the command used for the autonomous period
+    	turret = Turret.getInstance();
+        drivetrain = Drivetrain.getInstance();       
+        shooterIndexer = ShooterIndexer.getInstance();	
         
         oi = OI.getInstance();
 		ConsolePrinter.startThread();

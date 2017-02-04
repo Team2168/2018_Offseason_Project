@@ -47,7 +47,7 @@ public class Turret extends Subsystem {
      * Returns turret singleton object
      * @return turret singleton object
      */
-	public Turret getInstance() {
+	public static Turret getInstance() {
 		if(instance == null)
 			instance = new Turret();
 		
