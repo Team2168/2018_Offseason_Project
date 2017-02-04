@@ -20,7 +20,8 @@ public class I2CLights {
 		Fade (4),
 		Chase (5),
 		Rainbow (6),
-		ChaseAll(7);
+		ChaseAll(7),
+		ChaseOut(8);
 		
 		private final int val;
 
