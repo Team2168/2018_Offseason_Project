@@ -7,7 +7,7 @@ import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.sensors.ADXRS453Gyro;
 import org.team2168.PID.sensors.AverageEncoder;
-import org.team2168.commands.DriveWithJoystick;
+import org.team2168.commands.drivetrain.DriveWithJoystick;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
@@ -24,22 +24,18 @@ public class Drivetrain extends Subsystem {
 	private static VictorSP RightMotor1;
 	private static VictorSP RightMotor2;
 
-	
-	public ADXRS453Gyro gyroSPI;
-	
-	private DoubleSolenoid gearChanger;
-
-	
+	private static ADXRS453Gyro gyroSPI;	
+	private static DoubleSolenoid gearChanger;
 	private static AverageEncoder RightEncoder;
 	private static AverageEncoder LeftEncoder;
 	
 	private static Drivetrain instance = null;
 	
 	//For debugging only
-	public volatile double LeftMotor1Voltage;
-	public volatile double LeftMotor2Voltage;
-	public volatile double RightMotor1Voltage;
-	public volatile double RightMotor2Voltage;
+	public static volatile double LeftMotor1Voltage = 0.0;
+	public static volatile double LeftMotor2Voltage = 0.0;
+	public static volatile double RightMotor1Voltage = 0.0;
+	public static volatile double RightMotor2Voltage = 0.0;
 	
 	
 	/**
@@ -52,11 +48,7 @@ public class Drivetrain extends Subsystem {
 		RightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		RightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
 		
-		
-		
 		gearChanger = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
-		
-		
 		
 		RightEncoder = new AverageEncoder(
 				RobotMap.RIGHT_DRIVE_ENCODER_A,
@@ -68,8 +60,7 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_SPEED_RETURN_TYPE,
 				RobotMap.DRIVE_POS_RETURN_TYPE,
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
-				
-				
+
 		LeftEncoder = new AverageEncoder(
 				RobotMap.LEFT_DRIVE_ENCODER_A, 
 				RobotMap.LEFT_DRIVE_ENCODER_B,
@@ -81,15 +72,9 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_POS_RETURN_TYPE,
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
 		
-				//Log sensor data
-		ConsolePrinter.putNumber("Drivetrain Right Encoder", Drivetrain::getRightEncoder, true, false);
-		ConsolePrinter.putNumber("Drivetrain Left Encoder", Drivetrain::getLeftEncoder, true, false);
-		
-		LeftMotor1Voltage = 0;
-		LeftMotor2Voltage = 0;
-		RightMotor1Voltage = 0;
-		RightMotor2Voltage = 0;
-				
+		//Log sensor data
+		ConsolePrinter.putNumber("Drivetrain Right Encoder", Drivetrain::getRightPosition, true, false);
+		ConsolePrinter.putNumber("Drivetrain Left Encoder", Drivetrain::getLeftPosition, true, false);
 	}
 	
 	/**
@@ -103,7 +88,7 @@ public class Drivetrain extends Subsystem {
 		return instance;
 	}
     
-	   /**
+	/**
      * Calls left motor 1 and creates a local variable "speed"
      * Refers to boolean in Robot map and if true, speed = - speed
      * Uses set() command to assign the new speed to left motor 1
@@ -113,8 +98,9 @@ public class Drivetrain extends Subsystem {
     private void driveLeftMotor1(double speed) {
     	if(RobotMap.DT_REVERSE_LEFT)
         	speed = -speed;
-        	LeftMotor1.set(speed);
-        	LeftMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
+
+    	LeftMotor1.set(speed);
+    	LeftMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
 
     }
     
@@ -128,9 +114,9 @@ public class Drivetrain extends Subsystem {
     private void driveLeftMotor2(double speed) {
     	if(RobotMap.DT_REVERSE_LEFT)
         	speed = -speed;
-        	LeftMotor2.set(speed);
-        	LeftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
 
+    	LeftMotor2.set(speed);
+    	LeftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
     /**
@@ -153,8 +139,9 @@ public class Drivetrain extends Subsystem {
    private void driveRightMotor1(double speed) {
 	   if(RobotMap.DT_REVERSE_RIGHT)
 	    	speed = -speed;
-	    	RightMotor1.set(speed);
-	    	RightMotor1Voltage = Robot.pdp.getBatteryVoltage() *speed;
+
+    	RightMotor1.set(speed);
+    	RightMotor1Voltage = Robot.pdp.getBatteryVoltage() *speed;
     }
     
    /**
@@ -167,8 +154,9 @@ public class Drivetrain extends Subsystem {
     private void driveRightMotor2(double speed) {
     	if(RobotMap.DT_REVERSE_RIGHT)
         	speed = -speed;
-        	RightMotor2.set(speed);
-        	RightMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
+    	
+    	RightMotor2.set(speed);
+    	RightMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
     /**
@@ -191,19 +179,7 @@ public class Drivetrain extends Subsystem {
     	driveLeftSide(leftSpeed);
     	driveRightSide(rightSpeed);
     }
-    
- 
-   
 
-    public static double getLeftEncoder() {
-    	return LeftEncoder.get();
-    }
-    
-    
-    public static double getRightEncoder() {
-    	return RightEncoder.get();
-    }
-    
     /**
      * Calls for default command of the drivetrain to be DriveWithJoystick
      */
@@ -213,17 +189,17 @@ public class Drivetrain extends Subsystem {
     
     /**
      * returns total distance traveled by right side of drivetrain
-     * @return double in inches of total distance traveled by right encoder
+     * @return double in feet of total distance traveled by right encoder
      */
-    public double getRightPosition(){
+    public static double getRightPosition(){
     	return RightEncoder.getPos();
     }
     
     /**
      * returns total distance traveled by left side of drivetrain
-     * @return double in inches of total distance traveled by left encoder
+     * @return double in feet of total distance traveled by left encoder
      */
-    public double getLeftPosition(){
+    public static double getLeftPosition(){
     	return LeftEncoder.getPos();
     }
     
@@ -231,27 +207,27 @@ public class Drivetrain extends Subsystem {
      * returns total distance traveled by drivetrain
      * @return double in inches of average distance traveled by both encoders
      */
-    public double getAverageDistance(){
+    public static double getAverageDistance(){
     	return (getRightPosition() + getLeftPosition())/2.0;
     }
     
     /**
      * resets position of right encoder to 0 inches
      */
-    public void resetRightPosition(){
+    public static void resetRightPosition(){
     	RightEncoder.reset();
     }
     /**
      * resets position of left encoder to 0 inches
      */
-    public void resetLeftPosition(){
+    public static void resetLeftPosition(){
     	LeftEncoder.reset();
     }
     
     /**
      * resets position of both Encoders to 0 inches
      */
-    public void resetPosition(){
+    public static void resetPosition(){
     	resetLeftPosition();
     	resetRightPosition();
     }
@@ -260,14 +236,14 @@ public class Drivetrain extends Subsystem {
      * returns heading of robot
      * @return double between 0 degrees and 360 degrees
      */
-    public double getHeading(){
+    public static double getHeading(){
     	return gyroSPI.getPos();		
     }
     
     /**
      * Resets heading of IMU to 0 degrees
      */
-    public void resetHeading(){
+    public static void resetHeading(){
     	gyroSPI.reset();
     }
     
@@ -275,21 +251,21 @@ public class Drivetrain extends Subsystem {
      * calls to calibrate gyro
      * Only used when robot is stationary
      */
-    public void calibrateGyro(){
+    public static void calibrateGyro(){
     	gyroSPI.calibrate();
     }
     
     /**
      * Terminates active gyro calibration sequence
      */
-    public void stopGyroCalibrating(){
+    public static void stopGyroCalibrating(){
     	gyroSPI.stopCalibrating();
     }
     
     /**
      * Returns true if Gyro has calibrated
      */
-    public boolean isGyroCalibrated(){
+    public static boolean isGyroCalibrated(){
     	return gyroSPI.hasCompletedCalibration();
     }
     
