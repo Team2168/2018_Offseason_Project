@@ -40,56 +40,39 @@ public class GearIntakeArm extends Subsystem {
 	}
 	
 	/**
-	 * Extends the arm of the Gear Intake Subsystem.
+	 * Raises the arm of the Gear Intake Subsystem.
 	 * @author Elijah Reeds
 	 */
-	public void ExtendArm(){
+	public void Raise(){
 		GearIntakeArmPiston.set(Value.kForward);
 	}
 	
 	/**
-	 * Retracts the arm of the Gear Intake Subsystem.
+	 * Lowers the arm of the Gear Intake Subsystem.
 	 * @author Elijah Reeds
 	 */
-	public void RetractArm(){
+	public void Lower(){
 		GearIntakeArmPiston.set(Value.kReverse);
 	}
 	
 	/**
 	 * Gets the whether the arm is extended or not.
-	 * @return Returns true if the arm of the Gear Intake is extended based on the Hall Effect Sensor.
+	 * @return Returns true if the arm of the Gear Intake is Raised based on the Hall Effect Sensor.
 	 * @author Elijah Reeds
 	 */
-	public boolean isArmExtended(){
+	public boolean isArmRaised(){
 		return GearIntakeHallEffectSensor.get();
 	}
 	
 	/**
 	 * Gets the whether the arm is retracted or not.
-	 * @return Returns true if the arm of the Gear Intake is retracted based on the Hall Effect Sensor.
+	 * @return Returns true if the arm of the Gear Intake is Lowered based on the Hall Effect Sensor.
 	 * @author Elijah Reeds
 	 */
-	public boolean isArmRetracted(){
+	public boolean isArmLowered(){
 		return !GearIntakeHallEffectSensor.get();
 	}
 	
-	/**
-	 * Gets whether the DoubleSolenoid is set to Value.kForward or not.
-	 * @return Returns true if the DoubleSolenoid is set to Value.kForward.
-	 * @author Elijah Reeds
-	 */
-	public boolean isSolenoidExtended(){
-		return (GearIntakeArmPiston.get() == Value.kForward);
-	}
-	
-	/**
-	 * Gets whether the DoubleSolenoid is set to Value.kReverse or not.
-	 * @return Returns true if the DoubleSolenoid is set to Value.kReverse.
-	 * @author Elijah Reeds
-	 */
-	public boolean isSolenoidRetracted(){
-		return (GearIntakeArmPiston.get() == Value.kReverse);
-	}
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
