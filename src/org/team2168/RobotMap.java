@@ -27,6 +27,7 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_MOTOR_1 = 3;
 	public static final int LEFT_DRIVE_MOTOR_2 = 4;
 	public static final int BALL_INTAKE_MOTOR = 5;
+	public static final int GEAR_INTAKE_MOTOR = 6;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int TURRET_MOTOR = 9;
 
@@ -35,9 +36,13 @@ public class RobotMap {
 	public static final int SHOOTER_WHEEL_AFT = 11;
 	public static final int SHOOTER_HOOD_SERVO = 12;
 
+
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
 	public final static int DRIVETRAIN_LOW_GEAR= 1;
+	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
+	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
+
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
@@ -52,12 +57,15 @@ public class RobotMap {
 	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
 	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
 	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
-	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
+	public static final int GEAR_INTAKE_HALL_EFECT = 10;
 
+	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
+	
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
 	public static final int TURRET_POTENTIOMETER = 0;
+	public static final int GEAR_INTAKE_ROLLER_IR = 1;
 
 
 
@@ -142,12 +150,19 @@ public class RobotMap {
 	public static double CAMERA_OFFSET_ANGLE = 0; //degrees, camera in center of shooter
 
 	/*************************************************************************
-	 *                         Intake PARAMETERS
+	 *                       Ball Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INTAKE_WHEEL = false;
 
 
+	/*************************************************************************
+	 *                        Gear Intake PARAMETERS
+	 *************************************************************************/
+	public static final double GEAR_INTAKE_IR_THRESHOLD = 2.0;
+
+
+	
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
@@ -203,7 +218,7 @@ public class RobotMap {
 	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 
 
-
+	
 	/********************************************
 	 * 				Lights I2C					*
 	 * *****************************************/
