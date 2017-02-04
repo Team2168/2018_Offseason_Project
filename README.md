@@ -32,6 +32,20 @@ Code for the Steamworks game. This readme provide all of the information require
 2. Python dash (if it installed) will open if "default" dashboard is selected from drivestation menu
 3. If smartdashboard doesn't update, but you have robot comms, in smart dash preferences toggle "use mDNS" until it does. 
 
+#Repository Guidelines
+##Branches
+Our repository and workflow loosely follows the gitflow workflow. This workflow is simple and is one of the most popular workflows when using git with a large number of developers. More info: https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow
+- The master branch contains code that is known-working, has been tested, and can be deployed to a competition ready robot.
+- The develop branch is our sandbox for integrating and testing new features and fixing problems. This isi the latests and greatest code, but it may have problems and needs to be checked out on the robot before being pushed into master. 
+- Everything else is lumpped under feature/bugfix branches. When we need to add new capabilities, start by branching the latest code  in the develop branch.  
+
+## Checklist for committing/pushing code
+- Commit often and create detailed log messages that describe what and why you're making a change. Be specific.
+- Review the changes you make before pushsing them. You should look through all the files being added/modified/removed before you commit.
+- Always verify your code compiles before pushing to the repo. There shouldn't be any red-underlined text in your commits. Use the build button (Green triangle) at the top of eclipse to verify a build completes without error.
+- Push your changes into a branch with a name that identifies what feature it is adding or problem it is addressing in the code.
+- NEver push to the master branch 
+- After pushing your changes to the repo, verify you can see your changes in GitHub from a web browser.
 
 #Robot Design
 ## Subsystems
@@ -55,7 +69,7 @@ The shooter for 2017 will be largely based off the 2016 shooter with minimal cha
 - 1 Analog Input - potentiometer for rotational position feedback (turret angle)
 - 2 Digital inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
 
-### Shooter Indexer
+### Shooter Indexer (Ben)
 - 1 Spark Motor Controller for the indexer roller
 - 2 Digital Inputs. Wired to Infrared poximity sensors that identify ball presence/abscence. Ball present = sensor1 OR sensor2. Ball abscent = !sensor1 AND !sensor2
 
@@ -79,12 +93,12 @@ The Fuel Ball Intake will be largely based off the 2016 intake with minimal chan
 This is a roller system in the bellypan of the robot which feeds balls from the hopper into the lift
 - 1 Spark Motor controller
 
-### Elevator
+### Elevator (David)
 This is a vertical roller system that takes balls from the conveyor and brings them up into the indexer, and ultimately the shooter wheel.
 - 1 Spark Motor Controller
-- 2 Analog 
+- 2 Analog SHARP IR sensors, for ball detection. These are TBD, contingency - not sure if we're goign to need them.
 
-### Climber
+### Climber (John)
 This is a simple drum roller that will lift the robot off the ground.
 It can only rotate in one direction. So make sure negative values commanded don't actually go out to a motor controller.
 - 2 Victor SP Motor Controllers to raise the robot
@@ -92,7 +106,7 @@ It can only rotate in one direction. So make sure negative values commanded don'
 ### Flashlight
 - 1 Spike Relay Controller to turn the flashlight on/off.
 
-### ArduinoLights
+### ArduinoLights (Elijah)
 
 
-### Vision
+### Vision (Peter, David)

@@ -17,7 +17,7 @@ public class PowerDistribution {
 	private PowerDistributionPanel pdp;
 
 	private volatile double[] channelCurrent;
-	private volatile double[] channelVoltage;
+	private volatile double[] channelPower;
 	private volatile int[] channelError;
 
 	private volatile double batteryVoltage;
@@ -26,7 +26,7 @@ public class PowerDistribution {
 	private volatile double totalCurrent;
 	private volatile double totalEnergy;
 	private volatile double totalPower;
-	private volatile double temp;
+	private volatile double temperature;
 
 	public static final int NUM_OF_PDP_CHANNELS = 16;
 	
@@ -35,7 +35,7 @@ public class PowerDistribution {
 		pdp = new PowerDistributionPanel();
 
 		channelCurrent = new double[NUM_OF_PDP_CHANNELS];
-		channelVoltage = new double[NUM_OF_PDP_CHANNELS];
+		channelPower = new double[NUM_OF_PDP_CHANNELS];
 		channelError = new int[NUM_OF_PDP_CHANNELS];
 	}
 
@@ -45,28 +45,40 @@ public class PowerDistribution {
 
 	}
 
-	public int getChannelError(int channel)
-	{
+	public int getChannelError(int channel) {
+		if((channel >= channelPower.length) || (channel < 0))
+			return 0;
+		
 		return channelError[channel];
 	}
 
-	public double getChannelCurrent(int channel)
-	{
+	public double getChannelCurrent(int channel) {
+		if((channel >= channelPower.length) || (channel < 0))
+			return 0;
+		
 		return channelCurrent[channel];
 	}
 
 	public double getBatteryVoltage() {
 		return batteryVoltage;
 	}
+	
+	public double getChannelPower(int channel) {
+		if((channel >= channelPower.length) || (channel < 0))
+			return 0;
+		
+		return channelPower[channel];
+	}
 
 	private void run() {
-
-		for(int i=0; i<NUM_OF_PDP_CHANNELS; i++)
-		{
-			batteryVoltage = pdp.getVoltage();
+		batteryVoltage = pdp.getVoltage();
+		
+		for(int i=0; i<NUM_OF_PDP_CHANNELS; i++) {
+			channelError[i] = 0; //assume no error
 			
 			channelCurrent[i] = pdp.getCurrent(i);
-			channelError[i] = 0; //no Error
+			channelPower[i] = channelCurrent[i] * batteryVoltage;
+		
 
 			if(channelCurrent[i] > RobotMap.WARNING_CURRENT_LIMIT)
 				channelError[i] = 1; //warning
@@ -78,7 +90,7 @@ public class PowerDistribution {
 
 		totalCurrent = pdp.getTotalCurrent();
 		totalEnergy = pdp.getTotalEnergy();
-		temp = pdp.getTemperature();
+		temperature = pdp.getTemperature();
 		totalPower = pdp.getTotalPower();
 
 	}

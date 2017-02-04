@@ -13,16 +13,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *@author Elijah Reeds
  */
 public class GearIntakeRoller extends Subsystem {
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	
-	private Spark GearIntakeMotor;
-	
-	private AnalogInput GearIntakeMotorIRSensor;
+	private static Spark GearIntakeMotor;
+	private static AnalogInput GearIntakeMotorIRSensor;
 	
 	private static GearIntakeRoller instance = null;
-	
 	
 	private GearIntakeRoller() {
 		GearIntakeMotor  = new Spark(RobotMap.GEAR_INTAKE_MOTOR);
@@ -36,10 +31,18 @@ public class GearIntakeRoller extends Subsystem {
 		return instance;
 	}
 	
+	/**
+	 * 
+	 * @return the raw voltage from the gear presence sensor
+	 */
 	public double getIRVoltage(){
 		return GearIntakeMotorIRSensor.getVoltage();
 	}
 	
+	/**
+	 * 
+	 * @return true if a gear is present within the gear intake
+	 */
 	public boolean isGearPresent(){
 		return (GearIntakeMotorIRSensor.getVoltage() >= RobotMap.GEAR_INTAKE_IR_THRESHOLD);
 	}
@@ -47,8 +50,6 @@ public class GearIntakeRoller extends Subsystem {
 	public void setMotorSpeed(double speed){
 		GearIntakeMotor.set(speed);
 	}
-	
-	
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
