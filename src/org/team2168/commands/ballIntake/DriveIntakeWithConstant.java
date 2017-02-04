@@ -1,4 +1,4 @@
-package org.team2168.commands.BallIntake;
+package org.team2168.commands.ballIntake;
 
 import org.team2168.Robot;
 

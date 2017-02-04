@@ -1,7 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
-import org.team2168.commands.BallIntake.DriveIntakeWithJoystick;
+import org.team2168.commands.ballIntake.DriveIntakeWithJoystick;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,7 +16,7 @@ public class BallIntake extends Subsystem {
 	private static BallIntake instance = null;
 	
 	private BallIntake() {
-		intakeMotor = new Spark(RobotMap.INTAKE_MOTOR);
+		intakeMotor = new Spark(RobotMap.BALL_INTAKE_MOTOR);
 	}
 	
 	public static BallIntake getInstance(){
@@ -33,6 +33,7 @@ public class BallIntake extends Subsystem {
 	public void driveIntake(double speed) {
 		if(RobotMap.REVERSE_INTAKE_WHEEL)
 			speed = -speed;
+		
 		intakeMotor.set(speed);
 	}
 	
