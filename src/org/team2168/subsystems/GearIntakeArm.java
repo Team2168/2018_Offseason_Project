@@ -24,7 +24,7 @@ public class GearIntakeArm extends Subsystem {
 		GearIntakeHallEffectSensor = new DigitalInput(RobotMap.GEAR_INTAKE_HALL_EFECT);
 	}
 	
-	public GearIntakeArm getInstance(){
+	public static GearIntakeArm getInstance(){
 		if(instance == null)
 			instance = new GearIntakeArm();
 		

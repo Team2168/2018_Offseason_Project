@@ -29,7 +29,7 @@ public class GearIntakeRoller extends Subsystem {
 		GearIntakeMotorIRSensor = new AnalogInput(RobotMap.GEAR_INTAKE_ROLLER_IR);
 	}
 	
-	public GearIntakeRoller getInstance(){
+	public static GearIntakeRoller getInstance(){
 		if(instance == null)
 			instance = new GearIntakeRoller();
 		
