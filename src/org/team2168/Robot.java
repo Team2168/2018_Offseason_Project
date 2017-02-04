@@ -5,6 +5,7 @@ import org.team2168.subsystems.Drivetrain;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.Turret;
 import org.team2168.subsystems.ShooterIndexer;
+import org.team2168.subsystems.BallElevator;
 import org.team2168.subsystems.BallIntake;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
@@ -26,7 +27,7 @@ public class Robot extends IterativeRobot {
 	public static BallIntake ballIntake;
 	public static Turret turret;
 	public static ShooterIndexer shooterIndexer;
-	
+	public static BallElevator ballElevator;
 	public static PowerDistribution pdp;
 	public static OI oi;
 	
