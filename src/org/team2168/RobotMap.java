@@ -24,10 +24,8 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
-	public static final int RIGHT_DRIVE_MOTOR_3 =2;
 	public static final int LEFT_DRIVE_MOTOR_1 = 3;
 	public static final int LEFT_DRIVE_MOTOR_2 = 4;
-	public static final int LEFT_DRIVE_MOTOR_3 =5;
 	public static final int INTAKE_MOTOR_1= 6;
 	public static final int INTAKE_MOTOR_2= 7;
 	public static final int INDEXER_WHEEL = 8;
@@ -37,7 +35,6 @@ public class RobotMap {
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
 	public static final int SHOOTER_HOOD_SERVO = 12;
-
 
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
@@ -62,7 +59,6 @@ public class RobotMap {
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
 	public static final int TURRET_POTENTIOMETER = 0;
-
 
 
 
@@ -149,7 +145,8 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-
+	public static final double INTAKE_SPEED_CONSTANT = 0.5;
+	public static final boolean REVERSE_INTAKE_WHEEL = false;
 
 
 	/*************************************************************************
