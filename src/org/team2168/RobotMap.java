@@ -72,8 +72,9 @@ public class RobotMap {
 	public static final int RIGHT_DRIVE_ENCODER_B = 3;
 	public static final int SHOOTER_ENCODER_A = 4;
 	public static final int SHOOTER_ENCODER_B = 5;
+	public static final int GEAR_INTAKE_HALL_EFECT = 6;
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
-
+	
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
