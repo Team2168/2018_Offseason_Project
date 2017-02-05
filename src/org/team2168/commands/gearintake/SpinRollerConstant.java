@@ -1,17 +1,17 @@
-package org.team2168.commands.gearintakeroller;
+package org.team2168.commands.gearintake;
 
 import org.team2168.Robot;
-import org.team2168.OI;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Controls the roller with the right joystick.
+ *Spins the Gear Intake Roller constantly, this speed is set in the RobotMap.java
  *@author Elijah Reeds
  */
-public class SpinRollerWithJoystick extends Command {
+public class SpinRollerConstant extends Command {
 
-    public SpinRollerWithJoystick() {
+    public SpinRollerConstant() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearIntakeRoller);
@@ -23,7 +23,7 @@ public class SpinRollerWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearIntakeRoller.setMotorSpeed(OI.operatorJoystick.getRightStickRaw_Y());
+    	Robot.gearIntakeRoller.setMotorSpeed(RobotMap.INTAKE_SPEED_CONSTANT);
     }
 
     // Make this return true when this Command no longer needs to run execute()
