@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *Ball Elevator subsystem 
- *@author David M
+ *@author David
  */
 public class BallElevator extends Subsystem {
     
