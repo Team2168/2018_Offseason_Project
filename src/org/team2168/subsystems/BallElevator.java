@@ -1,6 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
+import org.team2168.commands.elevator.DriveElevatorWithJoystick;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -41,7 +42,7 @@ public class BallElevator extends Subsystem {
 	}
 	
 	public void initDefaultCommand() {
-        setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new DriveElevatorWithJoystick());
     }
 }
 
