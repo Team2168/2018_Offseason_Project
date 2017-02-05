@@ -1,16 +1,16 @@
-package org.team2168.commands.gearintakearm;
-
-import edu.wpi.first.wpilibj.command.Command;
+package org.team2168.commands.gearintake;
 
 import org.team2168.Robot;
 
-/**
- *Lowers the arm of the Gear Intake.
- *@Author Elijah Reeds
- */
-public class LowerArm extends Command {
+import edu.wpi.first.wpilibj.command.Command;
 
-    public LowerArm() {
+/**
+ *Raises the arm of the Gear Intake.
+ *@author Elijah Reeds
+ */
+public class RaiseArm extends Command {
+
+    public RaiseArm() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearIntakeArm);
@@ -18,8 +18,8 @@ public class LowerArm extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.gearIntakeArm.isArmRaised()){
-    		Robot.gearIntakeArm.Lower();
+    	if(Robot.gearIntakeArm.isArmLowered()){
+    		Robot.gearIntakeArm.Raise();
     	}
     }
 
@@ -29,7 +29,7 @@ public class LowerArm extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.gearIntakeArm.isArmLowered();
+    		return Robot.gearIntakeArm.isArmRaised();
     }
 
     // Called once after isFinished returns true

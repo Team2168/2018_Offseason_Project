@@ -1,17 +1,19 @@
-package org.team2168.commands.gearintakearm;
+package org.team2168.commands.gearintake;
 
 import org.team2168.Robot;
+import org.team2168.OI;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *Controls the roller with the right joystick.
+ *@author Elijah Reeds
  */
-public class AutoRaiseArm extends Command {
+public class SpinRollerWithJoystick extends Command {
 
-    public AutoRaiseArm() {
+    public SpinRollerWithJoystick() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.gearIntakeArm);
     	requires(Robot.gearIntakeRoller);
     }
 
@@ -21,14 +23,12 @@ public class AutoRaiseArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.gearIntakeRoller.isGearPresent() && Robot.gearIntakeArm.isArmLowered()){
-    		Robot.gearIntakeArm.Raise();
-    	}
+    	Robot.gearIntakeRoller.setMotorSpeed(OI.operatorJoystick.getRightStickRaw_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.gearIntakeArm.isArmRaised();
+        return false;
     }
 
     // Called once after isFinished returns true
