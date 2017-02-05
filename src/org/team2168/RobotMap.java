@@ -33,12 +33,13 @@ public class RobotMap {
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 18;
 	
-	public static final int LIFT_MOTOR_1 = -1; //port and component not used yet.
-	public static final int LIFT_MOTOR_2 = -1; //port and component not used yet.
+	public static final int CLIMBER_MOTOR_LEFT = 9; //port and component not used yet.
+	public static final int CLIMBER_MOTOR_RIGHT = 10; //port and component not used yet.
 	
 	//Lift Motor Parameters
-	public static final boolean LIFT_MOTOR_REVERSE = true;
-
+	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
+	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
+	
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
