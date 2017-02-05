@@ -160,6 +160,7 @@ public class RobotMap {
 	 *                        Gear Intake PARAMETERS
 	 *************************************************************************/
 	public static final double GEAR_INTAKE_IR_THRESHOLD = 2.0;
+	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
 
 
 	

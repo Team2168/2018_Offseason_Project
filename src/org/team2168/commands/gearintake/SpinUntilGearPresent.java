@@ -6,12 +6,12 @@ import org.team2168.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Spins the Gear Intake Roller constantly, this speed is set in the RobotMap.java
+ *Pretty much SpinRollerConstant except that it stops using the satanic powers found within the Sharp IR sensor.
  *@author Elijah Reeds
  */
-public class SpinRollerConstant extends Command {
+public class SpinUntilGearPresent extends Command {
 
-    public SpinRollerConstant() {
+    public SpinUntilGearPresent() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearIntakeRoller);
@@ -28,7 +28,7 @@ public class SpinRollerConstant extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.gearIntakeRoller.isGearPresent();
     }
 
     // Called once after isFinished returns true
