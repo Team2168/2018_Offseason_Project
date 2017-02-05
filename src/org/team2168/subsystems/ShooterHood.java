@@ -4,6 +4,7 @@ import org.team2168.commands.shooterHood.DriveHoodWithJoystick;
 import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,6 +16,13 @@ public class ShooterHood extends Subsystem {
     private Servo hoodServo;
     
     private static ShooterHood instance = null;
+    
+    double startAngle;
+    double endAngle;
+    double currentAngle;
+    double startTime;
+    double currentTime;
+    final double DEGREES_PER_SECOND = 90;
     
     /**
      * Default constructor for the subsystem 
@@ -48,18 +56,35 @@ public class ShooterHood extends Subsystem {
 		if(degrees >= RobotMap.MAX_HOOD_VALUE)
 			degrees = RobotMap.MAX_HOOD_VALUE;
 		
+		startAngle = hoodServo.getAngle();
+		startTime = Timer.getFPGATimestamp();
+		
 		hoodServo.setAngle(degrees);
 	}
 	
 	/**
-	 * Returns the last angle the motor was set to, note that this can be
-	 * different from the actual positional angle of the motor at a given moment.
-	 * This method shouldn't be used to retrieve the angle value of the servo motor
-	 * like that which would be given by an encoder or other sensor
-	 * @return the angle in degrees that servo motor was last commanded to
+	 * Returns the current angle of the servo by taking the angle it was last set to
+	 * with the time before the movement begins and after that is called the current
+	 * time and angle the servo is moving to is taken and the current angle is estimated
+	 * @return the estimated current angle of the servo in degrees
 	 */
 	public double getAngle(){
-		return hoodServo.getAngle();
+		
+		endAngle = hoodServo.getAngle();
+		double angleDifference = endAngle - startAngle;
+		double timeDifference = Timer.getFPGATimestamp() - startTime;
+		
+		if(angleDifference > 0)
+			currentAngle = (startAngle + (timeDifference * DEGREES_PER_SECOND));
+		
+		else if(angleDifference < 0)
+			currentAngle = (startAngle - (timeDifference * DEGREES_PER_SECOND));
+		
+		else if(angleDifference == 0)
+			currentAngle = endAngle;
+		
+		return currentAngle;
+		
 	}
 	
 	/**
