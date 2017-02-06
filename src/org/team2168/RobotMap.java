@@ -29,8 +29,9 @@ public class RobotMap {
 	public static final int BALL_INTAKE_MOTOR = 4;
 	public static final int INDEXER_WHEEL = 5;
 	public static final int TURRET_MOTOR = 6;
-	public static final int CLIMBER_MOTOR_LEFT = 7; //port and component not used yet.
-	public static final int CLIMBER_MOTOR_RIGHT = 8; //port and component not used yet.
+	public static final int CLIMBER_MOTOR_LEFT = 7;
+	public static final int CLIMBER_MOTOR_RIGHT = 8;
+	public static final int ELEVATOR_MOTOR = 9;
 
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
@@ -203,6 +204,13 @@ public class RobotMap {
 	public static final boolean PRINT_SD_DEBUG_DATA = true;
 	public static final long SmartDashThreadPeriod = 100; //ms
 	public static final long CONSOLE_PRINTER_LOG_RATE_MS = 100; //ms
+
+
+	/******************************************************************
+	 *                    BallElevator PARAMETERS                   *
+	 ******************************************************************/
+	public static final boolean REVERSE_ELEVATOR_WHEEL = false;
+
 
 	/********************************************
 	 * 				Kevin PARAMETERS			*
