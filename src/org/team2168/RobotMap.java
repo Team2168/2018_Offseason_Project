@@ -24,29 +24,50 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
-	public static final int RIGHT_DRIVE_MOTOR_3 =2;
-	public static final int LEFT_DRIVE_MOTOR_1 = 3;
-	public static final int LEFT_DRIVE_MOTOR_2 = 4;
-	public static final int LEFT_DRIVE_MOTOR_3 =5;
-	public static final int INTAKE_MOTOR_1= 7;
-	public static final int INTAKE_MOTOR_2= 15;
-	public static final int INDEXER_WHEEL = 8;
-	public static final int SHOOTER_HOOD_SERVO = 18;
-	
-	public static final int CLIMBER_MOTOR_LEFT = 9; //port and component not used yet.
-	public static final int CLIMBER_MOTOR_RIGHT = 10; //port and component not used yet.
-	
-	//Lift Motor Parameters
+	public static final int LEFT_DRIVE_MOTOR_1 = 2;
+	public static final int LEFT_DRIVE_MOTOR_2 = 3;
+	public static final int BALL_INTAKE_MOTOR = 4;
+	public static final int INDEXER_WHEEL = 5;
+	public static final int TURRET_MOTOR = 6;
+	public static final int CLIMBER_MOTOR_LEFT = 7; //port and component not used yet.
+	public static final int CLIMBER_MOTOR_RIGHT = 8; //port and component not used yet.
+
+	//Climber Motor Parameters
 	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
 	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
-	
+
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
+	public static final int SHOOTER_HOOD_SERVO = 12;
+
+	//Solenoid Channels////////////////////////////////////////////////////////
+	public final static int DRIVETRAIN_HIGH_GEAR = 0;
+	public final static int DRIVETRAIN_LOW_GEAR= 1;
 
 
-	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
+	//Digital IO Channels//////////////////////////////////////////////////////
+	//Channels 0-9 on RoboRio
+	public static final int LEFT_DRIVE_ENCODER_A = 0;
+	public static final int LEFT_DRIVE_ENCODER_B = 1;
+	public static final int RIGHT_DRIVE_ENCODER_A = 2;
+	public static final int RIGHT_DRIVE_ENCODER_B = 3;
+	public static final int SHOOTER_ENCODER_A = 4;
+	public static final int SHOOTER_ENCODER_B = 5;
+	public static final int TURRET_LIMIT_SWITCH_RIGHT = 6;
+	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
+	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
+	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
+	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
 
+
+	//Analog Input Channels////////////////////////////////////////////////////
+	//Channels 0-3 on Roborio
+	public static final int TURRET_POTENTIOMETER = 0;
+
+
+
+	//Channels 4-7 on MXP
 
 
 	//TODO: Confirm PDP Ports
@@ -64,29 +85,7 @@ public class RobotMap {
 	public final static int SHOOTER_MOTOR_AFT_PDP = 15;
 	public final static int PCM_POWER = 7;
 
-	//Solenoid Channels////////////////////////////////////////////////////////
-
-
-	//Digital IO Channels//////////////////////////////////////////////////////
-	//Channels 0-9 on RoboRio
-	public static final int LEFT_DRIVE_ENCODER_A = 0;
-	public static final int LEFT_DRIVE_ENCODER_B = 1;
-	public static final int RIGHT_DRIVE_ENCODER_A = 2;
-	public static final int RIGHT_DRIVE_ENCODER_B = 3;
-	public static final int SHOOTER_ENCODER_A = 4;
-	public static final int SHOOTER_ENCODER_B = 5;
-	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
-
-
-	//Analog Input Channels////////////////////////////////////////////////////
-	//Channels 0-3 on Roborio
-
-
-
-
-	//Channels 4-7 on MXP
-
-
+	
 	//CAN Device IDs///////////////////////////////////////////////////////////
 
 
@@ -151,13 +150,16 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-
+	public static final double INTAKE_SPEED_CONSTANT = 0.5;
+	public static final boolean REVERSE_INTAKE_WHEEL = false;
 
 
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-
+	public static final double INDEXER_SPEED_CONSTANT = 0.5;
+	public static final boolean REVERSE_INDEXER = false;
+	
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
@@ -178,7 +180,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                            PID PARAMETERS
 	 *************************************************************************/
-
+	
 
 
 
@@ -204,7 +206,7 @@ public class RobotMap {
 	 * 				Kevin PARAMETERS			*
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
-	public static final boolean GUYANA_HAS_SUNK = false;
+	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 
 
 
@@ -212,12 +214,5 @@ public class RobotMap {
 	 * 				Lights I2C					*
 	 * *****************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
-	public static final int I2C_ADDRESS = 10; //probably change this
-
-
-
-
-
-
-
+	public static final int I2C_ADDRESS = 10;
 }
