@@ -1,7 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
-import org.team2168.commands.DriveClimberWithConstant;
+import org.team2168.commands.climber.DriveClimberWithConstant;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,20 +12,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 
-	private Spark climberMotor1;
-	private Spark climberMotor2;
+	private static Spark climberMotorLeft;
+	private static Spark climberMotorRight;
 	
 	private static Climber instance = null;
 	
 	private Climber(){
-		climberMotor1 = new Spark(RobotMap.CLIMBER_MOTOR_LEFT);
-		climberMotor2 = new Spark(RobotMap.CLIMBER_MOTOR_RIGHT);
+		climberMotorLeft = new Spark(RobotMap.CLIMBER_MOTOR_LEFT);
+		climberMotorRight = new Spark(RobotMap.CLIMBER_MOTOR_RIGHT);
 		
-		climberMotor1.setExpiration(0.1);
-		climberMotor2.setExpiration(0.1);
+		climberMotorLeft.setExpiration(0.1);
+		climberMotorRight.setExpiration(0.1);
 		
-		climberMotor1.setSafetyEnabled(true);
-		climberMotor2.setSafetyEnabled(true);
+		climberMotorLeft.setSafetyEnabled(true);
+		climberMotorRight.setSafetyEnabled(true);
 		
 	}
 	
@@ -35,30 +35,35 @@ public class Climber extends Subsystem {
 		return instance;
 	}
 	
+	/**
+	 * 
+	 * @param speed 1.0 to 0.0. Positive climbs up.
+	 */
 	public void driveClimber(double speed){
 		driveLeftClimberMotor(speed);
 		driveRightClimberMotor(speed);
 	}
 	
 	private void driveLeftClimberMotor(double speed){
+		//ONLY DRIVE THE CLIMBER MOTOR IN ONE DIRECTION
+		if(speed < 0)
+			speed = 0;
+		
 		if(RobotMap.CLIMB_MOTOR_REVERSE_LEFT)
 			speed = -speed;
 		
-		if(speed < 0)
-			speed = 0;
-		climberMotor1.set(speed);
-		
+		climberMotorLeft.set(speed);
 	}
 		
 	private void driveRightClimberMotor(double speed){
+		//ONLY DRIVE THE CLIMBER MOTOR IN ONE DIRECTION
+		if(speed < 0)
+			speed = 0;
 		
 		if(RobotMap.CLIMB_MOTOR_REVERSE_RIGHT)
 			speed = -speed;
 		
-		if(speed < 0)
-			speed = 0;
-		climberMotor2.set(speed);
-		
+		climberMotorRight.set(speed);
 	}
 
     public void initDefaultCommand() {

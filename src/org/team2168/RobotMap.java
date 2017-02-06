@@ -32,10 +32,6 @@ public class RobotMap {
 	public static final int CLIMBER_MOTOR_LEFT = 7; //port and component not used yet.
 	public static final int CLIMBER_MOTOR_RIGHT = 8; //port and component not used yet.
 
-	//Climber Motor Parameters
-	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
-	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
-
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
@@ -148,23 +144,29 @@ public class RobotMap {
 	public static double CAMERA_OFFSET_ANGLE = 0; //degrees, camera in center of shooter
 
 	/*************************************************************************
-	 *                         Intake PARAMETERS
+	 *                         INTAKE PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INTAKE_WHEEL = false;
 
 
 	/*************************************************************************
-	 *                         Indexer PARAMETERS
+	 *                        INDEXER PARAMETERS
 	 *************************************************************************/
 	public static final double INDEXER_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INDEXER = false;
 	
 
 	/*************************************************************************
-	 *                         Hood PARAMETERS
+	 *                         HOOD PARAMETERS
 	 *************************************************************************/
 
+
+	/*************************************************************************
+	 *                         CLIMBER PARAMETERS
+	 *************************************************************************/
+	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
+	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
 
 	/*************************************************************************
 	 *                         Vision PARAMETERS
