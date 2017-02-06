@@ -1,7 +1,9 @@
 package org.team2168.subsystems;
- 
+
+
 import org.team2168.RobotMap;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
+import org.team2168.commands.gearintake.*;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -70,6 +72,7 @@ public class GearIntakeRoller extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new SpinRollerWithJoystick());
     }
 }
 
