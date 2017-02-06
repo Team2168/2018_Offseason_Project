@@ -1,4 +1,4 @@
-package org.team2168.commands;
+package org.team2168.commands.climber;
 
 import org.team2168.Robot;
 
