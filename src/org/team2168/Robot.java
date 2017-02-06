@@ -1,6 +1,7 @@
 
 package org.team2168;
 
+import org.team2168.subsystems.Climber;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.Turret;
@@ -23,11 +24,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static Drivetrain drivetrain;
+	public static Climber climber;
 	public static BallIntake ballIntake;
 	public static Turret turret;
 	public static ShooterIndexer shooterIndexer;
 	
 	public static PowerDistribution pdp;
+
 	public static OI oi;
 	
     Command autonomousCommand;
@@ -42,9 +45,10 @@ public class Robot extends IterativeRobot {
 
     	// instantiate the command used for the autonomous period
     	turret = Turret.getInstance();
-        drivetrain = Drivetrain.getInstance();       
+        drivetrain = Drivetrain.getInstance();
         shooterIndexer = ShooterIndexer.getInstance();	
         ballIntake = BallIntake.getInstance();
+		climber = climber.getInstance();
 
         // instantiate the command used for the autonomous period
 

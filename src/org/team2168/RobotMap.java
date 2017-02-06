@@ -24,11 +24,13 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
-	public static final int LEFT_DRIVE_MOTOR_1 = 3;
-	public static final int LEFT_DRIVE_MOTOR_2 = 4;
-	public static final int BALL_INTAKE_MOTOR = 5;
-	public static final int INDEXER_WHEEL = 8;
-	public static final int TURRET_MOTOR = 9;
+	public static final int LEFT_DRIVE_MOTOR_1 = 2;
+	public static final int LEFT_DRIVE_MOTOR_2 = 3;
+	public static final int BALL_INTAKE_MOTOR = 4;
+	public static final int INDEXER_WHEEL = 5;
+	public static final int TURRET_MOTOR = 6;
+	public static final int CLIMBER_MOTOR_LEFT = 7; //port and component not used yet.
+	public static final int CLIMBER_MOTOR_RIGHT = 8; //port and component not used yet.
 
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
@@ -142,23 +144,29 @@ public class RobotMap {
 	public static double CAMERA_OFFSET_ANGLE = 0; //degrees, camera in center of shooter
 
 	/*************************************************************************
-	 *                         Intake PARAMETERS
+	 *                         INTAKE PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INTAKE_WHEEL = false;
 
 
 	/*************************************************************************
-	 *                         Indexer PARAMETERS
+	 *                        INDEXER PARAMETERS
 	 *************************************************************************/
 	public static final double INDEXER_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INDEXER = false;
 	
 
 	/*************************************************************************
-	 *                         Hood PARAMETERS
+	 *                         HOOD PARAMETERS
 	 *************************************************************************/
 
+
+	/*************************************************************************
+	 *                         CLIMBER PARAMETERS
+	 *************************************************************************/
+	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
+	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
 
 	/*************************************************************************
 	 *                         Vision PARAMETERS
