@@ -176,17 +176,20 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         HOOD PARAMETERS
 	 *************************************************************************/
+	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
+	public static final double MIN_HOOD_VALUE = 0;
+	public static final double MAX_HOOD_VALUE = 0;
 
 
 	/*************************************************************************
-	 *                         CLIMBER PARAMETERS
+	 *                       CLIMBER PARAMETERS
 	 *************************************************************************/
 	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
 	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
 
 
 	/*************************************************************************
-	 *                         VISION PARAMETERS
+	 *                        VISION PARAMETERS
 	 *************************************************************************/
 
 
@@ -224,7 +227,7 @@ public class RobotMap {
 
 
 	/******************************************************************
-	 *                    BallElevator PARAMETERS                   *
+	 *                    BallElevator PARAMETERS
 	 ******************************************************************/
 	public static final boolean REVERSE_ELEVATOR_WHEEL = false;
 

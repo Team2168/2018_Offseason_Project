@@ -10,6 +10,7 @@ import org.team2168.subsystems.Turret;
 import org.team2168.subsystems.ShooterIndexer;
 import org.team2168.subsystems.BallElevator;
 import org.team2168.subsystems.BallIntake;
+import org.team2168.subsystems.ShooterHood;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -34,7 +35,8 @@ public class Robot extends IterativeRobot {
 	public static BallElevator ballElevator;
 	public static GearIntakeArm gearIntakeArm;
 	public static GearIntakeRoller gearIntakeRoller;
-	
+	public static ShooterHood shooterhood;
+
 	public static PowerDistribution pdp;
 
 	public static OI oi;
@@ -57,8 +59,9 @@ public class Robot extends IterativeRobot {
 		climber = Climber.getInstance();
         gearIntakeArm = GearIntakeArm.getInstance();
         gearIntakeRoller = GearIntakeRoller.getInstance();
+        shooterhood = ShooterHood.getInstance();
 
-        // instantiate the commands used for the autonomous period
+        // instantiate the command used for the autonomous period
 
 
         oi = OI.getInstance();
