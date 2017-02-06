@@ -13,24 +13,30 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ShooterHood extends Subsystem {
     
-    private Servo hoodServo;
+    private static Servo hoodServo;
     
     private static ShooterHood instance = null;
     
-    double startAngle;
-    double endAngle;
-    double currentAngle;
-    double startTime;
-    double currentTime;
-    final double DEGREES_PER_SECOND = 90;
+    private static double startAngle;
+    private static double endAngle;
+    private static double currentAngle;
+    private static double startTime;
+    private static double currentTime;
+    private static final double DEGREES_PER_SECOND = 90;
+    
+    //SERVO Parameters from https://s3.amazonaws.com/actuonix/Actuonix+L16+Datasheet.pdf
+    private static final double MAX_SERVO_PWM = 2.0; //ms
+    private static final double MIN_SERVO_PWM = 1.0; //ms
+    private static final double CENTER_SERVO_PWM = 1.5; //ms
+    private static final double SERVO_DEADBAND = 0.0; //ms - no deadband
     
     /**
      * Default constructor for the subsystem 
      */
     private ShooterHood(){
-    	hoodServo = new Servo(RobotMap.SHOOTER_HOOD_SERVO);    // define these when
-    	hoodServo.setBounds(0, 0, 0, 0, 0);                    // implementing the hardware
-    	
+    	hoodServo = new Servo(RobotMap.SHOOTER_HOOD_SERVO);
+    	hoodServo.setBounds(MAX_SERVO_PWM, CENTER_SERVO_PWM + SERVO_DEADBAND, 
+    			CENTER_SERVO_PWM, CENTER_SERVO_PWM - SERVO_DEADBAND, MIN_SERVO_PWM);
     }
 	
 	/**
