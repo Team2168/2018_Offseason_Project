@@ -31,12 +31,12 @@ public class RobotMap {
 	public static final int TURRET_MOTOR = 6;
 	public static final int CLIMBER_MOTOR_LEFT = 7;
 	public static final int CLIMBER_MOTOR_RIGHT = 8;
-	public static final int ELEVATOR_MOTOR = 9;
+	public static final int ELEVATOR_MOTOR = 12;
 
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
-	public static final int SHOOTER_HOOD_SERVO = 12;
+	public static final int SHOOTER_HOOD_SERVO = 9;
 	public static final int GEAR_INTAKE_MOTOR = 13;
 
 
@@ -178,7 +178,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
 	public static final double MIN_HOOD_VALUE = 0;
-	public static final double MAX_HOOD_VALUE = 0;
+	public static final double MAX_HOOD_VALUE = 180;
 
 
 	/*************************************************************************
