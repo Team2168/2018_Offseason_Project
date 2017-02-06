@@ -54,7 +54,7 @@ public class Robot extends IterativeRobot {
         drivetrain = Drivetrain.getInstance();
         shooterIndexer = ShooterIndexer.getInstance();	
         ballIntake = BallIntake.getInstance();
-		climber = climber.getInstance();
+		climber = Climber.getInstance();
         gearIntakeArm = GearIntakeArm.getInstance();
         gearIntakeRoller = GearIntakeRoller.getInstance();
 
