@@ -37,10 +37,15 @@ public class RobotMap {
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
 	public static final int SHOOTER_HOOD_SERVO = 12;
+	public static final int GEAR_INTAKE_MOTOR = 13;
+
 
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
 	public final static int DRIVETRAIN_LOW_GEAR= 1;
+	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
+	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
+
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
@@ -55,12 +60,15 @@ public class RobotMap {
 	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
 	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
 	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
-	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
+	public static final int GEAR_INTAKE_HALL_EFECT = 10;
 
+	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
+	
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
 	public static final int TURRET_POTENTIOMETER = 0;
+	public static final int GEAR_INTAKE_ROLLER_IR = 1;
 
 
 
@@ -145,14 +153,21 @@ public class RobotMap {
 	public static double CAMERA_OFFSET_ANGLE = 0; //degrees, camera in center of shooter
 
 	/*************************************************************************
-	 *                         INTAKE PARAMETERS
+	 *                       BALL INTAKE PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INTAKE_WHEEL = false;
 
 
 	/*************************************************************************
-	 *                        INDEXER PARAMETERS
+	 *                      GEAR INTAKE PARAMETERS
+	 *************************************************************************/
+	public static final double GEAR_INTAKE_IR_THRESHOLD = 2.0;
+	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
+
+
+	/*************************************************************************
+	 *                         INDEXER PARAMETERS
 	 *************************************************************************/
 	public static final double INDEXER_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INDEXER = false;
@@ -169,9 +184,11 @@ public class RobotMap {
 	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
 	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
 
+
 	/*************************************************************************
-	 *                         Vision PARAMETERS
+	 *                         VISION PARAMETERS
 	 *************************************************************************/
+
 
 	/*************************************************************************
 	 *                            PDP PARAMETERS
@@ -219,7 +236,7 @@ public class RobotMap {
 	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 
 
-
+	
 	/********************************************
 	 * 				Lights I2C					*
 	 * *****************************************/
