@@ -162,4 +162,16 @@ public class I2CLights {
     public void ChaseAll(Range range) {
     	writeLED(0, 0, 0, Pattern.ChaseAll, range);
     }
+    
+    /**
+     * Makes the lights chase out from the middle of the range in the color chosen.
+     *@param r Red value from 0 - 255.
+     * @param g Green value from 0 - 255.
+     * @param b Blue value form 0 -255.
+     * @param range LED range.
+     * @author Elijah
+     */
+    public void ChaseOut(int r, int g, int b, Range range){
+    	writeLED(r,g,b,Pattern.ChaseOut,range);
+    }
 }
