@@ -35,8 +35,8 @@ public class RobotMap {
 
 
 	//Channels 10-25 on MXP
-	public static final int SHOOTER_WHEEL_FWD = 10;
-	public static final int SHOOTER_WHEEL_AFT = 11;
+	public static final int SHOOTER_WHEEL_LEFT = 10;
+	public static final int SHOOTER_WHEEL_RIGHT = 11;
 
 
 	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
@@ -118,8 +118,8 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_RIGHT= false;
 
 	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
