@@ -1,5 +1,6 @@
 package org.team2168;
 
+import org.team2168.commands.shooterHood.SetHoodToAngle;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -41,11 +42,17 @@ public class OI {
 	
 	public static F310 driverJoystick = new F310(0);
 	public static F310 operatorJoystick = new F310(1);
+	
+	
+	
 
 	/**
 	 * Private constructor for singleton class which instantiates the OI object
 	 */
 	private OI() {
+		
+		operatorJoystick.ButtonA().whenPressed(new SetHoodToAngle(0));
+		operatorJoystick.ButtonB().whenPressed(new SetHoodToAngle(180));
 
 	}
 
