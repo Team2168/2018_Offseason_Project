@@ -38,7 +38,7 @@ public class RobotMap {
 	public static final int SHOOTER_WHEEL_AFT = 11;
 	public static final int SHOOTER_HOOD_SERVO = 12;
 	public static final int GEAR_INTAKE_MOTOR = 13;
-
+	public static final int CONVEYOR_MOTOR = 14;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
@@ -231,18 +231,23 @@ public class RobotMap {
 	 ******************************************************************/
 	public static final boolean REVERSE_ELEVATOR_WHEEL = false;
 
-
+	/********************************************
+	 * 				CONVEYOR					*
+	 * *****************************************/
+	public static final boolean REVERSE_CONVEYOR = false;
 	/********************************************
 	 * 				Kevin PARAMETERS			*
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 
-
+	
 	
 	/********************************************
 	 * 				Lights I2C					*
 	 * *****************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 	public static final int I2C_ADDRESS = 10;
+
+
 }

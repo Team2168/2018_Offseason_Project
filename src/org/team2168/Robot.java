@@ -2,6 +2,7 @@
 package org.team2168;
 
 import org.team2168.subsystems.Climber;
+import org.team2168.subsystems.Conveyor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.GearIntakeArm;
 import org.team2168.subsystems.GearIntakeRoller;
@@ -36,7 +37,9 @@ public class Robot extends IterativeRobot {
 	public static GearIntakeArm gearIntakeArm;
 	public static GearIntakeRoller gearIntakeRoller;
 	public static ShooterHood shooterhood;
-
+	public static Conveyor conveyor;
+	
+	
 	public static PowerDistribution pdp;
 
 	public static OI oi;
@@ -60,7 +63,7 @@ public class Robot extends IterativeRobot {
         gearIntakeArm = GearIntakeArm.getInstance();
         gearIntakeRoller = GearIntakeRoller.getInstance();
         shooterhood = ShooterHood.getInstance();
-
+        conveyor = Conveyor.getInstance();
         // instantiate the command used for the autonomous period
 
 
