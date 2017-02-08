@@ -28,3 +28,4 @@ tmp/
 /build
 /resources
 sysProps.xml
+/.classpath
