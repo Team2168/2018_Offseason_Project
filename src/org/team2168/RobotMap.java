@@ -161,7 +161,7 @@ public class RobotMap {
 	 *                       BALL INTAKE PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
-	public static final boolean REVERSE_INTAKE_WHEEL = false;
+	public static final boolean REVERSE_BALL_INTAKE_WHEEL = false;
 
 
 	/*************************************************************************

@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class Robot extends IterativeRobot {
 
 	public static BallElevator ballElevator;
-	public static BallIntake ballIntake;
+	public static BallIntakeRoller ballIntake;
 	public static Climber climber;
 	public static Conveyor conveyor;
 	public static Drivetrain drivetrain;
@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
 
     	// instantiate the commands used for the autonomous period
     	ballElevator = BallElevator.getInstance();
-    	ballIntake = BallIntake.getInstance();
+    	ballIntake = BallIntakeRoller.getInstance();
     	climber = Climber.getInstance();
     	conveyor = Conveyor.getInstance();
     	drivetrain = Drivetrain.getInstance();

@@ -9,19 +9,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Subsystem class for the ball intake
  */
-public class BallIntake extends Subsystem {
+public class BallIntakeRoller extends Subsystem {
 
 	private static Spark intakeMotor;
 	
-	private static BallIntake instance = null;
+	private static BallIntakeRoller instance = null;
 	
-	private BallIntake() {
+	private BallIntakeRoller() {
 		intakeMotor = new Spark(RobotMap.BALL_INTAKE_MOTOR);
 	}
 	
-	public static BallIntake getInstance(){
+	public static BallIntakeRoller getInstance(){
 		if(instance == null)
-			instance = new BallIntake();
+			instance = new BallIntakeRoller();
 		
 		return instance;
 	}
@@ -31,7 +31,7 @@ public class BallIntake extends Subsystem {
 	 * @param speed 1.0 to -1.0, positive values bring balls into the robot.
 	 */
 	public void driveIntake(double speed) {
-		if(RobotMap.REVERSE_INTAKE_WHEEL)
+		if(RobotMap.REVERSE_BALL_INTAKE_WHEEL)
 			speed = -speed;
 		
 		intakeMotor.set(speed);
