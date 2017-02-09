@@ -23,8 +23,12 @@ public class DriveWithJoystick extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
+    /**
+     * Calls the methods getDriveTrainLeftJoystick and getDriveTrainRightJoystick from OI and sets to a stick on the driver controller.
+     * @author Krystina
+     */
     protected void execute() {
-    	Robot.drivetrain.driveRobot(OI.driverJoystick.getLeftStickRaw_Y(), OI.driverJoystick.getRightStickRaw_Y());
+    	Robot.drivetrain.driveRobot(OI.getDriveTrainLeftJoystick(), OI.getDriveTrainRightJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()

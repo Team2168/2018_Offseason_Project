@@ -43,9 +43,37 @@ public class OI {
 	public static F310 driverJoystick = new F310(0);
 	public static F310 operatorJoystick = new F310(1);
 	
+	//TODO: need to add to shooter subsystem before commit
+	
+	/**
+	 *  Method that sets that Left side of the drive train so that it drives with LeftStick Y
+	 *  @author Krystina
+	 */
+	public static double getDriveTrainLeftJoystick ()
+	{
+		return driverJoystick.getLeftStickRaw_Y();
+	}
 	
 	
-
+	/**
+	 *  Method that sets that Right side of the drive train so that it drives with RightStick Y
+	 *  @author Krystina
+	 */
+	public static double getDriveTrainRightJoystick ()
+	{
+		return driverJoystick.getRightStickRaw_Y();
+	}
+	
+	/**
+	 *  Method that sets that Left side of the drive train so that it drives with Operator RightStick Y
+	 *  @author Krystina
+	 */
+	public static double getDriveShooter()
+	{
+		return operatorJoystick.getRightStickRaw_Y();
+	}
+	
+	
 	/**
 	 * Private constructor for singleton class which instantiates the OI object
 	 */
@@ -53,7 +81,6 @@ public class OI {
 		
 		operatorJoystick.ButtonA().whenPressed(new SetHoodToAngle(0));
 		operatorJoystick.ButtonB().whenPressed(new SetHoodToAngle(180));
-
 	}
 
 	/**
