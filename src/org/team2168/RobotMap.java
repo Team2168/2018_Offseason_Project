@@ -50,7 +50,8 @@ public class RobotMap {
 	public final static int DRIVETRAIN_LOW_GEAR= 1;
 	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
 	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
-
+	public final static int BALL_INTAKE_PISTON_EXTEND = 4;
+	public final static int BALL_INTAKE_PISTON_RETRACT = 5;
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
@@ -66,6 +67,7 @@ public class RobotMap {
 	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
 	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
 	public static final int GEAR_INTAKE_HALL_EFECT = 10;
+	public static final int BALL_INTAKE_HALL_EFFECT = 10;
 
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
 	
