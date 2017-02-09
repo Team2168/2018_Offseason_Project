@@ -1,7 +1,7 @@
 package org.team2168.subsystems;
 
-import org.team2168.commands.shooterHood.DriveHoodWithJoystick;
 import org.team2168.RobotMap;
+import org.team2168.commands.shooter.DriveHoodWithJoystick;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;

@@ -1,4 +1,4 @@
-package org.team2168.commands.shooterHood;
+package org.team2168.commands.shooter;
 
 import org.team2168.Robot;
 
@@ -18,7 +18,7 @@ public class SetHoodToAngle extends Command {
 	 */
     public SetHoodToAngle(double inputAngle) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.shooterhood);
+        requires(Robot.shooterHood);
     	
     	angle = inputAngle;
     	
@@ -33,7 +33,7 @@ public class SetHoodToAngle extends Command {
      */
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterhood.setAngle(angle);
+    	Robot.shooterHood.setAngle(angle);
     }
 
     /**
@@ -41,7 +41,7 @@ public class SetHoodToAngle extends Command {
      */
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(Robot.shooterhood.getAngle() == angle)
+        if(Robot.shooterHood.getAngle() == angle)
         	return true;
         else
         	return false;

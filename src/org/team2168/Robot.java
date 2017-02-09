@@ -9,6 +9,7 @@ import org.team2168.subsystems.GearIntakeRoller;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.Turret;
 import org.team2168.subsystems.ShooterIndexer;
+import org.team2168.subsystems.ShooterWheel;
 import org.team2168.subsystems.BallElevator;
 import org.team2168.subsystems.BallIntake;
 import org.team2168.subsystems.ShooterHood;
@@ -28,17 +29,17 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 
-	public static Drivetrain drivetrain;
-	public static Climber climber;
-	public static BallIntake ballIntake;
-	public static Turret turret;
-	public static ShooterIndexer shooterIndexer;
 	public static BallElevator ballElevator;
+	public static BallIntake ballIntake;
+	public static Climber climber;
+	public static Conveyor conveyor;
+	public static Drivetrain drivetrain;
 	public static GearIntakeArm gearIntakeArm;
 	public static GearIntakeRoller gearIntakeRoller;
-	public static ShooterHood shooterhood;
-	public static Conveyor conveyor;
-	
+	public static ShooterHood shooterHood;
+	public static ShooterIndexer shooterIndexer;
+	public static ShooterWheel shooterWheel;
+	public static Turret turret;
 	
 	public static PowerDistribution pdp;
 
@@ -55,15 +56,18 @@ public class Robot extends IterativeRobot {
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
 
     	// instantiate the commands used for the autonomous period
+    	ballElevator = BallElevator.getInstance();
+    	ballIntake = BallIntake.getInstance();
+    	climber = Climber.getInstance();
+    	conveyor = Conveyor.getInstance();
+    	drivetrain = Drivetrain.getInstance();
+    	gearIntakeArm = GearIntakeArm.getInstance();
+    	gearIntakeRoller = GearIntakeRoller.getInstance();
+    	shooterHood = ShooterHood.getInstance();
+    	shooterIndexer = ShooterIndexer.getInstance();
+    	shooterWheel = ShooterWheel.getInstance();
     	turret = Turret.getInstance();
-        drivetrain = Drivetrain.getInstance();
-        shooterIndexer = ShooterIndexer.getInstance();	
-        ballIntake = BallIntake.getInstance();
-		climber = Climber.getInstance();
-        gearIntakeArm = GearIntakeArm.getInstance();
-        gearIntakeRoller = GearIntakeRoller.getInstance();
-        shooterhood = ShooterHood.getInstance();
-        conveyor = Conveyor.getInstance();
+        
         // instantiate the command used for the autonomous period
 
 
