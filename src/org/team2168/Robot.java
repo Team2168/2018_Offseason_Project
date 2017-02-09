@@ -1,24 +1,16 @@
 
 package org.team2168;
 
-import org.team2168.subsystems.Climber;
-import org.team2168.subsystems.Conveyor;
-import org.team2168.subsystems.Drivetrain;
-import org.team2168.subsystems.GearIntakeArm;
-import org.team2168.subsystems.GearIntakeRoller;
+import org.team2168.subsystems.*;
+import org.team2168.commands.auto.*;
 import org.team2168.utils.PowerDistribution;
-import org.team2168.subsystems.Turret;
-import org.team2168.subsystems.ShooterIndexer;
-import org.team2168.subsystems.ShooterWheel;
-import org.team2168.subsystems.BallElevator;
-import org.team2168.subsystems.BallIntake;
-import org.team2168.subsystems.ShooterHood;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -46,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
     Command autonomousCommand;
+    public static SendableChooser<Command> autoChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -67,12 +60,12 @@ public class Robot extends IterativeRobot {
     	shooterIndexer = ShooterIndexer.getInstance();
     	shooterWheel = ShooterWheel.getInstance();
     	turret = Turret.getInstance();
-        
-        // instantiate the command used for the autonomous period
-
 
         oi = OI.getInstance();
-		ConsolePrinter.startThread();
+
+        autoSelectInit();
+        
+        ConsolePrinter.startThread();
 		
 		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
 		pdp.startThread();
@@ -117,5 +110,14 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    /**
+     * Adds the autos to the selector
+     */
+    public void autoSelectInit() {
+        autoChooser = new SendableChooser<Command>();
+        autoChooser.addDefault("Do Nothing", new DoNothing());
+        //  autoChooser.addObject("Do Something", new DoSomething());
     }
 }
