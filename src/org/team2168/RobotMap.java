@@ -33,13 +33,6 @@ public class RobotMap {
 	public static final int CLIMBER_MOTOR_RIGHT = 8;
 	public static final int ELEVATOR_MOTOR = 9;
 
-	//Channels 10-25 on MXP
-	public static final int SHOOTER_WHEEL_LEFT = 10;
-	public static final int SHOOTER_WHEEL_RIGHT = 11;
-	public static final int SHOOTER_HOOD_SERVO = 12;
-	public static final int GEAR_INTAKE_MOTOR = 13;
-	public static final int CONVEYOR_MOTOR = 14;
-
 
 	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
 
@@ -50,7 +43,6 @@ public class RobotMap {
 	public final static int DRIVETRAIN_LOW_GEAR= 1;
 	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
 	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
-
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
@@ -65,8 +57,15 @@ public class RobotMap {
 	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
 	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
 	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
-	public static final int GEAR_INTAKE_HALL_EFECT = 10;
 
+	
+	//Channels 10-25 on MXP (PWM and DIO)
+	public static final int SHOOTER_WHEEL_LEFT = 10;
+	public static final int SHOOTER_WHEEL_RIGHT = 11;
+	public static final int SHOOTER_HOOD_SERVO = 12;
+	public static final int GEAR_INTAKE_MOTOR = 13;
+	public static final int CONVEYOR_MOTOR = 14;
+	public static final int GEAR_INTAKE_HALL_EFECT = 15;
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
 	
 
@@ -74,7 +73,6 @@ public class RobotMap {
 	//Channels 0-3 on Roborio
 	public static final int TURRET_POTENTIOMETER = 0;
 	public static final int GEAR_INTAKE_ROLLER_IR = 1;
-
 
 
 	//Channels 4-7 on MXP
