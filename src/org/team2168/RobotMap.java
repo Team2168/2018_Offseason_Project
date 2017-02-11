@@ -16,12 +16,12 @@ public class RobotMap {
 	 *                              ROBORIO WIRING MAP
 	 *************************************************************************/
 
-	// Joysticks/////////////////////////////////////////////////////////////
+	// Joysticks///////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
 	public static final int COMMANDS_TEST_JOYSTICK = 4;
 
-	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
+	// PWM (0 to 9) on RoboRio/////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
 	public static final int LEFT_DRIVE_MOTOR_1 = 2;
@@ -32,17 +32,10 @@ public class RobotMap {
 	public static final int CLIMBER_MOTOR_LEFT = 7;
 	public static final int CLIMBER_MOTOR_RIGHT = 8;
 	public static final int ELEVATOR_MOTOR = 9;
+	// More PWM channels in common PWM/DIO MXP section below.
 
 
-	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
-
-
-
-	//Solenoid Channels////////////////////////////////////////////////////////
-	public final static int DRIVETRAIN_HIGH_GEAR = 0;
-	public final static int DRIVETRAIN_LOW_GEAR= 1;
-	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
-	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
+	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
@@ -67,6 +60,13 @@ public class RobotMap {
 	public static final int CONVEYOR_MOTOR = 14;
 	public static final int GEAR_INTAKE_HALL_EFECT = 15;
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
+	
+	
+	//Solenoid Channels////////////////////////////////////////////////////////
+	public final static int DRIVETRAIN_HIGH_GEAR = 0;
+	public final static int DRIVETRAIN_LOW_GEAR= 1;
+	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
+	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
 	
 
 	//Analog Input Channels////////////////////////////////////////////////////
@@ -239,16 +239,16 @@ public class RobotMap {
 	public static final boolean REVERSE_ELEVATOR_WHEEL = false;
 
 
-	/********************************************
+	/******************************************************************
 	 * 				Kevin PARAMETERS			*
-	 ********************************************/
+	 ******************************************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 	
 	
-	/********************************************
+	/******************************************************************
 	 * 				Lights I2C					*
-	 * *****************************************/
+	 ******************************************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 	public static final int I2C_ADDRESS = 10;
 }
