@@ -42,7 +42,6 @@ public class Drivetrain extends Subsystem {
 	 * Default constructors for Drivetrain
 	 */
 	private Drivetrain() {
-		
 		LeftMotor1 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_1);
 		LeftMotor2 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_2);
 		RightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
@@ -73,15 +72,21 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
 		
 		//Log sensor data
-		ConsolePrinter.putNumber("Drivetrain Right Encoder", Drivetrain::getRightPosition, true, false);
-		ConsolePrinter.putNumber("Drivetrain Left Encoder", Drivetrain::getLeftPosition, true, false);
+		ConsolePrinter.putNumber("Drivetrain Right Encoder",
+				() -> {return Drivetrain.getInstance().getRightPosition();}, true, false);
+		ConsolePrinter.putNumber("Drivetrain Left Encoder",
+				() -> {return Drivetrain.getInstance().getLeftPosition();}, true, false);
+		ConsolePrinter.putNumber("Drivetrain Heading",
+				() -> {return Drivetrain.getInstance().getHeading();}, true, false);
+		ConsolePrinter.putBoolean("Drivetrain Gyro Calibrated",
+				() -> {return Drivetrain.getInstance().isGyroCalibrated();}, true, false);
 	}
 	
 	/**
 	 * Calls instance object and makes it a singleton object of type Drivetrain
 	 * @returns Drivetrain object "instance"
 	 */
-	public static Drivetrain getInstance(){
+	public static Drivetrain getInstance() {
 		if(instance == null)
 			instance = new Drivetrain();
 		
@@ -191,7 +196,7 @@ public class Drivetrain extends Subsystem {
      * returns total distance traveled by right side of drivetrain
      * @return double in feet of total distance traveled by right encoder
      */
-    public static double getRightPosition(){
+    public double getRightPosition() {
     	return RightEncoder.getPos();
     }
     
@@ -199,7 +204,7 @@ public class Drivetrain extends Subsystem {
      * returns total distance traveled by left side of drivetrain
      * @return double in feet of total distance traveled by left encoder
      */
-    public static double getLeftPosition(){
+    public double getLeftPosition() {
     	return LeftEncoder.getPos();
     }
     
@@ -207,27 +212,27 @@ public class Drivetrain extends Subsystem {
      * returns total distance traveled by drivetrain
      * @return double in inches of average distance traveled by both encoders
      */
-    public static double getAverageDistance(){
+    public double getAverageDistance() {
     	return (getRightPosition() + getLeftPosition())/2.0;
     }
     
     /**
      * resets position of right encoder to 0 inches
      */
-    public static void resetRightPosition(){
+    public void resetRightPosition() {
     	RightEncoder.reset();
     }
     /**
      * resets position of left encoder to 0 inches
      */
-    public static void resetLeftPosition(){
+    public void resetLeftPosition() {
     	LeftEncoder.reset();
     }
     
     /**
      * resets position of both Encoders to 0 inches
      */
-    public static void resetPosition(){
+    public void resetPosition() {
     	resetLeftPosition();
     	resetRightPosition();
     }
@@ -236,14 +241,14 @@ public class Drivetrain extends Subsystem {
      * returns heading of robot
      * @return double between 0 degrees and 360 degrees
      */
-    public static double getHeading(){
+    public double getHeading() {
     	return gyroSPI.getPos();		
     }
     
     /**
      * Resets heading of IMU to 0 degrees
      */
-    public static void resetHeading(){
+    public void resetHeading() {
     	gyroSPI.reset();
     }
     
@@ -251,21 +256,21 @@ public class Drivetrain extends Subsystem {
      * calls to calibrate gyro
      * Only used when robot is stationary
      */
-    public static void calibrateGyro(){
+    public void calibrateGyro() {
     	gyroSPI.calibrate();
     }
     
     /**
      * Terminates active gyro calibration sequence
      */
-    public static void stopGyroCalibrating(){
+    public void stopGyroCalibrating() {
     	gyroSPI.stopCalibrating();
     }
     
     /**
      * Returns true if Gyro has calibrated
      */
-    public static boolean isGyroCalibrated(){
+    public boolean isGyroCalibrated() {
     	return gyroSPI.hasCompletedCalibration();
     }
     
@@ -273,7 +278,7 @@ public class Drivetrain extends Subsystem {
      * Returns the last commanded voltage of Left Motor 1
      * @return Double in volts between 0 and 12
      */
-    public double getLeftMotor1Voltage(){
+    public double getLeftMotor1Voltage() {
     	return LeftMotor1Voltage;
     }
     
@@ -281,7 +286,7 @@ public class Drivetrain extends Subsystem {
      * Returns the last commanded voltage of Left Motor 2
      * @return Double in volts between 0 and 12
      */
-    public double getLeftMotor2Voltage(){
+    public double getLeftMotor2Voltage() {
     	return LeftMotor2Voltage;
     }
     
@@ -289,7 +294,7 @@ public class Drivetrain extends Subsystem {
      * Returns the last commanded voltage of Right Motor 1
      * @return Double in volts between 0 and 12
      */
-    public double getRightMotor1Voltage(){
+    public double getRightMotor1Voltage() {
     	return RightMotor1Voltage;
     } 
     
@@ -297,41 +302,35 @@ public class Drivetrain extends Subsystem {
      * Returns the last commanded voltage of Right Motor 2
      * @return Double in volts between 0 and 12
      */
-    public double getRightMotor2Voltage(){
+    public double getRightMotor2Voltage() {
     	return RightMotor2Voltage;
     } 
     
 	/**
 	 * Shifts the Drivetrain from High to Low Gear
 	 */
-    public void shiftGearsHighToLow(){
+    public void shiftGearsHighToLow() {
     	gearChanger.set(DoubleSolenoid.Value.kForward);
     }
     
 	/**
 	 * Returns true if last commanded shift was High Gear
 	 */
-    public boolean gearIsHigh()
-    {
+    public boolean gearIsHigh() {
     	return gearChanger.get()==DoubleSolenoid.Value.kReverse;
     }
     
 	/**
 	 * Shifts the Drivetrain from Low to High Gear
 	 */
-    public void shiftGearsLowToHigh(){
+    public void shiftGearsLowToHigh() {
     	gearChanger.set(DoubleSolenoid.Value.kReverse);
     }
     
 	/**
 	 * Returns true if last commanded shift was Low Gear
 	 */
-    public boolean gearIsLow()
-    {
+    public boolean gearIsLow() {
     	return gearChanger.get()==DoubleSolenoid.Value.kForward;
     }
-    
-    
 }
-
-
