@@ -35,9 +35,6 @@ public class RobotMap {
 	// More PWM channels in common PWM/DIO MXP section below.
 
 
-	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////
-
-
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
 	public static final int LEFT_DRIVE_ENCODER_A = 0;
@@ -51,7 +48,7 @@ public class RobotMap {
 	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
 	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
 
-	
+
 	//Channels 10-25 on MXP (PWM and DIO)
 	public static final int SHOOTER_WHEEL_LEFT = 10;
 	public static final int SHOOTER_WHEEL_RIGHT = 11;
@@ -59,6 +56,7 @@ public class RobotMap {
 	public static final int GEAR_INTAKE_MOTOR = 13;
 	public static final int CONVEYOR_MOTOR = 14;
 	public static final int GEAR_INTAKE_HALL_EFECT = 15;
+	public static final int BALL_INTAKE_HALL_EFFECT = 16;
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
 	
 	
@@ -67,7 +65,8 @@ public class RobotMap {
 	public final static int DRIVETRAIN_LOW_GEAR= 1;
 	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
 	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
-	
+	public final static int BALL_INTAKE_PISTON_EXTEND = 4;
+	public final static int BALL_INTAKE_PISTON_RETRACT = 5;
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
@@ -240,14 +239,14 @@ public class RobotMap {
 
 
 	/******************************************************************
-	 * 				Kevin PARAMETERS			*
+	 *                        Kevin PARAMETERS                        *
 	 ******************************************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 	
 	
 	/******************************************************************
-	 * 				Lights I2C					*
+	 *                         Lights I2C                             *
 	 ******************************************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 	public static final int I2C_ADDRESS = 10;
