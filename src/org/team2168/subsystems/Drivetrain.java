@@ -24,8 +24,7 @@ public class Drivetrain extends Subsystem {
 	private static VictorSP RightMotor1;
 	private static VictorSP RightMotor2;
 
-	private static ADXRS453Gyro gyroSPI;	
-	private static DoubleSolenoid gearChanger;
+	private static ADXRS453Gyro gyroSPI;
 	private static AverageEncoder RightEncoder;
 	private static AverageEncoder LeftEncoder;
 	
@@ -46,9 +45,7 @@ public class Drivetrain extends Subsystem {
 		LeftMotor2 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_2);
 		RightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		RightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
-		
-		gearChanger = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
-		
+
 		RightEncoder = new AverageEncoder(
 				RobotMap.RIGHT_DRIVE_ENCODER_A,
 				RobotMap.RIGHT_DRIVE_ENCODER_B,
@@ -304,33 +301,5 @@ public class Drivetrain extends Subsystem {
      */
     public double getRightMotor2Voltage() {
     	return RightMotor2Voltage;
-    } 
-    
-	/**
-	 * Shifts the Drivetrain from High to Low Gear
-	 */
-    public void shiftGearsHighToLow() {
-    	gearChanger.set(DoubleSolenoid.Value.kForward);
-    }
-    
-	/**
-	 * Returns true if last commanded shift was High Gear
-	 */
-    public boolean gearIsHigh() {
-    	return gearChanger.get()==DoubleSolenoid.Value.kReverse;
-    }
-    
-	/**
-	 * Shifts the Drivetrain from Low to High Gear
-	 */
-    public void shiftGearsLowToHigh() {
-    	gearChanger.set(DoubleSolenoid.Value.kReverse);
-    }
-    
-	/**
-	 * Returns true if last commanded shift was Low Gear
-	 */
-    public boolean gearIsLow() {
-    	return gearChanger.get()==DoubleSolenoid.Value.kForward;
     }
 }

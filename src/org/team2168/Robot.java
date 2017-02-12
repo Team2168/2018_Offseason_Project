@@ -27,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Conveyor conveyor;
 	public static Drivetrain drivetrain;
+	public static DrivetrainShifter drivetrainShifter;
 	public static GearIntakeArm gearIntakeArm;
 	public static GearIntakeRoller gearIntakeRoller;
 	public static ShooterHood shooterHood;
@@ -56,6 +57,7 @@ public class Robot extends IterativeRobot {
     	climber = Climber.getInstance();
     	conveyor = Conveyor.getInstance();
     	drivetrain = Drivetrain.getInstance();
+    	drivetrainShifter = DrivetrainShifter.getInstance();
     	gearIntakeArm = GearIntakeArm.getInstance();
     	gearIntakeRoller = GearIntakeRoller.getInstance();
     	shooterHood = ShooterHood.getInstance();
