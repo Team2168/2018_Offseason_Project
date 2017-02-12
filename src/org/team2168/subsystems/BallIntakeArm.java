@@ -20,9 +20,9 @@ public class BallIntakeArm extends Subsystem {
 			BallIntakeHallEffectSensor = new DigitalInput(RobotMap.BALL_INTAKE_HALL_EFFECT);
 	}
 	
-	private static BallIntakeArm getInstance(){
+	public static BallIntakeArm getInstance(){
 		if(instance == null)
-				instance = new BallIntakeArm();
+			instance = new BallIntakeArm();
 		
 		return instance;
 	}
@@ -36,11 +36,11 @@ public class BallIntakeArm extends Subsystem {
 	}
 	
 	public boolean isArmRaised(){
-			return BallIntakeHallEffectSensor.get();
+		return BallIntakeHallEffectSensor.get();
 	}
 	
 	public boolean isArmLowered(){
-			return !BallIntakeHallEffectSensor.get();
+		return !BallIntakeHallEffectSensor.get();
 	}
 	
 	public void initDefaultCommand() {
