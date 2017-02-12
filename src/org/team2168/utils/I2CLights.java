@@ -94,56 +94,56 @@ public class I2CLights {
      * @author Elijah
      */
     public void Solid(int r, int g, int b, Range range){
-    	writeLED(r,g,b,Pattern.Solid,range);
+    	writeLED(r, g, b, Pattern.Solid, range);
     }
     
     
     /**
      * When your lights gotta go fast!
-     *@param r Red value from 0 - 255.
+     * @param r Red value from 0 - 255.
      * @param g Green value from 0 - 255.
      * @param b Blue value form 0 -255.
      * @param range LED range.
      * @author Elijah
      */
     public void FastBlink(int r, int g, int b, Range range){
-    	writeLED(r,g,b,Pattern.FastBlink,range);
+    	writeLED(r, g, b, Pattern.FastBlink, range);
     }
     
     /**
      * A slower blink than Fast Blink.
-     *@param r Red value from 0 - 255.
+     * @param r Red value from 0 - 255.
      * @param g Green value from 0 - 255.
      * @param b Blue value form 0 -255.
      * @param range LED range.
      * @author Elijah
      */
     public void SlowBlink(int r, int g, int b, Range range){
-    	writeLED(r,g,b,Pattern.SlowBlink,range);
+    	writeLED(r, g, b, Pattern.SlowBlink, range);
     }
     
     /**
      * Fades the lights in and out.
-     *@param r Red value from 0 - 255.
+     * @param r Red value from 0 - 255.
      * @param g Green value from 0 - 255.
      * @param b Blue value form 0 -255.
      * @param range LED range.
      * @author Elijah
      */
     public void Fade(int r, int g, int b, Range range){
-    	writeLED(r,g,b,Pattern.Fade,range);
+    	writeLED(r, g, b, Pattern.Fade, range);
     }
     
     /**
      * Makes the lights chase in towards the middle of the range in the color chosen.
-     *@param r Red value from 0 - 255.
+     * @param r Red value from 0 - 255.
      * @param g Green value from 0 - 255.
      * @param b Blue value form 0 -255.
      * @param range LED range.
      * @author Elijah
      */
     public void ChaseIn(int r, int g, int b, Range range){
-    	writeLED(r,g,b,Pattern.Chase,range);
+    	writeLED(r, g, b, Pattern.Chase, range);
     }
     
     /**
@@ -151,8 +151,8 @@ public class I2CLights {
      * @author Elijah
      */
     public void Rainbow(){
-    	writeLED(0,0,0,Pattern.Rainbow,Range.Intake);
-    	writeLED(0,0,0,Pattern.Rainbow,Range.Shooter);
+    	writeLED(0, 0, 0, Pattern.Rainbow, Range.Intake);
+    	writeLED(0, 0, 0, Pattern.Rainbow, Range.Shooter);
     }
     
     /**
@@ -161,5 +161,17 @@ public class I2CLights {
      */
     public void ChaseAll(Range range) {
     	writeLED(0, 0, 0, Pattern.ChaseAll, range);
+    }
+    
+    /**
+     * Makes the lights chase out from the middle of the range in the color chosen.
+     * @param r Red value from 0 - 255.
+     * @param g Green value from 0 - 255.
+     * @param b Blue value form 0 -255.
+     * @param range LED range.
+     * @author Elijah
+     */
+    public void ChaseOut(int r, int g, int b, Range range){
+    	writeLED(r, g, b, Pattern.ChaseOut, range);
     }
 }
