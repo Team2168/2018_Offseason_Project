@@ -1,7 +1,14 @@
 package org.team2168;
 
+import org.team2168.commands.ballIntake.DriveIntakeWithConstant;
+import org.team2168.commands.climber.DriveClimberWithConstant;
+import org.team2168.commands.conveyor.DriveConveyorWithConstant;
+import org.team2168.commands.elevator.DriveElevatorWithConstant;
+import org.team2168.commands.gearintake.DriveGearIntakeRollerWithConstant;
+import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.commands.shooter.SetHoodToAngle;
+import org.team2168.commands.turret.DriveTurretWithConstant;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -43,14 +50,35 @@ public class OI {
 	
 	public static F310 driverJoystick = new F310(0);
 	public static F310 operatorJoystick = new F310(1);
+	public static F310 testJoystick = new F310(4);
 
 	/**
 	 * Private constructor for singleton class which instantiates the OI object
 	 */
 	private OI() {
+		
+		//////////////Operator Joystick//////////////
 		operatorJoystick.ButtonA().whenPressed(new SetHoodToAngle(0));
 		operatorJoystick.ButtonB().whenPressed(new SetHoodToAngle(180));
 		operatorJoystick.ButtonX().whileHeld(new DriveShooterWithConstant(.5));
+		
+		//////////////Test Joystick//////////////
+		testJoystick.ButtonA().whenPressed(new DriveIntakeWithConstant(0.3));
+		testJoystick.ButtonB().whenPressed(new DriveIntakeWithConstant(-0.3));
+		testJoystick.ButtonX().whenPressed(new DriveClimberWithConstant(0.3));
+		testJoystick.ButtonY().whenPressed(new DriveClimberWithConstant(-0.3));
+		testJoystick.ButtonUpDPad().whenPressed(new DriveConveyorWithConstant(0.3));
+		testJoystick.ButtonDownDPad().whenPressed(new DriveConveyorWithConstant(-0.3));
+		testJoystick.ButtonLeftDPad().whenPressed(new DriveElevatorWithConstant(0.3));
+		testJoystick.ButtonRightDPad().whenPressed(new DriveElevatorWithConstant(-0.3));
+		testJoystick.ButtonRightBumper().whenPressed(new DriveGearIntakeRollerWithConstant(0.3));
+		testJoystick.ButtonLeftBumper().whenPressed(new DriveGearIntakeRollerWithConstant(-0.3));
+		testJoystick.ButtonStart().whenPressed(new DriveIndexerWithConstant(0.3));
+		testJoystick.ButtonBack().whenPressed(new DriveIndexerWithConstant(-0.3));
+		testJoystick.ButtonLeftBumper().whenPressed(new DriveShooterWithConstant(0.3));
+		testJoystick.ButtonRightBumper().whenPressed(new DriveShooterWithConstant(-0.3));
+		testJoystick.ButtonLeftStick().whenPressed(new DriveTurretWithConstant(0.3));
+		testJoystick.ButtonRightStick().whenPressed(new DriveTurretWithConstant(-0.3));
 	}
 
 	/**
@@ -84,7 +112,27 @@ public class OI {
 	 *  Method that sets that Left side of the drive train so that it drives with Operator RightStick Y
 	 *  @author Krystina
 	 */
-	public static double getDriveShooter() {
+	public static double getDriveShooterJoystick() {
+		return operatorJoystick.getRightStickRaw_Y();
+	}
+	
+	public static double getDriveElevatorJoystick() {
+		return operatorJoystick.getRightStickRaw_Y();
+	}
+	
+	public static double getDriveGearIntakeRollerJoystick() {
+		return operatorJoystick.getLeftStickRaw_Y();
+	}
+	
+	public static double getDriveConveryorJoystick() {
+		return operatorJoystick.getRightStickRaw_Y();
+	}
+	
+	public static double getDriveBallIntakeJoystick() {
+		return operatorJoystick.getLeftStickRaw_Y();
+	}
+	
+	public static double getDriveShooterIndexerJoystick() {
 		return operatorJoystick.getRightStickRaw_Y();
 	}
 }

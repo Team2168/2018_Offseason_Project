@@ -1,7 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
-import org.team2168.commands.conveyor.driveConveyorWithJoystick;
+import org.team2168.commands.conveyor.DriveConveyorWithJoystick;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -38,7 +38,7 @@ public class Conveyor extends Subsystem {
 
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new driveConveyorWithJoystick());
+        setDefaultCommand(new DriveConveyorWithJoystick());
     }
 }
 

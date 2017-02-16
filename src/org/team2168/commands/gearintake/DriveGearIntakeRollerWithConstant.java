@@ -9,12 +9,15 @@ import edu.wpi.first.wpilibj.command.Command;
  *Spins the Gear Intake Roller constantly, this speed is set in the RobotMap.java
  *@author Elijah Reeds
  */
-public class SpinRollerConstant extends Command {
+public class DriveGearIntakeRollerWithConstant extends Command {
 
-    public SpinRollerConstant() {
+	double speed;
+	
+    public DriveGearIntakeRollerWithConstant(double inputSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearIntakeRoller);
+    	speed = inputSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +26,7 @@ public class SpinRollerConstant extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearIntakeRoller.setMotorSpeed(RobotMap.GEAR_INTAKE_SPEED_CONSTANT);
+    	Robot.gearIntakeRoller.setMotorSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
