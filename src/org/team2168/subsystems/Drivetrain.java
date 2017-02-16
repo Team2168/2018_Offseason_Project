@@ -5,10 +5,15 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.PID.controllers.PIDPosition;
+import org.team2168.PID.controllers.PIDSpeed;
 import org.team2168.PID.sensors.ADXRS453Gyro;
 import org.team2168.PID.sensors.AverageEncoder;
+import org.team2168.PID.sensors.IMU;
+import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.commands.drivetrain.DriveWithJoystick;
 import org.team2168.subsystems.Drivetrain;
+import org.team2168.utils.TCPSocketSender;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,34 +24,58 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	
-	private static VictorSP LeftMotor1;
-	private static VictorSP LeftMotor2;
-	private static VictorSP RightMotor1;
-	private static VictorSP RightMotor2;
+	private static VictorSP leftMotor1;
+	private static VictorSP leftMotor2;
+	private static VictorSP rightMotor1;
+	private static VictorSP rightMotor2;
 
-	private static ADXRS453Gyro gyroSPI;
-	private static AverageEncoder RightEncoder;
-	private static AverageEncoder LeftEncoder;
+	private ADXRS453Gyro gyroSPI;
+	private AverageEncoder drivetrainLeftEncoder;
+	private AverageEncoder drivetrainRightEncoder;
+	
+	public IMU imu;
+	public TCPCamSensor tcpCamSensor;
+	
+	//declare position/speed controllers
+	public PIDPosition driveTrainPosController;
+	public PIDPosition rotateController;
+	public PIDPosition rotateDriveStraightController;
+	public PIDPosition rotateCameraController;	
+	
+	//declare speed controllers
+	public PIDSpeed rightSpeedController;
+	public PIDSpeed leftSpeedController;
+	
+	DoubleSolenoid gearShifter;
 	
 	private static Drivetrain instance = null;
 	
-	//For debugging only
-	public static volatile double LeftMotor1Voltage = 0.0;
-	public static volatile double LeftMotor2Voltage = 0.0;
-	public static volatile double RightMotor1Voltage = 0.0;
-	public static volatile double RightMotor2Voltage = 0.0;
+
+	
+	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
+	TCPSocketSender TCPdrivePosController;
+	TCPSocketSender TCPrightSpeedController;
+	TCPSocketSender TCPleftSpeedController;
+	TCPSocketSender TCProtateController;
+	TCPSocketSender TCProtateCameraController;
+	
+	
+	public volatile double leftMotor1Voltage;
+	public volatile double leftMotor2Voltage;
+	public volatile double rightMotor1Voltage;
+	public volatile double rightMotor2Voltage;
 	
 	
 	/**
 	 * Default constructors for Drivetrain
 	 */
 	private Drivetrain() {
-		LeftMotor1 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_1);
-		LeftMotor2 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_2);
-		RightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
-		RightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
+		leftMotor1 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_1);
+		leftMotor2 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_2);
+		rightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
+		rightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
 
-		RightEncoder = new AverageEncoder(
+		drivetrainRightEncoder = new AverageEncoder(
 				RobotMap.RIGHT_DRIVE_ENCODER_A,
 				RobotMap.RIGHT_DRIVE_ENCODER_B,
 				RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
@@ -57,7 +86,7 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_POS_RETURN_TYPE,
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
 
-		LeftEncoder = new AverageEncoder(
+		drivetrainLeftEncoder = new AverageEncoder(
 				RobotMap.LEFT_DRIVE_ENCODER_A, 
 				RobotMap.LEFT_DRIVE_ENCODER_B,
 				RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
@@ -68,10 +97,120 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_POS_RETURN_TYPE,
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
 		
+		gyroSPI = new ADXRS453Gyro();
+		gyroSPI.startThread();
+		
+		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
+
+		tcpCamSensor = new TCPCamSensor(41234, 100);
+
+		//enable shifting solenoids
+		gearShifter = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
+		
+		//DriveStraight Controller
+				rotateController = new PIDPosition(
+						"RotationController",
+						RobotMap.ROTATE_POSITION_P,
+						RobotMap.ROTATE_POSITION_I,
+						RobotMap.ROTATE_POSITION_D,
+						gyroSPI,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+				
+				rotateCameraController = new PIDPosition(
+						"RotationCameraController",
+						RobotMap.ROTATE_POSITION_P,
+						RobotMap.ROTATE_POSITION_I,
+						RobotMap.ROTATE_POSITION_D,
+						tcpCamSensor,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+				
+				rotateDriveStraightController = new PIDPosition(
+						"RotationStraightController",
+						RobotMap.ROTATE_POSITION_P_Drive_Straight,
+						RobotMap.ROTATE_POSITION_I_Drive_Straight,
+						RobotMap.ROTATE_POSITION_D_Drive_Straight,
+						gyroSPI,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+
+				driveTrainPosController = new PIDPosition(
+						"driveTrainPosController",
+						RobotMap.DRIVE_TRAIN_RIGHT_POSITION_P,
+						RobotMap.DRIVE_TRAIN_RIGHT_POSITION_I,
+						RobotMap.DRIVE_TRAIN_RIGHT_POSITION_D,
+						imu,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+
+				//Spawn new PID Controller
+				rightSpeedController = new PIDSpeed(
+						"rightSpeedController",
+						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_P,
+						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_I,
+						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_D, 1,
+						drivetrainRightEncoder,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+
+				leftSpeedController = new PIDSpeed(
+						"leftSpeedController",
+						RobotMap.DRIVE_TRAIN_LEFT_SPEED_P,
+						RobotMap.DRIVE_TRAIN_LEFT_SPEED_I,
+						RobotMap.DRIVE_TRAIN_LEFT_SPEED_D, 1,
+						drivetrainLeftEncoder,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+
+
+				//add min and max output defaults and set array size
+				rightSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				leftSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				driveTrainPosController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				rotateController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				rotateDriveStraightController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				rotateCameraController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+
+				//start controller threads
+				rightSpeedController.startThread();
+				leftSpeedController.startThread();
+				driveTrainPosController.startThread();
+				rotateController.startThread();
+				rotateDriveStraightController.startThread();
+				rotateCameraController.startThread();
+
+				
+				
+				
+				
+				//start TCP Servers for DEBUGING ONLY
+				TCPdrivePosController = new TCPSocketSender(RobotMap.TCP_SERVER_DRIVE_TRAIN_POS, driveTrainPosController);
+				TCPdrivePosController.start();
+
+				TCPrightSpeedController = new TCPSocketSender(RobotMap.TCO_SERVER_RIGHT_DRIVE_TRAIN_SPEED, rightSpeedController);
+				TCPrightSpeedController.start();
+
+				TCPleftSpeedController = new TCPSocketSender(RobotMap.TCP_SERVER_LEFT_DRIVE_TRAIN_SPEED, leftSpeedController);
+				TCPleftSpeedController.start();
+
+				TCProtateController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CONTROLLER, rotateController);
+				TCProtateController.start();
+				
+				TCProtateController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CONTROLLER_STRAIGHT, rotateDriveStraightController);
+				TCProtateController.start();
+				
+				TCProtateCameraController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CAMERA_CONTROLLER, rotateCameraController);
+				TCProtateCameraController.start();
+				
+				leftMotor1Voltage = 0;
+				leftMotor2Voltage = 0;
+
+				rightMotor1Voltage = 0;
+				rightMotor2Voltage = 0;
+
+		
+		
+		
+		
 		//Log sensor data
-		ConsolePrinter.putNumber("Drivetrain Right Encoder",
+		ConsolePrinter.putNumber("Drivetrain right Encoder",
 				() -> {return Drivetrain.getInstance().getRightPosition();}, true, false);
-		ConsolePrinter.putNumber("Drivetrain Left Encoder",
+		ConsolePrinter.putNumber("Drivetrain left Encoder",
 				() -> {return Drivetrain.getInstance().getLeftPosition();}, true, false);
 		ConsolePrinter.putNumber("Drivetrain Heading",
 				() -> {return Drivetrain.getInstance().getHeading();}, true, false);
@@ -97,12 +236,12 @@ public class Drivetrain extends Subsystem {
      * @param double speed between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
-    private void driveLeftMotor1(double speed) {
+    private void driveleftMotor1(double speed) {
     	if(RobotMap.DT_REVERSE_LEFT)
         	speed = -speed;
 
-    	LeftMotor1.set(speed);
-    	LeftMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
+    	leftMotor1.set(speed);
+    	leftMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
 
     }
     
@@ -113,12 +252,12 @@ public class Drivetrain extends Subsystem {
      * @param double speed between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
-    private void driveLeftMotor2(double speed) {
+    private void driveleftMotor2(double speed) {
     	if(RobotMap.DT_REVERSE_LEFT)
         	speed = -speed;
 
-    	LeftMotor2.set(speed);
-    	LeftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
+    	leftMotor2.set(speed);
+    	leftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
     /**
@@ -126,9 +265,9 @@ public class Drivetrain extends Subsystem {
      * @param speed is a double between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
-    public void driveLeftSide(double speed) {
-    	driveLeftMotor1(speed);
-    	driveLeftMotor2(speed);
+    public void driveLeft(double speed) {
+    	driveleftMotor1(speed);
+    	driveleftMotor2(speed);
     }
     
     /**
@@ -138,12 +277,12 @@ public class Drivetrain extends Subsystem {
      * @param double speed between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
-   private void driveRightMotor1(double speed) {
+   private void driverightMotor1(double speed) {
 	   if(RobotMap.DT_REVERSE_RIGHT)
 	    	speed = -speed;
 
-    	RightMotor1.set(speed);
-    	RightMotor1Voltage = Robot.pdp.getBatteryVoltage() *speed;
+    	rightMotor1.set(speed);
+    	rightMotor1Voltage = Robot.pdp.getBatteryVoltage() *speed;
     }
     
    /**
@@ -153,12 +292,12 @@ public class Drivetrain extends Subsystem {
     * @param double speed between -1 and 1
     * negative is reverse, positive if forward, 0 is stationary
     */
-    private void driveRightMotor2(double speed) {
+    private void driverightMotor2(double speed) {
     	if(RobotMap.DT_REVERSE_RIGHT)
         	speed = -speed;
     	
-    	RightMotor2.set(speed);
-    	RightMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
+    	rightMotor2.set(speed);
+    	rightMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
     /**
@@ -166,9 +305,9 @@ public class Drivetrain extends Subsystem {
      * @param speed is a double  between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
-    public void driveRightSide(double speed) {
-    	driveRightMotor1(speed);
-    	driveRightMotor2(speed);
+    public void driveRight(double speed) {
+    	driverightMotor1(speed);
+    	driverightMotor2(speed);
     }
     
     /**
@@ -177,9 +316,9 @@ public class Drivetrain extends Subsystem {
      * @param rightSpeed is a double between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
      */
-    public void driveRobot(double leftSpeed, double rightSpeed) {
-    	driveLeftSide(leftSpeed);
-    	driveRightSide(rightSpeed);
+    public void tankDrive(double leftSpeed, double rightSpeed) {
+    	driveLeft(leftSpeed);
+    	driveRight(rightSpeed);
     }
 
     /**
@@ -194,7 +333,7 @@ public class Drivetrain extends Subsystem {
      * @return double in feet of total distance traveled by right encoder
      */
     public double getRightPosition() {
-    	return RightEncoder.getPos();
+    	return drivetrainRightEncoder.getPos();
     }
     
     /**
@@ -202,7 +341,7 @@ public class Drivetrain extends Subsystem {
      * @return double in feet of total distance traveled by left encoder
      */
     public double getLeftPosition() {
-    	return LeftEncoder.getPos();
+    	return drivetrainLeftEncoder.getPos();
     }
     
     /**
@@ -217,13 +356,13 @@ public class Drivetrain extends Subsystem {
      * resets position of right encoder to 0 inches
      */
     public void resetRightPosition() {
-    	RightEncoder.reset();
+    	drivetrainRightEncoder.reset();
     }
     /**
      * resets position of left encoder to 0 inches
      */
     public void resetLeftPosition() {
-    	LeftEncoder.reset();
+    	drivetrainLeftEncoder.reset();
     }
     
     /**
@@ -272,34 +411,64 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
-     * Returns the last commanded voltage of Left Motor 1
+     * Returns the last commanded voltage of left Motor 1
      * @return Double in volts between 0 and 12
      */
-    public double getLeftMotor1Voltage() {
-    	return LeftMotor1Voltage;
+    public double getleftMotor1Voltage() {
+    	return leftMotor1Voltage;
     }
     
     /**
-     * Returns the last commanded voltage of Left Motor 2
+     * Returns the last commanded voltage of left Motor 2
      * @return Double in volts between 0 and 12
      */
-    public double getLeftMotor2Voltage() {
-    	return LeftMotor2Voltage;
+    public double getleftMotor2Voltage() {
+    	return leftMotor2Voltage;
     }
     
     /**
-     * Returns the last commanded voltage of Right Motor 1
+     * Returns the last commanded voltage of right Motor 1
      * @return Double in volts between 0 and 12
      */
-    public double getRightMotor1Voltage() {
-    	return RightMotor1Voltage;
+    public double getrightMotor1Voltage() {
+    	return rightMotor1Voltage;
     } 
     
     /**
-     * Returns the last commanded voltage of Right Motor 2
+     * Returns the last commanded voltage of right Motor 2
      * @return Double in volts between 0 and 12
      */
-    public double getRightMotor2Voltage() {
-    	return RightMotor2Voltage;
+    public double getrightMotor2Voltage() {
+    	return rightMotor2Voltage;
+    }
+    
+    /**
+	 * Shifts the Drivetrain from High to Low Gear
+	 */
+    public void shiftGearsHighToLow(){
+    	gearShifter.set(DoubleSolenoid.Value.kForward);
+    }
+    
+	/**
+	 * Returns true if last commanded shift was High Gear
+	 */
+    public boolean gearIsHigh()
+    {
+    	return gearShifter.get()==DoubleSolenoid.Value.kReverse;
+    }
+    
+	/**
+	 * Shifts the Drivetrain from Low to High Gear
+	 */
+    public void shiftGearsLowToHigh(){
+    	gearShifter.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+	/**
+	 * Returns true if last commanded shift was Low Gear
+	 */
+    public boolean gearIsLow()
+    {
+    	return gearShifter.get()==DoubleSolenoid.Value.kForward;
     }
 }

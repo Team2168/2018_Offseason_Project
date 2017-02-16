@@ -3,11 +3,13 @@ package org.team2168;
 import org.team2168.commands.ballIntake.DriveIntakeWithConstant;
 import org.team2168.commands.climber.DriveClimberWithConstant;
 import org.team2168.commands.conveyor.DriveConveyorWithConstant;
+import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.elevator.DriveElevatorWithConstant;
 import org.team2168.commands.gearintake.DriveGearIntakeRollerWithConstant;
 import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.commands.shooter.SetHoodToAngle;
+import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.turret.DriveTurretWithConstant;
 import org.team2168.utils.F310;
 
@@ -50,7 +52,9 @@ public class OI {
 	
 	public static F310 driverJoystick = new F310(0);
 	public static F310 operatorJoystick = new F310(1);
+	
 	public static F310 testJoystick = new F310(4);
+	public static F310 pidTestJoystick = new F310(5);
 
 	/**
 	 * Private constructor for singleton class which instantiates the OI object
@@ -79,6 +83,19 @@ public class OI {
 		testJoystick.ButtonRightBumper().whenPressed(new DriveShooterWithConstant(-0.3));
 		testJoystick.ButtonLeftStick().whenPressed(new DriveTurretWithConstant(0.3));
 		testJoystick.ButtonRightStick().whenPressed(new DriveTurretWithConstant(-0.3));
+		
+		//PIDJoystick
+		//Shoot Far Preset (Y)
+		pidTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6700));
+
+		//Shoot Close Preset (X)
+		pidTestJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(4000));
+		
+		pidTestJoystick.ButtonA().whenPressed(new DriveShooterPIDSpeed());
+		//Camera Shot Align (Start Button)
+		//operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
+		pidTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
+		
 	}
 
 	/**

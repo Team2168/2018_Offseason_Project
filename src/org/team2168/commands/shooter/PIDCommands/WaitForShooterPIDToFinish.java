@@ -1,6 +1,5 @@
-package org.team2168.commands.drivetrain;
+package org.team2168.commands.shooter.PIDCommands;
 
-import org.team2168.OI;
 import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,38 +7,32 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveWithJoystick extends Command {
-	
-    public DriveWithJoystick() {
+public class WaitForShooterPIDToFinish extends Command {
+
+    public WaitForShooterPIDToFinish() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.drivetrain);	
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     }
 
-    /**
-     * Gets the joystick positions from OI and sends them to the drivetrain subsystem.
-     * @author Krystina
-     */
+    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.tankDrive(OI.getDriveTrainLeftJoystick(), OI.getDriveTrainRightJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	return Robot.shooterWheel.shooterSpeedController.isFinished() || !Robot.shooterWheel.shooterSpeedController.isEnabled();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.tankDrive(0.0, 0.0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
     }
 }

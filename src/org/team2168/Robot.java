@@ -3,9 +3,11 @@ package org.team2168;
 
 import org.team2168.subsystems.*;
 import org.team2168.commands.auto.*;
+import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -28,14 +30,18 @@ public class Robot extends IterativeRobot {
 	public static Conveyor conveyor;
 	public static Drivetrain drivetrain;
 	public static DrivetrainShifter drivetrainShifter;
+	public static Flashlight flashlight;
 	public static GearIntakeArm gearIntakeArm;
 	public static GearIntakeRoller gearIntakeRoller;
+	public static Pneumatics pneumatics;
 	public static ShooterHood shooterHood;
 	public static ShooterIndexer shooterIndexer;
 	public static ShooterWheel shooterWheel;
 	public static Turret turret;
 	
+	
 	public static PowerDistribution pdp;
+	Compressor comp;
 
 	public static OI oi;
 	
@@ -58,14 +64,20 @@ public class Robot extends IterativeRobot {
     	conveyor = Conveyor.getInstance();
     	drivetrain = Drivetrain.getInstance();
     	drivetrainShifter = DrivetrainShifter.getInstance();
+    	flashlight = Flashlight.getInstance();
     	gearIntakeArm = GearIntakeArm.getInstance();
     	gearIntakeRoller = GearIntakeRoller.getInstance();
+    	pneumatics = Pneumatics.getInstance();
     	shooterHood = ShooterHood.getInstance();
     	shooterIndexer = ShooterIndexer.getInstance();
     	shooterWheel = ShooterWheel.getInstance();
     	turret = Turret.getInstance();
+    	
 
         oi = OI.getInstance();
+        
+        //run compressor
+        new StartCompressor();
 
         autoSelectInit();
         
