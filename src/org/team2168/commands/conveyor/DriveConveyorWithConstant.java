@@ -1,18 +1,25 @@
-package org.team2168.commands.elevator;
+package org.team2168.commands.conveyor;
 
-import org.team2168.OI;
 import org.team2168.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *Drive Elevator with joystick 
- */
-public class DriveElevatorWithJoystick extends Command {
 
-    public DriveElevatorWithJoystick() {
+/**
+ * drives conveyor with constant voltage
+ */
+public class DriveConveyorWithConstant extends Command {
+
+	double speed;
+	
+	/**
+	 * runs conveyor at constant speed -1.0 - 1.0
+	 * @param speed
+	 */
+    public DriveConveyorWithConstant(double inputSpeed) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.ballElevator);
+        requires(Robot.conveyor);
+       
+        speed = inputSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +28,6 @@ public class DriveElevatorWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ballElevator.driveElevator(OI.getDriveElevatorJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,9 +37,8 @@ public class DriveElevatorWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ballElevator.driveElevator(0.0);
+    	Robot.conveyor.driveConveyor(0.0);
     }
-    
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

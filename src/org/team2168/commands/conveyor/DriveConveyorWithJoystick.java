@@ -1,21 +1,17 @@
-package org.team2168.commands.gearintake;
+package org.team2168.commands.conveyor;
 
-import org.team2168.Robot;
-import org.team2168.RobotMap;
 import org.team2168.OI;
+import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Controls the roller with the right joystick.
- *@author Elijah Reeds
+ *
  */
-public class SpinRollerWithJoystick extends Command {
+public class DriveConveyorWithJoystick extends Command {
 
-    public SpinRollerWithJoystick() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.gearIntakeRoller);
+    public DriveConveyorWithJoystick() {
+    	requires(Robot.conveyor);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +20,7 @@ public class SpinRollerWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearIntakeRoller.setMotorSpeed(OI.operatorJoystick.getRightStickRaw_Y());
+    	Robot.conveyor.driveConveyor(OI.getDriveConveryorJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,7 +30,7 @@ public class SpinRollerWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.gearIntakeRoller.setMotorSpeed(0.0);
+    	Robot.conveyor.driveConveyor(0.0);
     }
 
     // Called when another command which requires one or more of the same

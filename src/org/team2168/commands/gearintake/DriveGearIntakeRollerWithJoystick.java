@@ -2,16 +2,17 @@ package org.team2168.commands.gearintake;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.OI;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Pretty much SpinRollerConstant except that it stops using the satanic powers found within the Sharp IR sensor.
+ *Controls the roller with the right joystick.
  *@author Elijah Reeds
  */
-public class SpinUntilGearPresent extends Command {
+public class DriveGearIntakeRollerWithJoystick extends Command {
 
-    public SpinUntilGearPresent() {
+    public DriveGearIntakeRollerWithJoystick() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.gearIntakeRoller);
@@ -23,12 +24,12 @@ public class SpinUntilGearPresent extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.gearIntakeRoller.setMotorSpeed(RobotMap.GEAR_INTAKE_SPEED_CONSTANT);
+    	Robot.gearIntakeRoller.setMotorSpeed(OI.getDriveGearIntakeRollerJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.gearIntakeRoller.isGearPresent();
+        return false;
     }
 
     // Called once after isFinished returns true

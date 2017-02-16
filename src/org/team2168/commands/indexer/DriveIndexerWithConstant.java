@@ -1,29 +1,33 @@
-package org.team2168.commands.elevator;
+package org.team2168.commands.indexer;
 
 import org.team2168.OI;
+
 import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 /**
- *Drive Elevator with joystick 
+ * Drives Shooter Indexer with Constant
  */
-public class DriveElevatorWithJoystick extends Command {
 
-    public DriveElevatorWithJoystick() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.ballElevator);
-    }
 
+public class DriveIndexerWithConstant extends Command {
+	
+	double speed; 
+	
+	public DriveIndexerWithConstant(double inputSpeed){
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.shooterIndexer);
+		speed = inputSpeed;
+	}
+	
     // Called just before this Command runs the first time
-    protected void initialize() {
-    }
-
+	protected void initialize(){
+	}
+	
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.ballElevator.driveElevator(OI.getDriveElevatorJoystick());
-    }
-
+	protected void execute(){
+		Robot.ballIntakeRoller.driveIntake(speed);	
+	}
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
@@ -31,13 +35,13 @@ public class DriveElevatorWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ballElevator.driveElevator(0.0);
+    	Robot.ballIntakeRoller.driveIntake(0.0);
     }
-    
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
     }
+
 }
