@@ -1,6 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
+import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.commands.turret.DriveTurretWithJoystick;
 import org.team2168.utils.LinearInterpolator;
 
@@ -19,6 +20,8 @@ public class Turret extends Subsystem {
     private static AnalogInput potentiometer;
     private static DigitalInput limitSwitchRight;
     private static DigitalInput limitSwitchLeft;
+    
+    public TCPCamSensor tcpCamSensor;
 
     private static Turret instance = null;
     
@@ -37,6 +40,10 @@ public class Turret extends Subsystem {
     	limitSwitchRight = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_RIGHT);
     	limitSwitchLeft = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_LEFT);
     	turretInterpolator = new LinearInterpolator(turretRange);
+    	
+    	tcpCamSensor = new TCPCamSensor(RobotMap.BOILER_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
+
+    	
     	
     	//For to be the very safest and to not break robot
     	turretMotor.setExpiration(0.1);

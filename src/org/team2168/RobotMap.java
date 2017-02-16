@@ -199,7 +199,9 @@ public class RobotMap {
 	/*************************************************************************
 	 *                        VISION PARAMETERS
 	 *************************************************************************/
-
+	public static final int GEAR_CAMERA_LISTEN_PORT = 41234; 
+	public static final int BOILER_CAMERA_LISTEN_PORT = 51234;		
+	public static final int CAMERA_SENSOR_PERIOD = 100;
 
 	/*************************************************************************
 	 *                            PDP PARAMETERS

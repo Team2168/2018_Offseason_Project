@@ -102,7 +102,7 @@ public class Drivetrain extends Subsystem {
 		
 		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
 
-		tcpCamSensor = new TCPCamSensor(41234, 100);
+		tcpCamSensor = new TCPCamSensor(RobotMap.GEAR_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
 
 		//enable shifting solenoids
 		gearShifter = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
