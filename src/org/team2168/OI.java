@@ -18,6 +18,7 @@ import org.team2168.commands.shooter.DriveHoodUpWithButton;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.commands.shooter.SetHoodToAngle;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
+import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
 import org.team2168.commands.turret.DriveTurretWithConstant;
 import org.team2168.utils.F310;
 
@@ -70,8 +71,22 @@ public class OI {
 	private OI() {
 		
 		//////////////Operator Joystick//////////////
-		operatorJoystick.ButtonA().whenPressed(new SetHoodToAngle(0));
-		operatorJoystick.ButtonB().whenPressed(new SetHoodToAngle(180));
+		
+		//Boiler Shot
+		operatorJoystick.ButtonX().whenPressed(new SetHoodToAngle(5));
+		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(2500));
+		
+		//AirshipShot
+		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(180));
+		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3825));
+
+		//Fire
+		operatorJoystick.ButtonA().whileHeld(new DriveConveyorWithConstant(0.3));
+		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.3));
+		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(0.3));
+		
+		//Kill Shooter
+		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		
 		//turret
 		operatorJoystick.ButtonRightDPad().whileHeld(new DriveTurretWithConstant(RobotMap.TURRET_MAX_DRIVE));
@@ -94,6 +109,8 @@ public class OI {
 		
 		//Climber
 		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstantUntilCurrentLimit(RobotMap.CLIMBER_MOTOR_SPEED));
+		
+		
 		
 		
 		//////////////Test Joystick//////////////
@@ -193,11 +210,6 @@ public class OI {
 		
 	public static double getDriveIndexerPIDTestJoystick(){
 			return (pidTestJoystick.getRightTriggerAxisRaw() + pidTestJoystick.getLeftTriggerAxisRaw());
-	}
-	
-	public static double getShooterPIDTestJoystick(){
-				return (pidTestJoystick.getRightTriggerAxisRaw() + pidTestJoystick.getLeftTriggerAxisRaw());	
-
 	}
 }
 
