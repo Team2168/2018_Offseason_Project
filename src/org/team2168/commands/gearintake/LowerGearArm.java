@@ -1,24 +1,24 @@
-package org.team2168.commands.ballIntake;
+package org.team2168.commands.gearintake;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.team2168.Robot;
 
 /**
- *Lowers the arm of the Ball Intake.
+ *Lowers the arm of the Gear Intake.
  *@Author Elijah Reeds
  */
-public class LowerArm extends Command {
+public class LowerGearArm extends Command {
 
-    public LowerArm() {
+    public LowerGearArm() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ballIntakeArm);
+    	requires(Robot.gearIntakeArm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.ballIntakeArm.Lower();
+    	Robot.gearIntakeArm.Lower();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +27,7 @@ public class LowerArm extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return Robot.ballIntakeArm.isArmLowered();
+    	return Robot.gearIntakeArm.isArmLowered();
     }
 
     // Called once after isFinished returns true

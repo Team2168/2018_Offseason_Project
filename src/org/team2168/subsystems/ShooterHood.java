@@ -105,7 +105,7 @@ public class ShooterHood extends Subsystem {
 	 */
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new DriveHoodWithJoystick());
+    	//setDefaultCommand(new DriveHoodWithJoystick());
     }
 }
 

@@ -1,33 +1,37 @@
-package org.team2168.commands.ballIntake;
+package org.team2168.commands.shooter;
 
 import org.team2168.Robot;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Raises the arm of the Ball Intake.
- *@author Elijah Reeds
+ * Command to move the turret shooter hood with a controller joystick
  */
-public class RaiseArm extends Command {
+public class DriveHoodDownWithButton extends Command {
 
-    public RaiseArm() {
+    public DriveHoodDownWithButton() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.ballIntakeArm);
+        requires(Robot.shooterHood);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.ballIntakeArm.Raise();
     }
 
+    // Takes the current angle of the shooter hood servo and adds to it based on
+
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+		Robot.shooterHood.setAngle(Robot.shooterHood.getAngle() - RobotMap.SHOOTER_DEGREE_PER_BUTTON_RATE);
+	    
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    		return Robot.ballIntakeArm.isArmRaised();
+        return false;
     }
 
     // Called once after isFinished returns true

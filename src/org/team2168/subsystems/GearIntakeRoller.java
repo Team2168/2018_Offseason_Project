@@ -66,6 +66,8 @@ public class GearIntakeRoller extends Subsystem {
 	 * @author Elijah Reeds
 	 */
 	public void setMotorSpeed(double speed){
+		if(RobotMap.REVERSE_GEAR_INTAKE_WHEEL)
+			speed = -speed;
 		GearIntakeMotor.set(speed);
 	}
 

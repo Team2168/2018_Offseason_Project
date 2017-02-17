@@ -2,6 +2,7 @@ package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
 import org.team2168.commands.climber.DriveClimberWithConstant;
+import org.team2168.commands.climber.DriveClimberWithJoystick;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -68,7 +69,7 @@ public class Climber extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new DriveClimberWithConstant(0.0));
+        setDefaultCommand(new DriveClimberWithJoystick());
     }
 }
 

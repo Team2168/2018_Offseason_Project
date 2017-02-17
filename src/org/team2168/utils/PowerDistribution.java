@@ -16,7 +16,7 @@ public class PowerDistribution {
 
 	private PowerDistributionPanel pdp;
 
-	private volatile double[] channelCurrent;
+	private volatile NPointAverager[] channelCurrent;
 	private volatile double[] channelPower;
 	private volatile int[] channelError;
 
@@ -30,11 +30,21 @@ public class PowerDistribution {
 
 	public static final int NUM_OF_PDP_CHANNELS = 16;
 	
+	int currentTimeThreshold;
+	
 	public PowerDistribution(long period) {
 		this.period = period;
 		pdp = new PowerDistributionPanel();
 
-		channelCurrent = new double[NUM_OF_PDP_CHANNELS];
+		//Calculate number of loops needed to meet time iteration
+		currentTimeThreshold = (int) (RobotMap.CURRENT_LIMIT_TIME_THRESHOLD_SECONDS/(period*1000));
+		
+		channelCurrent = new NPointAverager[NUM_OF_PDP_CHANNELS];
+		
+		//initialize NPoint Averager for each channel
+		for(int i=0; i<NUM_OF_PDP_CHANNELS; i++)
+			channelCurrent[i] = new NPointAverager(currentTimeThreshold);
+		
 		channelPower = new double[NUM_OF_PDP_CHANNELS];
 		channelError = new int[NUM_OF_PDP_CHANNELS];
 	}
@@ -56,7 +66,7 @@ public class PowerDistribution {
 		if((channel >= channelPower.length) || (channel < 0))
 			return 0;
 		
-		return channelCurrent[channel];
+		return channelCurrent[channel].getLatestValue();
 	}
 
 	public double getBatteryVoltage() {
@@ -76,13 +86,14 @@ public class PowerDistribution {
 		for(int i=0; i<NUM_OF_PDP_CHANNELS; i++) {
 			channelError[i] = 0; //assume no error
 			
-			channelCurrent[i] = pdp.getCurrent(i);
-			channelPower[i] = channelCurrent[i] * batteryVoltage;
+			channelCurrent[i].putData(pdp.getCurrent(i));
+			channelPower[i] = channelCurrent[i].getLatestValue() * batteryVoltage;
 		
+			//calculate current average over last 
 
-			if(channelCurrent[i] > RobotMap.WARNING_CURRENT_LIMIT)
+			if(channelCurrent[i].getAverage() > RobotMap.WARNING_CURRENT_LIMIT)
 				channelError[i] = 1; //warning
-			else if (channelCurrent[i] > RobotMap.STALL_CURRENT_LIMIT)
+			else if (channelCurrent[i].getAverage() > RobotMap.STALL_CURRENT_LIMIT)
 				channelError[i] = 2; //danger
 			
 			
@@ -137,12 +148,6 @@ public class PowerDistribution {
 		return totalPower;
 	}
 	
-	public boolean isRightMotorThreeTrip() {
-		if (channelError[RobotMap.DRIVETRAIN_RIGHT_MOTOR_3_PDP] == 2)
-			return true;
-		else
-			return false;
-	}
 	
 	public boolean isRightMotorTwoTrip() {
 		if (channelError[RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP] == 2)
@@ -158,30 +163,30 @@ public class PowerDistribution {
 			return false;
 	}
 	
-	public boolean isIntakeMotorTrip() {
-		if (channelError[RobotMap.INTAKE_MOTOR_1_PDP] == 2) 
+	public boolean isBallIntakeMotorTrip() {
+		if (channelError[RobotMap.BALL_INTAKE_MOTOR_PDP] == 2) 
 			return true;
 		else
 			return false;
 	}
 	
 	public boolean isIndexMotorTrip() {
-		if (channelError[RobotMap.INDEXER_MOTOR_PDP] == 2) 
+		if (channelError[RobotMap.INDEXER_WHEEL_PDP] == 2) 
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean isShooterMotorOneTrip() {
+	public boolean isShooterMotorLeftTrip() {
 		
-		if (channelError[RobotMap.SHOOTER_MOTOR_FWD_PDP] == 2)
+		if (channelError[RobotMap.SHOOTER_MOTOR_LEFT_PDP] == 2)
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean isShooterMotorTwoTrip() {
-		if (channelError[RobotMap.SHOOTER_MOTOR_AFT_PDP] == 2)
+	public boolean isShooterMotorRightTrip() {
+		if (channelError[RobotMap.SHOOTER_MOTOR_RIGHT_PDP] == 2)
 			return true;
 		else
 			return false;
@@ -201,10 +206,19 @@ public class PowerDistribution {
 			return false;
 	}
 	
-	public boolean isLeftMotorThreeTrip() {
-		if (channelError[RobotMap.DRIVETRAIN_LEFT_MOTOR_3_PDP] == 2) 
+	
+	public boolean isLeftHangerMotorTrip() {
+		if (channelError[RobotMap.CLIMBER_MOTOR_LEFT_PDP] == 1) 
 			return true;
 		else
 			return false;
 	}
+	
+	public boolean isRighttHangerMotorTrip() {
+		if (channelError[RobotMap.CLIMBER_MOTOR_RIGHT_PDP] == 1) 
+			return true;
+		else
+			return false;
+	}
+	
 }

@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Command to move the turret shooter hood with a controller joystick
  */
-public class DriveHoodWithJoystick extends Command {
+public class DriveHoodUpWithButton extends Command {
 
-    public DriveHoodWithJoystick() {
+    public DriveHoodUpWithButton() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooterHood);
     }
@@ -20,13 +20,15 @@ public class DriveHoodWithJoystick extends Command {
     }
 
     // Takes the current angle of the shooter hood servo and adds to it based on
-    
+    // how far the right operator joystick is pushed on the Y-axis
     
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    		Robot.shooterHood.setAngle(Robot.shooterHood.getAngle() + RobotMap.SHOOTER_DEGREE_PER_BUTTON_RATE);
-    	
+//    	if(Math.abs(OI..operatorJoystick.getRightStickRaw_Y()) > 0.1)
+//    		Robot.shooterHood.setAngle(Robot.shooterHood.getAngle()
+//    				- (RobotMap.HOOD_JOYSTICK_MULTIPLIER * Robot.oi.operatorJoystick.getRightStickRaw_Y()));
+//    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

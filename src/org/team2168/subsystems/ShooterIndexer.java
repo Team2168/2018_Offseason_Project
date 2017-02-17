@@ -1,6 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
+import org.team2168.commands.shooter.DriveShooterIndexerWithJoystick;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
@@ -93,7 +94,7 @@ public class ShooterIndexer extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new DriveShooterIndexerWithJoystick());
     }
 }
 

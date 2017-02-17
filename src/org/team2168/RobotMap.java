@@ -84,17 +84,17 @@ public class RobotMap {
 	//PDP Channels/////////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 13;
 	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 12;
-	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 14;
 	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 2;
 	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 3;
-	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 4;
-	public final static int INTAKE_MOTOR_1_PDP = 11;
-	public final static int INTAKE_MOTOR_2_PDP = 5;
-	public final static int INDEXER_MOTOR_PDP = 10;
-	public final static int SHOOTER_MOTOR_FWD_PDP = 0;
-	public final static int SHOOTER_MOTOR_AFT_PDP = 15;
-	public final static int PCM_POWER = 7;
-
+	public final static int SHOOTER_MOTOR_LEFT_PDP = 0;
+	public final static int SHOOTER_MOTOR_RIGHT_PDP = 15;
+	public static final int BALL_INTAKE_MOTOR_PDP = 11;
+	public static final int INDEXER_WHEEL_PDP = 5;
+	public static final int TURRET_MOTOR_PDP = 10;
+	public static final int CLIMBER_MOTOR_LEFT_PDP = 7;
+	public static final int CLIMBER_MOTOR_RIGHT_PDP = 8;
+	public static final int ELEVATOR_MOTOR_PDP = 9;
+	public final static int PCM_POWER = 0;
 	
 	//CAN Device IDs///////////////////////////////////////////////////////////
 
@@ -169,7 +169,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final double GEAR_INTAKE_IR_THRESHOLD = 2.0;
 	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
-
+	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = false;
 
 	/*************************************************************************
 	 *                         INDEXER PARAMETERS
@@ -182,6 +182,9 @@ public class RobotMap {
 	 *                         HOOD PARAMETERS
 	 *************************************************************************/
 	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
+	public static final double MIN_HOOD_VALUE = 115;
+	public static final double MAX_HOOD_VALUE = 180;
+	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 2;
 
 
 	/*************************************************************************
@@ -189,6 +192,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
 	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
+	public static final double CLIMBER_MOTOR_SPEED = 0.8;
 
 	
 	/******************************************************************
@@ -196,6 +200,11 @@ public class RobotMap {
 	 ******************************************************************/
 	public static final boolean REVERSE_CONVEYOR = false;
 
+	/******************************************************************
+	 * 				               TURRET
+	 ******************************************************************/
+	public static final double TURRET_MAX_DRIVE = 0.5;
+	public static final boolean REVERSE_TURRET = false;
 
 	/*************************************************************************
 	 *                        VISION PARAMETERS
@@ -210,6 +219,7 @@ public class RobotMap {
 	public final static long PDPThreadPeriod = 20;
 	public static final double WARNING_CURRENT_LIMIT = 20;
 	public static final double STALL_CURRENT_LIMIT = 35;
+	public static final double CURRENT_LIMIT_TIME_THRESHOLD_SECONDS = 1; 
 
 	/*************************************************************************
 	 *                            PID PARAMETERS
