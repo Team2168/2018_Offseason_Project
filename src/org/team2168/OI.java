@@ -21,6 +21,7 @@ import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
 import org.team2168.commands.turret.DriveTurretWithConstant;
 import org.team2168.utils.F310;
+import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -143,6 +144,23 @@ public class OI {
 		//operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
 		pidTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
 		
+	
+	
+		
+		ConsolePrinter.putNumber("Left Stick Raw Value", () -> {return Robot.oi.driverJoystick.getLeftStickRaw_Y();}, true, false);
+		ConsolePrinter.putNumber("Right Stick Raw Value", () -> {return Robot.oi.driverJoystick.getRightStickRaw_Y();}, true, false);
+
+		ConsolePrinter.putNumber("Left Trigger Raw Value", () -> {return Robot.oi.driverJoystick.getLeftTriggerAxisRaw();}, true, false);
+		ConsolePrinter.putNumber("Right Trigger Raw Value", () -> {return Robot.oi.driverJoystick.getRightTriggerAxisRaw();}, true, false);
+
+		ConsolePrinter.putNumber("Operator Left Stick Raw Value", () -> {return Robot.oi.operatorJoystick.getLeftStickRaw_Y();}, true, false);
+		ConsolePrinter.putNumber("Operator Right Stick Raw Value", () -> {return Robot.oi.operatorJoystick.getRightStickRaw_Y();}, true, false);
+
+		ConsolePrinter.putNumber("Operator Left Trigger Raw Value", () -> {return Robot.oi.operatorJoystick.getLeftTriggerAxisRaw();}, true, false);
+		ConsolePrinter.putNumber("Operator Right Trigger Raw Value", () -> {return Robot.oi.operatorJoystick.getRightTriggerAxisRaw();}, true, false);
+
+	
+	
 	}
 
 	/**

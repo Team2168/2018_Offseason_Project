@@ -198,19 +198,70 @@ public class Drivetrain extends Subsystem {
 				rightMotor1Voltage = 0;
 				rightMotor2Voltage = 0;
 
+				//Log sensor data	
+				ConsolePrinter.putNumber("Left Encoder Distance",() -> {return Robot.drivetrain.getLeftPosition();}, true, false);
+				ConsolePrinter.putNumber("Right Encoder Distance:",() -> {return Robot.drivetrain.getRightPosition();}, true, false);
+
+				ConsolePrinter.putNumber("Gyro Angle:", () -> {return Robot.drivetrain.getHeading();}, true, false);
+				ConsolePrinter.putNumber("GYRO Driftrate:", () -> {return Robot.drivetrain.gyroSPI.driftRate;}, true, false);
+				ConsolePrinter.putNumber("GYRO Rate:", () -> {return Robot.drivetrain.gyroSPI.getRate();}, true, false);
+				ConsolePrinter.putNumber("GYRO Angle SPI:", () -> {return Robot.drivetrain.gyroSPI.getAngle();}, true, false);
+				ConsolePrinter.putNumber("GYRO reInits:", () -> {return (double)Robot.gyroReinits;}, true, false);
+				ConsolePrinter.putBoolean("Gyro Cal Status", () -> {return !Robot.gyroCalibrating;}, true, false);
+				ConsolePrinter.putNumber("GYRO Status:", () -> {return (double)Robot.drivetrain.gyroSPI.getStatus();}, true, false);
+				ConsolePrinter.putNumber("GYRO Temp:", () -> {return Robot.drivetrain.gyroSPI.getTemp();}, true, false);
+
+				ConsolePrinter.putNumber("DTRight1MotorCurrent", 
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_1_PDP);}, true, false);
+				ConsolePrinter.putNumber("DTRight2MotorCurrent", 
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP);}, true, false);
+			
+				ConsolePrinter.putNumber("DTLeft1MotorCurrent", 
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_1_PDP);}, true, false);
+				ConsolePrinter.putNumber("DTLeft2MotorCurrent", 
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_2_PDP);}, true, false);
 		
-		
-		
-		
-		//Log sensor data
-		ConsolePrinter.putNumber("Drivetrain right Encoder",
-				() -> {return Drivetrain.getInstance().getRightPosition();}, true, false);
-		ConsolePrinter.putNumber("Drivetrain left Encoder",
-				() -> {return Drivetrain.getInstance().getLeftPosition();}, true, false);
-		ConsolePrinter.putNumber("Drivetrain Heading",
-				() -> {return Drivetrain.getInstance().getHeading();}, true, false);
-		ConsolePrinter.putBoolean("Drivetrain Gyro Calibrated",
-				() -> {return Drivetrain.getInstance().isGyroCalibrated();}, true, false);
+	
+				ConsolePrinter.putBoolean("Camera Status", 
+						() -> {return Robot.drivetrain.tcpCamSensor.isCameraConnected();}, true, false);
+				ConsolePrinter.putBoolean("Bone Status", 
+						() -> {return Robot.drivetrain.tcpCamSensor.isClientConnected();}, true, false);
+				ConsolePrinter.putBoolean("Processing Status", 
+						() -> {return Robot.drivetrain.tcpCamSensor.isProcessingTreadRunning();}, true, false);
+				ConsolePrinter.putBoolean("MJPEG Status", 
+						() -> {return Robot.drivetrain.tcpCamSensor.isMJPEGConnected();}, true, false);
+				ConsolePrinter.putNumber("Vision Target Dist", 
+						() -> {return Robot.drivetrain.tcpCamSensor.getTargetDistance();}, true, false);
+				ConsolePrinter.putNumber("Vision Target Bearing", 
+						() -> {return Robot.drivetrain.tcpCamSensor.getRotationAngle();}, true, false);
+				ConsolePrinter.putBoolean("Is Target Detected", 
+						() -> {return Robot.drivetrain.tcpCamSensor.isTargetDetected();}, true, false);
+				ConsolePrinter.putBoolean("Is Target Scorable", 
+						() -> {return Robot.drivetrain.tcpCamSensor.isTargetScorable();}, true, false);
+								
+				ConsolePrinter.putBoolean("Left Motor One Trip", () -> {return !Robot.pdp.isLeftMotorOneTrip();}, true, false);
+				ConsolePrinter.putBoolean("Left Motor Two Trip", () -> {return !Robot.pdp.isLeftMotorTwoTrip();}, true, false);
+
+				ConsolePrinter.putNumber("DTLeft1MotorVoltage",() -> {return Robot.drivetrain.getleftMotor1Voltage();}, true, false);
+				ConsolePrinter.putNumber("DTLeft2MotorVoltage",() -> {return Robot.drivetrain.getleftMotor2Voltage();}, true, false);
+				ConsolePrinter.putNumber("DTRight1MotorVoltage",() -> {return Robot.drivetrain.getrightMotor1Voltage();}, true, false);
+				ConsolePrinter.putNumber("DTRight2MotorVoltage",() -> {return Robot.drivetrain.getrightMotor2Voltage();}, true, false);
+				
+	
+				//TODO: Make methods to return proper test values
+//				ConsolePrinter.putBoolean("Left Drive Motor 1 Pass", () -> {return Robot.drivetrain.leftMotor1Pass);
+//				ConsolePrinter.putBoolean("Left Drive Motor 2 Pass", () -> {return Robot.drivetrain.leftMotor2Pass);
+//				ConsolePrinter.putBoolean("Left Drive Motor 3 Pass", () -> {return Robot.drivetrain.leftMotor3Pass);
+//				ConsolePrinter.putBoolean("Right Drive Motor 1 Pass", () -> {return Robot.drivetrain.rightMotor1Pass);
+//				ConsolePrinter.putBoolean("Right Drive Motor 2 Pass", () -> {return Robot.drivetrain.rightMotor2Pass);
+//				ConsolePrinter.putBoolean("Right Drive Motor 3 Pass", () -> {return Robot.drivetrain.rightMotor3Pass);
+//				ConsolePrinter.putBoolean("Indexer Motor Pass", Indexer.indexerPass);
+//				ConsolePrinter.putBoolean("Intake Left Motor Pass", IntakeRoller.intakeLeftPass);
+//				ConsolePrinter.putBoolean("Intake Right Motor Pass", IntakeRoller.intakeRightPass);
+//				ConsolePrinter.putBoolean("Shooter FWD Motor Pass", Shooter.shooterFWDPass);
+//				ConsolePrinter.putBoolean("Shooter AFT Motor Pass", Shooter.shooterAFTPass);
+	
+	
 	}
 	
 	/**
@@ -377,33 +428,40 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
-     * Resets heading of IMU to 0 degrees
-     */
-    public void resetHeading() {
-    	gyroSPI.reset();
-    }
-    
-    /**
-     * calls to calibrate gyro
-     * Only used when robot is stationary
-     */
-    public void calibrateGyro() {
-    	gyroSPI.calibrate();
-    }
-    
-    /**
-     * Terminates active gyro calibration sequence
-     */
-    public void stopGyroCalibrating() {
-    	gyroSPI.stopCalibrating();
-    }
-    
-    /**
-     * Returns true if Gyro has calibrated
-     */
-    public boolean isGyroCalibrated() {
-    	return gyroSPI.hasCompletedCalibration();
-    }
+	 * Reset robot heading to zero.
+	 */
+	public void resetGyro() {
+		gyroSPI.reset();
+	}
+
+	/**
+	 * Calibrate gyro.
+	 * This should only be called if the robot will be stationary for the calibration period.
+	 */
+	public void calibrateGyro() {
+		gyroSPI.calibrate();
+	}
+
+	/**
+	 * @return true if the gyro completed its previous calibration sequence.
+	 */
+	public boolean isGyroCalibrated() {
+		return gyroSPI.hasCompletedCalibration();
+	}
+
+	/**
+	 * @return true if the gyro is being calibrated.
+	 */
+	public boolean isGyroCalibrating() {
+		return gyroSPI.isCalibrating();
+	}
+
+	/**
+	 * Call to stop an active gyro calibration sequence.
+	 */
+	public void stopGyroCalibrating() {
+		gyroSPI.stopCalibrating();
+	}
     
     /**
      * Returns the last commanded voltage of left Motor 1

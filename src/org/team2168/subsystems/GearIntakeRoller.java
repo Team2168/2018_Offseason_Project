@@ -1,6 +1,7 @@
 package org.team2168.subsystems;
 
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 import org.team2168.commands.gearintake.*;
@@ -29,6 +30,13 @@ public class GearIntakeRoller extends Subsystem {
 	private GearIntakeRoller() {
 		GearIntakeMotor  = new Spark(RobotMap.GEAR_INTAKE_MOTOR);
 		GearIntakeMotorIRSensor = new AnalogInput(RobotMap.GEAR_INTAKE_ROLLER_IR);
+		
+		//ConsolePrinter.putNumber("GearIntakeMotor1Current", () -> {return Robot.pdp.getChannelCurrent(RobotMap.ge));
+		ConsolePrinter.putNumber("Raw Gear IR", () -> {return Robot.gearIntakeRoller.getIRVoltage();}, true, false);
+		ConsolePrinter.putBoolean("IsGearPresent", () -> {return Robot.gearIntakeRoller.isGearPresent();}, true, false);
+
+
+		
 	}
 	
 	/**

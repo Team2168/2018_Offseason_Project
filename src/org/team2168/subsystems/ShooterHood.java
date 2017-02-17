@@ -1,7 +1,9 @@
 package org.team2168.subsystems;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.commands.shooter.DriveHoodWithJoystick;
+import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
@@ -49,6 +51,9 @@ public class ShooterHood extends Subsystem {
     	hoodServo = new Servo(RobotMap.SHOOTER_HOOD_SERVO);
     	hoodServo.setBounds(HOOD_MAX_PWM, CENTER_SERVO_PWM + SERVO_DEADBAND, 
     			CENTER_SERVO_PWM, CENTER_SERVO_PWM - SERVO_DEADBAND, HOOD_MIN_PWM);
+    	
+    	ConsolePrinter.putNumber("Hood Servo Angle", () -> {return Robot.shooterHood.getAngle();}, true, false);
+		
     }
 	
 	/**

@@ -4,15 +4,18 @@ package org.team2168;
 import org.team2168.subsystems.*;
 import org.team2168.commands.auto.*;
 import org.team2168.commands.pneumatics.StartCompressor;
+import org.team2168.utils.Debouncer;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,6 +41,17 @@ public class Robot extends IterativeRobot {
 	public static ShooterIndexer shooterIndexer;
 	public static ShooterWheel shooterWheel;
 	public static Turret turret;
+	
+	static boolean autoMode;
+    private static boolean matchStarted = false;
+    public static int gyroReinits;
+	private double lastAngle;
+	private Debouncer gyroDriftDetector = new Debouncer(1.0);
+	public static boolean gyroCalibrating = false;
+	private boolean lastGyroCalibrating = false;
+	private double curAngle = 0.0;
+    
+    public static DriverStation driverstation;
 	
 	
 	public static PowerDistribution pdp;
@@ -73,7 +87,6 @@ public class Robot extends IterativeRobot {
     	shooterWheel = ShooterWheel.getInstance();
     	turret = Turret.getInstance();
     	
-
         oi = OI.getInstance();
         
         //run compressor
@@ -81,20 +94,53 @@ public class Robot extends IterativeRobot {
 
         autoSelectInit();
         
-        ConsolePrinter.startThread();
-		
+     
 		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
 		pdp.startThread();
 		
-		System.out.println("Robot Finished Loading");
+        drivetrain.calibrateGyro();
+        
+        SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
+		//ConsolePrinter.putData("Autonomous Mode Chooser", () -> {return Robot.autoChooser;}, true, false);
+		//ConsolePrinter.putString("AutoName", () -> {return Robot.getAutoName();}, true, false);
+		//ConsolePrinter.putBoolean("isPracticeBot", Robot.isPracticeRobot());
+		ConsolePrinter.putNumber("gameClock", () -> {return DriverStation.getInstance().getMatchTime();}, true, false);
+        ConsolePrinter.putNumber("Robot Pressure", () -> {return Robot.pneumatics.getPSI();}, true, false);
+        
+        
+        ConsolePrinter.startThread();
+        System.out.println("Robot Done Loading");
     }
 	
+	/**
+     * This method is called once each time the robot enters Disabled mode.
+     * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
+     */
+    public void disabledInit(){
+    		autoMode = false;
+    		matchStarted = false;
+    }
+    
 	public void disabledPeriodic() {
 		// Kill all active commands
 		Scheduler.getInstance().run();
+		
+		
+		autoMode = false;
+		
+		// Check to see if the gyro is drifting, if it is re-initialize it.
+		gyroReinit();
 	}
 
     public void autonomousInit() {
+    	
+    	autoMode = true;
+    	
+		matchStarted = true;
+		drivetrain.stopGyroCalibrating();
+		drivetrain.resetGyro();
+    	
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -107,17 +153,27 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
+
+    	autoMode = false;
+    	
+		matchStarted = true;
+		drivetrain.stopGyroCalibrating();
+    	
+    	// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        
+
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	
+    	autoMode = false;
         Scheduler.getInstance().run();
     }
     
@@ -136,4 +192,31 @@ public class Robot extends IterativeRobot {
         autoChooser.addDefault("Do Nothing", new DoNothing());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
+    
+    /**
+	 * Method which checks to see if gyro drifts and resets the gyro. Call this
+	 * in a loop.
+	 */
+	private void gyroReinit() {
+		//Check to see if the gyro is drifting, if it is re-initialize it.
+		//Thanks FRC254 for orig. idea.
+		curAngle = drivetrain.getHeading();
+		gyroCalibrating = drivetrain.isGyroCalibrating();
+
+		if (lastGyroCalibrating && !gyroCalibrating) {
+			//if we've just finished calibrating the gyro, reset
+			gyroDriftDetector.reset();
+			curAngle = drivetrain.getHeading();
+			System.out.println("Finished auto-reinit gyro");
+		} else if (gyroDriftDetector.update(Math.abs(curAngle - lastAngle) > (0.75 / 50.0))
+				&& !matchStarted && !gyroCalibrating) {
+			//&& gyroReinits < 3) {
+			gyroReinits++;
+			System.out.println("!!! Sensed drift, about to auto-reinit gyro ("+ gyroReinits + ")");
+			drivetrain.calibrateGyro();
+		}
+
+		lastAngle = curAngle;
+		lastGyroCalibrating = gyroCalibrating;
+	}
 }

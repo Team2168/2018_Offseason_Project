@@ -2,7 +2,9 @@ package org.team2168.utils;
 
 import java.util.TimerTask;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 //import org.team2168.RobotMap;
 
@@ -47,6 +49,11 @@ public class PowerDistribution {
 		
 		channelPower = new double[NUM_OF_PDP_CHANNELS];
 		channelError = new int[NUM_OF_PDP_CHANNELS];
+		
+        ConsolePrinter.putNumber("Battery Voltage", () -> {return Robot.pdp.getBatteryVoltage();}, true, false);
+		ConsolePrinter.putNumber("totalCurrent", () -> {return Robot.pdp.getTotalCurrent();}, true, false);
+		ConsolePrinter.putNumber("pcmCurrent", () -> {return Robot.pdp.getChannelCurrent(RobotMap.PCM_POWER);}, true, false);
+		
 	}
 
 	public void startThread() {

@@ -7,6 +7,7 @@ import org.team2168.PID.controllers.PIDSpeed;
 import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.commands.shooter.DriveShooterWithJoystick;
 import org.team2168.utils.TCPSocketSender;
+import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -70,9 +71,15 @@ public class ShooterWheel extends Subsystem {
 		
 		TCPShooterController = new TCPSocketSender(RobotMap.TCP_SERVER_SHOOTER_SPEED, shooterSpeedController);
 		TCPShooterController.start();
+		
+       	ConsolePrinter.putNumber("Shooter_rpm", () -> {return Robot.shooterWheel.getSpeed();}, true, true);
+        ConsolePrinter.putBoolean("Shooter_atspeed_status", () -> {return Robot.shooterWheel.shooterSpeedController.isFinished();}, true, true);
+        ConsolePrinter.putNumber("Shooter Position", () -> {return Robot.shooterWheel.getPosition();}, true, false);
+        ConsolePrinter.putNumber("ShooterMotorLeftCurrent", () -> {return Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_LEFT_PDP);}, true, true);
+		ConsolePrinter.putNumber("ShooterMotorRightCurrent", () -> {return Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_RIGHT_PDP);}, true, true);
+		ConsolePrinter.putBoolean("ShooterMotorLeftCurrentTrip", () -> {return !Robot.pdp.isShooterMotorLeftTrip();}, true, false);
+		ConsolePrinter.putBoolean("ShooterMotorRightCurrentTrip", () -> {return !Robot.pdp.isShooterMotorRightTrip();}, true, false);
 
-	
-	
 	}
 	
 	/**
