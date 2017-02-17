@@ -91,17 +91,18 @@ public class PowerDistribution {
 		batteryVoltage = pdp.getVoltage();
 		
 		for(int i=0; i<NUM_OF_PDP_CHANNELS; i++) {
-			channelError[i] = 0; //assume no error
+			
 			
 			channelCurrent[i].putData(pdp.getCurrent(i));
 			channelPower[i] = channelCurrent[i].getLatestValue() * batteryVoltage;
 		
-			//calculate current average over last 
-
-			if(channelCurrent[i].getAverage() > RobotMap.WARNING_CURRENT_LIMIT)
-				channelError[i] = 1; //warning
-			else if (channelCurrent[i].getAverage() > RobotMap.STALL_CURRENT_LIMIT)
+			//calculate current average over last period of time and report error
+			if (channelCurrent[i].getAverage() > RobotMap.STALL_CURRENT_LIMIT)
 				channelError[i] = 2; //danger
+			else if(channelCurrent[i].getAverage() > RobotMap.WARNING_CURRENT_LIMIT)
+				channelError[i] = 1; //warning
+			else
+				channelError[i] = 0; //assume no error
 			
 			
 		}
