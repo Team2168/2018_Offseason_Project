@@ -50,11 +50,11 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	private static OI instance = null;
 	
-	public static F310 driverJoystick = new F310(0);
-	public static F310 operatorJoystick = new F310(1);
+	public static F310 driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
+	public static F310 operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
 	
-	public static F310 testJoystick = new F310(4);
-	public static F310 pidTestJoystick = new F310(5);
+	public static F310 testJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
+	public static F310 pidTestJoystick = new F310(RobotMap.PID_TEST_JOYSTICK);
 
 	/**
 	 * Private constructor for singleton class which instantiates the OI object
@@ -151,6 +151,18 @@ public class OI {
 	
 	public static double getDriveShooterIndexerJoystick() {
 		return operatorJoystick.getRightStickRaw_Y();
+	}
+	
+	public static double getDriveShooterPIDTestJoystick(){
+		return pidTestJoystick.getRightStickRaw_Y();
+	}
+	
+	public static double getDriveElevatorPIDTestJoystick(){
+		return pidTestJoystick.getLeftStickRaw_Y();
+	}
+		
+	public static double getDriveIndexerPIDTestJoystick(){
+			return (pidTestJoystick.getRightTriggerAxisRaw() + pidTestJoystick.getLeftTriggerAxisRaw());	
 	}
 }
 

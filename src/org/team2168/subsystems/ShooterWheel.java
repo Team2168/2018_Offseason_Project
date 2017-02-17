@@ -1,5 +1,7 @@
 package org.team2168.subsystems;
 
+
+import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.controllers.PIDSpeed;
 import org.team2168.PID.sensors.AverageEncoder;
@@ -23,8 +25,8 @@ public class ShooterWheel extends Subsystem {
 	public PIDSpeed shooterSpeedController;
 	TCPSocketSender TCPShooterController;
 	
-	private volatile double RightMotorVoltage = 0.0;
-	private volatile double LeftMotorVoltage = 0.0;
+	private volatile double rightMotorVoltage = 0.0;
+	private volatile double leftMotorVoltage = 0.0;
 		
 	/**
 	 * Private singleton constructor for the Shooter subsystem
@@ -49,6 +51,28 @@ public class ShooterWheel extends Subsystem {
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
 		
 		shooterEncoder.setMinRate(RobotMap.SHOOTER_ENCODER_MIN_RATE);
+	
+		//Spawn new PID Controller
+		shooterSpeedController = new PIDSpeed(
+				"ShooterSpeedController",
+				RobotMap.SHOOTER_SPEED_P,
+				RobotMap.SHOOTER_SPEED_I,
+				RobotMap.SHOOTER_SPEED_D,
+				RobotMap.SHOOTER_SPEED_N,
+				shooterEncoder,
+				RobotMap.DRIVE_TRAIN_PID_PERIOD);
+		
+		shooterSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+
+		//start controller threads
+		shooterSpeedController.startThread();
+		
+		
+		TCPShooterController = new TCPSocketSender(RobotMap.TCP_SERVER_SHOOTER_SPEED, shooterSpeedController);
+		TCPShooterController.start();
+
+	
+	
 	}
 	
 	/**
@@ -83,6 +107,7 @@ public class ShooterWheel extends Subsystem {
 			speed = -speed;
 		
 		shooterLeft.set(speed);
+		leftMotorVoltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -95,6 +120,7 @@ public class ShooterWheel extends Subsystem {
 			speed = -speed;
 			
 		shooterRight.set(speed);
+		rightMotorVoltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -117,7 +143,7 @@ public class ShooterWheel extends Subsystem {
 	 * @return double in volts representing last commanded voltage to motor
 	 */
 	public double getRightMotorVoltage() {
-		return RightMotorVoltage;
+		return rightMotorVoltage;
 	}
 
 	/**
@@ -125,7 +151,7 @@ public class ShooterWheel extends Subsystem {
 	 * @return double in volts representing last commanded voltage to motor
 	 */
 	public double getLeftMotorVoltage() {
-		return LeftMotorVoltage;
+		return leftMotorVoltage;
 	}
 	
 	

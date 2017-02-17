@@ -46,8 +46,6 @@ public class Drivetrain extends Subsystem {
 	public PIDSpeed rightSpeedController;
 	public PIDSpeed leftSpeedController;
 	
-	DoubleSolenoid gearShifter;
-	
 	private static Drivetrain instance = null;
 	
 
@@ -103,9 +101,6 @@ public class Drivetrain extends Subsystem {
 		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
 
 		tcpCamSensor = new TCPCamSensor(RobotMap.GEAR_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
-
-		//enable shifting solenoids
-		gearShifter = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
 		
 		//DriveStraight Controller
 				rotateController = new PIDPosition(
@@ -442,33 +437,4 @@ public class Drivetrain extends Subsystem {
     	return rightMotor2Voltage;
     }
     
-    /**
-	 * Shifts the Drivetrain from High to Low Gear
-	 */
-    public void shiftGearsHighToLow(){
-    	gearShifter.set(DoubleSolenoid.Value.kForward);
-    }
-    
-	/**
-	 * Returns true if last commanded shift was High Gear
-	 */
-    public boolean gearIsHigh()
-    {
-    	return gearShifter.get()==DoubleSolenoid.Value.kReverse;
-    }
-    
-	/**
-	 * Shifts the Drivetrain from Low to High Gear
-	 */
-    public void shiftGearsLowToHigh(){
-    	gearShifter.set(DoubleSolenoid.Value.kReverse);
-    }
-    
-	/**
-	 * Returns true if last commanded shift was Low Gear
-	 */
-    public boolean gearIsLow()
-    {
-    	return gearShifter.get()==DoubleSolenoid.Value.kForward;
-    }
 }

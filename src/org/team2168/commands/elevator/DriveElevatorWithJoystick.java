@@ -21,7 +21,7 @@ public class DriveElevatorWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ballElevator.driveElevator(OI.getDriveElevatorJoystick());
+    	Robot.ballElevator.driveElevator(OI.getDriveElevatorJoystick() + OI.getDriveElevatorPIDTestJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()

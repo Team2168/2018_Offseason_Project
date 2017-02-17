@@ -23,7 +23,7 @@ public class DriveShooterWithJoystick extends Command {
 	    // Called repeatedly when this Command is scheduled to run
 	    //TODO Put OI method in
 	    protected void execute() {
-	    	Robot.shooterWheel.setShooterSpeed(OI.getDriveShooterJoystick());
+	    	Robot.shooterWheel.setShooterSpeed(OI.getDriveShooterJoystick() + OI.getDriveShooterPIDTestJoystick());
 	    }
 
 	    // Make this return true when this Command no longer needs to run execute()

@@ -23,7 +23,7 @@ public class DriveIndexerWithJoystick extends Command {
 	
     // Called repeatedly when this Command is scheduled to run
 	protected void execute(){
-		Robot.ballIntakeRoller.driveIntake(OI.getDriveShooterIndexerJoystick());	
+		Robot.ballIntakeRoller.driveIntake(OI.getDriveShooterIndexerJoystick() + OI.getDriveIndexerPIDTestJoystick());	
 	}
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
