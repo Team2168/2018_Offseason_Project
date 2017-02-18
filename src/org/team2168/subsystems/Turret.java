@@ -1,9 +1,11 @@
 package org.team2168.subsystems;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.commands.turret.DriveTurretWithJoystick;
 import org.team2168.utils.LinearInterpolator;
+import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -48,6 +50,11 @@ public class Turret extends Subsystem {
     	//For to be the very safest and to not break robot
     	turretMotor.setExpiration(0.1);
     	turretMotor.setSafetyEnabled(true);
+    	
+		ConsolePrinter.putBoolean("Turret Right Limit Switch", 
+				() -> {return Robot.turret.isLimitSwitchRightActive();}, true, false);
+		ConsolePrinter.putBoolean("Turret Left Limit Switch", 
+				() -> {return Robot.turret.isLimitSwitchLeftActive();}, true, false);
     }
 
     /**

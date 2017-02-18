@@ -1,6 +1,8 @@
 package org.team2168.subsystems;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -18,6 +20,11 @@ public class BallIntakeArm extends Subsystem {
 			BallIntakeArmPiston = new DoubleSolenoid(RobotMap.BALL_INTAKE_PISTON_EXTEND,
 													 RobotMap.BALL_INTAKE_PISTON_RETRACT);
 			BallIntakeHallEffectSensor = new DigitalInput(RobotMap.BALL_INTAKE_HALL_EFFECT);
+			
+			ConsolePrinter.putBoolean("Ball Intake Arm Raised", 
+					() -> {return Robot.ballIntakeArm.isArmRaised();}, true, false);
+			ConsolePrinter.putBoolean("Ball Intake Arm Lowered", 
+					() -> {return Robot.ballIntakeArm.isArmLowered();}, true, false);
 	}
 	
 	public static BallIntakeArm getInstance(){
