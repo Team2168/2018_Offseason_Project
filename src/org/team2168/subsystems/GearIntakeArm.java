@@ -69,7 +69,7 @@ public class GearIntakeArm extends Subsystem {
 	 * @author Elijah Reeds
 	 */
 	public boolean isArmRaised(){
-		return GearIntakeHallEffectSensor.get();
+		return !GearIntakeHallEffectSensor.get();
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class GearIntakeArm extends Subsystem {
 	 * @author Elijah Reeds
 	 */
 	public boolean isArmLowered(){
-		return !GearIntakeHallEffectSensor.get();
+		return GearIntakeHallEffectSensor.get();
 	}
 	
 	
@@ -88,7 +88,6 @@ public class GearIntakeArm extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new RaiseGearArm());
     }
 }
 

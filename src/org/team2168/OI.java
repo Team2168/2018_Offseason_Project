@@ -5,7 +5,6 @@ import org.team2168.commands.ballIntake.LowerBallIntakeArm;
 import org.team2168.commands.ballIntake.RaiseBallIntakeArm;
 import org.team2168.commands.climber.DriveClimberWithConstant;
 import org.team2168.commands.climber.DriveClimberWithConstantUntilCurrentLimit;
-import org.team2168.commands.conveyor.DriveConveyorWithConstant;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.elevator.DriveElevatorWithConstant;
 import org.team2168.commands.gearintake.AutomaticGearIntake;
@@ -82,9 +81,9 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3825));
 
 		//Fire
-		operatorJoystick.ButtonA().whileHeld(new DriveConveyorWithConstant(0.3));
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.3));
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(0.3));
+		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(0.3));
 		
 		//Kill Shooter
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
@@ -98,6 +97,7 @@ public class OI {
 		
 		//Gear Assembly
 		operatorJoystick.ButtonRightTrigger().whileHeld(new AutomaticGearIntake());
+		operatorJoystick.ButtonRightTrigger().whenReleased(new RaiseGearArm());
 		operatorJoystick.ButtonStart().whenPressed(new LowerGearArm());
 		operatorJoystick.ButtonStart().whenReleased(new RaiseGearArm());
 		//operatorJoystick.isPressedButtonRightBumper()/whenPressed .... SCORE GEAR
@@ -105,8 +105,8 @@ public class OI {
 		
 		//Ball Intake Assembly
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIntakeWithConstant(1));
-		operatorJoystick.ButtonBack().whenPressed(new LowerBallIntakeArm());
-		operatorJoystick.ButtonBack().whenReleased(new RaiseBallIntakeArm());
+		operatorJoystick.ButtonLeftTrigger().whenPressed(new LowerBallIntakeArm());
+		operatorJoystick.ButtonLeftBumper().whenPressed(new RaiseBallIntakeArm());
 		
 		//Climber
 		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstantUntilCurrentLimit(RobotMap.CLIMBER_MOTOR_SPEED));
@@ -119,8 +119,6 @@ public class OI {
 		testJoystick.ButtonB().whenPressed(new DriveIntakeWithConstant(-0.3));
 		testJoystick.ButtonX().whenPressed(new DriveClimberWithConstant(0.3));
 		testJoystick.ButtonY().whenPressed(new DriveClimberWithConstant(-0.3));
-		testJoystick.ButtonUpDPad().whenPressed(new DriveConveyorWithConstant(0.3));
-		testJoystick.ButtonDownDPad().whenPressed(new DriveConveyorWithConstant(-0.3));
 		testJoystick.ButtonLeftDPad().whenPressed(new DriveElevatorWithConstant(0.3));
 		testJoystick.ButtonRightDPad().whenPressed(new DriveElevatorWithConstant(-0.3));
 		testJoystick.ButtonRightBumper().whenPressed(new DriveGearIntakeRollerWithConstant(0.3));

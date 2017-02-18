@@ -27,11 +27,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static BallElevator ballElevator;
+	public static BallConvelator ballElevator;
 	public static BallIntakeArm ballIntakeArm;
 	public static BallIntakeRoller ballIntakeRoller;
 	public static Climber climber;
-	public static Conveyor conveyor;
 	public static Drivetrain drivetrain;
 	public static DrivetrainShifter drivetrainShifter;
 	public static Flashlight flashlight;
@@ -60,10 +59,10 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	
-    Command autonomousCommand;
+    static Command autonomousCommand;
     public static SendableChooser<Command> autoChooser;
     
-    Command controlStyle;
+    static Command controlStyle;
     public static SendableChooser<Command> controlStyleChooser;
 
     /**
@@ -75,11 +74,10 @@ public class Robot extends IterativeRobot {
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
 
     	// instantiate the commands used for the autonomous period
-    	ballElevator = BallElevator.getInstance();
+    	ballElevator = BallConvelator.getInstance();
     	ballIntakeArm = BallIntakeArm.getInstance();
     	ballIntakeRoller = BallIntakeRoller.getInstance();
     	climber = Climber.getInstance();
-    	conveyor = Conveyor.getInstance();
     	drivetrain = Drivetrain.getInstance();
     	drivetrainShifter = DrivetrainShifter.getInstance();
     	flashlight = Flashlight.getInstance();
@@ -107,7 +105,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
         SmartDashboard.putData("Control Style Chooser", Robot.controlStyleChooser);
 		//ConsolePrinter.putData("Autonomous Mode Chooser", () -> {return Robot.autoChooser;}, true, false);
-		//ConsolePrinter.putString("AutoName", () -> {return Robot.getAutoName();}, true, false);
+		ConsolePrinter.putString("AutoName", () -> {return Robot.getAutoName();}, true, false);
+		ConsolePrinter.putString("Control Style Name", () -> {return Robot.getControlStyleName();}, true, false);
 		//ConsolePrinter.putBoolean("isPracticeBot", Robot.isPracticeRobot());
 		ConsolePrinter.putNumber("gameClock", () -> {return DriverStation.getInstance().getMatchTime();}, true, false);
         ConsolePrinter.putNumber("Robot Pressure", () -> {return Robot.pneumatics.getPSI();}, true, false);
@@ -116,6 +115,30 @@ public class Robot extends IterativeRobot {
         ConsolePrinter.startThread();
         System.out.println("Robot Done Loading");
     }
+    
+    /**
+	 * Get the name of an autonomous mode command.
+	 * @return the name of the auto command.
+	 */
+	public static String getAutoName() {
+		if (autonomousCommand != null) {
+			return autonomousCommand.getName();
+		} else {
+			return "None";
+		}
+	}
+	
+    /**
+	 * Get the name of an autonomous mode command.
+	 * @return the name of the auto command.
+	 */
+	public static String getControlStyleName() {
+		if (controlStyle != null) {
+			return controlStyle.getName();
+		} else {
+			return "None";
+		}
+	}
     
     /**
      * Adds control styles to the selector

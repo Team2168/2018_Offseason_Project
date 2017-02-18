@@ -44,14 +44,13 @@ public class BallIntakeArm extends Subsystem {
 	}
 	
 	public boolean isArmRaised(){
-		return BallIntakeHallEffectSensor.get();
-	}
-	
-	public boolean isArmLowered(){
 		return !BallIntakeHallEffectSensor.get();
 	}
 	
+	public boolean isArmLowered(){
+		return BallIntakeHallEffectSensor.get();
+	}
+	
 	public void initDefaultCommand() {
-		setDefaultCommand(new RaiseBallIntakeArm());
 	}
 }

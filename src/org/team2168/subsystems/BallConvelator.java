@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *Ball Elevator subsystem 
  *@author David
  */
-public class BallElevator extends Subsystem {
+public class BallConvelator extends Subsystem {
 
-	private static BallElevator instance = null;
+	private static BallConvelator instance = null;
 	private static Spark elevatorMotor;
 
-	private BallElevator() {
+	private BallConvelator() {
 		elevatorMotor = new Spark(RobotMap.ELEVATOR_MOTOR);
 	}
 
@@ -23,9 +23,9 @@ public class BallElevator extends Subsystem {
 	 * singleton getter for Ball Elevator 
 	 * @return instance 
 	 */
-	public static BallElevator getInstance(){
+	public static BallConvelator getInstance(){
 		if(instance==null)
-			instance = new BallElevator();
+			instance = new BallConvelator();
 		return instance;
 	}
 	
