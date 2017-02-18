@@ -2,6 +2,7 @@ package org.team2168.subsystems;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.commands.gearintake.RaiseGearArm;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -68,7 +69,7 @@ public class GearIntakeArm extends Subsystem {
 	 * @author Elijah Reeds
 	 */
 	public boolean isArmRaised(){
-		return GearIntakeHallEffectSensor.get();
+		return !GearIntakeHallEffectSensor.get();
 	}
 	
 	/**
@@ -77,7 +78,7 @@ public class GearIntakeArm extends Subsystem {
 	 * @author Elijah Reeds
 	 */
 	public boolean isArmLowered(){
-		return !GearIntakeHallEffectSensor.get();
+		return GearIntakeHallEffectSensor.get();
 	}
 	
 	

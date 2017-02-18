@@ -24,7 +24,7 @@ public class ShooterHood extends Subsystem {
     private static double startTime;
 
     public static final double WPILIB_MIN_SERVO_ANGLE = 0.0; //degrees
-	public static final double WPILIB_MAX_SERVO_ANGLE = 180.0; //degrees
+	public static final double WPILIB_MAX_SERVO_ANGLE = 100.0; //degrees
     private static final double TIME_TO_SERVO_FULL_EXTENSION = 3.48; //Avg time to move from retract to extend
     private static final double PERCENT_PER_SECOND = 1.00 / TIME_TO_SERVO_FULL_EXTENSION;
     private static final double DEGREES_PER_SECOND = (WPILIB_MAX_SERVO_ANGLE - WPILIB_MIN_SERVO_ANGLE)
@@ -91,18 +91,21 @@ public class ShooterHood extends Subsystem {
 	 * @return the estimated current angle of the servo in degrees
 	 */
 	public double getAngle(){
-		endAngle = hoodServo.getAngle();
-		double angleDifference = endAngle - startAngle;
-		double timeDifference = Timer.getFPGATimestamp() - startTime;
 		
-		if(angleDifference > 0)
-			currentAngle = (startAngle + (timeDifference * DEGREES_PER_SECOND));		
-		else if(angleDifference < 0)
-			currentAngle = (startAngle - (timeDifference * DEGREES_PER_SECOND));
-		else //angleDifference == 0
-			currentAngle = endAngle;
+		return hoodServo.getAngle();
 		
-		return currentAngle;
+		//endAngle = hoodServo.getAngle();
+//		double angleDifference = endAngle - startAngle;
+//		double timeDifference = Timer.getFPGATimestamp() - startTime;
+//		
+//		if(angleDifference > 0)
+//			currentAngle = (startAngle + (timeDifference * DEGREES_PER_SECOND));		
+//		else if(angleDifference < 0)
+//			currentAngle = (startAngle - (timeDifference * DEGREES_PER_SECOND));
+//		else //angleDifference == 0
+//			currentAngle = endAngle;
+//		
+//		return currentAngle;
 	}
 	
 	/**

@@ -25,10 +25,8 @@ public class DriveHoodUpWithButton extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-//    	if(Math.abs(OI..operatorJoystick.getRightStickRaw_Y()) > 0.1)
-//    		Robot.shooterHood.setAngle(Robot.shooterHood.getAngle()
-//    				- (RobotMap.HOOD_JOYSTICK_MULTIPLIER * Robot.oi.operatorJoystick.getRightStickRaw_Y()));
-//    	
+		Robot.shooterHood.setAngle(Robot.shooterHood.getAngle() + RobotMap.SHOOTER_DEGREE_PER_BUTTON_RATE);
+   	
     }
 
     // Make this return true when this Command no longer needs to run execute()

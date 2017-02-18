@@ -2,6 +2,7 @@ package org.team2168.subsystems;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.commands.ballIntake.RaiseBallIntakeArm;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -43,14 +44,13 @@ public class BallIntakeArm extends Subsystem {
 	}
 	
 	public boolean isArmRaised(){
-		return BallIntakeHallEffectSensor.get();
-	}
-	
-	public boolean isArmLowered(){
 		return !BallIntakeHallEffectSensor.get();
 	}
 	
+	public boolean isArmLowered(){
+		return BallIntakeHallEffectSensor.get();
+	}
+	
 	public void initDefaultCommand() {
-
 	}
 }
