@@ -46,16 +46,20 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	public static final int LEFT_DRIVE_ENCODER_A = 0;
-	public static final int LEFT_DRIVE_ENCODER_B = 1;
-	public static final int RIGHT_DRIVE_ENCODER_A = 2;
-	public static final int RIGHT_DRIVE_ENCODER_B = 3;
-	public static final int SHOOTER_ENCODER_A = 4;
-	public static final int SHOOTER_ENCODER_B = 5;
-	public static final int TURRET_LIMIT_SWITCH_RIGHT = 6;
-	public static final int TURRET_LIMIT_SWITCH_LEFT = 7;
-	public static final int INDEXER_UPPER_BALL_PRESENT= 8;
-	public static final int INDEXER_LOWER_BALL_PRESENT= 9;
+	public static final int LEFT_DRIVE_ENCODER_A = 9;
+	public static final int LEFT_DRIVE_ENCODER_B = 8;
+	public static final int RIGHT_DRIVE_ENCODER_A = 6;
+	public static final int RIGHT_DRIVE_ENCODER_B = 5;
+	public static final int BALL_INTAKE_HALL_EFFECT = 4;
+	public static final int GEAR_INTAKE_HALL_EFECT = 7;
+	
+	
+	public static final int SHOOTER_ENCODER_A = 0;
+	public static final int SHOOTER_ENCODER_B = 1;
+	public static final int TURRET_LIMIT_SWITCH_RIGHT = 2;
+	public static final int TURRET_LIMIT_SWITCH_LEFT = 3;
+	public static final int INDEXER_UPPER_BALL_PRESENT= 15;
+	public static final int INDEXER_LOWER_BALL_PRESENT= 16;
 
 
 	//Channels 10-25 on MXP (PWM and DIO)
@@ -64,8 +68,6 @@ public class RobotMap {
 	public static final int ELEVATOR_MOTOR = 12;
 	public static final int GEAR_INTAKE_MOTOR = 13;
 	public static final int CONVEYOR_MOTOR = 14;
-	public static final int GEAR_INTAKE_HALL_EFECT = 15;
-	public static final int BALL_INTAKE_HALL_EFFECT = 16;
 	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
 	
 	
@@ -97,13 +99,13 @@ public class RobotMap {
 	public static final int CLIMBER_MOTOR_RIGHT_PDP = 14;
 	public static final int ELEVATOR_MOTOR_PDP = 4;
 	public final static int GEAR_INTAKE_MOTOR_PDP = 6;
+	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 1;
+	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 2;
 	
-	public static final int INDEXER_WHEEL_PDP = 0;
-	public final static int SHOOTER_MOTOR_LEFT_PDP = 1;
-	public final static int SHOOTER_MOTOR_RIGHT_PDP = 2;
-	public final static int PCM_POWER = 7;
-	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 8;
-	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 9;
+	public static final int INDEXER_WHEEL_PDP = 10;
+	public final static int SHOOTER_MOTOR_LEFT_PDP = 0;
+	public final static int SHOOTER_MOTOR_RIGHT_PDP = 15;
+	public final static int PCM_POWER = 7;;
 	
 	//CAN Device IDs///////////////////////////////////////////////////////////
 
@@ -142,12 +144,12 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= true;
+	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= false;
 	public static final boolean REVERSE_SHOOTER_WHEEL_RIGHT= false;
 
 	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
-	private static final double SHOOTER_GEAR_RATIO = 14.0/28.0; //ratio between wheel over encoder
+	private static final double SHOOTER_GEAR_RATIO = 1.0/1.0; //ratio between wheel over encoder
 	private static final double SHOOTER_WHEEL_DIAMETER = 4;
 	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);

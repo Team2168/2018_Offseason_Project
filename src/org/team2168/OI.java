@@ -83,7 +83,7 @@ public class OI {
 		//Fire
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.3));
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(0.3));
-		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(0.3));
+		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(-0.3));
 		
 		//Kill Shooter
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
