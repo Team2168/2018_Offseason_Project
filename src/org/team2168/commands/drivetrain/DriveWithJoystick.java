@@ -2,6 +2,7 @@ package org.team2168.commands.drivetrain;
 
 import org.team2168.OI;
 import org.team2168.Robot;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,9 +11,43 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveWithJoystick extends Command {
 	
-    public DriveWithJoystick() {
+	int ctrlStyle;
+	/**
+	 * Controller Styles
+	 * 0 = Tank Drive (Default)
+	 * 1 = Gun Style
+	 * 2 = Arcade Drive
+	 * 3 = GTA
+	 * @param inputStyle
+	 */
+	
+	private double distanceGoal;
+	private double speed;
+	private double endDistance;
+	private boolean finished;
+	private double angle;
+	private double error = 0.3;
+	
+	private double powerShift;
+
+	double rightSpeed = 0;
+	double leftSpeed = 0;
+
+	static final double DIST_ERROR_TOLERANCE_INCH = 1;
+	static final double TURN_ERROR_TOLERANCE_DEG =1;
+
+	double lastRotateOutput;
+	
+    public DriveWithJoystick(int inputStyle) {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.drivetrain);	
+        // eg. requires(chassis);
+    	requires(Robot.drivetrain);
+    	ctrlStyle = inputStyle;
+    	//TODO not sure where distanceGoal is used but for our tests we used a value of 1
+		this.distanceGoal = 1;
+		this.speed = RobotMap.AUTO_NORMAL_SPEED;
+		this.powerShift = 1;
+		this.lastRotateOutput = 0;
     }
 
     // Called just before this Command runs the first time
@@ -24,8 +59,84 @@ public class DriveWithJoystick extends Command {
      * @author Krystina
      */
     protected void execute() {
-    	Robot.drivetrain.tankDrive(OI.getDriveTrainLeftJoystick(), OI.getDriveTrainRightJoystick());
+
+    	switch(ctrlStyle){
+    	/**
+    	 *Tank Drive
+    	 */
+    	case 0:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+        	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
+        	break;
+        
+        /**
+         * Gun Style Controller
+         */
+    	case 1:
+
+		lastRotateOutput = Robot.drivetrain.rotateDriveStraightController.getControlOutput();
+		double headingCorrection = (Robot.drivetrain.rotateDriveStraightController.getControlOutput()) ;
+
+		Robot.drivetrain.tankDrive(Robot.oi.driverJoystick.getLeftStickRaw_X()+headingCorrection+Robot.oi.driverJoystick.getRightStickRaw_X(),
+								   Robot.oi.driverJoystick.getLeftStickRaw_X()-headingCorrection-Robot.oi.driverJoystick.getRightStickRaw_X());
+		//finished = Robot.drivetrain.driveTrainPosController.isFinished();
+//		if(Robot.oi.driverJoystick.getRightStickRaw_X() > 0.1 || Robot.oi.driverJoystick.getRightStickRaw_X() < -0.1) {
+//			Robot.drivetrain.resetGyro();
+//		}
+
+		if ((Robot.oi.driverJoystick.getLeftStickRaw_X() > 0.25 || Robot.oi.driverJoystick.getLeftStickRaw_X() < -0.25)
+		&&!(Robot.oi.driverJoystick.getLeftStickRaw_Y() > 0.1 || Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.1)) {
+			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)+headingCorrection,
+									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)-headingCorrection);
+		}	
+		else {
+			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)+Robot.oi.driverJoystick.getLeftStickRaw_Y(),
+									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)-Robot.oi.driverJoystick.getLeftStickRaw_Y());
+			Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.getHeading());
+		}
+        	
+        /**
+        * Arcade Drive
+        */
+    	case 2:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y() + Robot.oi.driverJoystick.getRightStickRaw_X());
+    		Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getLeftStickRaw_Y() - Robot.oi.driverJoystick.getRightStickRaw_X());
+    		break;
+    	/**
+    	* GTA Drive
+    	*/
+    	case 3:
+    		double fwdSpeed = Robot.oi.driverJoystick.getRightTriggerAxisRaw();
+    		double revSpeed = Robot.oi.driverJoystick.getLeftTriggerAxisRaw();
+    		double speed = fwdSpeed - revSpeed;
+    		double rotation = Robot.oi.driverJoystick.getRightStickRaw_X();
+    		
+    		//Adjusts angle while moving
+    		if(speed != 0 && rotation !=0){
+    			Robot.drivetrain.driveLeft(rotation * speed);
+    			Robot.drivetrain.driveRight(-rotation * speed);
+    		}
+    		//Allows Robot to spin in place without needing to press in triggers
+    		else if(speed == 0 && rotation != 0) {
+    			Robot.drivetrain.driveLeft(rotation);
+    			Robot.drivetrain.driveRight(-rotation);
+    		}
+    		//Allows Robot to drive straight
+    		else if(speed !=0 && rotation == 0){
+    			Robot.drivetrain.driveLeft(speed);
+    			Robot.drivetrain.driveRight(speed);
+    		}
+    		break;
+    	/**
+    	 *Defaults to Tank Drive
+    	 */
+    	default:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+        	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
+        	break;
+    	}
     }
+
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

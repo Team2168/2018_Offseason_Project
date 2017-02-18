@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.*;
 import org.team2168.commands.auto.*;
+import org.team2168.commands.drivetrain.DriveWithJoystick;
 import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.utils.Debouncer;
 import org.team2168.utils.PowerDistribution;
@@ -61,6 +62,9 @@ public class Robot extends IterativeRobot {
 	
     Command autonomousCommand;
     public static SendableChooser<Command> autoChooser;
+    
+    Command controlStyle;
+    public static SendableChooser<Command> controlStyleChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -93,7 +97,7 @@ public class Robot extends IterativeRobot {
         new StartCompressor();
 
         autoSelectInit();
-        
+        controlStyleSelectInit();
      
 		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
 		pdp.startThread();
@@ -101,6 +105,7 @@ public class Robot extends IterativeRobot {
         drivetrain.calibrateGyro();
         
         SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
+        SmartDashboard.putData("Control Style Chooser", Robot.controlStyleChooser);
 		//ConsolePrinter.putData("Autonomous Mode Chooser", () -> {return Robot.autoChooser;}, true, false);
 		//ConsolePrinter.putString("AutoName", () -> {return Robot.getAutoName();}, true, false);
 		//ConsolePrinter.putBoolean("isPracticeBot", Robot.isPracticeRobot());
@@ -110,6 +115,17 @@ public class Robot extends IterativeRobot {
         
         ConsolePrinter.startThread();
         System.out.println("Robot Done Loading");
+    }
+    
+    /**
+     * Adds control styles to the selector
+     */
+    public void controlStyleSelectInit(){
+    	controlStyleChooser = new SendableChooser<>();
+    	controlStyleChooser.addDefault("Tank Drive", new DriveWithJoystick(RobotMap.TANK_DRIVE_STYLE_ENUM));
+    	controlStyleChooser.addObject("Gun Style Controller", new DriveWithJoystick(RobotMap.GUN_STYLE_ENUM));
+    	controlStyleChooser.addObject("Arcade Drive", new DriveWithJoystick(RobotMap.ARCADE_STYLE_ENUM));
+    	controlStyleChooser.addObject("GTA Drive", new DriveWithJoystick(RobotMap.GTA_STYLE_ENUM));
     }
 	
 	/**
@@ -153,7 +169,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {
-
+    	
     	autoMode = false;
     	
 		matchStarted = true;
@@ -164,8 +180,10 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        
-
+    
+        controlStyle = (Command) controlStyleChooser.getSelected();
+    	// Select the control style
+        if (controlStyle != null) controlStyle.start();
     }
 
     /**
