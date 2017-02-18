@@ -374,7 +374,7 @@ public class Drivetrain extends Subsystem {
      * Calls for default command of the drivetrain to be DriveWithJoystick
      */
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveWithJoystick());
+       // setDefaultCommand(new DriveWithJoystick(RobotMap.TANK_DRIVE_STYLE_ENUM));
     }
     
     /**

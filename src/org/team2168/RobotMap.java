@@ -23,6 +23,12 @@ public class RobotMap {
 	public static final int COMMANDS_TEST_JOYSTICK = 4;
 	public static final int PID_TEST_JOYSTICK = 5;
 	
+	// Joystick Control Styles/////////////////////////////////////////////////
+	public static final int TANK_DRIVE_STYLE_ENUM = 0;
+	public static final int GUN_STYLE_ENUM = 1;
+	public static final int ARCADE_STYLE_ENUM = 2;
+	public static final int GTA_STYLE_ENUM = 3;
+	
 	// PWM (0 to 9) on RoboRio/////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
