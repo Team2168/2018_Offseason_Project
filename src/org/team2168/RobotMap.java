@@ -30,15 +30,16 @@ public class RobotMap {
 	public static final int GTA_STYLE_ENUM = 3;
 	
 	// PWM (0 to 9) on RoboRio/////////////////////////////////////////////////
-	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
-	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
-	public static final int LEFT_DRIVE_MOTOR_1 = 2;
-	public static final int LEFT_DRIVE_MOTOR_2 = 3;
+	public static final int LEFT_DRIVE_MOTOR_1 = 0;
+	public static final int LEFT_DRIVE_MOTOR_2 = 1;	
+	public static final int RIGHT_DRIVE_MOTOR_1 = 2;
+	public static final int RIGHT_DRIVE_MOTOR_2 = 3;
 	public static final int BALL_INTAKE_MOTOR = 4;
-	public static final int INDEXER_WHEEL = 5;
-	public static final int TURRET_MOTOR = 6;
-	public static final int CLIMBER_MOTOR_LEFT = 7;
-	public static final int CLIMBER_MOTOR_RIGHT = 8;
+	public static final int CLIMBER_MOTOR_LEFT = 5;
+	public static final int CLIMBER_MOTOR_RIGHT = 6;
+	public static final int INDEXER_WHEEL = 7;
+	public static final int TURRET_MOTOR = 8;
+
 	public static final int ELEVATOR_MOTOR = 9;
 	// More PWM channels in common PWM/DIO MXP section below.
 
@@ -88,19 +89,21 @@ public class RobotMap {
 
 	//TODO: Confirm PDP Ports
 	//PDP Channels/////////////////////////////////////////////////////////////
-	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 13;
-	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 12;
-	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 2;
-	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 3;
-	public final static int SHOOTER_MOTOR_LEFT_PDP = 0;
-	public final static int SHOOTER_MOTOR_RIGHT_PDP = 15;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 12;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 3;
 	public static final int BALL_INTAKE_MOTOR_PDP = 11;
-	public static final int INDEXER_WHEEL_PDP = 5;
-	public static final int TURRET_MOTOR_PDP = 10;
-	public static final int CLIMBER_MOTOR_LEFT_PDP = 7;
-	public static final int CLIMBER_MOTOR_RIGHT_PDP = 8;
-	public static final int ELEVATOR_MOTOR_PDP = 9;
-	public final static int PCM_POWER = 0;
+	public static final int TURRET_MOTOR_PDP = 5;
+	public static final int CLIMBER_MOTOR_LEFT_PDP = 13;
+	public static final int CLIMBER_MOTOR_RIGHT_PDP = 14;
+	public static final int ELEVATOR_MOTOR_PDP = 4;
+	public final static int GEAR_INTAKE_MOTOR_PDP = 6;
+	
+	public static final int INDEXER_WHEEL_PDP = 0;
+	public final static int SHOOTER_MOTOR_LEFT_PDP = 1;
+	public final static int SHOOTER_MOTOR_RIGHT_PDP = 2;
+	public final static int PCM_POWER = 7;
+	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 8;
+	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 9;
 	
 	//CAN Device IDs///////////////////////////////////////////////////////////
 
