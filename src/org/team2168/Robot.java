@@ -11,6 +11,7 @@ import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,6 +19,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.hal.HALUtil;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -43,7 +45,7 @@ public class Robot extends IterativeRobot {
 	public static ShooterWheel shooterWheel;
 	public static Turret turret;
 	
-	public static DigitalInput tx1TurnOn;
+	public static DigitalOutput tx1TurnOn;
 	public static DigitalInput tx1OnStatus;
 	
 	static boolean autoMode;
@@ -93,7 +95,7 @@ public class Robot extends IterativeRobot {
     	shooterWheel = ShooterWheel.getInstance();
     	turret = Turret.getInstance();
     	
-    	tx1TurnOn = new DigitalInput(RobotMap.TX1_TURN_ON);
+    	tx1TurnOn = new DigitalOutput(RobotMap.TX1_TURN_ON);
     	tx1OnStatus = new DigitalInput(RobotMap.TX1_ON_STATUS);
     	
         oi = OI.getInstance();
@@ -278,5 +280,11 @@ public class Robot extends IterativeRobot {
 	
 	public boolean getTX1OnStatus() {
 		return !tx1OnStatus.get();
+	}
+	
+	public void turnTX1On() {
+		if(HALUtil.getFPGATime() > 300 && HALUtil.getFPGATime() < 1500) {
+			//tx1TurnOn.setVoltageorsometing?
+		}
 	}
 }
