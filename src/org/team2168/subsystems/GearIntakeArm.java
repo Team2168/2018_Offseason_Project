@@ -27,7 +27,7 @@ public class GearIntakeArm extends Subsystem {
 	 */
 	private GearIntakeArm() {
 		GearIntakeArmPiston = new DoubleSolenoid(RobotMap.GEAR_INTAKE_PISTON_EXTEND, RobotMap.GEAR_INTAKE_PISTON_RETRACT);
-		GearIntakeHallEffectSensor = new DigitalInput(RobotMap.GEAR_INTAKE_HALL_EFECT);
+		GearIntakeHallEffectSensor = new DigitalInput(RobotMap.GEAR_INTAKE_ARM_HALL_EFECT);
 		
 		ConsolePrinter.putBoolean("Is Gear Arm Down", 
 				() -> {return Robot.gearIntakeArm.isArmLowered();}, true, false);

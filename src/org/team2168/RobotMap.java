@@ -37,8 +37,8 @@ public class RobotMap {
 	public static final int BALL_INTAKE_MOTOR = 4;
 	public static final int CLIMBER_MOTOR_LEFT = 5;
 	public static final int CLIMBER_MOTOR_RIGHT = 6;
-	public static final int INDEXER_WHEEL = 7;
-	public static final int TURRET_MOTOR = 8;
+	public static final int SHOOTER_WHEEL_LEFT = 7;
+	public static final int SHOOTER_WHEEL_RIGHT = 8;
 
 	public static final int SHOOTER_HOOD_SERVO = 9;
 	// More PWM channels in common PWM/DIO MXP section below.
@@ -46,30 +46,30 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	public static final int LEFT_DRIVE_ENCODER_A = 9;
-	public static final int LEFT_DRIVE_ENCODER_B = 8;
-	public static final int RIGHT_DRIVE_ENCODER_A = 6;
-	public static final int RIGHT_DRIVE_ENCODER_B = 5;
-	public static final int BALL_INTAKE_HALL_EFFECT = 4;
-	public static final int GEAR_INTAKE_HALL_EFECT = 7;
-	
-	
-	public static final int SHOOTER_ENCODER_A = 0;
-	public static final int SHOOTER_ENCODER_B = 1;
+	public static final int LEFT_DRIVE_ENCODER_B = 0;
+	public static final int LEFT_DRIVE_ENCODER_A = 1;
 	public static final int TURRET_LIMIT_SWITCH_RIGHT = 2;
 	public static final int TURRET_LIMIT_SWITCH_LEFT = 3;
-	public static final int INDEXER_UPPER_BALL_PRESENT= 15;
-	public static final int INDEXER_LOWER_BALL_PRESENT= 16;
+	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 4;
+	public static final int RIGHT_DRIVE_ENCODER_B = 5;
+	public static final int RIGHT_DRIVE_ENCODER_A = 6;
+	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 7;
+
+	public static final int TX1_TURN_ON = 0;
+	public static final int TX1_ON_STATUS = 1;
+
 
 
 	//Channels 10-25 on MXP (PWM and DIO)
-	public static final int SHOOTER_WHEEL_LEFT = 10;
-	public static final int SHOOTER_WHEEL_RIGHT = 11;
-	public static final int ELEVATOR_MOTOR = 12;
-	public static final int GEAR_INTAKE_MOTOR = 13;
-	public static final int CONVEYOR_MOTOR = 14;
-	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
-	
+	public static final int ELEVATOR_MOTOR = 10;
+	public static final int TURRET_MOTOR = 11;
+	public static final int GEAR_INTAKE_MOTOR = 12;
+	public static final int INDEXER_WHEEL = 13;
+	public static final int CONVEYOR_MOTOR = 18; //PWM 14 on board
+	public static final int INDEXER_UPPER_BALL_PRESENT= 19; //PWM 15 on board
+	public static final int INDEXER_LOWER_BALL_PRESENT= 20; //PWM 16 on board
+	public static final int SHOOTER_ENCODER_A = 21; //PWM 17 on board
+	public static final int SHOOTER_ENCODER_B = 22; //PWM 18 on board
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
