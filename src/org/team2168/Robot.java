@@ -14,12 +14,12 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.hal.HALUtil;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -175,9 +175,9 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		// Kill all active commands
 		Scheduler.getInstance().run();
-		
-		getTX1TurnOn();
-		getTX1OnStatus();
+
+		turnTX1On();
+		System.out.println(Timer.getFPGATimestamp());
 		
 		autoMode = false;
 		
@@ -275,7 +275,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public boolean getTX1TurnOn() {
-		return !tx1TurnOn.get();
+		System.out.println(!tx1TurnOn.get());
+		return !tx1TurnOn.get();l
 	}
 	
 	public boolean getTX1OnStatus() {
@@ -283,8 +284,11 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void turnTX1On() {
-		if(HALUtil.getFPGATime() > 300 && HALUtil.getFPGATime() < 1500) {
-			//tx1TurnOn.setVoltageorsometing?
+		if(Timer.getFPGATimestamp() > 0.03 && Timer.getFPGATimestamp() < 5) {
+			tx1TurnOn.set(false);
+		}
+		else {
+			tx1TurnOn.set(true);
 		}
 	}
 }
