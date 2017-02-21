@@ -276,7 +276,7 @@ public class Robot extends IterativeRobot {
 	
 	public boolean getTX1TurnOn() {
 		System.out.println(!tx1TurnOn.get());
-		return !tx1TurnOn.get();l
+		return !tx1TurnOn.get();
 	}
 	
 	public boolean getTX1OnStatus() {
