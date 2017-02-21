@@ -20,7 +20,7 @@ public class BallIntakeArm extends Subsystem {
 	private BallIntakeArm(){
 			BallIntakeArmPiston = new DoubleSolenoid(RobotMap.BALL_INTAKE_PISTON_EXTEND,
 													 RobotMap.BALL_INTAKE_PISTON_RETRACT);
-			BallIntakeHallEffectSensor = new DigitalInput(RobotMap.BALL_INTAKE_HALL_EFFECT);
+			BallIntakeHallEffectSensor = new DigitalInput(RobotMap.BALL_INTAKE_ARM_HALL_EFFECT);
 			
 			ConsolePrinter.putBoolean("Ball Intake Arm Raised", 
 					() -> {return Robot.ballIntakeArm.isArmRaised();}, true, false);

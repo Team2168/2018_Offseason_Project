@@ -10,6 +10,7 @@ import org.team2168.utils.PowerDistribution;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -41,6 +42,9 @@ public class Robot extends IterativeRobot {
 	public static ShooterIndexer shooterIndexer;
 	public static ShooterWheel shooterWheel;
 	public static Turret turret;
+	
+	public static DigitalInput tx1TurnOn;
+	public static DigitalInput tx1OnStatus;
 	
 	static boolean autoMode;
     private static boolean matchStarted = false;
@@ -89,6 +93,9 @@ public class Robot extends IterativeRobot {
     	shooterWheel = ShooterWheel.getInstance();
     	turret = Turret.getInstance();
     	
+    	tx1TurnOn = new DigitalInput(RobotMap.TX1_TURN_ON);
+    	tx1OnStatus = new DigitalInput(RobotMap.TX1_ON_STATUS);
+    	
         oi = OI.getInstance();
         
         //run compressor
@@ -111,6 +118,8 @@ public class Robot extends IterativeRobot {
 		ConsolePrinter.putNumber("gameClock", () -> {return DriverStation.getInstance().getMatchTime();}, true, false);
         ConsolePrinter.putNumber("Robot Pressure", () -> {return Robot.pneumatics.getPSI();}, true, false);
         
+        ConsolePrinter.putBoolean("TX1TurnOn", () -> {return getTX1TurnOn();}, true, false);
+        ConsolePrinter.putBoolean("TX1OnStatus", () -> {return getTX1OnStatus();}, true, false);
         
         ConsolePrinter.startThread();
         System.out.println("Robot Done Loading");
@@ -165,6 +174,8 @@ public class Robot extends IterativeRobot {
 		// Kill all active commands
 		Scheduler.getInstance().run();
 		
+		getTX1TurnOn();
+		getTX1OnStatus();
 		
 		autoMode = false;
 		
@@ -259,5 +270,13 @@ public class Robot extends IterativeRobot {
 
 		lastAngle = curAngle;
 		lastGyroCalibrating = gyroCalibrating;
+	}
+	
+	public boolean getTX1TurnOn() {
+		return !tx1TurnOn.get();
+	}
+	
+	public boolean getTX1OnStatus() {
+		return !tx1OnStatus.get();
 	}
 }

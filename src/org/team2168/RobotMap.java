@@ -50,8 +50,8 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_ENCODER_B = 8;
 	public static final int RIGHT_DRIVE_ENCODER_A = 6;
 	public static final int RIGHT_DRIVE_ENCODER_B = 5;
-	public static final int BALL_INTAKE_HALL_EFFECT = 4;
-	public static final int GEAR_INTAKE_HALL_EFECT = 7;
+	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 4;
+	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 7;
 	
 	
 	public static final int SHOOTER_ENCODER_A = 0;
@@ -66,10 +66,10 @@ public class RobotMap {
 	public static final int SHOOTER_WHEEL_LEFT = 10;
 	public static final int SHOOTER_WHEEL_RIGHT = 11;
 	public static final int ELEVATOR_MOTOR = 12;
-	public static final int GEAR_INTAKE_MOTOR = 18;
-	public static final int CONVEYOR_MOTOR = 19;
-	public static final int TX1_TURN_ON = 20;
-	public static final int TX1_ON_STATUS = 21;
+	public static final int GEAR_INTAKE_MOTOR = 13;
+	public static final int CONVEYOR_MOTOR = 18; //PWM 14 on board
+	public static final int TX1_TURN_ON = 19; //PWM 15 on board
+	public static final int TX1_ON_STATUS = 20; //PWM 16 on board
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
