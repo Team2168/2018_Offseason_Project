@@ -66,10 +66,10 @@ public class RobotMap {
 	public static final int SHOOTER_WHEEL_LEFT = 10;
 	public static final int SHOOTER_WHEEL_RIGHT = 11;
 	public static final int ELEVATOR_MOTOR = 12;
-	public static final int GEAR_INTAKE_MOTOR = 13;
-	public static final int CONVEYOR_MOTOR = 14;
-	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
-	
+	public static final int GEAR_INTAKE_MOTOR = 18;
+	public static final int CONVEYOR_MOTOR = 19;
+	public static final int TX1_TURN_ON = 20;
+	public static final int TX1_ON_STATUS = 21;
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
