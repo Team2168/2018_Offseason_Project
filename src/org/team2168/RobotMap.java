@@ -55,8 +55,8 @@ public class RobotMap {
 	public static final int RIGHT_DRIVE_ENCODER_A = 6;
 	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 7;
 
-	public static final int TX1_TURN_ON = 0;
-	public static final int TX1_ON_STATUS = 1;
+	public static final int TX1_TURN_ON = 8;
+	public static final int TX1_ON_STATUS = 9;
 
 
 
@@ -118,8 +118,8 @@ public class RobotMap {
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean DT_REVERSE_RIGHT = true;
-	public static final boolean DT_REVERSE_LEFT = false;
+	public static final boolean DT_REVERSE_RIGHT = false;
+	public static final boolean DT_REVERSE_LEFT = true;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio

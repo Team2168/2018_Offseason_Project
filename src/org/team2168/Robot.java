@@ -140,8 +140,8 @@ public class Robot extends IterativeRobot {
 	}
 	
     /**
-	 * Get the name of an autonomous mode command.
-	 * @return the name of the auto command.
+	 * Get the name of an control style.
+	 * @return the name of the control style.
 	 */
 	public static String getControlStyleName() {
 		if (controlStyle != null) {
@@ -173,11 +173,11 @@ public class Robot extends IterativeRobot {
     }
     
 	public void disabledPeriodic() {
+        SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
 		// Kill all active commands
 		Scheduler.getInstance().run();
 
 		turnTX1On();
-		System.out.println(Timer.getFPGATimestamp());
 		
 		autoMode = false;
 		
@@ -229,6 +229,7 @@ public class Robot extends IterativeRobot {
     	
     	autoMode = false;
         Scheduler.getInstance().run();
+        
     }
     
     /**
@@ -275,7 +276,6 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public boolean getTX1TurnOn() {
-		System.out.println(!tx1TurnOn.get());
 		return !tx1TurnOn.get();
 	}
 	
