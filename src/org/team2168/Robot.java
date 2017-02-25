@@ -173,7 +173,10 @@ public class Robot extends IterativeRobot {
     }
     
 	public void disabledPeriodic() {
+
         SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
+        SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
+		
 		// Kill all active commands
 		Scheduler.getInstance().run();
 
@@ -229,6 +232,9 @@ public class Robot extends IterativeRobot {
     	
     	autoMode = false;
         Scheduler.getInstance().run();
+        
+        SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
+        SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
         
     }
     

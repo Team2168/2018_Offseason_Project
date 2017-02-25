@@ -133,21 +133,36 @@ public class DriveWithJoystick extends Command {
         /**
          * Gun Style Controller
          */
+        //X Values
+        //full in: -0.516
+        //nothing: 0.354 & 0.342
+        //full out: 0.622
     	case 1:
 
 		lastRotateOutput = Robot.drivetrain.rotateDriveStraightController.getControlOutput();
 		double headingCorrection = (Robot.drivetrain.rotateDriveStraightController.getControlOutput()) ;
 
+//		if ((Robot.oi.driverJoystick.getLeftStickRaw_X() > 0.25 || Robot.oi.driverJoystick.getLeftStickRaw_X() < -0.25)
+//		&&!(Robot.oi.driverJoystick.getLeftStickRaw_Y() > 0.1 || Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.1)) {
+//			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)+headingCorrection,
+//									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)-headingCorrection);
+//		}	
+//		else {
+//			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)+Robot.oi.driverJoystick.getLeftStickRaw_Y(),
+//									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)-Robot.oi.driverJoystick.getLeftStickRaw_Y());
+//			Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.getHeading());
+//		}
+		
+		Robot.drivetrain.tankDrive(Robot.drivetrain.getGunStyleXValue(), Robot.drivetrain.getGunStyleXValue());
 		if ((Robot.oi.driverJoystick.getLeftStickRaw_X() > 0.25 || Robot.oi.driverJoystick.getLeftStickRaw_X() < -0.25)
-		&&!(Robot.oi.driverJoystick.getLeftStickRaw_Y() > 0.1 || Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.1)) {
-			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)+headingCorrection,
-									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)-headingCorrection);
-		}	
-		else {
-			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)+Robot.oi.driverJoystick.getLeftStickRaw_Y(),
-									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)-Robot.oi.driverJoystick.getLeftStickRaw_Y());
-			Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.getHeading());
-		}
+				&&!(Robot.oi.driverJoystick.getLeftStickRaw_Y() > 0.1 || Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.1)) {
+				Robot.drivetrain.tankDrive(Robot.drivetrain.getGunStyleXValue(), Robot.drivetrain.getGunStyleXValue());
+				}	
+				else {
+					Robot.drivetrain.tankDrive((Robot.drivetrain.getGunStyleXValue())+Robot.oi.driverJoystick.getLeftStickRaw_Y(),
+											   (Robot.drivetrain.getGunStyleXValue())-Robot.oi.driverJoystick.getLeftStickRaw_Y());
+					Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.getHeading());
+				}
 		
         break;
         
