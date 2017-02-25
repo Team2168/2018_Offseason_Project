@@ -52,9 +52,9 @@ public class Drivetrain extends Subsystem {
     private static LinearInterpolator gunStyleInterpolator;
     //These values represent the x axis on the gun style controller
     //TODO test whether values should be ascending or descending
-    private double[][] gunStyleRange = {{-0.516,1.0},
-    		                          {0.342,0.0},
-    		                          {0.354,0.0},
+    private double[][] gunStyleRange = {{-0.530,1.0},
+    		                          {0.340,0.0},
+    		                          {0.356,0.0},
     		                          {0.622,-1.0}};
 	
 	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
