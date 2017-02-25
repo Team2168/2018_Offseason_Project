@@ -46,28 +46,27 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	public static final int LEFT_DRIVE_ENCODER_B = 0;
-	public static final int LEFT_DRIVE_ENCODER_A = 1;
-	public static final int TURRET_LIMIT_SWITCH_RIGHT = 2;
-	public static final int TURRET_LIMIT_SWITCH_LEFT = 3;
-	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 4;
-	public static final int RIGHT_DRIVE_ENCODER_B = 5;
-	public static final int RIGHT_DRIVE_ENCODER_A = 6;
-	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 7;
+	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 0;
+	public static final int RIGHT_DRIVE_ENCODER_A = 1;
+	public static final int RIGHT_DRIVE_ENCODER_B = 2;
+	public static final int LEFT_DRIVE_ENCODER_B = 3;
+	public static final int LEFT_DRIVE_ENCODER_A = 4;
+	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 5;
+	public static final int INDEXER_LOWER_BALL_PRESENT= 6; 
+	public static final int INDEXER_UPPER_BALL_PRESENT= 7; 
+	public static final int TX1_TURN_ON = 8;
+	public static final int TX1_ON_STATUS = 9;
 
-	public static final int TX1_TURN_ON = 0;
-	public static final int TX1_ON_STATUS = 1;
 
 
 
 	//Channels 10-25 on MXP (PWM and DIO)
-	public static final int ELEVATOR_MOTOR = 10;
+	public static final int CONVELATOR_MOTOR = 10;
 	public static final int TURRET_MOTOR = 11;
 	public static final int GEAR_INTAKE_MOTOR = 12;
 	public static final int INDEXER_WHEEL = 13;
-	public static final int CONVEYOR_MOTOR = 18; //PWM 14 on board
-	public static final int INDEXER_UPPER_BALL_PRESENT= 19; //PWM 15 on board
-	public static final int INDEXER_LOWER_BALL_PRESENT= 20; //PWM 16 on board
+	public static final int TURRET_LIMIT_SWITCH_RIGHT = 19; //PWM 15 on board
+	public static final int TURRET_LIMIT_SWITCH_LEFT = 20; //PWM 16 on board
 	public static final int SHOOTER_ENCODER_A = 21; //PWM 17 on board
 	public static final int SHOOTER_ENCODER_B = 22; //PWM 18 on board
 	
@@ -132,7 +131,7 @@ public class RobotMap {
 	public static final AverageEncoder.SpeedReturnType DRIVE_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.FPS;
 	public static final int DRIVE_ENCODER_MIN_RATE = 0;
 	public static final int DRIVE_ENCODER_MIN_PERIOD = 1;
-	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE = false;
+	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE = true;
 	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE = true;
 	public static final int DRIVE_AVG_ENCODER_VAL = 5;
 	public static final double MIN_DRIVE_SPEED = 0.2;
@@ -172,15 +171,15 @@ public class RobotMap {
 	 *                       BALL INTAKE PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
-	public static final boolean REVERSE_BALL_INTAKE_WHEEL = false;
+	public static final boolean REVERSE_BALL_INTAKE_WHEEL = true;
 
 
 	/*************************************************************************
 	 *                      GEAR INTAKE PARAMETERS
 	 *************************************************************************/
-	public static final double GEAR_INTAKE_IR_THRESHOLD = 2.0;
+	public static final double GEAR_INTAKE_IR_THRESHOLD = 1.4;
 	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
-	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = false;
+	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = true;
 
 	/*************************************************************************
 	 *                         INDEXER PARAMETERS
@@ -195,21 +194,17 @@ public class RobotMap {
 	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
 	public static final double MIN_HOOD_VALUE = 115;
 	public static final double MAX_HOOD_VALUE = 180;
-	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 2;
+	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 3;
 
 
 	/*************************************************************************
 	 *                       CLIMBER PARAMETERS
 	 *************************************************************************/
-	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
-	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
+	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = false;
+	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = true;
 	public static final double CLIMBER_MOTOR_SPEED = 0.8;
 
-	
-	/******************************************************************
-	 * 				               CONVEYOR
-	 ******************************************************************/
-	public static final boolean REVERSE_CONVEYOR = false;
+
 
 	/******************************************************************
 	 * 				               TURRET
@@ -217,6 +212,10 @@ public class RobotMap {
 	public static final double TURRET_MAX_DRIVE = 0.5;
 	public static final boolean REVERSE_TURRET = false;
 
+	public static final double TURRET_POT_VOLTAGE_MAX = 4.067; //90 degrees
+	public static final double TURRET_POT_VOLTAGE_0 = 2.815; //0 degrees
+	public static final double TURRET_POT_VOLTAGE_MIN = 1.575; //-90 degrees
+	
 	/*************************************************************************
 	 *                        VISION PARAMETERS
 	 *************************************************************************/
@@ -310,9 +309,9 @@ public class RobotMap {
 
 
 	/******************************************************************
-	 *                    BallElevator PARAMETERS
+	 *                    CONVELATOR PARAMETERS
 	 ******************************************************************/
-	public static final boolean REVERSE_ELEVATOR_WHEEL = false;
+	public static final boolean REVERSE_CONVELATOR_WHEEL = true;
 
 
 	/******************************************************************

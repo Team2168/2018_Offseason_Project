@@ -16,7 +16,7 @@ public class BallConvelator extends Subsystem {
 	private static Spark elevatorMotor;
 
 	private BallConvelator() {
-		elevatorMotor = new Spark(RobotMap.ELEVATOR_MOTOR);
+		elevatorMotor = new Spark(RobotMap.CONVELATOR_MOTOR);
 	}
 
 	/** 
@@ -33,13 +33,13 @@ public class BallConvelator extends Subsystem {
      * @param speed -1.0 to 1.0, positive runs the ball up the elevator, negative down
      */
 	public void driveElevator(double speed){
-		if(RobotMap.REVERSE_ELEVATOR_WHEEL)
+		if(RobotMap.REVERSE_CONVELATOR_WHEEL)
 			speed = -speed;
 
 		elevatorMotor.set(speed);
 	}
 	
 	public void initDefaultCommand() {
-        setDefaultCommand(new DriveElevatorWithJoystick());
+        //setDefaultCommand(new DriveElevatorWithJoystick());
     }
 }

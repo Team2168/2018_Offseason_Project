@@ -5,6 +5,8 @@ import org.team2168.commands.ballIntake.LowerBallIntakeArm;
 import org.team2168.commands.ballIntake.RaiseBallIntakeArm;
 import org.team2168.commands.climber.DriveClimberWithConstant;
 import org.team2168.commands.climber.DriveClimberWithConstantUntilCurrentLimit;
+import org.team2168.commands.drivetrain.ShiftHigh;
+import org.team2168.commands.drivetrain.ShiftLow;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.elevator.DriveElevatorWithConstant;
 import org.team2168.commands.gearintake.AutomaticGearIntake;
@@ -70,20 +72,25 @@ public class OI {
 	 */
 	private OI() {
 		
+		
+		//////////////Operator Joystick//////////////
+		driverJoystick.ButtonLeftBumper().whenPressed(new ShiftLow());
+		driverJoystick.ButtonRightBumper().whenPressed(new ShiftHigh());
+		
 		//////////////Operator Joystick//////////////
 		
 		//Boiler Shot
 		operatorJoystick.ButtonX().whenPressed(new SetHoodToAngle(5));
-		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(2500));
+		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
 		
 		//AirshipShot
 		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(180));
 		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3825));
 
 		//Fire
-		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.3));
-		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(0.3));
-		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(-0.3));
+		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(1.0));
+		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(1.0));
+		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
 		
 		//Kill Shooter
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
@@ -109,26 +116,26 @@ public class OI {
 		operatorJoystick.ButtonLeftBumper().whenPressed(new RaiseBallIntakeArm());
 		
 		//Climber
-		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstantUntilCurrentLimit(RobotMap.CLIMBER_MOTOR_SPEED));
+		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstant(1.0));
 		
 		
 		
 		
 		//////////////Test Joystick//////////////
-		testJoystick.ButtonA().whenPressed(new DriveIntakeWithConstant(0.3));
-		testJoystick.ButtonB().whenPressed(new DriveIntakeWithConstant(-0.3));
-		testJoystick.ButtonX().whenPressed(new DriveClimberWithConstant(0.3));
-		testJoystick.ButtonY().whenPressed(new DriveClimberWithConstant(-0.3));
-		testJoystick.ButtonLeftDPad().whenPressed(new DriveElevatorWithConstant(0.3));
-		testJoystick.ButtonRightDPad().whenPressed(new DriveElevatorWithConstant(-0.3));
-		testJoystick.ButtonRightBumper().whenPressed(new DriveGearIntakeRollerWithConstant(0.3));
-		testJoystick.ButtonLeftBumper().whenPressed(new DriveGearIntakeRollerWithConstant(-0.3));
-		testJoystick.ButtonStart().whenPressed(new DriveIndexerWithConstant(0.3));
-		testJoystick.ButtonBack().whenPressed(new DriveIndexerWithConstant(-0.3));
-		testJoystick.ButtonLeftBumper().whenPressed(new DriveShooterWithConstant(0.3));
-		testJoystick.ButtonRightBumper().whenPressed(new DriveShooterWithConstant(-0.3));
-		testJoystick.ButtonLeftStick().whenPressed(new DriveTurretWithConstant(0.3));
-		testJoystick.ButtonRightStick().whenPressed(new DriveTurretWithConstant(-0.3));
+		testJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
+		testJoystick.ButtonB().whileHeld(new DriveIntakeWithConstant(-1.0));
+		testJoystick.ButtonX().whileHeld(new DriveClimberWithConstant(1.0));
+		testJoystick.ButtonY().whileHeld(new DriveClimberWithConstant(-1.0));
+		testJoystick.ButtonLeftDPad().whileHeld(new DriveElevatorWithConstant(1.0));
+		testJoystick.ButtonRightDPad().whileHeld(new DriveElevatorWithConstant(-1.0));
+		testJoystick.ButtonRightBumper().whileHeld(new DriveGearIntakeRollerWithConstant(1.0));
+		testJoystick.ButtonLeftBumper().whileHeld(new DriveGearIntakeRollerWithConstant(-1.0));
+		testJoystick.ButtonStart().whileHeld(new DriveIndexerWithConstant(1.0));
+		testJoystick.ButtonBack().whileHeld(new DriveIndexerWithConstant(-1.0));
+		//testJoystick.ButtonLeftBumper().whileHeld(new DriveShooterWithConstant(0.3));
+		//testJoystick.ButtonRightBumper().whileHeld(new DriveShooterWithConstant(-0.3));
+		testJoystick.ButtonLeftStick().whileHeld(new DriveTurretWithConstant(1.0));
+		testJoystick.ButtonRightStick().whileHeld(new DriveTurretWithConstant(-1.0));
 		
 		//PIDJoystick
 		//Shoot Far Preset (Y)
@@ -197,7 +204,7 @@ public class OI {
 	}
 	
 	public static double getDriveElevatorJoystick() {
-		return operatorJoystick.getRightStickRaw_Y();
+		return operatorJoystick.getLeftStickRaw_Y();
 	}
 	
 	public static double getDriveGearIntakeRollerJoystick() {
@@ -205,7 +212,7 @@ public class OI {
 	}
 	
 	public static double getDriveConveryorJoystick() {
-		return operatorJoystick.getRightStickRaw_Y();
+		return operatorJoystick.getLeftStickRaw_Y();
 	}
 	
 	public static double getDriveBallIntakeJoystick() {
@@ -213,7 +220,7 @@ public class OI {
 	}
 	
 	public static double getDriveShooterIndexerJoystick() {
-		return operatorJoystick.getRightStickRaw_Y();
+		return operatorJoystick.getLeftStickRaw_Y();
 	}
 	
 	public static double getDriveShooterPIDTestJoystick(){

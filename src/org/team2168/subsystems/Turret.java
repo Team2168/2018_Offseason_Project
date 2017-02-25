@@ -55,6 +55,8 @@ public class Turret extends Subsystem {
 				() -> {return Robot.turret.isLimitSwitchRightActive();}, true, false);
 		ConsolePrinter.putBoolean("Turret Left Limit Switch", 
 				() -> {return Robot.turret.isLimitSwitchLeftActive();}, true, false);
+		ConsolePrinter.putNumber("Turret Potentiometer", 
+				() -> {return Robot.turret.getPosition();}, true, false);
     }
 
     /**

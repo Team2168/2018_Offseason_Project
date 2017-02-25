@@ -35,7 +35,7 @@ public class DriveIndexerWithConstant extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ballIntakeRoller.driveIntake(0.0);
+    	Robot.shooterIndexer.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same

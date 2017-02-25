@@ -64,7 +64,7 @@ public class ShooterIndexer extends Subsystem {
 	 * @return if ball is present (true=present, false=not present)
 	 */
 	private boolean isUpperSensorActive() {
-		return upperBallPresentSensor.get();
+		return !upperBallPresentSensor.get();
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class ShooterIndexer extends Subsystem {
 	 * @return if ball is present (true=present, false=not present)
 	 */
 	private boolean isLowerSensorActive() {
-		return lowerBallPresentSensor.get();
+		return !lowerBallPresentSensor.get();
 	}
 	
 	/**
@@ -101,7 +101,7 @@ public class ShooterIndexer extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new DriveShooterIndexerWithJoystick());
+        //setDefaultCommand(new DriveShooterIndexerWithJoystick());
     }
 }
 
