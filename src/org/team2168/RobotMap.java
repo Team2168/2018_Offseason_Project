@@ -157,7 +157,7 @@ public class RobotMap {
 	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.RPM;
 	public static final double SHOOTER_ENCODER_MIN_RATE = 0.1; //minimum inch per second
 	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
-	public static final boolean SHOOTER_ENCODER_REVERSE = false;
+	public static final boolean SHOOTER_ENCODER_REVERSE = true;
 	public static final int SHOOTER_AVG_ENCODER_VAL = 120;
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
