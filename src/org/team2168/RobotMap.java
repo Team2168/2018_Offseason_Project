@@ -69,6 +69,7 @@ public class RobotMap {
 	public static final int TURRET_LIMIT_SWITCH_LEFT = 20; //PWM 16 on board
 	public static final int SHOOTER_ENCODER_A = 21; //PWM 17 on board
 	public static final int SHOOTER_ENCODER_B = 22; //PWM 18 on board
+	public static final int PRACTICE_BOT_JUMPER = 23; //PWM 19 on board
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;

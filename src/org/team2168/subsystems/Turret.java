@@ -9,7 +9,10 @@ import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.SafePWM;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,7 +21,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Turret extends Subsystem {
 
-    private static Spark turretMotor;
+    private static SpeedController turretMotor;
     private static AnalogInput potentiometer;
     private static DigitalInput limitSwitchRight;
     private static DigitalInput limitSwitchLeft;
@@ -37,7 +40,15 @@ public class Turret extends Subsystem {
      * Default constructor for Turret subsystem
      */
     private Turret() {
-    	turretMotor = new Spark(RobotMap.TURRET_MOTOR);
+    	if(Robot.isPracticeRobot())
+		{
+        	turretMotor = new Victor(RobotMap.TURRET_MOTOR);
+		}
+		else
+		{
+	    	turretMotor = new Spark(RobotMap.TURRET_MOTOR);
+		}
+    	
     	potentiometer = new AnalogInput(RobotMap.TURRET_POTENTIOMETER);
     	limitSwitchRight = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_RIGHT);
     	limitSwitchLeft = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_LEFT);
@@ -48,8 +59,8 @@ public class Turret extends Subsystem {
     	
     	
     	//For to be the very safest and to not break robot
-    	turretMotor.setExpiration(0.1);
-    	turretMotor.setSafetyEnabled(true);
+    	((SafePWM) turretMotor).setExpiration(0.1);
+    	((SafePWM) turretMotor).setSafetyEnabled(true);
     	
 		ConsolePrinter.putBoolean("Turret Right Limit Switch", 
 				() -> {return Robot.turret.isLimitSwitchRightActive();}, true, false);

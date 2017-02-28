@@ -29,6 +29,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	private static DigitalInput practiceBot;
 
 	public static BallConvelator ballElevator;
 	public static BallIntakeArm ballIntakeArm;
@@ -78,6 +80,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	ConsolePrinter.init();
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
+    	
+    	practiceBot = new DigitalInput(RobotMap.PRACTICE_BOT_JUMPER);
 
     	// instantiate the commands used for the autonomous period
     	ballElevator = BallConvelator.getInstance();
@@ -290,5 +294,14 @@ public class Robot extends IterativeRobot {
 		else {
 			tx1TurnOn.set(true);
 		}
+	}
+	
+	/**
+	 * Returns the status of DIO pin 23 (19 on board)
+	 *
+	 * @return true if this is the practice robot
+	 */
+	public static boolean isPracticeRobot() {
+		return !practiceBot.get();
 	}
 }
