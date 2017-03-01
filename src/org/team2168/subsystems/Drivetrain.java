@@ -100,7 +100,7 @@ public class Drivetrain extends Subsystem {
 		
 		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
 
-		tcpCamSensor = new TCPCamSensor(RobotMap.GEAR_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
+		tcpCamSensor = new TCPCamSensor("GearCam", RobotMap.GEAR_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
 		
 		//DriveStraight Controller
 				rotateController = new PIDPosition(

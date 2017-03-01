@@ -284,7 +284,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void turnTX1On() {
-		if(Timer.getFPGATimestamp() > 0.03 && Timer.getFPGATimestamp() < 5) {
+		if(Timer.getFPGATimestamp() > 0.03 && Timer.getFPGATimestamp() < 10) {
 			tx1TurnOn.set(false);
 		}
 		else {
