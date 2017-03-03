@@ -120,6 +120,6 @@ public class Turret extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveTurretWithJoystick());
+       // setDefaultCommand(new DriveTurretWithJoystick());
     }
 }

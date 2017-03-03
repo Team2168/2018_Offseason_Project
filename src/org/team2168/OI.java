@@ -88,7 +88,7 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3825));
 
 		//Fire
-		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(1.0));
+		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
 		
@@ -233,6 +233,10 @@ public class OI {
 		
 	public static double getDriveIndexerPIDTestJoystick(){
 			return (pidTestJoystick.getRightTriggerAxisRaw() + pidTestJoystick.getLeftTriggerAxisRaw());
+	}
+	
+	public static double getDriveTurretJoystick(){
+		return pidTestJoystick.getLeftStickRaw_Y();
 	}
 }
 

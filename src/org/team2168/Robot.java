@@ -127,6 +127,8 @@ public class Robot extends IterativeRobot {
         ConsolePrinter.putBoolean("TX1TurnOn", () -> {return getTX1TurnOn();}, true, false);
         ConsolePrinter.putBoolean("TX1OnStatus", () -> {return getTX1OnStatus();}, true, false);
         
+        ConsolePrinter.putBoolean("Is Practice Bot", () -> {return isPracticeRobot();}, true, false);
+        
         ConsolePrinter.startThread();
         System.out.println("Robot Done Loading");
     }
@@ -302,6 +304,6 @@ public class Robot extends IterativeRobot {
 	 * @return true if this is the practice robot
 	 */
 	public static boolean isPracticeRobot() {
-		return !practiceBot.get();
+		return true; //!practiceBot.get();
 	}
 }
