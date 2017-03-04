@@ -56,7 +56,6 @@ public class RobotMap {
 	public static final int INDEXER_UPPER_BALL_PRESENT = 7; 
 	public static final int TX1_TURN_ON = 8;
 	public static final int TX1_ON_STATUS = 9;
-	
 
 
 	//Channels 10-25 on MXP (PWM and DIO)
