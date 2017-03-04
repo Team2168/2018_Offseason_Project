@@ -13,6 +13,7 @@ import org.team2168.PID.sensors.IMU;
 import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.commands.drivetrain.DriveWithJoystick;
 import org.team2168.subsystems.Drivetrain;
+import org.team2168.utils.LinearInterpolator;
 import org.team2168.utils.TCPSocketSender;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
@@ -48,7 +49,13 @@ public class Drivetrain extends Subsystem {
 	
 	private static Drivetrain instance = null;
 	
-
+    private static LinearInterpolator gunStyleInterpolator;
+    //These values represent the x axis on the gun style controller
+    //TODO test whether values should be ascending or descending
+    private double[][] gunStyleRange = {{-0.530,1.0},
+    		                          {0.340,0.0},
+    		                          {0.356,0.0},
+    		                          {0.622,-1.0}};
 	
 	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
 	TCPSocketSender TCPdrivePosController;
@@ -72,7 +79,9 @@ public class Drivetrain extends Subsystem {
 		leftMotor2 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_2);
 		rightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		rightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
-
+		
+    	gunStyleInterpolator = new LinearInterpolator(gunStyleRange);
+		
 		drivetrainRightEncoder = new AverageEncoder(
 				RobotMap.RIGHT_DRIVE_ENCODER_A,
 				RobotMap.RIGHT_DRIVE_ENCODER_B,
@@ -374,7 +383,7 @@ public class Drivetrain extends Subsystem {
      * Calls for default command of the drivetrain to be DriveWithJoystick
      */
     public void initDefaultCommand() {
-       // setDefaultCommand(new DriveWithJoystick(RobotMap.TANK_DRIVE_STYLE_ENUM));
+       setDefaultCommand(new DriveWithJoystick((int) Robot.controlStyleChooser.getSelected()));
     }
     
     /**
@@ -497,5 +506,14 @@ public class Drivetrain extends Subsystem {
     public double getrightMotor2Voltage() {
     	return rightMotor2Voltage;
     }
+    
+	/**
+	 * Returns the current position of the gun style controller interpolated
+	 * @param x is voltage
+	 * @return Potentiometer position
+	 */
+	public double getGunStyleXValue() {
+		return gunStyleInterpolator.interpolate(Robot.oi.driverJoystick.getLeftStickRaw_X());
+	}
     
 }

@@ -3,8 +3,10 @@ package org.team2168.commands.drivetrain;
 import org.team2168.OI;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -48,10 +50,69 @@ public class DriveWithJoystick extends Command {
 		this.speed = RobotMap.AUTO_NORMAL_SPEED;
 		this.powerShift = 1;
 		this.lastRotateOutput = 0;
+		
+		
+		
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	switch(ctrlStyle){
+		/**
+		 * Initialize driveStraightController for Gun style
+		 */
+		case 1:
+			finished = false;
+			Robot.drivetrain.getInstance();
+			Robot.drivetrain.resetPosition();
+
+			//reset controller
+			Robot.drivetrain.imu.reset();
+			Robot.drivetrain.driveTrainPosController.reset();
+			Robot.drivetrain.rotateDriveStraightController.reset();
+
+
+			//drivetrain.resetGyro();
+			endDistance = Robot.drivetrain.getAverageDistance() + distanceGoal;
+			angle = Robot.drivetrain.getHeading();
+
+//			Robot.drivetrain.rotateDriveStraightController.setpGain(RobotMap.ROTATE_POSITION_P_Drive_Straight);
+//			Robot.drivetrain.rotateDriveStraightController.setiGain(RobotMap.ROTATE_POSITION_I_Drive_Straight);
+//			Robot.drivetrain.rotateDriveStraightController.setdGain(RobotMap.ROTATE_POSITION_D_Drive_Straight);
+			Robot.drivetrain.driveTrainPosController.setSetPoint(endDistance);
+			Robot.drivetrain.driveTrainPosController.setMaxPosOutput(speed);
+			Robot.drivetrain.driveTrainPosController.setMinPosOutput(-speed);
+			Robot.drivetrain.driveTrainPosController.setAcceptErrorDiff(error); //feet
+			Robot.drivetrain.rotateDriveStraightController.setSetPoint(angle);
+			
+			
+			
+			// 		//This code helps offset uneven left/right gearbox power, like a feedworward term
+			//		//modify speeds based on power shift, - means put more power to left side, + means put more power to right side
+			//		//this power shift helps accommodate for unequal power in drivetrains
+			//
+			//		if (powerShift > 1) //reduce left speed so right power is increased
+			//		{
+			//			rightSpeed = speed;
+			//			leftSpeed = speed - speed*Math.abs(powerShift%1);
+			//		}
+			//
+			//		else if (powerShift < 1) //reduce right speed so left if increased
+			//		{
+			//			rightSpeed = speed - speed*Math.abs(powerShift%1);
+			//			leftSpeed = speed;
+			//		}
+			//
+			//		Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.gyroSPI.getAngleDeg());
+
+			Robot.drivetrain.driveTrainPosController.Enable();
+			Robot.drivetrain.rotateDriveStraightController.Enable();
+		
+			System.out.println("Initialize case ran");
+		default: 
+		
+		break;
+		}
     }
 
     /**
@@ -72,29 +133,39 @@ public class DriveWithJoystick extends Command {
         /**
          * Gun Style Controller
          */
+        //X Values
+        //full in: -0.516
+        //nothing: 0.354 & 0.342
+        //full out: 0.622
     	case 1:
 
 		lastRotateOutput = Robot.drivetrain.rotateDriveStraightController.getControlOutput();
 		double headingCorrection = (Robot.drivetrain.rotateDriveStraightController.getControlOutput()) ;
 
-		Robot.drivetrain.tankDrive(Robot.oi.driverJoystick.getLeftStickRaw_X()+headingCorrection+Robot.oi.driverJoystick.getRightStickRaw_X(),
-								   Robot.oi.driverJoystick.getLeftStickRaw_X()-headingCorrection-Robot.oi.driverJoystick.getRightStickRaw_X());
-		//finished = Robot.drivetrain.driveTrainPosController.isFinished();
-//		if(Robot.oi.driverJoystick.getRightStickRaw_X() > 0.1 || Robot.oi.driverJoystick.getRightStickRaw_X() < -0.1) {
-//			Robot.drivetrain.resetGyro();
+//		if ((Robot.oi.driverJoystick.getLeftStickRaw_X() > 0.25 || Robot.oi.driverJoystick.getLeftStickRaw_X() < -0.25)
+//		&&!(Robot.oi.driverJoystick.getLeftStickRaw_Y() > 0.1 || Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.1)) {
+//			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)+headingCorrection,
+//									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)-headingCorrection);
+//		}	
+//		else {
+//			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)+Robot.oi.driverJoystick.getLeftStickRaw_Y(),
+//									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.35)-Robot.oi.driverJoystick.getLeftStickRaw_Y());
+//			Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.getHeading());
 //		}
-
-		if ((Robot.oi.driverJoystick.getLeftStickRaw_X() > 0.25 || Robot.oi.driverJoystick.getLeftStickRaw_X() < -0.25)
-		&&!(Robot.oi.driverJoystick.getLeftStickRaw_Y() > 0.1 || Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.1)) {
-			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)+headingCorrection,
-									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)-headingCorrection);
-		}	
-		else {
-			Robot.drivetrain.tankDrive((-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)+Robot.oi.driverJoystick.getLeftStickRaw_Y(),
-									   (-Robot.oi.driverJoystick.getLeftStickRaw_X()+0.3)-Robot.oi.driverJoystick.getLeftStickRaw_Y());
-			Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.getHeading());
-		}
-        	
+//		
+		Robot.drivetrain.tankDrive(Robot.drivetrain.getGunStyleXValue(), Robot.drivetrain.getGunStyleXValue());
+		if ((Robot.drivetrain.getGunStyleXValue() > 0.25 || Robot.drivetrain.getGunStyleXValue() < -0.25)
+				&&!(Robot.oi.driverJoystick.getLeftStickRaw_Y() > 0.1 || Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.1)) {
+				Robot.drivetrain.tankDrive(Robot.drivetrain.getGunStyleXValue(), Robot.drivetrain.getGunStyleXValue());
+				}	
+				else {
+					Robot.drivetrain.tankDrive((Robot.drivetrain.getGunStyleXValue())+Robot.oi.driverJoystick.getLeftStickRaw_Y(),
+											   (Robot.drivetrain.getGunStyleXValue())-Robot.oi.driverJoystick.getLeftStickRaw_Y());
+					Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.getHeading());
+				}
+		
+        break;
+        
         /**
         * Arcade Drive
         */

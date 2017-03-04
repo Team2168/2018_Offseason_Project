@@ -58,8 +58,6 @@ public class RobotMap {
 	public static final int TX1_ON_STATUS = 9;
 
 
-
-
 	//Channels 10-25 on MXP (PWM and DIO)
 	public static final int CONVELATOR_MOTOR = 10;
 	public static final int TURRET_MOTOR = 11;

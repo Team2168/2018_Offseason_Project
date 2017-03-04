@@ -68,8 +68,8 @@ public class Robot extends IterativeRobot {
     static Command autonomousCommand;
     public static SendableChooser<Command> autoChooser;
     
-    static Command controlStyle;
-    public static SendableChooser<Command> controlStyleChooser;
+    static int controlStyle;
+    public static SendableChooser<Number> controlStyleChooser;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -140,15 +140,27 @@ public class Robot extends IterativeRobot {
 	}
 	
     /**
-	 * Get the name of an autonomous mode command.
-	 * @return the name of the auto command.
+	 * Get the name of an control style.
+	 * @return the name of the control style.
 	 */
 	public static String getControlStyleName() {
-		if (controlStyle != null) {
-			return controlStyle.getName();
-		} else {
-			return "None";
+
+		if(controlStyle==0) {
+			return ("Tank Drive");
 		}
+		if(controlStyle==1) {
+			return ("Gun Style");
+		}
+		if(controlStyle==2) {
+			return ("Arcade Drive");
+		}
+		if(controlStyle==3) {
+			return ("GTA Drive");
+		}
+		else {
+			return null;
+		}		
+				
 	}
     
     /**
@@ -156,10 +168,10 @@ public class Robot extends IterativeRobot {
      */
     public void controlStyleSelectInit(){
     	controlStyleChooser = new SendableChooser<>();
-    	controlStyleChooser.addDefault("Tank Drive", new DriveWithJoystick(RobotMap.TANK_DRIVE_STYLE_ENUM));
-    	controlStyleChooser.addObject("Gun Style Controller", new DriveWithJoystick(RobotMap.GUN_STYLE_ENUM));
-    	controlStyleChooser.addObject("Arcade Drive", new DriveWithJoystick(RobotMap.ARCADE_STYLE_ENUM));
-    	controlStyleChooser.addObject("GTA Drive", new DriveWithJoystick(RobotMap.GTA_STYLE_ENUM));
+    	controlStyleChooser.addDefault("Tank Drive", 0);
+    	controlStyleChooser.addObject("Gun Style Controller", 1);
+    	controlStyleChooser.addObject("Arcade Drive", 2);
+    	controlStyleChooser.addObject("GTA Drive", 3);
     }
 	
 	/**
@@ -173,11 +185,14 @@ public class Robot extends IterativeRobot {
     }
     
 	public void disabledPeriodic() {
+
+        SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
+        SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
+		
 		// Kill all active commands
 		Scheduler.getInstance().run();
 
 		turnTX1On();
-		System.out.println(Timer.getFPGATimestamp());
 		
 		autoMode = false;
 		
@@ -217,9 +232,8 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
     
-        controlStyle = (Command) controlStyleChooser.getSelected();
+        controlStyle = (int) controlStyleChooser.getSelected();
     	// Select the control style
-        if (controlStyle != null) controlStyle.start();
     }
 
     /**
@@ -229,6 +243,10 @@ public class Robot extends IterativeRobot {
     	
     	autoMode = false;
         Scheduler.getInstance().run();
+        
+        SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
+        SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
+        
     }
     
     /**
@@ -275,7 +293,6 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public boolean getTX1TurnOn() {
-		System.out.println(!tx1TurnOn.get());
 		return !tx1TurnOn.get();
 	}
 	
