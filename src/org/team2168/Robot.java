@@ -32,7 +32,8 @@ public class Robot extends IterativeRobot {
 	
 	private static DigitalInput practiceBot;
 
-	public static BallConvelator ballElevator;
+	public static Agitator agitator; 
+	public static BallConvelator ballConvelator;
 	public static BallIntakeArm ballIntakeArm;
 	public static BallIntakeRoller ballIntakeRoller;
 	public static Climber climber;
@@ -84,7 +85,8 @@ public class Robot extends IterativeRobot {
     	practiceBot = new DigitalInput(RobotMap.PRACTICE_BOT_JUMPER);
 
     	// instantiate the commands used for the autonomous period
-    	ballElevator = BallConvelator.getInstance();
+    	agitator = Agitator.getInstance();
+    	ballConvelator = BallConvelator.getInstance();
     	ballIntakeArm = BallIntakeArm.getInstance();
     	ballIntakeRoller = BallIntakeRoller.getInstance();
     	climber = Climber.getInstance();
@@ -299,11 +301,11 @@ public class Robot extends IterativeRobot {
 	}
 	
 	/**
-	 * Returns the status of DIO pin 23 (19 on board)
+	 * Returns the status of DIO pin 24 
 	 *
 	 * @return true if this is the practice robot
 	 */
 	public static boolean isPracticeRobot() {
-		return true; //!practiceBot.get();
+		return !practiceBot.get();
 	}
 }

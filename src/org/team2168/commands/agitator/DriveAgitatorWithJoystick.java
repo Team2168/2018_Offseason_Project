@@ -1,4 +1,4 @@
-package org.team2168.commands.elevator;
+package org.team2168.commands.agitator;
 
 import org.team2168.OI;
 import org.team2168.Robot;
@@ -6,13 +6,13 @@ import org.team2168.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *Drive Elevator with joystick 
+ *Drive Agitator with joystick 
  */
-public class DriveElevatorWithJoystick extends Command {
+public class DriveAgitatorWithJoystick extends Command {
 
-    public DriveElevatorWithJoystick() {
+    public DriveAgitatorWithJoystick() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.ballConvelator);
+        requires(Robot.agitator);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +21,7 @@ public class DriveElevatorWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ballConvelator.driveElevator(OI.getDriveElevatorJoystick() + OI.getDriveElevatorPIDTestJoystick());
+    	Robot.agitator.driveAgitator(OI.getDriveAgitatorJoystick());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +31,7 @@ public class DriveElevatorWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ballConvelator.driveElevator(0.0);
+    	Robot.agitator.driveAgitator(0.0);
     }
     
 

@@ -28,8 +28,17 @@ public class ShooterIndexer extends Subsystem {
 	 */
 	private ShooterIndexer() {
 		indexerMotor = new Spark(RobotMap.INDEXER_WHEEL);
-		upperBallPresentSensor = new DigitalInput(RobotMap.INDEXER_UPPER_BALL_PRESENT);
-		lowerBallPresentSensor = new DigitalInput(RobotMap.INDEXER_LOWER_BALL_PRESENT);
+		
+		if(Robot.isPracticeRobot())
+		{
+			upperBallPresentSensor = new DigitalInput(RobotMap.INDEXER_UPPER_BALL_PRESENT_PBOT);
+			lowerBallPresentSensor = new DigitalInput(RobotMap.INDEXER_LOWER_BALL_PRESENT_PBOT);
+		}
+		else
+		{
+			upperBallPresentSensor = new DigitalInput(RobotMap.INDEXER_UPPER_BALL_PRESENT);
+			lowerBallPresentSensor = new DigitalInput(RobotMap.INDEXER_LOWER_BALL_PRESENT);
+		}
 		
 		ConsolePrinter.putBoolean("Indexer Upper Sensor", 
 				() -> {return Robot.shooterIndexer.isUpperSensorActive();}, true, false);

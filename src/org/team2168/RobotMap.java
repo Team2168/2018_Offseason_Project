@@ -52,24 +52,30 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_ENCODER_B = 3;
 	public static final int LEFT_DRIVE_ENCODER_A = 4;
 	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 5;
-	public static final int SHOOTER_ENCODER_A = 6; 
-	public static final int SHOOTER_ENCODER_B = 7; 
+	public static final int INDEXER_LOWER_BALL_PRESENT = 6; 
+	public static final int INDEXER_UPPER_BALL_PRESENT = 7; 
 	public static final int TX1_TURN_ON = 8;
 	public static final int TX1_ON_STATUS = 9;
-
-
+	
 
 
 	//Channels 10-25 on MXP (PWM and DIO)
 	public static final int CONVELATOR_MOTOR = 10;
 	public static final int TURRET_MOTOR = 11;
 	public static final int GEAR_INTAKE_MOTOR = 12;
-	public static final int INDEXER_WHEEL = 19;
-	public static final int PRACTICE_BOT_JUMPER = 14;
+	public static final int INDEXER_WHEEL = 13;
+	public static final int AGITATOR_WHEEL = 14;
 	public static final int TURRET_LIMIT_SWITCH_RIGHT = 19; //PWM 15 on board
 	public static final int TURRET_LIMIT_SWITCH_LEFT = 20; //PWM 16 on board
-	public static final int INDEXER_LOWER_BALL_PRESENT = 21; //PWM 17 on board
-	public static final int INDEXER_UPPER_BALL_PRESENT = 22; //PWM 18 on board
+	public static final int SHOOTER_ENCODER_A = 21; //PWM 17 on board
+	public static final int SHOOTER_ENCODER_B = 22; //PWM 18 on board
+	public static final int PRACTICE_BOT_JUMPER = 24;
+	
+	//PBOT Differences
+	public static final int SHOOTER_ENCODER_A_PBOT = 6; 
+	public static final int SHOOTER_ENCODER_B_PBOT = 7;
+	public static final int INDEXER_LOWER_BALL_PRESENT_PBOT = 21; //PWM 17 on board
+	public static final int INDEXER_UPPER_BALL_PRESENT_PBOT = 22; //PWM 18 on board
 	
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
@@ -174,6 +180,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_BALL_INTAKE_WHEEL = true;
+	public static final boolean REVERSE_BALL_INTAKE_WHEEL_PBOT = false;
 
 
 	/*************************************************************************
@@ -182,12 +189,19 @@ public class RobotMap {
 	public static final double GEAR_INTAKE_IR_THRESHOLD = 1.4;
 	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
 	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = true;
+	public static final boolean REVERSE_GEAR_INTAKE_WHEEL_PBOT = true;
 
 	/*************************************************************************
 	 *                         INDEXER PARAMETERS
 	 *************************************************************************/
 	public static final double INDEXER_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INDEXER = false;
+	
+	/*************************************************************************
+	 *                         AGITATOR PARAMETERS
+	 *************************************************************************/
+	public static final boolean REVERSE_AGITATOR = false;
+	
 	
 
 	/*************************************************************************
