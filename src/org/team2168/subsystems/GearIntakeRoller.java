@@ -9,6 +9,9 @@ import org.team2168.commands.gearintake.*;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,7 +21,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearIntakeRoller extends Subsystem {
 	
 	//create variables, acquire female dogs.
-	private static Spark GearIntakeMotor;
+	private static SpeedController GearIntakeMotor;
 	private static AnalogInput GearIntakeMotorIRSensor;
 	
 	private static GearIntakeRoller instance = null;
@@ -28,7 +31,15 @@ public class GearIntakeRoller extends Subsystem {
 	 * @author Elijah Reeds
 	 */
 	private GearIntakeRoller() {
-		GearIntakeMotor  = new Spark(RobotMap.GEAR_INTAKE_MOTOR);
+		if(Robot.isPracticeRobot())
+		{
+			GearIntakeMotor = new Victor(RobotMap.GEAR_INTAKE_MOTOR);
+		}
+		else
+		{
+			GearIntakeMotor  = new Spark(RobotMap.GEAR_INTAKE_MOTOR);
+		}
+
 		GearIntakeMotorIRSensor = new AnalogInput(RobotMap.GEAR_INTAKE_ROLLER_IR);
 		
 		//ConsolePrinter.putNumber("GearIntakeMotor1Current", () -> {return Robot.pdp.getChannelCurrent(RobotMap.ge));

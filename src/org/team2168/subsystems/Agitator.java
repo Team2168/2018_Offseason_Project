@@ -10,43 +10,39 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *Ball Elevator subsystem 
+ *Ball Agitator subsystem 
  *@author David
  */
-public class BallConvelator extends Subsystem {
+public class Agitator extends Subsystem {
 
-	private static BallConvelator instance = null;
-	private static SpeedController elevatorMotor;
+	private static Agitator instance = null;
+	private static SpeedController agitatorMotor;
 
-	private BallConvelator() {
+	private Agitator() {
 		if(Robot.isPracticeRobot())
-		{
-        	elevatorMotor = new Victor(RobotMap.CONVELATOR_MOTOR);
-		}
-		else
-		{
-	    	elevatorMotor = new Spark(RobotMap.CONVELATOR_MOTOR);
-		}
+        	agitatorMotor = new Spark(RobotMap.AGITATOR_WHEEL);
+
+		
 	}
 
 	/** 
 	 * singleton getter for Ball Elevator 
 	 * @return instance 
 	 */
-	public static BallConvelator getInstance(){
+	public static Agitator getInstance(){
 		if(instance==null)
-			instance = new BallConvelator();
+			instance = new Agitator();
 		return instance;
 	}
 	
     /**
      * @param speed -1.0 to 1.0, positive runs the ball up the elevator, negative down
      */
-	public void driveElevator(double speed){
-		if(RobotMap.REVERSE_CONVELATOR_WHEEL)
+	public void driveAgitator(double speed){
+		if(RobotMap.REVERSE_AGITATOR)
 			speed = -speed;
 
-		elevatorMotor.set(speed);
+		agitatorMotor.set(speed);
 	}
 	
 	public void initDefaultCommand() {

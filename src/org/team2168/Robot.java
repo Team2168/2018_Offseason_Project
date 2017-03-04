@@ -29,8 +29,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	private static DigitalInput practiceBot;
 
-	public static BallConvelator ballElevator;
+	public static Agitator agitator; 
+	public static BallConvelator ballConvelator;
 	public static BallIntakeArm ballIntakeArm;
 	public static BallIntakeRoller ballIntakeRoller;
 	public static Climber climber;
@@ -78,9 +81,12 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	ConsolePrinter.init();
     	ConsolePrinter.setRate(RobotMap.CONSOLE_PRINTER_LOG_RATE_MS);
+    	
+    	practiceBot = new DigitalInput(RobotMap.PRACTICE_BOT_JUMPER);
 
     	// instantiate the commands used for the autonomous period
-    	ballElevator = BallConvelator.getInstance();
+    	agitator = Agitator.getInstance();
+    	ballConvelator = BallConvelator.getInstance();
     	ballIntakeArm = BallIntakeArm.getInstance();
     	ballIntakeRoller = BallIntakeRoller.getInstance();
     	climber = Climber.getInstance();
@@ -122,6 +128,8 @@ public class Robot extends IterativeRobot {
         
         ConsolePrinter.putBoolean("TX1TurnOn", () -> {return getTX1TurnOn();}, true, false);
         ConsolePrinter.putBoolean("TX1OnStatus", () -> {return getTX1OnStatus();}, true, false);
+        
+        ConsolePrinter.putBoolean("Is Practice Bot", () -> {return isPracticeRobot();}, true, false);
         
         ConsolePrinter.startThread();
         System.out.println("Robot Done Loading");
@@ -307,5 +315,14 @@ public class Robot extends IterativeRobot {
 		else {
 			tx1TurnOn.set(true);
 		}
+	}
+	
+	/**
+	 * Returns the status of DIO pin 24 
+	 *
+	 * @return true if this is the practice robot
+	 */
+	public static boolean isPracticeRobot() {
+		return !practiceBot.get();
 	}
 }

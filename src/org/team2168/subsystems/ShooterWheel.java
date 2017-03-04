@@ -41,8 +41,10 @@ public class ShooterWheel extends Subsystem {
 		shooterRight.setExpiration(0.1);
 		shooterRight.setSafetyEnabled(true);	
 		
-		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
-				   							   RobotMap.SHOOTER_ENCODER_B, //uncomment for encoder
+		if (Robot.isPracticeRobot())
+		{	
+		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A_PBOT, 
+				   							   RobotMap.SHOOTER_ENCODER_B_PBOT, //uncomment for encoder
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
 				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
@@ -50,6 +52,20 @@ public class ShooterWheel extends Subsystem {
 				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		}
+		else
+		{
+			shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
+					   RobotMap.SHOOTER_ENCODER_B, //uncomment for encoder
+					   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
+					   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
+					   RobotMap.SHOOTER_ENCODER_REVERSE,
+					   RobotMap.SHOOTER_ENCODING_TYPE, //uncomment for encoder
+					   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
+					   RobotMap.SHOOTER_POS_RETURN_TYPE,
+					   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		}	
+		
 		
 		shooterEncoder.setMinRate(RobotMap.SHOOTER_ENCODER_MIN_RATE);
 	

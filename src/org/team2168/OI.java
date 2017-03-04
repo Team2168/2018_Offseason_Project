@@ -52,6 +52,8 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
     
+	
+	
     // Run the command while the button is being held down and interrupt it once
     // the button is released.
     // button.whileHeld(new ExampleCommand());
@@ -88,7 +90,7 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3825));
 
 		//Fire
-		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(1.0));
+		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
 		
@@ -233,6 +235,14 @@ public class OI {
 		
 	public static double getDriveIndexerPIDTestJoystick(){
 			return (pidTestJoystick.getRightTriggerAxisRaw() + pidTestJoystick.getLeftTriggerAxisRaw());
+	}
+	
+	public static double getDriveTurretJoystick(){
+		return pidTestJoystick.getLeftStickRaw_Y();
+	}
+	
+	public static double  getDriveAgitatorJoystick(){
+		return 0;
 	}
 }
 
