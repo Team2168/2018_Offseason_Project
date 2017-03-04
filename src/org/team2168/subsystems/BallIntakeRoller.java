@@ -38,7 +38,7 @@ public class BallIntakeRoller extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new DriveIntakeWithJoystick());
+        //setDefaultCommand(new DriveIntakeWithJoystick());
     }
 }
 
