@@ -43,7 +43,7 @@ public class Turret extends Subsystem {
     	limitSwitchLeft = new DigitalInput(RobotMap.TURRET_LIMIT_SWITCH_LEFT);
     	turretInterpolator = new LinearInterpolator(turretRange);
     	
-    	tcpCamSensor = new TCPCamSensor(RobotMap.BOILER_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
+    	tcpCamSensor = new TCPCamSensor("BoilerCam", RobotMap.BOILER_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
 
     	
     	
