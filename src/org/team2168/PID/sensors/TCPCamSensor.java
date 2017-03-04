@@ -86,6 +86,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 		dataReceived[4] = "0";
 		dataReceived[5] = "0";
 		dataReceived[6] = "0";
+		dataReceived[7] = "0";
 		dataReceived[8] = "0";
 		dataReceived[9] = "0";
 		dataReceived[10] = "0";
@@ -99,12 +100,12 @@ public class TCPCamSensor implements PIDSensorInterface{
 
 		ds = DriverStation.getInstance();
 		
-//		SmartDashboard.putNumber(getName() +"_MinH_current", getHueMin());
-//		SmartDashboard.putNumber(getName() +"_MaxH_current", getHueMax());
-//		SmartDashboard.putNumber(getName() +"_MinS_current", getSaturationMin());
-//		SmartDashboard.putNumber(getName() +"_MinS_current", getSaturationMax());
-//		SmartDashboard.putNumber(getName() +"_MinV_current", getValueMin());
-//		SmartDashboard.putNumber(getName() +"_MaxV_current", getValueMax());
+		SmartDashboard.putNumber(getName() +"_MinH_current", getHueMin());
+		SmartDashboard.putNumber(getName() +"_MaxH_current", getHueMax());
+		SmartDashboard.putNumber(getName() +"_MinS_current", getSaturationMin());
+		SmartDashboard.putNumber(getName() +"_MinS_current", getSaturationMax());
+		SmartDashboard.putNumber(getName() +"_MinV_current", getValueMin());
+		SmartDashboard.putNumber(getName() +"_MaxV_current", getValueMax());
 
 		start();
 		
@@ -163,6 +164,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 					InputStream is = null;
 					is = sc.getInputStream();
 					int ch = 0;
+					int count = 0;
 
 					// read data until newline character is reached
 					while ((ch = is.read()) != -1) {
@@ -176,12 +178,24 @@ public class TCPCamSensor implements PIDSensorInterface{
 							System.out.println("Match Start: " + isMatchStart()+", " + "Target Rotation: " + getRotationAngle() +", " + "Target Distance: " + getTargetDistance());   
 							System.out.flush();
 							
-//							SmartDashboard.putNumber(getName() +"_MinH_current", getHueMin());
-//							SmartDashboard.putNumber(getName() +"_MaxH_current", getHueMax());
-//							SmartDashboard.putNumber(getName() +"_MinS_current", getSaturationMin());
-//							SmartDashboard.putNumber(getName() +"_MinS_current", getSaturationMax());
-//							SmartDashboard.putNumber(getName() +"_MinV_current", getValueMin());
-//							SmartDashboard.putNumber(getName() +"_MaxV_current", getValueMax());
+							//set HSVs with default values
+							if (count == 0)
+							{
+								SmartDashboard.putNumber(getName() +"_MinH_set", getHueMin());
+								SmartDashboard.putNumber(getName() +"_MaxH_set", getHueMax());
+								SmartDashboard.putNumber(getName() +"_MinS_set", getSaturationMin());
+								SmartDashboard.putNumber(getName() +"_MaxS_set", getSaturationMax());
+								SmartDashboard.putNumber(getName() +"_MinV_set", getValueMin());
+								SmartDashboard.putNumber(getName() +"_MaxV_set", getValueMax());
+								count++;
+							}
+							
+							SmartDashboard.putNumber(getName() +"_MinH_current", getHueMin());
+							SmartDashboard.putNumber(getName() +"_MaxH_current", getHueMax());
+							SmartDashboard.putNumber(getName() +"_MinS_current", getSaturationMin());
+							SmartDashboard.putNumber(getName() +"_MaxS_current", getSaturationMax());
+							SmartDashboard.putNumber(getName() +"_MinV_current", getValueMin());
+							SmartDashboard.putNumber(getName() +"_MaxV_current", getValueMax());
 								// create new buffer
 							sb = new StringBuffer();
 						}
@@ -201,6 +215,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 	private void sender() {
 		t2 = new Thread(new Runnable() {
 
+			@SuppressWarnings("deprecation")
 			public void run() {
 				OutputStream os = null;
 				int count = 0;
@@ -216,12 +231,12 @@ public class TCPCamSensor implements PIDSensorInterface{
 
 						messageOut = String.valueOf(matchStart) + " " 
 								+ count + " " 
-								+ hMin + " " 
-								+ hMax + " " 
-								+ sMin + " " 
-								+ sMax + " " 
-								+ vMin + " " 
-								+ vMax
+								+ SmartDashboard.getInt(getName() +"_MinH_set", getHueMin()) + " " 
+								+ SmartDashboard.getInt(getName() +"_MaxH_set", getHueMax()) + " " 
+								+ SmartDashboard.getInt(getName() +"_MinS_set", getSaturationMin()) + " " 
+								+ SmartDashboard.getInt(getName() +"_MaxS_set", getSaturationMax()) + " " 
+								+ SmartDashboard.getInt(getName() +"_MinV_set", getValueMin()) + " " 
+								+ SmartDashboard.getInt(getName() +"_MaxV_set", getValueMax())
 								+ " \n";
 
 						System.out.println("Sending Match Start: " + messageOut);
