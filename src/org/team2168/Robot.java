@@ -3,18 +3,16 @@ package org.team2168;
 
 import org.team2168.subsystems.*;
 import org.team2168.commands.auto.*;
-import org.team2168.commands.drivetrain.DriveWithJoystick;
 import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.utils.Debouncer;
 import org.team2168.utils.PowerDistribution;
+import org.team2168.utils.TX1TurnON;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -48,8 +46,7 @@ public class Robot extends IterativeRobot {
 	public static ShooterWheel shooterWheel;
 	public static Turret turret;
 	
-	public static DigitalOutput tx1TurnOn;
-	public static DigitalInput tx1OnStatus;
+
 	
 	static boolean autoMode;
     private static boolean matchStarted = false;
@@ -73,6 +70,8 @@ public class Robot extends IterativeRobot {
     
     static int controlStyle;
     public static SendableChooser<Number> controlStyleChooser;
+    
+    TX1TurnON tx1;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -101,8 +100,7 @@ public class Robot extends IterativeRobot {
     	shooterWheel = ShooterWheel.getInstance();
     	turret = Turret.getInstance();
     	
-    	tx1TurnOn = new DigitalOutput(RobotMap.TX1_TURN_ON);
-    	tx1OnStatus = new DigitalInput(RobotMap.TX1_ON_STATUS);
+
     	
         oi = OI.getInstance();
         
@@ -115,6 +113,11 @@ public class Robot extends IterativeRobot {
 		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
 		pdp.startThread();
 		
+		tx1 = new TX1TurnON(RobotMap.PDPThreadPeriod);
+		tx1.startThread();
+		
+		
+		
         drivetrain.calibrateGyro();
         
         SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
@@ -126,8 +129,7 @@ public class Robot extends IterativeRobot {
 		ConsolePrinter.putNumber("gameClock", () -> {return DriverStation.getInstance().getMatchTime();}, true, false);
         ConsolePrinter.putNumber("Robot Pressure", () -> {return Robot.pneumatics.getPSI();}, true, false);
         
-        ConsolePrinter.putBoolean("TX1TurnOn", () -> {return getTX1TurnOn();}, true, false);
-        ConsolePrinter.putBoolean("TX1OnStatus", () -> {return getTX1OnStatus();}, true, false);
+
         
         ConsolePrinter.putBoolean("Is Practice Bot", () -> {return isPracticeRobot();}, true, false);
         
@@ -203,7 +205,6 @@ public class Robot extends IterativeRobot {
 		// Kill all active commands
 		Scheduler.getInstance().run();
 
-		turnTX1On();
 		
 		autoMode = false;
 		
@@ -228,6 +229,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
     }
 
     public void teleopInit() {
@@ -264,6 +266,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
         SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
         
+    
     }
     
     /**
@@ -311,22 +314,7 @@ public class Robot extends IterativeRobot {
 		lastGyroCalibrating = gyroCalibrating;
 	}
 	
-	public boolean getTX1TurnOn() {
-		return !tx1TurnOn.get();
-	}
-	
-	public boolean getTX1OnStatus() {
-		return !tx1OnStatus.get();
-	}
-	
-	public void turnTX1On() {
-		if(Timer.getFPGATimestamp() > 0.03 && Timer.getFPGATimestamp() < 10) {
-			tx1TurnOn.set(false);
-		}
-		else {
-			tx1TurnOn.set(true);
-		}
-	}
+
 	
 	/**
 	 * Returns the status of DIO pin 24 
