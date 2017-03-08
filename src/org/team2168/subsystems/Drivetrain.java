@@ -208,8 +208,12 @@ public class Drivetrain extends Subsystem {
 				rightMotor2Voltage = 0;
 
 				//Log sensor data	
-				ConsolePrinter.putNumber("Left Encoder Distance",() -> {return Robot.drivetrain.getLeftPosition();}, true, false);
-				ConsolePrinter.putNumber("Right Encoder Distance:",() -> {return Robot.drivetrain.getRightPosition();}, true, false);
+				ConsolePrinter.putNumber("Left Encoder Distance",() -> {return Robot.drivetrain.getLeftPosition();}, true, true);
+				ConsolePrinter.putNumber("Right Encoder Distance:",() -> {return Robot.drivetrain.getRightPosition();}, true, true);
+				
+				ConsolePrinter.putNumber("Right Drive Encoder Rate", () -> {return Robot.drivetrain.getRightEncoderRate();}, true, true);
+				ConsolePrinter.putNumber("Left Drive Encoder Rate", () -> {return Robot.drivetrain.getLeftEncoderRate();}, true, true);
+				ConsolePrinter.putNumber("Average Drive Encoder Rate", () -> {return Robot.drivetrain.getAverageEncoderRate();}, true, true);
 
 				ConsolePrinter.putNumber("Gyro Angle:", () -> {return Robot.drivetrain.getHeading();}, true, false);
 				ConsolePrinter.putNumber("GYRO Driftrate:", () -> {return Robot.drivetrain.gyroSPI.driftRate;}, true, false);
@@ -221,14 +225,14 @@ public class Drivetrain extends Subsystem {
 				ConsolePrinter.putNumber("GYRO Temp:", () -> {return Robot.drivetrain.gyroSPI.getTemp();}, true, false);
 
 				ConsolePrinter.putNumber("DTRight1MotorCurrent", 
-						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_1_PDP);}, true, false);
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_1_PDP);}, true, true);
 				ConsolePrinter.putNumber("DTRight2MotorCurrent", 
-						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP);}, true, false);
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP);}, true, true);
 			
 				ConsolePrinter.putNumber("DTLeft1MotorCurrent", 
-						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_1_PDP);}, true, false);
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_1_PDP);}, true, true);
 				ConsolePrinter.putNumber("DTLeft2MotorCurrent", 
-						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_2_PDP);}, true, false);
+						() -> {return Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_2_PDP);}, true, true);
 		
 	
 				ConsolePrinter.putBoolean("Camera Status", 
@@ -254,11 +258,13 @@ public class Drivetrain extends Subsystem {
 				ConsolePrinter.putBoolean("Right Motor Two Trip", () -> {return !Robot.pdp.isRightMotorTwoTrip();}, true, false);
 
 				
-				ConsolePrinter.putNumber("DTLeft1MotorVoltage",() -> {return Robot.drivetrain.getleftMotor1Voltage();}, true, false);
-				ConsolePrinter.putNumber("DTLeft2MotorVoltage",() -> {return Robot.drivetrain.getleftMotor2Voltage();}, true, false);
-				ConsolePrinter.putNumber("DTRight1MotorVoltage",() -> {return Robot.drivetrain.getrightMotor1Voltage();}, true, false);
-				ConsolePrinter.putNumber("DTRight2MotorVoltage",() -> {return Robot.drivetrain.getrightMotor2Voltage();}, true, false);
+				ConsolePrinter.putNumber("DTLeft1MotorVoltage",() -> {return Robot.drivetrain.getleftMotor1Voltage();}, true, true);
+				ConsolePrinter.putNumber("DTLeft2MotorVoltage",() -> {return Robot.drivetrain.getleftMotor2Voltage();}, true, true);
+				ConsolePrinter.putNumber("DTRight1MotorVoltage",() -> {return Robot.drivetrain.getrightMotor1Voltage();}, true, true);
+				ConsolePrinter.putNumber("DTRight2MotorVoltage",() -> {return Robot.drivetrain.getrightMotor2Voltage();}, true, true);
 				
+				
+				ConsolePrinter.putNumber("GunStyleXValueInterpolated", () -> {return Robot.drivetrain.getGunStyleXValue();}, true, false);
 	
 				//TODO: Make methods to return proper test values
 //				ConsolePrinter.putBoolean("Left Drive Motor 1 Pass", () -> {return Robot.drivetrain.leftMotor1Pass);
@@ -383,7 +389,7 @@ public class Drivetrain extends Subsystem {
      * Calls for default command of the drivetrain to be DriveWithJoystick
      */
     public void initDefaultCommand() {
-       setDefaultCommand(new DriveWithJoystick((int) Robot.controlStyleChooser.getSelected()));
+       setDefaultCommand(new DriveWithJoystick(0));
     }
     
     /**
@@ -505,6 +511,18 @@ public class Drivetrain extends Subsystem {
      */
     public double getrightMotor2Voltage() {
     	return rightMotor2Voltage;
+    }
+    
+    public double getRightEncoderRate() {
+    	return drivetrainRightEncoder.getRate();
+    }
+    
+    public double getLeftEncoderRate() {
+    	return drivetrainLeftEncoder.getRate();
+    }
+    
+    public double getAverageEncoderRate() {
+    	return ((getRightEncoderRate() + getLeftEncoderRate())/2);
     }
     
 	/**

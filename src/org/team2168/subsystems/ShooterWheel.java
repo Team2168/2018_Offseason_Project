@@ -90,11 +90,13 @@ public class ShooterWheel extends Subsystem {
 		
        	ConsolePrinter.putNumber("Shooter_rpm", () -> {return Robot.shooterWheel.getSpeed();}, true, true);
         ConsolePrinter.putBoolean("Shooter_atspeed_status", () -> {return Robot.shooterWheel.shooterSpeedController.isFinished();}, true, true);
-        ConsolePrinter.putNumber("Shooter Position", () -> {return Robot.shooterWheel.getPosition();}, true, false);
+        ConsolePrinter.putNumber("Shooter Position", () -> {return Robot.shooterWheel.getPosition();}, true, true);
         ConsolePrinter.putNumber("ShooterMotorLeftCurrent", () -> {return Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_LEFT_PDP);}, true, true);
 		ConsolePrinter.putNumber("ShooterMotorRightCurrent", () -> {return Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_RIGHT_PDP);}, true, true);
 		ConsolePrinter.putBoolean("ShooterMotorLeftCurrentTrip", () -> {return !Robot.pdp.isShooterMotorLeftTrip();}, true, false);
 		ConsolePrinter.putBoolean("ShooterMotorRightCurrentTrip", () -> {return !Robot.pdp.isShooterMotorRightTrip();}, true, false);
+		ConsolePrinter.putNumber("ShooterRightMotorVoltage",() -> {return Robot.shooterWheel.getRightMotorVoltage();}, true, true);
+		ConsolePrinter.putNumber("ShooterLeftMotorVoltage",() -> {return Robot.shooterWheel.getLeftMotorVoltage();}, true, true);
 
 	}
 	
