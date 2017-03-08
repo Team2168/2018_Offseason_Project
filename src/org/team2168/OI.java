@@ -10,6 +10,8 @@ import org.team2168.commands.drivetrain.ShiftHigh;
 import org.team2168.commands.drivetrain.ShiftLow;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.elevator.DriveElevatorWithConstant;
+import org.team2168.commands.flashlight.DisableFlashlight;
+import org.team2168.commands.flashlight.EnableFlashlight;
 import org.team2168.commands.gearintake.AutomaticGearIntake;
 import org.team2168.commands.gearintake.DriveGearIntakeRollerWithConstant;
 import org.team2168.commands.gearintake.LowerGearArm;
@@ -95,6 +97,7 @@ public class OI {
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveAgitatorWithConstant(1.0));
+
 		
 		//Kill Shooter
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
@@ -116,8 +119,9 @@ public class OI {
 		
 		//Ball Intake Assembly
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIntakeWithConstant(1));
+		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveAgitatorWithConstant(1));
 		operatorJoystick.ButtonLeftTrigger().whenPressed(new LowerBallIntakeArm());
-		operatorJoystick.ButtonLeftBumper().whenPressed(new RaiseBallIntakeArm());
+		operatorJoystick.ButtonLeftBumper().whenReleased(new RaiseBallIntakeArm());
 		
 		//Climber
 		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstant(1.0));
@@ -152,7 +156,8 @@ public class OI {
 		//Camera Shot Align (Start Button)
 		//operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
 		pidTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
-		
+		pidTestJoystick.ButtonLeftBumper().whenPressed(new EnableFlashlight());
+		pidTestJoystick.ButtonRightBumper().whenPressed(new DisableFlashlight());
 	
 	
 		

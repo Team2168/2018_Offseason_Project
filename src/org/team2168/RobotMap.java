@@ -187,7 +187,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final double GEAR_INTAKE_IR_THRESHOLD = 1.4;
 	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
-	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = false;
+	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = true;
 	public static final boolean REVERSE_GEAR_INTAKE_WHEEL_PBOT = false;
 
 	/*************************************************************************
@@ -209,7 +209,7 @@ public class RobotMap {
 	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
 	public static final double MIN_HOOD_VALUE = 115;
 	public static final double MAX_HOOD_VALUE = 180;
-	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 3;
+	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 0.5;
 
 
 	/*************************************************************************
