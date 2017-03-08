@@ -1,6 +1,8 @@
 package org.team2168;
 
 import org.team2168.commands.agitator.DriveAgitatorWithConstant;
+import org.team2168.commands.auto.DriveStraightAndPlaceGearCenter;
+import org.team2168.commands.auto.DriveStraightOverLine;
 import org.team2168.commands.ballIntake.DriveIntakeWithConstant;
 import org.team2168.commands.ballIntake.LowerBallIntakeArm;
 import org.team2168.commands.ballIntake.RaiseBallIntakeArm;
@@ -8,6 +10,7 @@ import org.team2168.commands.climber.DriveClimberWithConstant;
 import org.team2168.commands.climber.DriveClimberWithConstantUntilCurrentLimit;
 import org.team2168.commands.drivetrain.ShiftHigh;
 import org.team2168.commands.drivetrain.ShiftLow;
+import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.elevator.DriveElevatorWithConstant;
 import org.team2168.commands.gearintake.AutomaticGearIntake;
@@ -141,17 +144,28 @@ public class OI {
 		testJoystick.ButtonLeftStick().whileHeld(new DriveTurretWithConstant(1.0));
 		testJoystick.ButtonRightStick().whileHeld(new DriveTurretWithConstant(-1.0));
 		
+		
+		//////////////PID Test Joystick//////////////
+		pidTestJoystick.ButtonA().whenPressed(new DriveStraightOverLine());
+		pidTestJoystick.ButtonB().whenPressed(new  RotateXDistancePIDZZZ(25, 0.8, 0.25, 1));
+		
+		//Gear Assembly
+		pidTestJoystick.ButtonRightTrigger().whileHeld(new AutomaticGearIntake());
+		pidTestJoystick.ButtonRightTrigger().whenReleased(new RaiseGearArm());
+		pidTestJoystick.ButtonRightBumper().whenPressed(new LowerGearArm());
+		pidTestJoystick.ButtonRightBumper().whenReleased(new RaiseGearArm());
+		
 		//PIDJoystick
 		//Shoot Far Preset (Y)
-		pidTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6700));
+		//pidTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6700));
 
 		//Shoot Close Preset (X)
-		pidTestJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(4000));
+		//pidTestJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(4000));
 		
-		pidTestJoystick.ButtonA().whenPressed(new DriveShooterPIDSpeed());
+		//pidTestJoystick.ButtonA().whenPressed(new DriveShooterPIDSpeed());
 		//Camera Shot Align (Start Button)
 		//operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
-		pidTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
+		//pidTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
 		
 	
 	
