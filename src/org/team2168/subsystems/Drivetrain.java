@@ -210,6 +210,7 @@ public class Drivetrain extends Subsystem {
 				//Log sensor data	
 				ConsolePrinter.putNumber("Left Encoder Distance",() -> {return Robot.drivetrain.getLeftPosition();}, true, true);
 				ConsolePrinter.putNumber("Right Encoder Distance:",() -> {return Robot.drivetrain.getRightPosition();}, true, true);
+				ConsolePrinter.putNumber("Average Drive Encoder Distance", () -> {return Robot.drivetrain.getAverageDistance();}, true, true);
 				
 				ConsolePrinter.putNumber("Right Drive Encoder Rate", () -> {return Robot.drivetrain.getRightEncoderRate();}, true, true);
 				ConsolePrinter.putNumber("Left Drive Encoder Rate", () -> {return Robot.drivetrain.getLeftEncoderRate();}, true, true);

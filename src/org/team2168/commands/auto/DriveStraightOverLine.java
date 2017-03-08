@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * Drives straight out of launch pad
  */
-public class DriveOverLine extends CommandGroup {
+public class DriveStraightOverLine extends CommandGroup {
 
-    public DriveOverLine() {
-        addSequential(new DriveXDistance(10,0.7),10);
+    public DriveStraightOverLine() {
+        addSequential(new DriveXDistance(-9.2,0.7,0.1),10);
     }
 }

@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LineUpAndPlaceGear extends CommandGroup {
+public class DriveStraightAndPlaceGearCenter extends CommandGroup {
 
-    public LineUpAndPlaceGear() {
+    public DriveStraightAndPlaceGearCenter() {
     	addSequential(new DriveXDistance(7,0.7));
     	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.1));
     	addSequential(new DriveXDistance(1,0.7));
