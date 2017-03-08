@@ -96,7 +96,8 @@ public class OI {
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(1.0));
 		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
-		operatorJoystick.ButtonA().whileHeld(new DriveAgitatorWithConstant(1));
+		operatorJoystick.ButtonA().whileHeld(new DriveAgitatorWithConstant(1.0));
+
 		
 		//Kill Shooter
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
@@ -111,8 +112,8 @@ public class OI {
 		//Gear Assembly
 		operatorJoystick.ButtonRightTrigger().whileHeld(new AutomaticGearIntake());
 		operatorJoystick.ButtonRightTrigger().whenReleased(new RaiseGearArm());
-		operatorJoystick.ButtonStart().whenPressed(new LowerGearArm());
-		operatorJoystick.ButtonStart().whenReleased(new RaiseGearArm());
+		operatorJoystick.ButtonRightBumper().whenPressed(new LowerGearArm());
+		operatorJoystick.ButtonRightBumper().whenReleased(new RaiseGearArm());
 		//operatorJoystick.isPressedButtonRightBumper()/whenPressed .... SCORE GEAR
 		
 		

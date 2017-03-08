@@ -57,6 +57,7 @@ public class DriveWithJoystick extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	ctrlStyle = Robot.getControlStyleInt();
     	switch(ctrlStyle){
 		/**
 		 * Initialize driveStraightController for Gun style
@@ -120,7 +121,8 @@ public class DriveWithJoystick extends Command {
      * @author Krystina
      */
     protected void execute() {
-
+    	ctrlStyle = Robot.getControlStyleInt();
+    	
     	switch(ctrlStyle){
     	/**
     	 *Tank Drive

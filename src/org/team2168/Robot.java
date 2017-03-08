@@ -141,7 +141,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public static String getAutoName() {
 		if (autonomousCommand != null) {
-			return autonomousCommand.getName();
+			return autonomousCommand.getName(); 
 		} else {
 			return "None";
 		}
@@ -197,6 +197,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
         SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
 		
+        getControlStyleInt();
+        controlStyle = (int) controlStyleChooser.getSelected();
+        
 		// Kill all active commands
 		Scheduler.getInstance().run();
 
@@ -243,6 +246,10 @@ public class Robot extends IterativeRobot {
         controlStyle = (int) controlStyleChooser.getSelected();
     	// Select the control style
     }
+    
+    public static int getControlStyleInt() {
+    	return (int) controlStyleChooser.getSelected();
+    }
 
     /**
      * This function is called periodically during operator control
@@ -251,6 +258,8 @@ public class Robot extends IterativeRobot {
     	
     	autoMode = false;
         Scheduler.getInstance().run();
+        
+        controlStyle = (int) controlStyleChooser.getSelected();
         
         SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
         SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
@@ -270,6 +279,8 @@ public class Robot extends IterativeRobot {
     public void autoSelectInit() {
         autoChooser = new SendableChooser<Command>();
         autoChooser.addDefault("Do Nothing", new DoNothing());
+        autoChooser.addObject("Drive Over Line", new DriveOverLine());
+        autoChooser.addObject("Line Up and Place Gear", new LineUpAndPlaceGear());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
     
