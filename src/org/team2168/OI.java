@@ -81,9 +81,9 @@ public class OI {
 	private OI() {
 		
 		
-		//////////////Operator Joystick//////////////
-		driverJoystick.ButtonLeftBumper().whenPressed(new ShiftLow());
-		driverJoystick.ButtonRightBumper().whenPressed(new ShiftHigh());
+		//////////////Driver Joystick//////////////
+		driverJoystick.ButtonA().whenPressed(new ShiftLow());
+		driverJoystick.ButtonStart().whenPressed(new ShiftHigh());
 		
 		//////////////Operator Joystick//////////////
 		
