@@ -30,10 +30,10 @@ public class RobotMap {
 	public static final int GTA_STYLE_ENUM = 3;
 	
 	// PWM (0 to 9) on RoboRio/////////////////////////////////////////////////
-	public static final int LEFT_DRIVE_MOTOR_1 = 0;
-	public static final int LEFT_DRIVE_MOTOR_2 = 1;	
-	public static final int RIGHT_DRIVE_MOTOR_1 = 2;
-	public static final int RIGHT_DRIVE_MOTOR_2 = 3;
+	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
+	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
+	public static final int LEFT_DRIVE_MOTOR_1 = 2;
+	public static final int LEFT_DRIVE_MOTOR_2 = 3;	
 	public static final int BALL_INTAKE_MOTOR = 4;
 	public static final int CLIMBER_MOTOR_LEFT = 5;
 	public static final int CLIMBER_MOTOR_RIGHT = 6;
@@ -124,8 +124,8 @@ public class RobotMap {
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean DT_REVERSE_RIGHT = true;
-	public static final boolean DT_REVERSE_LEFT = false;
+	public static final boolean DT_REVERSE_RIGHT = false;
+	public static final boolean DT_REVERSE_LEFT = true;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
