@@ -154,23 +154,26 @@ public class Robot extends IterativeRobot {
 	 * @return the name of the control style.
 	 */
 	public static String getControlStyleName() {
-
-		if(controlStyle==0) {
-			return ("Tank Drive");
+		String retVal = "";
+	
+		switch (controlStyle) {
+		case 0:
+			retVal = "Tank Drive";
+			break;
+		case 1:
+			retVal = "Gun Style";
+			break;
+		case 2:
+			retVal = "Arcade Drive";
+			break;
+		case 3:
+			retVal = "GTA Drive";
+			break;
+		default:
+			retVal = "Invalid Control Style";
 		}
-		if(controlStyle==1) {
-			return ("Gun Style");
-		}
-		if(controlStyle==2) {
-			return ("Arcade Drive");
-		}
-		if(controlStyle==3) {
-			return ("GTA Drive");
-		}
-		else {
-			return null;
-		}		
-				
+		
+		return retVal;
 	}
     
     /**
@@ -244,9 +247,9 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-    
-        controlStyle = (int) controlStyleChooser.getSelected();
+
     	// Select the control style
+        controlStyle = (int) controlStyleChooser.getSelected();
     }
     
     public static int getControlStyleInt() {
