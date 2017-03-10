@@ -282,8 +282,8 @@ public class Robot extends IterativeRobot {
     public void autoSelectInit() {
         autoChooser = new SendableChooser<Command>();
         autoChooser.addDefault("Do Nothing", new DoNothing());
-        autoChooser.addObject("Drive Over Line", new DriveStraightOverLine());
-        autoChooser.addObject("Line Up and Place Gear", new DriveStraightAndPlaceGearCenter());
+        autoChooser.addObject("Drive Over Line", new DriveStraightAndScoreCenter());
+        autoChooser.addObject("Line Up and Score Center", new DriveStraightAndScoreCenter());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
     
