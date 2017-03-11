@@ -89,6 +89,7 @@ public class RobotMap {
 	//Channels 0-3 on Roborio
 	public static final int TURRET_POTENTIOMETER = 0;
 	public static final int GEAR_INTAKE_ROLLER_IR = 1;
+	public static final int DRIVETRAIN_IR_SENSOR = 2;
 	public static final int PRESSURE_SENSOR = 3;
 
 
@@ -138,8 +139,8 @@ public class RobotMap {
 	public static final AverageEncoder.SpeedReturnType DRIVE_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.FPS;
 	public static final int DRIVE_ENCODER_MIN_RATE = 0;
 	public static final int DRIVE_ENCODER_MIN_PERIOD = 1;
-	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE = true;
-	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE = true;
+	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE = false;
+	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE = false;
 	public static final int DRIVE_AVG_ENCODER_VAL = 5;
 	public static final double MIN_DRIVE_SPEED = 0.2;
 	public static final double AUTO_NORMAL_SPEED = 0.5;

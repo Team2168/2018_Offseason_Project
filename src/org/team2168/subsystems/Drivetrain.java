@@ -1,5 +1,6 @@
 package org.team2168.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -34,6 +35,8 @@ public class Drivetrain extends Subsystem {
 	private AverageEncoder drivetrainLeftEncoder;
 	private AverageEncoder drivetrainRightEncoder;
 	
+	private static AnalogInput DrivetrainIRSensor;
+	
 	public IMU imu;
 	public TCPCamSensor tcpCamSensor;
 	
@@ -53,8 +56,8 @@ public class Drivetrain extends Subsystem {
     //These values represent the x axis on the gun style controller
     //TODO test whether values should be ascending or descending
     private double[][] gunStyleRange = {{-0.530,1.0},
-    		                          {0.340,0.0},
-    		                          {0.356,0.0},
+    		                          {0.32,0.0},
+    		                          {0.36,0.0},
     		                          {0.622,-1.0}};
 	
 	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
@@ -110,6 +113,8 @@ public class Drivetrain extends Subsystem {
 		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
 
 		tcpCamSensor = new TCPCamSensor("GearCam", RobotMap.GEAR_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
+		
+		DrivetrainIRSensor = new AnalogInput(RobotMap.DRIVETRAIN_IR_SENSOR);
 		
 		//DriveStraight Controller
 				rotateController = new PIDPosition(
@@ -437,6 +442,14 @@ public class Drivetrain extends Subsystem {
     	resetLeftPosition();
     	resetRightPosition();
     }
+    
+	/**
+	 * Gets the voltage given by the Sharp IR sensor on the Gear Intake.
+	 * @return the raw voltage from the gear presence sensor
+	 */
+	public double getIRVoltage(){
+		return DrivetrainIRSensor.getVoltage();
+	}
     
     /**
      * returns heading of robot

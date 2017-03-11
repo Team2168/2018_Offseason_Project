@@ -180,9 +180,9 @@ public class Robot extends IterativeRobot {
      * Adds control styles to the selector
      */
     public void controlStyleSelectInit(){
-    	controlStyleChooser = new SendableChooser<>();
-    	controlStyleChooser.addObject("Gun Style Controller", 1);
-    	controlStyleChooser.addDefault("Tank Drive", 0);
+    	controlStyleChooser = new SendableChooser<>();    	
+    	controlStyleChooser.addObject("Tank Drive", 0);
+    	controlStyleChooser.addDefault("Gun Style Controller", 1);
     	controlStyleChooser.addObject("Arcade Drive", 2);
     	controlStyleChooser.addObject("GTA Drive", 3);
     }
@@ -199,6 +199,7 @@ public class Robot extends IterativeRobot {
     
 	public void disabledPeriodic() {
 
+		SmartDashboard.putNumber("GunStyleYValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_Y());
         SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
         SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
 		
@@ -291,8 +292,9 @@ public class Robot extends IterativeRobot {
     public void autoSelectInit() {
         autoChooser = new SendableChooser<Command>();
         autoChooser.addDefault("Do Nothing", new DoNothing());
-        autoChooser.addObject("Drive Over Line", new DriveStraightAndScoreCenter());
-        autoChooser.addObject("Line Up and Score Center", new DriveStraightAndScoreCenter());
+        autoChooser.addObject("Score Gear Center", new DriveStraightAndScoreCenter()); 
+        autoChooser.addObject("Score Gear Right", new DriveStraightAndScoreRight());
+        autoChooser.addObject("Drive Over Baseline", new DriveOverBaseline());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
     
