@@ -181,8 +181,8 @@ public class Robot extends IterativeRobot {
      */
     public void controlStyleSelectInit(){
     	controlStyleChooser = new SendableChooser<>();
-    	controlStyleChooser.addDefault("Tank Drive", 0);
     	controlStyleChooser.addObject("Gun Style Controller", 1);
+    	controlStyleChooser.addDefault("Tank Drive", 0);
     	controlStyleChooser.addObject("Arcade Drive", 2);
     	controlStyleChooser.addObject("GTA Drive", 3);
     }
@@ -204,6 +204,9 @@ public class Robot extends IterativeRobot {
 		
         getControlStyleInt();
         controlStyle = (int) controlStyleChooser.getSelected();
+
+
+        autonomousCommand = (Command) autoChooser.getSelected();
         
 		// Kill all active commands
 		Scheduler.getInstance().run();
@@ -222,6 +225,8 @@ public class Robot extends IterativeRobot {
 		matchStarted = true;
 		drivetrain.stopGyroCalibrating();
 		drivetrain.resetGyro();
+		
+		autonomousCommand = (Command) autoChooser.getSelected();
     	
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -231,6 +236,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	autoMode = true;
         Scheduler.getInstance().run();
         
     }
@@ -289,6 +295,14 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Line Up and Score Center", new DriveStraightAndScoreCenter());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
+    
+    /**
+	 *
+	 * @return true if the robot is in auto mode
+	 */
+	public static boolean isAutoMode() {
+		return autoMode;
+	}
     
     /**
 	 * Method which checks to see if gyro drifts and resets the gyro. Call this
