@@ -46,12 +46,12 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 0;
-	public static final int LEFT_DRIVE_ENCODER_B = 1;
-	public static final int LEFT_DRIVE_ENCODER_A = 2;	
-	public static final int RIGHT_DRIVE_ENCODER_A = 3;
-	public static final int RIGHT_DRIVE_ENCODER_B = 4;
-	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 5;
+	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 3; //PBOT is 0
+	public static final int LEFT_DRIVE_ENCODER_B = 4; //PBOT is 1
+	public static final int LEFT_DRIVE_ENCODER_A = 5; //PBOT is 2
+	public static final int RIGHT_DRIVE_ENCODER_A = 0; //PBOT is 3
+	public static final int RIGHT_DRIVE_ENCODER_B = 1; //PBOT is 4
+	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 2; //PBOT is 5
 	public static final int INDEXER_LOWER_BALL_PRESENT = 6;
 	public static final int INDEXER_UPPER_BALL_PRESENT = 7;
 	public static final int TX1_TURN_ON = 8;
@@ -150,8 +150,8 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_RIGHT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= true;
+	public static final boolean REVERSE_SHOOTER_WHEEL_RIGHT= true;
 
 	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
@@ -164,7 +164,7 @@ public class RobotMap {
 	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.RPM;
 	public static final double SHOOTER_ENCODER_MIN_RATE = 0.1; //minimum inch per second
 	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
-	public static final boolean SHOOTER_ENCODER_REVERSE = true;
+	public static final boolean SHOOTER_ENCODER_REVERSE = false;
 	public static final int SHOOTER_AVG_ENCODER_VAL = 120;
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
@@ -199,7 +199,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         AGITATOR PARAMETERS
 	 *************************************************************************/
-	public static final boolean REVERSE_AGITATOR = true;
+	public static final boolean REVERSE_AGITATOR = false;
 	
 	
 
@@ -328,7 +328,7 @@ public class RobotMap {
 	/******************************************************************
 	 *                    CONVELATOR PARAMETERS
 	 ******************************************************************/
-	public static final boolean REVERSE_CONVELATOR_WHEEL = true;
+	public static final boolean REVERSE_CONVELATOR_WHEEL = false;
 
 
 	/******************************************************************
