@@ -21,6 +21,8 @@ public class Agitator extends Subsystem {
 	private Agitator() {
 		if(Robot.isPracticeRobot())
         	agitatorMotor = new Spark(RobotMap.AGITATOR_WHEEL);
+		else
+        	agitatorMotor = new Victor(RobotMap.AGITATOR_WHEEL);
 
 		
 	}
