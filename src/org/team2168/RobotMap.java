@@ -47,13 +47,13 @@ public class RobotMap {
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
 	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 0;
-	public static final int RIGHT_DRIVE_ENCODER_A = 1;
-	public static final int RIGHT_DRIVE_ENCODER_B = 2;
-	public static final int LEFT_DRIVE_ENCODER_B = 3;
-	public static final int LEFT_DRIVE_ENCODER_A = 4;
+	public static final int LEFT_DRIVE_ENCODER_B = 1;
+	public static final int LEFT_DRIVE_ENCODER_A = 2;	
+	public static final int RIGHT_DRIVE_ENCODER_A = 3;
+	public static final int RIGHT_DRIVE_ENCODER_B = 4;
 	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 5;
-	public static final int INDEXER_LOWER_BALL_PRESENT = 6; 
-	public static final int INDEXER_UPPER_BALL_PRESENT = 7; 
+	public static final int INDEXER_LOWER_BALL_PRESENT = 6;
+	public static final int INDEXER_UPPER_BALL_PRESENT = 7;
 	public static final int TX1_TURN_ON = 8;
 	public static final int TX1_ON_STATUS = 9;
 
@@ -218,6 +218,8 @@ public class RobotMap {
 	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = false;
 	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = true;
 	public static final double CLIMBER_MOTOR_SPEED = 0.8;
+	
+	public static final double CLIMBER_MAX_CURRENT = 15;
 
 
 

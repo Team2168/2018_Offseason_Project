@@ -1,8 +1,9 @@
 package org.team2168;
 
 import org.team2168.commands.agitator.DriveAgitatorWithConstant;
-import org.team2168.commands.auto.DriveStraightAndPlaceGearCenter;
-import org.team2168.commands.auto.DriveStraightOverLine;
+import org.team2168.commands.auto.DriveStraightAndScoreCenter;
+import org.team2168.commands.auto.DriveStraightAndScoreRight;
+import org.team2168.commands.drivetrain.PIDCommands.DriveSraightXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.ballIntake.DriveIntakeWithConstant;
 import org.team2168.commands.ballIntake.LowerBallIntakeArm;
 import org.team2168.commands.ballIntake.RaiseBallIntakeArm;
@@ -150,9 +151,10 @@ public class OI {
 		
 		
 		//////////////PID Test Joystick//////////////
-		pidTestJoystick.ButtonA().whenPressed(new DriveStraightOverLine());
-		pidTestJoystick.ButtonB().whenPressed(new  RotateXDistancePIDZZZ(25, 0.8, 0.25, 1));
-		
+		pidTestJoystick.ButtonA().whenPressed(new DriveStraightAndScoreCenter());
+		pidTestJoystick.ButtonB().whenPressed(new RotateXDistancePIDZZZ(25, 0.8, 0.25, 1));
+		pidTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.2));
+		pidTestJoystick.ButtonY().whenPressed(new DriveStraightAndScoreRight());
 		//Gear Assembly
 		pidTestJoystick.ButtonRightTrigger().whileHeld(new AutomaticGearIntake());
 		pidTestJoystick.ButtonRightTrigger().whenReleased(new RaiseGearArm());
