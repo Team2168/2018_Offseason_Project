@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveOverBaseline extends CommandGroup {
 
     public DriveOverBaseline() {
-    	 addSequential(new ShiftHigh());
     	 addSequential(new DriveXDistance(15,0.7,0.4));
     }
 }
