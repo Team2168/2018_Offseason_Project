@@ -17,8 +17,8 @@ public class DriveStraightAndScoreCenter extends CommandGroup {
     public DriveStraightAndScoreCenter() {
     	addSequential(new ShiftHigh());
         addSequential(new DriveXDistance(8.0,0.7,0.1));
-        addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0));
-    	addSequential(new DriveXDistance(1.0, 0.7,0.1),2);
+        addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),2);
+    	addSequential(new DriveXDistance(0.7, 0.7,0.1),2);
     	addSequential(new DriveXDistance(0.2, 0.7,0.1),2);
     	addSequential(new LowerGearArm());
     	addSequential(new DriveXDistance(-3.0,0.7,0.1));
