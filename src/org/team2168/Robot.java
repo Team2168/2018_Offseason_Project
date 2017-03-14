@@ -295,6 +295,7 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Score Gear Center", new DriveStraightAndScoreCenter()); 
         autoChooser.addObject("Score Gear Right", new DriveStraightAndScoreRight());
         autoChooser.addObject("Drive Over Baseline", new DriveOverBaseline());
+        autoChooser.addObject("Gear Center and Shoot", new DriveStraightAndScoreCenterShooting());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
     

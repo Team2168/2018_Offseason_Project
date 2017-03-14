@@ -257,6 +257,9 @@ public class Drivetrain extends Subsystem {
 						() -> {return Robot.drivetrain.tcpCamSensor.isTargetDetected();}, true, false);
 				ConsolePrinter.putBoolean("Is Target Scorable", 
 						() -> {return Robot.drivetrain.tcpCamSensor.isTargetScorable();}, true, false);
+				
+				ConsolePrinter.putNumber("Drivetrain raw IR", 
+						() -> {return Robot.drivetrain.getIRVoltage();}, true, false);
 								
 				ConsolePrinter.putBoolean("Left Motor One Trip", () -> {return !Robot.pdp.isLeftMotorOneTrip();}, true, false);
 				ConsolePrinter.putBoolean("Left Motor Two Trip", () -> {return !Robot.pdp.isLeftMotorTwoTrip();}, true, false);

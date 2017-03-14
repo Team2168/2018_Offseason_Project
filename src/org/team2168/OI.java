@@ -121,6 +121,12 @@ public class OI {
 		//operatorJoystick.isPressedButtonRightBumper()/whenPressed .... SCORE GEAR
 		
 		
+		//Spit Gear Intake
+		operatorJoystick.ButtonStart().whenPressed(new LowerGearArm());
+		operatorJoystick.ButtonStart().whileHeld(new DriveGearIntakeRollerWithConstant(-1.0));
+		operatorJoystick.ButtonStart().whenReleased(new RaiseGearArm());
+		
+		
 		//Ball Intake Assembly
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIntakeWithConstant(1));
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveAgitatorWithConstant(1));
