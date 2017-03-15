@@ -31,6 +31,8 @@ public class DrivetrainShifter extends Subsystem {
 		//Log sensor data
 		//ConsolePrinter.putNumber("Drivetrain Right Encoder",
 		//		() -> {return DrivetrainShifter.getInstance().getRightPosition();}, true, false);
+		ConsolePrinter.putBoolean("In High Gear", () -> {return Robot.drivetrainShifter.isInHighGear();}, true, false);
+		ConsolePrinter.putBoolean("In Low Gear", () -> {return Robot.drivetrainShifter.isInLowGear();}, true, false);
 
 	}
 	
@@ -77,5 +79,13 @@ public class DrivetrainShifter extends Subsystem {
 	 */
     public boolean inHighGear() {
     	return gearChanger.get() == DoubleSolenoid.Value.kReverse;
+    }
+    
+    public boolean isInLowGear() {
+    	return inLowGear();
+    }
+    
+    public boolean isInHighGear() {
+    	return inHighGear();
     }
 }

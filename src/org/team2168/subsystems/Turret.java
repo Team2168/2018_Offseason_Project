@@ -66,8 +66,10 @@ public class Turret extends Subsystem {
 				() -> {return Robot.turret.isLimitSwitchRightActive();}, true, false);
 		ConsolePrinter.putBoolean("Turret Left Limit Switch", 
 				() -> {return Robot.turret.isLimitSwitchLeftActive();}, true, false);
-		ConsolePrinter.putNumber("Turret Potentiometer", 
+		ConsolePrinter.putNumber("Turret Pot Interpolated", 
 				() -> {return Robot.turret.getPosition();}, true, false);
+		ConsolePrinter.putNumber("Turret Pot Raw", 
+				() -> {return Robot.turret.getRawPot();}, true, false);
     }
 
     /**
@@ -101,6 +103,10 @@ public class Turret extends Subsystem {
 	 */
 	public double getPosition() {
 		return turretInterpolator.interpolate(potentiometer.getVoltage());
+	}
+	
+	public double getRawPot() {
+		return potentiometer.getVoltage();
 	}
 
 	/**

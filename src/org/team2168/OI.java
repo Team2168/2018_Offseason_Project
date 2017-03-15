@@ -83,8 +83,8 @@ public class OI {
 		
 		
 		//////////////Driver Joystick//////////////
-		driverJoystick.ButtonA().whenPressed(new ShiftLow());
-		driverJoystick.ButtonStart().whenPressed(new ShiftHigh());
+		driverJoystick.ButtonStart().whenPressed(new ShiftLow());
+		driverJoystick.ButtonA().whenPressed(new ShiftHigh());
 		
 		//////////////Operator Joystick//////////////
 		
@@ -119,6 +119,12 @@ public class OI {
 		operatorJoystick.ButtonRightBumper().whenPressed(new LowerGearArm());
 		operatorJoystick.ButtonRightBumper().whenReleased(new RaiseGearArm());
 		//operatorJoystick.isPressedButtonRightBumper()/whenPressed .... SCORE GEAR
+		
+		
+		//Spit Gear Intake
+		operatorJoystick.ButtonStart().whenPressed(new LowerGearArm());
+		operatorJoystick.ButtonStart().whileHeld(new DriveGearIntakeRollerWithConstant(-1.0));
+		operatorJoystick.ButtonStart().whenReleased(new RaiseGearArm());
 		
 		
 		//Ball Intake Assembly

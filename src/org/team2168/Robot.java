@@ -180,9 +180,9 @@ public class Robot extends IterativeRobot {
      * Adds control styles to the selector
      */
     public void controlStyleSelectInit(){
-    	controlStyleChooser = new SendableChooser<>();
-    	controlStyleChooser.addDefault("Tank Drive", 0);
-    	controlStyleChooser.addObject("Gun Style Controller", 1);
+    	controlStyleChooser = new SendableChooser<>();    	
+    	controlStyleChooser.addObject("Tank Drive", 0);
+    	controlStyleChooser.addDefault("Gun Style Controller", 1);
     	controlStyleChooser.addObject("Arcade Drive", 2);
     	controlStyleChooser.addObject("GTA Drive", 3);
     }
@@ -199,11 +199,15 @@ public class Robot extends IterativeRobot {
     
 	public void disabledPeriodic() {
 
+		SmartDashboard.putNumber("GunStyleYValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_Y());
         SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
         SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
 		
         getControlStyleInt();
         controlStyle = (int) controlStyleChooser.getSelected();
+
+
+        autonomousCommand = (Command) autoChooser.getSelected();
         
 		// Kill all active commands
 		Scheduler.getInstance().run();
@@ -222,6 +226,8 @@ public class Robot extends IterativeRobot {
 		matchStarted = true;
 		drivetrain.stopGyroCalibrating();
 		drivetrain.resetGyro();
+		
+		autonomousCommand = (Command) autoChooser.getSelected();
     	
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -231,6 +237,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	autoMode = true;
         Scheduler.getInstance().run();
         
     }
@@ -285,10 +292,20 @@ public class Robot extends IterativeRobot {
     public void autoSelectInit() {
         autoChooser = new SendableChooser<Command>();
         autoChooser.addDefault("Do Nothing", new DoNothing());
-        autoChooser.addObject("Drive Over Line", new DriveStraightAndScoreCenter());
-        autoChooser.addObject("Line Up and Score Center", new DriveStraightAndScoreCenter());
+        autoChooser.addObject("Score Gear Center", new DriveStraightAndScoreCenter()); 
+        autoChooser.addObject("Score Gear Right", new DriveStraightAndScoreRight());
+        autoChooser.addObject("Drive Over Baseline", new DriveOverBaseline());
+        autoChooser.addObject("Gear Center and Shoot", new DriveStraightAndScoreCenterShooting());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
+    
+    /**
+	 *
+	 * @return true if the robot is in auto mode
+	 */
+	public static boolean isAutoMode() {
+		return autoMode;
+	}
     
     /**
 	 * Method which checks to see if gyro drifts and resets the gyro. Call this
