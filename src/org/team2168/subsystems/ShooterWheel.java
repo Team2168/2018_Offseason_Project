@@ -9,6 +9,9 @@ import org.team2168.commands.shooter.DriveShooterWithJoystick;
 import org.team2168.utils.TCPSocketSender;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
+import edu.wpi.first.wpilibj.SafePWM;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,8 +22,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ShooterWheel extends Subsystem {
 	private static ShooterWheel instance = null;
 	
-	private static Talon shooterLeft;
-	private static Talon shooterRight;
+	private static SpeedController shooterLeft;
+	private static SpeedController shooterRight;
 	private static AverageEncoder shooterEncoder;
 
 	public PIDSpeed shooterSpeedController;
@@ -33,13 +36,6 @@ public class ShooterWheel extends Subsystem {
 	 * Private singleton constructor for the Shooter subsystem
 	 */
 	private ShooterWheel () {
-		shooterLeft = new Talon (RobotMap.SHOOTER_WHEEL_LEFT);
-		shooterLeft.setExpiration(0.1);
-		shooterLeft.setSafetyEnabled(true);
-		
-		shooterRight = new Talon (RobotMap.SHOOTER_WHEEL_RIGHT);
-		shooterRight.setExpiration(0.1);
-		shooterRight.setSafetyEnabled(true);	
 		
 		if (Robot.isPracticeRobot())
 		{	
@@ -52,6 +48,15 @@ public class ShooterWheel extends Subsystem {
 				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		
+		shooterLeft = new Spark (RobotMap.SHOOTER_WHEEL_LEFT);
+		((SafePWM) shooterLeft).setExpiration(0.1);
+		((SafePWM) shooterLeft).setSafetyEnabled(true);
+		
+		shooterRight = new Spark (RobotMap.SHOOTER_WHEEL_RIGHT);
+		((SafePWM) shooterRight).setExpiration(0.1);
+		((SafePWM) shooterRight).setSafetyEnabled(true);	
+		
 		}
 		else
 		{
@@ -64,6 +69,15 @@ public class ShooterWheel extends Subsystem {
 					   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 					   RobotMap.SHOOTER_POS_RETURN_TYPE,
 					   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+			
+			shooterLeft = new Talon (RobotMap.SHOOTER_WHEEL_LEFT);
+			((SafePWM) shooterLeft).setExpiration(0.1);
+			((SafePWM) shooterLeft).setSafetyEnabled(true);
+			
+			shooterRight = new Talon (RobotMap.SHOOTER_WHEEL_RIGHT);
+			((SafePWM) shooterRight).setExpiration(0.1);
+			((SafePWM) shooterRight).setSafetyEnabled(true);	
+			
 		}	
 		
 		
