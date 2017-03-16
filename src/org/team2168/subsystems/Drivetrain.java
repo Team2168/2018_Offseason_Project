@@ -1,6 +1,7 @@
 package org.team2168.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -85,27 +86,54 @@ public class Drivetrain extends Subsystem {
 		
     	gunStyleInterpolator = new LinearInterpolator(gunStyleRange);
 		
-		drivetrainRightEncoder = new AverageEncoder(
-				RobotMap.RIGHT_DRIVE_ENCODER_A,
-				RobotMap.RIGHT_DRIVE_ENCODER_B,
-				RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
-				RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
-				RobotMap.RIGHT_DRIVE_TRAIN_ENCODER_REVERSE,
-				RobotMap.DRIVE_ENCODING_TYPE,
-				RobotMap.DRIVE_SPEED_RETURN_TYPE,
-				RobotMap.DRIVE_POS_RETURN_TYPE,
-				RobotMap.DRIVE_AVG_ENCODER_VAL);
+		if(Robot.isPracticeRobot())
+		{
+			drivetrainRightEncoder = new AverageEncoder(
+					RobotMap.RIGHT_DRIVE_ENCODER_A_PBOT,
+					RobotMap.RIGHT_DRIVE_ENCODER_B_PBOT,
+					RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
+					RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
+					RobotMap.RIGHT_DRIVE_TRAIN_ENCODER_REVERSE,
+					RobotMap.DRIVE_ENCODING_TYPE,
+					RobotMap.DRIVE_SPEED_RETURN_TYPE,
+					RobotMap.DRIVE_POS_RETURN_TYPE,
+					RobotMap.DRIVE_AVG_ENCODER_VAL);
 
-		drivetrainLeftEncoder = new AverageEncoder(
-				RobotMap.LEFT_DRIVE_ENCODER_A, 
-				RobotMap.LEFT_DRIVE_ENCODER_B,
-				RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
-				RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
-				RobotMap.LEFT_DRIVE_TRAIN_ENCODER_REVERSE,
-				RobotMap.DRIVE_ENCODING_TYPE,
-				RobotMap.DRIVE_SPEED_RETURN_TYPE,
-				RobotMap.DRIVE_POS_RETURN_TYPE,
-				RobotMap.DRIVE_AVG_ENCODER_VAL);
+			drivetrainLeftEncoder = new AverageEncoder(
+					RobotMap.LEFT_DRIVE_ENCODER_A_PBOT, 
+					RobotMap.LEFT_DRIVE_ENCODER_B_PBOT,
+					RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
+					RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
+					RobotMap.LEFT_DRIVE_TRAIN_ENCODER_REVERSE,
+					RobotMap.DRIVE_ENCODING_TYPE,
+					RobotMap.DRIVE_SPEED_RETURN_TYPE,
+					RobotMap.DRIVE_POS_RETURN_TYPE,
+					RobotMap.DRIVE_AVG_ENCODER_VAL);
+		}
+		else
+		{
+			drivetrainRightEncoder = new AverageEncoder(
+					RobotMap.RIGHT_DRIVE_ENCODER_A,
+					RobotMap.RIGHT_DRIVE_ENCODER_B,
+					RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
+					RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
+					RobotMap.RIGHT_DRIVE_TRAIN_ENCODER_REVERSE,
+					RobotMap.DRIVE_ENCODING_TYPE,
+					RobotMap.DRIVE_SPEED_RETURN_TYPE,
+					RobotMap.DRIVE_POS_RETURN_TYPE,
+					RobotMap.DRIVE_AVG_ENCODER_VAL);
+
+			drivetrainLeftEncoder = new AverageEncoder(
+					RobotMap.LEFT_DRIVE_ENCODER_A, 
+					RobotMap.LEFT_DRIVE_ENCODER_B,
+					RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
+					RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
+					RobotMap.LEFT_DRIVE_TRAIN_ENCODER_REVERSE,
+					RobotMap.DRIVE_ENCODING_TYPE,
+					RobotMap.DRIVE_SPEED_RETURN_TYPE,
+					RobotMap.DRIVE_POS_RETURN_TYPE,
+					RobotMap.DRIVE_AVG_ENCODER_VAL);
+		}
 		
 		gyroSPI = new ADXRS453Gyro();
 		gyroSPI.startThread();

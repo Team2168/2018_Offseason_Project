@@ -46,12 +46,12 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 3; //PBOT is 0
-	public static final int LEFT_DRIVE_ENCODER_B = 4; //PBOT is 1
-	public static final int LEFT_DRIVE_ENCODER_A = 5; //PBOT is 2
-	public static final int RIGHT_DRIVE_ENCODER_A = 0; //PBOT is 3
-	public static final int RIGHT_DRIVE_ENCODER_B = 1; //PBOT is 4
-	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 2; //PBOT is 5
+	public static final int RIGHT_DRIVE_ENCODER_A = 0;
+	public static final int RIGHT_DRIVE_ENCODER_B = 1;	
+	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 2;
+	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 3;
+	public static final int LEFT_DRIVE_ENCODER_B = 4;
+	public static final int LEFT_DRIVE_ENCODER_A = 5;
 	public static final int INDEXER_LOWER_BALL_PRESENT = 6;
 	public static final int INDEXER_UPPER_BALL_PRESENT = 7;
 	public static final int TX1_TURN_ON = 8;
@@ -71,6 +71,12 @@ public class RobotMap {
 	public static final int PRACTICE_BOT_JUMPER = 24;
 	
 	//PBOT Differences
+	public static final int GEAR_INTAKE_ARM_HALL_EFECT_PBOT = 0;
+	public static final int LEFT_DRIVE_ENCODER_B_PBOT = 1;
+	public static final int LEFT_DRIVE_ENCODER_A_PBOT = 2;
+	public static final int RIGHT_DRIVE_ENCODER_A_PBOT = 3;
+	public static final int RIGHT_DRIVE_ENCODER_B_PBOT = 4;
+	public static final int BALL_INTAKE_ARM_HALL_EFFECT_PBOT = 5;
 	public static final int SHOOTER_ENCODER_A_PBOT = 6; 
 	public static final int SHOOTER_ENCODER_B_PBOT = 7;
 	public static final int INDEXER_LOWER_BALL_PRESENT_PBOT = 21; //PWM 17 on board
@@ -330,6 +336,7 @@ public class RobotMap {
 	 *                    CONVELATOR PARAMETERS
 	 ******************************************************************/
 	public static final boolean REVERSE_CONVELATOR_WHEEL = false;
+	public static final boolean REVERSE_CONVELATOR_WHEEL_PBOT = true;
 
 
 	/******************************************************************
