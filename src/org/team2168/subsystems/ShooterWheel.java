@@ -111,6 +111,8 @@ public class ShooterWheel extends Subsystem {
 		ConsolePrinter.putBoolean("ShooterMotorRightCurrentTrip", () -> {return !Robot.pdp.isShooterMotorRightTrip();}, true, false);
 		ConsolePrinter.putNumber("ShooterRightMotorVoltage",() -> {return Robot.shooterWheel.getRightMotorVoltage();}, true, true);
 		ConsolePrinter.putNumber("ShooterLeftMotorVoltage",() -> {return Robot.shooterWheel.getLeftMotorVoltage();}, true, true);
+		ConsolePrinter.putBoolean("ShooterPIDisFinished", () -> {return Robot.shooterWheel.isPIDFinished();}, true, false);
+		ConsolePrinter.putBoolean("ShooterPIDisEnabled", () -> {return Robot.shooterWheel.isPIDEnabled();}, true, false);
 
 	}
 	
@@ -202,5 +204,13 @@ public class ShooterWheel extends Subsystem {
 	public double getPosition() {
 		// TODO Auto-generated method stub
 		return shooterEncoder.getPos();
+	}
+	
+	public boolean isPIDFinished() {
+		return shooterSpeedController.isFinished();
+	}
+	
+	public boolean isPIDEnabled() {
+		return shooterSpeedController.isEnabled();
 	}
 }
