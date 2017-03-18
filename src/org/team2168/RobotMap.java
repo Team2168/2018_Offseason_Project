@@ -194,7 +194,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final double GEAR_INTAKE_IR_THRESHOLD = 1.4;
 	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
-	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = true;
+	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = false;
 	public static final boolean REVERSE_GEAR_INTAKE_WHEEL_PBOT = false;
 
 	/*************************************************************************

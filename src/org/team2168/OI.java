@@ -19,6 +19,7 @@ import org.team2168.commands.flashlight.EnableFlashlight;
 import org.team2168.commands.gearintake.AutomaticGearIntake;
 import org.team2168.commands.gearintake.DriveGearIntakeRollerWithConstant;
 import org.team2168.commands.gearintake.LowerGearArm;
+import org.team2168.commands.gearintake.LowerGearArmDANGEROUS;
 import org.team2168.commands.gearintake.RaiseGearArm;
 import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.shooter.DriveHoodDownWithButton;
@@ -116,13 +117,13 @@ public class OI {
 		//Gear Assembly
 		operatorJoystick.ButtonRightTrigger().whileHeld(new AutomaticGearIntake());
 		operatorJoystick.ButtonRightTrigger().whenReleased(new RaiseGearArm());
-		operatorJoystick.ButtonRightBumper().whenPressed(new LowerGearArm());
+		operatorJoystick.ButtonRightBumper().whenPressed(new LowerGearArmDANGEROUS());
 		operatorJoystick.ButtonRightBumper().whenReleased(new RaiseGearArm());
 		//operatorJoystick.isPressedButtonRightBumper()/whenPressed .... SCORE GEAR
 		
 		
 		//Spit Gear Intake
-		operatorJoystick.ButtonStart().whenPressed(new LowerGearArm());
+		operatorJoystick.ButtonStart().whenPressed(new LowerGearArmDANGEROUS());
 		operatorJoystick.ButtonStart().whileHeld(new DriveGearIntakeRollerWithConstant(-1.0));
 		operatorJoystick.ButtonStart().whenReleased(new RaiseGearArm());
 		
