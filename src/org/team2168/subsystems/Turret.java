@@ -114,7 +114,7 @@ public class Turret extends Subsystem {
 	 * @return true if pressed, false if unpressed
 	 */
 	public boolean isLimitSwitchRightActive() {
-		return !limitSwitchRight.get();
+		return limitSwitchRight.get();
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class Turret extends Subsystem {
 	 * @return true if pressed, false if unpressed
 	 */
 	public boolean isLimitSwitchLeftActive() {
-		return !limitSwitchLeft.get();
+		return limitSwitchLeft.get();
 	}
 
     public void initDefaultCommand() {

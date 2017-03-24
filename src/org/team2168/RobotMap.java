@@ -157,7 +157,7 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= true;
 	public static final boolean REVERSE_SHOOTER_WHEEL_RIGHT= false;
 
 	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
@@ -206,7 +206,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         AGITATOR PARAMETERS
 	 *************************************************************************/
-	public static final boolean REVERSE_AGITATOR = false;
+	public static final boolean REVERSE_AGITATOR = true;
 	
 	
 
