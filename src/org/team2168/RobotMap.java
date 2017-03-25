@@ -157,7 +157,7 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= true;
 	public static final boolean REVERSE_SHOOTER_WHEEL_RIGHT= false;
 
 	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
@@ -206,7 +206,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         AGITATOR PARAMETERS
 	 *************************************************************************/
-	public static final boolean REVERSE_AGITATOR = false;
+	public static final boolean REVERSE_AGITATOR = true;
 	
 	
 
@@ -233,17 +233,14 @@ public class RobotMap {
 	/******************************************************************
 	 * 				               TURRET
 	 ******************************************************************/
-	public static final double TURRET_MAX_DRIVE = 0.5;
-	public static final boolean REVERSE_TURRET = false;
+	public static final double TURRET_MAX_DRIVE = 0.5; //TODO Tune
+	public static final boolean REVERSE_TURRET = true;
 
+	public static final double TURRET_POT_VOLTAGE_MAX = 2.866; //90 degrees
+	public static final double TURRET_POT_VOLTAGE_0 = 1.641; //0 degrees
+	public static final double TURRET_POT_VOLTAGE_MIN = 0.399; //-90 degrees
 	public static final int TURRET_AVG_ENCODER_VAL = 5;
 
-	public static final double TURRET_POT_VOLTAGE_MAX = 4.067; //90 degrees
-	public static final double TURRET_POT_ANGLE_MAX = 90.0;
-	public static final double TURRET_POT_VOLTAGE_0 = 2.815; //0 degrees
-	public static final double TURRET_POT_ANGLE_0 = 0;
-	public static final double TURRET_POT_VOLTAGE_MIN = 1.575; //-90 degrees
-	public static final double TURRET_POT_ANGLE_MIN= -90.0;
 	
 	/*************************************************************************
 	 *                        VISION PARAMETERS
