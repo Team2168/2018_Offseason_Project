@@ -94,8 +94,8 @@ public class OI {
 		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
 		
 		//AirshipShot
-		//operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(135));
-		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(5500));
+		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
+		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
 
 		//Fire
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-1.0));

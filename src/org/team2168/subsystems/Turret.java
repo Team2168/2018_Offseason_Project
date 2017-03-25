@@ -32,9 +32,9 @@ public class Turret extends Subsystem {
     
     private static LinearInterpolator turretInterpolator;
     //TODO get these values plez format for points: (volts, degrees)
-    private double[][] turretRange = {{-1.0,-100.0},
-    		                          {0.0,0.0},
-    		                          {1.0,100.0}};
+    private double[][] turretRange = {{RobotMap.TURRET_POT_VOLTAGE_MIN,-90.0},
+    		                          {RobotMap.TURRET_POT_VOLTAGE_0,0.0},
+    		                          {RobotMap.TURRET_POT_VOLTAGE_MAX,90.0}};
     
     /**
      * Default constructor for Turret subsystem
@@ -88,10 +88,16 @@ public class Turret extends Subsystem {
 	 * @param speed of -1.0 (left) to 1.0 (right)
 	 */
 	public void setSpeed(double speed) {
-		if((speed > 0 && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
+		if(((speed > 0) && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
+			turretMotor.set(0);
+		}
+		if(((speed > 0) && (getRawPot() > RobotMap.TURRET_POT_VOLTAGE_MAX))||(speed < 0) && (getRawPot() < RobotMap.TURRET_POT_VOLTAGE_MIN)){
 			turretMotor.set(0);
 		}
 		else {
+			if(RobotMap.REVERSE_TURRET){
+				speed = -speed;
+			}
 			turretMotor.set(speed);
 		}
 	}

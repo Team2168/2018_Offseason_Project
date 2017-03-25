@@ -233,13 +233,12 @@ public class RobotMap {
 	/******************************************************************
 	 * 				               TURRET
 	 ******************************************************************/
-	public static final double TURRET_MAX_DRIVE = 0.5;
-	public static final boolean REVERSE_TURRET = false;
-	public static final double TURRET_MOTOR_SPEED = 0.2; //TODO TUNE
+	public static final double TURRET_MAX_DRIVE = 0.5; //TODO Tune
+	public static final boolean REVERSE_TURRET = true;
 
-	public static final double TURRET_POT_VOLTAGE_MAX = 4.067; //90 degrees
-	public static final double TURRET_POT_VOLTAGE_0 = 2.815; //0 degrees
-	public static final double TURRET_POT_VOLTAGE_MIN = 1.575; //-90 degrees
+	public static final double TURRET_POT_VOLTAGE_MAX = 2.866; //90 degrees
+	public static final double TURRET_POT_VOLTAGE_0 = 1.641; //0 degrees
+	public static final double TURRET_POT_VOLTAGE_MIN = 0.399; //-90 degrees
 	
 	/*************************************************************************
 	 *                        VISION PARAMETERS

@@ -19,7 +19,7 @@ public class SetTurretAngle extends Command {
     	requires(Robot.turret);
     	
     	angle = input;
-    	error = error;
+    	this.error = error;
     }
 
     // Called just before this Command runs the first time
@@ -33,10 +33,10 @@ public class SetTurretAngle extends Command {
     		finished = true;
     	}
     	else if (((Robot.turret.getPosition()-error) > angle) && !(angle < (Robot.turret.getPosition()+error))) {
-    		Robot.turret.setSpeed(RobotMap.TURRET_MOTOR_SPEED);
+    		Robot.turret.setSpeed(RobotMap.TURRET_MAX_DRIVE);
     	}
     	else if (!((Robot.turret.getPosition()-error) > angle) && (angle < (Robot.turret.getPosition()+error))) {
-    		Robot.turret.setSpeed(-RobotMap.TURRET_MOTOR_SPEED);
+    		Robot.turret.setSpeed(-RobotMap.TURRET_MAX_DRIVE);
     	}
     }
 
