@@ -239,6 +239,8 @@ public class RobotMap {
 	public static final double TURRET_POT_VOLTAGE_MAX = 2.866; //90 degrees
 	public static final double TURRET_POT_VOLTAGE_0 = 1.641; //0 degrees
 	public static final double TURRET_POT_VOLTAGE_MIN = 0.399; //-90 degrees
+	public static final int TURRET_AVG_ENCODER_VAL = 5;
+
 	
 	/*************************************************************************
 	 *                        VISION PARAMETERS
@@ -311,7 +313,11 @@ public class RobotMap {
 		public static final double SHOOTER_SPEED_D = 0.0000011838;
 		public static final double SHOOTER_SPEED_N = 100;
 		
-
+		
+		//Turret Period
+		public static final long TURRET_PID_PERIOD = 20;
+		public static final int TURRET_PID_ARRAY_SIZE = 30;
+		
 
 	/****************************************************************
 	 *                TCP Servers  (ONLY FOR DEBUGGING)             *
@@ -323,6 +329,7 @@ public class RobotMap {
 	public static final int TCP_SERVER_SHOOTER_SPEED = 1184;
 	public static final int TCP_SERVER_ROTATE_CONTROLLER_STRAIGHT = 1185;
 	public static final int TCP_SERVER_ROTATE_CAMERA_CONTROLLER = 1186;
+	public static final int TCP_SERVER_ROTATE_TURRET_CAMERA_CONTROLLER = 1187;
 
 	/******************************************************************
 	 *                    ConsolePrinter PARAMETERS                   *
