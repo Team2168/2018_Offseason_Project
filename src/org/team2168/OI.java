@@ -94,8 +94,8 @@ public class OI {
 		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
 		
 		//AirshipShot
-		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(180));
-		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3825));
+		//operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(135));
+		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(5500));
 
 		//Fire
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-1.0));
@@ -129,8 +129,8 @@ public class OI {
 		
 		
 		//Ball Intake Assembly
-		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIntakeWithConstant(1));
-		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveAgitatorWithConstant(1));
+		//operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIntakeWithConstant(1));
+		//operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveAgitatorWithConstant(1));
 		operatorJoystick.ButtonLeftTrigger().whenPressed(new LowerBallIntakeArm());
 		operatorJoystick.ButtonLeftBumper().whenReleased(new RaiseBallIntakeArm());
 		

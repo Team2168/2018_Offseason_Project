@@ -307,7 +307,7 @@ public class RobotMap {
 //		public static final double SHOOTER_SPEED_N = 6.8807;
 		
 		public static final double SHOOTER_SPEED_P = 0.000037;
-		public static final double SHOOTER_SPEED_I = 0.000053; 
+		public static final double SHOOTER_SPEED_I = 0.000093; 
 		public static final double SHOOTER_SPEED_D = 0.0000011838;
 		public static final double SHOOTER_SPEED_N = 100;
 		
