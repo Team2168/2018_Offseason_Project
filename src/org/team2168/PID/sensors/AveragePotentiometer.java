@@ -28,6 +28,8 @@ public class AveragePotentiometer implements PIDSensorInterface{
 											 double maxVoltage, double maxAngle,
 											 int averageN) {
 		
+		potentiometer = new AnalogInput(channel);
+		
 	    double[][] turretRange = {{minVoltage, minAngle},
                 				  {zeroVoltage , zeroAngle},
                 				  {maxVoltage, maxAngle}};
