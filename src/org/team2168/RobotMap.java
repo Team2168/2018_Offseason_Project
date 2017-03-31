@@ -147,6 +147,8 @@ public class RobotMap {
 	public static final int DRIVE_ENCODER_MIN_PERIOD = 1;
 	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE = false;
 	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE = false;
+	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE_PBOT = true;
+	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE_PBOT = true;
 	public static final int DRIVE_AVG_ENCODER_VAL = 5;
 	public static final double MIN_DRIVE_SPEED = 0.2;
 	public static final double AUTO_NORMAL_SPEED = 0.5;
