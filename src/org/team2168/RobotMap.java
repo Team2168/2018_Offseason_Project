@@ -302,6 +302,10 @@ public class RobotMap {
 		public static final double ROTATE_POSITION_P_Drive_Straight = 0.045;
 		public static final double ROTATE_POSITION_I_Drive_Straight = 0.001;
 		public static final double ROTATE_POSITION_D_Drive_Straight = 0.0064778888124088;
+		
+		public static final double ROTATE_TURRET_P = 0.024;
+		public static final double ROTATE_TURRET_I = 0.027;
+		public static final double ROTATE_TURRET_D = 0.000000067;
 
 		//Shooter PID Speed
 		//Bandwidth =
@@ -333,6 +337,7 @@ public class RobotMap {
 	public static final int TCP_SERVER_ROTATE_CONTROLLER_STRAIGHT = 1185;
 	public static final int TCP_SERVER_ROTATE_CAMERA_CONTROLLER = 1186;
 	public static final int TCP_SERVER_ROTATE_TURRET_CAMERA_CONTROLLER = 1187;
+	public static final int TCP_SERVER_ROTATE_TURRET_POT_CONTROLLER = 1188;
 
 	/******************************************************************
 	 *                    ConsolePrinter PARAMETERS                   *

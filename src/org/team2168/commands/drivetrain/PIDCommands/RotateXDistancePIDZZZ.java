@@ -22,8 +22,8 @@ public class RotateXDistancePIDZZZ extends Command {
 	
     public RotateXDistancePIDZZZ() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.drivetrain);
-    	this.setPoint = Robot.drivetrain.rotateController.getSetPoint();
+    	requires(Robot.turret);
+    	this.setPoint = Robot.turret.rotateTurretPOTController.getSetPoint();
     	this.maxSpeed = 1;
     	this.minSpeed = 0;
     }
@@ -58,22 +58,22 @@ public class RotateXDistancePIDZZZ extends Command {
 	protected void initialize() {
 		double sp = 0;
 		if (!absolute)
-			sp = this.setPoint + Robot.drivetrain.getHeading();
+			sp = this.setPoint + Robot.turret.getPosition();
 		else
 			sp = this.setPoint;
-		Robot.drivetrain.rotateController.reset();
+		Robot.turret.rotateTurretPOTController.reset();
 
-//		Robot.drivetrain.rotateController.setpGain(RobotMap.ROTATE_POSITION_P);
-//		Robot.drivetrain.rotateController.setiGain(RobotMap.ROTATE_POSITION_I);
-//		Robot.drivetrain.rotateController.setdGain(RobotMap.ROTATE_POSITION_D);
-		Robot.drivetrain.rotateController.setSetPoint(sp);
-		Robot.drivetrain.rotateController.setMaxPosOutput(maxSpeed);
-		Robot.drivetrain.rotateController.setMaxNegOutput(-maxSpeed);
-		Robot.drivetrain.rotateController.setMinPosOutput(minSpeed);
-		Robot.drivetrain.rotateController.setMinNegOutput(-minSpeed);
-		Robot.drivetrain.rotateController.setAcceptErrorDiff(error);
+//		Robot.turret.rotateTurretPOTController.setpGain(RobotMap.ROTATE_POSITION_P);
+//		Robot.turret.rotateTurretPOTController.setiGain(RobotMap.ROTATE_POSITION_I);
+//		Robot.turret.rotateTurretPOTController.setdGain(RobotMap.ROTATE_POSITION_D);
+		Robot.turret.rotateTurretPOTController.setSetPoint(sp);
+		Robot.turret.rotateTurretPOTController.setMaxPosOutput(maxSpeed);
+		Robot.turret.rotateTurretPOTController.setMaxNegOutput(-maxSpeed);
+		Robot.turret.rotateTurretPOTController.setMinPosOutput(minSpeed);
+		Robot.turret.rotateTurretPOTController.setMinNegOutput(-minSpeed);
+		Robot.turret.rotateTurretPOTController.setAcceptErrorDiff(error);
 		//Robot.drivetrain.gyroSPI.reset();
-		Robot.drivetrain.rotateController.Enable();
+		Robot.turret.rotateTurretPOTController.Enable();
 		
     }
 
@@ -81,7 +81,7 @@ public class RotateXDistancePIDZZZ extends Command {
     
 	protected void execute() {
 		
-		Robot.drivetrain.tankDrive(Robot.drivetrain.rotateController.getControlOutput(),-Robot.drivetrain.rotateController.getControlOutput());
+		Robot.turret.setSpeed(Robot.turret.rotateTurretPOTController.getControlOutput());
 	
 		
     }
@@ -90,14 +90,14 @@ public class RotateXDistancePIDZZZ extends Command {
     
 	protected boolean isFinished() {
 		//TODO Should the command be stopped????????!?!?!?!?!? after PID is tuned
-    	return Robot.drivetrain.rotateController.isFinished();
+    	return Robot.turret.rotateTurretPOTController.isFinished();
 		//return false;
     }
 
     // Called once after isFinished returns true
     
 	protected void end() {
-		Robot.drivetrain.rotateController.Pause();
+		Robot.turret.rotateTurretPOTController.Pause();
     }
 
     // Called when another command which requires one or more of the same
