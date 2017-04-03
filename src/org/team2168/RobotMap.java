@@ -216,7 +216,7 @@ public class RobotMap {
 	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
 	public static final double MIN_HOOD_VALUE = 115;
 	public static final double MAX_HOOD_VALUE = 180;
-	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 0.5;
+	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 2.0;
 
 
 	/*************************************************************************
@@ -237,8 +237,11 @@ public class RobotMap {
 	public static final boolean REVERSE_TURRET = true;
 
 	public static final double TURRET_POT_VOLTAGE_MAX = 2.866; //90 degrees
+	public static final double TURRET_POT_ANGLE_MAX = 90.0;
 	public static final double TURRET_POT_VOLTAGE_0 = 1.641; //0 degrees
+	public static final double TURRET_POT_ANGLE_0 = 0.0;
 	public static final double TURRET_POT_VOLTAGE_MIN = 0.399; //-90 degrees
+	public static final double TURRET_POT_ANGLE_MIN = -90.0;
 	public static final int TURRET_AVG_ENCODER_VAL = 5;
 
 	

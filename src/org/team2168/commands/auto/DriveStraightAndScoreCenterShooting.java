@@ -32,12 +32,12 @@ public class DriveStraightAndScoreCenterShooting extends CommandGroup {
     	addSequential(new LowerGearArmDANGEROUS(),0.5);
     	//Back off bruh
     	addSequential(new Sleep(), 0.6);
-    	addSequential(new DriveXDistance(-3.0,0.7,0.1));
+    	addSequential(new DriveXDistance(-3.0,0.7,0.1)); 
     	addSequential(new RaiseGearArm());
     	//Prepare for ripum gathering
     	addSequential(new EnableFlashlight());
     	addSequential(new LowerBallIntakeArm());
-    	addParallel(new SetHoodToAngle(130),2);
+    	addParallel(new SetHoodToAngle(125),2);
     	addParallel(new DriveShooterPIDSpeed(5500));
     	//Gather the ripums
     	addSequential(new WaitForShooterPIDToFinish());
@@ -46,6 +46,6 @@ public class DriveStraightAndScoreCenterShooting extends CommandGroup {
     	addParallel(new DriveElevatorWithConstant(-1.0));
     	addParallel(new DriveIndexerWithConstant(1.0));
     	addParallel(new DriveIntakeWithConstant(1.0));
-    	addParallel(new DriveAgitatorWithConstant(1.0));
+    	addParallel(new DriveAgitatorWithConstant(0.65));
     }
 }
