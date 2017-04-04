@@ -36,6 +36,8 @@ public class Turret extends Subsystem {
 
     private static Turret instance = null;
     
+    double turretPotMax;
+    double turretPotMin;
 
     private static LinearInterpolator turretInterpolator;
     //TODO get these values plez format for points: (volts, degrees)
@@ -76,12 +78,26 @@ public class Turret extends Subsystem {
 		TCPRotateTurretCameraController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_TURRET_CAMERA_CONTROLLER, rotateTurretCameraController);
 		TCPRotateTurretCameraController.start();
 		
-		turretPot = new AveragePotentiometer(RobotMap.TURRET_POTENTIOMETER, 
-											 RobotMap.TURRET_POT_VOLTAGE_MIN, RobotMap.TURRET_POT_ANGLE_MIN,
-											 RobotMap.TURRET_POT_VOLTAGE_0, RobotMap.TURRET_POT_ANGLE_0,
-											 RobotMap.TURRET_POT_VOLTAGE_MAX, RobotMap.TURRET_POT_ANGLE_MAX,
-											 RobotMap.TURRET_AVG_ENCODER_VAL);
-    	
+		if(Robot.isPracticeRobot()){
+			turretPot = new AveragePotentiometer(RobotMap.TURRET_POTENTIOMETER,
+					 RobotMap.TURRET_POT_VOLTAGE_MIN_PBOT, RobotMap.TURRET_POT_ANGLE_MIN_PBOT,
+					 RobotMap.TURRET_POT_VOLTAGE_0_PBOT, RobotMap.TURRET_POT_ANGLE_0_PBOT,
+					 RobotMap.TURRET_POT_VOLTAGE_MAX_PBOT, RobotMap.TURRET_POT_ANGLE_MAX_PBOT,
+					 RobotMap.TURRET_AVG_ENCODER_VAL);
+			turretPotMax = RobotMap.TURRET_POT_VOLTAGE_MAX_PBOT;
+			turretPotMin = RobotMap.TURRET_POT_VOLTAGE_MIN_PBOT;
+		}
+		else {
+			turretPot = new AveragePotentiometer(RobotMap.TURRET_POTENTIOMETER,
+					 RobotMap.TURRET_POT_VOLTAGE_MIN, RobotMap.TURRET_POT_ANGLE_MIN,
+					 RobotMap.TURRET_POT_VOLTAGE_0, RobotMap.TURRET_POT_ANGLE_0,
+					 RobotMap.TURRET_POT_VOLTAGE_MAX, RobotMap.TURRET_POT_ANGLE_MAX,
+					 RobotMap.TURRET_AVG_ENCODER_VAL);
+			turretPotMax = RobotMap.TURRET_POT_VOLTAGE_MAX;
+			turretPotMin = RobotMap.TURRET_POT_VOLTAGE_MIN;
+
+		}
+											
     	//For to be the very safest and to not break robot
     	((SafePWM) turretMotor).setExpiration(0.1);
     	((SafePWM) turretMotor).setSafetyEnabled(true);
@@ -115,7 +131,7 @@ public class Turret extends Subsystem {
 		if(((speed > 0) && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
 			turretMotor.set(0);
 		}
-		if(((speed > 0) && (getRawPot() > RobotMap.TURRET_POT_VOLTAGE_MAX))||(speed < 0) && (getRawPot() < RobotMap.TURRET_POT_VOLTAGE_MIN)){
+		if(((speed > 0) && (getRawPot() > turretPotMax))||(speed < 0) && (getRawPot() < turretPotMin)){
 			turretMotor.set(0);
 		}
 		else {
