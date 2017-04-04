@@ -31,6 +31,9 @@ public class Turret extends Subsystem {
 
 	public PIDPosition rotateTurretCameraController;	
 	TCPSocketSender TCPRotateTurretCameraController;
+	
+	public PIDPosition rotateTurretPOTController;	
+	TCPSocketSender TCPRotateTurretPOTController;
     
     public TCPCamSensor tcpCamSensor;
 
@@ -71,6 +74,7 @@ public class Turret extends Subsystem {
 				tcpCamSensor,
 				RobotMap.TURRET_PID_PERIOD);
     	
+    	
 		rotateTurretCameraController.setSIZE(RobotMap.TURRET_PID_ARRAY_SIZE);
 
 		rotateTurretCameraController.startThread();
@@ -78,26 +82,35 @@ public class Turret extends Subsystem {
 		TCPRotateTurretCameraController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_TURRET_CAMERA_CONTROLLER, rotateTurretCameraController);
 		TCPRotateTurretCameraController.start();
 		
-		if(Robot.isPracticeRobot()){
-			turretPot = new AveragePotentiometer(RobotMap.TURRET_POTENTIOMETER,
-					 RobotMap.TURRET_POT_VOLTAGE_MIN_PBOT, RobotMap.TURRET_POT_ANGLE_MIN_PBOT,
-					 RobotMap.TURRET_POT_VOLTAGE_0_PBOT, RobotMap.TURRET_POT_ANGLE_0_PBOT,
-					 RobotMap.TURRET_POT_VOLTAGE_MAX_PBOT, RobotMap.TURRET_POT_ANGLE_MAX_PBOT,
-					 RobotMap.TURRET_AVG_ENCODER_VAL);
-			turretPotMax = RobotMap.TURRET_POT_VOLTAGE_MAX_PBOT;
-			turretPotMin = RobotMap.TURRET_POT_VOLTAGE_MIN_PBOT;
-		}
-		else {
-			turretPot = new AveragePotentiometer(RobotMap.TURRET_POTENTIOMETER,
-					 RobotMap.TURRET_POT_VOLTAGE_MIN, RobotMap.TURRET_POT_ANGLE_MIN,
-					 RobotMap.TURRET_POT_VOLTAGE_0, RobotMap.TURRET_POT_ANGLE_0,
-					 RobotMap.TURRET_POT_VOLTAGE_MAX, RobotMap.TURRET_POT_ANGLE_MAX,
-					 RobotMap.TURRET_AVG_ENCODER_VAL);
-			turretPotMax = RobotMap.TURRET_POT_VOLTAGE_MAX;
-			turretPotMin = RobotMap.TURRET_POT_VOLTAGE_MIN;
+		turretPot = new AveragePotentiometer(RobotMap.TURRET_POTENTIOMETER, 
+											 RobotMap.TURRET_POT_VOLTAGE_MIN, RobotMap.TURRET_POT_ANGLE_MIN,
+											 RobotMap.TURRET_POT_VOLTAGE_0, RobotMap.TURRET_POT_ANGLE_0,
+											 RobotMap.TURRET_POT_VOLTAGE_MAX, RobotMap.TURRET_POT_ANGLE_MAX,
+											 RobotMap.TURRET_AVG_ENCODER_VAL);
+    	
+		
+		
+		rotateTurretPOTController = new PIDPosition(
+				"RotationCameraController",
+				RobotMap.ROTATE_TURRET_P,
+				RobotMap.ROTATE_TURRET_I,
+				RobotMap.ROTATE_TURRET_D,
+				turretPot,
+				RobotMap.TURRET_PID_PERIOD);
+    	
+    	
+		rotateTurretPOTController.setSIZE(RobotMap.TURRET_PID_ARRAY_SIZE);
 
-		}
-											
+		rotateTurretPOTController.startThread();
+		
+		TCPRotateTurretPOTController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_TURRET_POT_CONTROLLER, rotateTurretPOTController);
+		TCPRotateTurretPOTController.start();
+		
+		
+		
+		
+		
+
     	//For to be the very safest and to not break robot
     	((SafePWM) turretMotor).setExpiration(0.1);
     	((SafePWM) turretMotor).setSafetyEnabled(true);
@@ -145,7 +158,7 @@ public class Turret extends Subsystem {
 	/**
 	 * Returns the current position of the turret
 	 * @param x is voltage
-	 * @return Potentiometer position
+	 * @return Potentiometer angle
 	 */
 	public double getPosition() {
 		return turretPot.getPos();
