@@ -244,6 +244,14 @@ public class RobotMap {
 	public static final double TURRET_POT_ANGLE_0 = 0.0;
 	public static final double TURRET_POT_VOLTAGE_MIN = 0.399; //-90 degrees
 	public static final double TURRET_POT_ANGLE_MIN = -90.0;
+	
+	public static final double TURRET_POT_VOLTAGE_MAX_PBOT = 3.06; //90 degrees
+	public static final double TURRET_POT_ANGLE_MAX_PBOT = 90.0;
+	public static final double TURRET_POT_VOLTAGE_0_PBOT = 1.840; //0 degrees
+	public static final double TURRET_POT_ANGLE_0_PBOT = 0.0;
+	public static final double TURRET_POT_VOLTAGE_MIN_PBOT = 0.594; //-90 degrees
+	public static final double TURRET_POT_ANGLE_MIN_PBOT = -90.0;
+	
 	public static final int TURRET_AVG_ENCODER_VAL = 5;
 
 	
