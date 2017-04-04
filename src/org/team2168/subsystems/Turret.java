@@ -39,6 +39,8 @@ public class Turret extends Subsystem {
 
     private static Turret instance = null;
     
+    double turretPotMax;
+    double turretPotMin;
 
     private static LinearInterpolator turretInterpolator;
     //TODO get these values plez format for points: (volts, degrees)
@@ -108,6 +110,7 @@ public class Turret extends Subsystem {
 		
 		
 		
+
     	//For to be the very safest and to not break robot
     	((SafePWM) turretMotor).setExpiration(0.1);
     	((SafePWM) turretMotor).setSafetyEnabled(true);
@@ -141,7 +144,7 @@ public class Turret extends Subsystem {
 		if(((speed > 0) && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
 			turretMotor.set(0);
 		}
-		if(((speed > 0) && (getRawPot() > RobotMap.TURRET_POT_VOLTAGE_MAX))||(speed < 0) && (getRawPot() < RobotMap.TURRET_POT_VOLTAGE_MIN)){
+		if(((speed > 0) && (getRawPot() > turretPotMax))||(speed < 0) && (getRawPot() < turretPotMin)){
 			turretMotor.set(0);
 		}
 		else {
