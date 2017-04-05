@@ -90,7 +90,6 @@ public class OI {
 		//////////////Operator Joystick//////////////
 		
 		//Boiler Shot
-		operatorJoystick.ButtonX().whenPressed(new SetHoodToAngle(5));
 		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
 		
 		//AirshipShot
@@ -98,10 +97,10 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
 
 		//Fire
-		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-1.0));
-		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(1.0));
-		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
-		operatorJoystick.ButtonA().whileHeld(new DriveAgitatorWithConstant(0.65));
+		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-0.75));
+		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(0.75));
+		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(0.75));
+		operatorJoystick.ButtonA().whileHeld(new DriveAgitatorWithConstant(0.75));
 
 		
 		//Kill Shooter
