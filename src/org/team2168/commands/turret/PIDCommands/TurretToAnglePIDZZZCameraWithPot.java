@@ -56,7 +56,7 @@ public class TurretToAnglePIDZZZCameraWithPot extends Command {
     
 	protected void initialize() {
 		if (!absolute)
-			this.setPoint = Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
+			this.setPoint = Robot.turret.getPosition() - Robot.turret.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
 		Robot.turret.rotateTurretCameraController.reset();
 		Robot.turret.rotateTurretCameraController.setSetPoint(setPoint);
 		Robot.turret.rotateTurretCameraController.setMaxPosOutput(maxSpeed);

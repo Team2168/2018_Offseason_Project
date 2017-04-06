@@ -7,6 +7,7 @@ import org.team2168.commands.drivetrain.PIDCommands.DriveSraightXDistancePIDZZZC
 import org.team2168.commands.ballIntake.DriveIntakeWithConstant;
 import org.team2168.commands.ballIntake.LowerBallIntakeArm;
 import org.team2168.commands.ballIntake.RaiseBallIntakeArm;
+import org.team2168.commands.ballIntake.ToggleBallIntakeArm;
 import org.team2168.commands.climber.DriveClimberWithConstant;
 import org.team2168.commands.climber.DriveClimberWithConstantUntilCurrentLimit;
 import org.team2168.commands.drivetrain.ShiftHigh;
@@ -29,6 +30,8 @@ import org.team2168.commands.shooter.SetHoodToAngle;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
 import org.team2168.commands.turret.DriveTurretWithConstant;
+import org.team2168.commands.turret.PIDCommands.RotateTurretAnglePIDZZZ;
+import org.team2168.commands.turret.PIDCommands.TurretToAnglePIDZZZCameraWithPot;
 import org.team2168.utils.F310;
 import org.team2168.utils.consoleprinter.ConsolePrinter;
 
@@ -136,7 +139,10 @@ public class OI {
 		//Climber
 		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstant(1.0));
 		
-		
+		//Boiler Shot Angle
+		driverJoystick.ButtonLeftStick().whenPressed(new SetHoodToAngle(10.0));
+		driverJoystick.ButtonLeftStick().whenPressed(new RotateTurretAnglePIDZZZ(0.0, 0.7, 0.2, 0.2));
+		driverJoystick.ButtonLeftStick().whenPressed(new DriveShooterPIDSpeed(3000));
 		
 		
 		//////////////Test Joystick//////////////
@@ -168,13 +174,18 @@ public class OI {
 		pidTestJoystick.ButtonRightBumper().whenReleased(new RaiseGearArm());
 		
 		//PIDJoystick
-		//Shoot Far Preset (Y)
-		//pidTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6700));
+		//Turret to target with camera (Y)
+		pidTestJoystick.ButtonY().whenPressed(new TurretToAnglePIDZZZCameraWithPot(0, 0.7, 0.1, 0.2));
 
-		//Shoot Close Preset (X)
-		//pidTestJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(4000));
+		//Turret to 20 off target with camera (X)
+		pidTestJoystick.ButtonX().whenPressed(new TurretToAnglePIDZZZCameraWithPot(20, 0.7, 0.1, 0.2));
 		
-		//pidTestJoystick.ButtonA().whenPressed(new DriveShooterPIDSpeed());
+		//Turret -20 off target with camera (A)
+		pidTestJoystick.ButtonA().whenPressed(new TurretToAnglePIDZZZCameraWithPot(-20, 0.7, 0.1, 0.2));
+		
+		//Toggle ball intake
+		pidTestJoystick.ButtonB().whenPressed(new ToggleBallIntakeArm());
+		
 		//Camera Shot Align (Start Button)
 		
 		

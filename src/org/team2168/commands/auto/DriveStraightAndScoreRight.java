@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveStraightAndScoreRight extends CommandGroup {
 
     public DriveStraightAndScoreRight() {
-        addSequential(new DriveXDistance(4.0,0.7,0.1));
+        addSequential(new DriveXDistance(5.0,0.7,0.1));
         addSequential(new RotateXDistancePIDZZZ(-45,0.7,0.2),0.7);
         addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),1);
         addSequential(new DriveXDistance(7.0,0.7,0.1),2);

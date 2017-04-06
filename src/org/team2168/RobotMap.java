@@ -208,7 +208,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         AGITATOR PARAMETERS
 	 *************************************************************************/
-	public static final boolean REVERSE_AGITATOR = true;
+	public static final boolean REVERSE_AGITATOR = false;
 	
 	
 
