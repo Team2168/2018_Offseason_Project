@@ -43,7 +43,7 @@ public class DriveStraightAndScoreCenterShooting extends CommandGroup {
     	addSequential(new WaitForShooterPIDToFinish());
     	addSequential(new Sleep(), 3);
     	//Precipitate
-    	addParallel(new DriveElevatorWithConstant(-1.0));
+    	addParallel(new DriveElevatorWithConstant(1.0));
     	addParallel(new DriveIndexerWithConstant(1.0));
     	addParallel(new DriveIntakeWithConstant(1.0));
     	addParallel(new DriveAgitatorWithConstant(0.65));

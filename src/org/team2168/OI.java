@@ -25,6 +25,7 @@ import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.shooter.DriveHoodDownWithButton;
 import org.team2168.commands.shooter.DriveHoodUpWithButton;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
+import org.team2168.commands.shooter.IndexSingleBall;
 import org.team2168.commands.shooter.SetHoodToAngle;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
@@ -92,12 +93,13 @@ public class OI {
 		//Boiler Shot
 		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
 		
-		//AirshipShot
-		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
-		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
+//		//AirshipShot
+//		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
+//		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
+		operatorJoystick.ButtonY().whenPressed(new IndexSingleBall());
 
 		//Fire
-		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-0.75));
+		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.75));
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(0.75));
 		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(0.75));
 		operatorJoystick.ButtonA().whileHeld(new DriveAgitatorWithConstant(0.75));
@@ -144,8 +146,8 @@ public class OI {
 		testJoystick.ButtonB().whileHeld(new DriveIntakeWithConstant(-1.0));
 		testJoystick.ButtonX().whileHeld(new DriveClimberWithConstant(1.0));
 		testJoystick.ButtonY().whileHeld(new DriveClimberWithConstant(-1.0));
-		testJoystick.ButtonLeftDPad().whileHeld(new DriveElevatorWithConstant(1.0));
-		testJoystick.ButtonRightDPad().whileHeld(new DriveElevatorWithConstant(-1.0));
+		testJoystick.ButtonLeftDPad().whileHeld(new DriveElevatorWithConstant(-1.0));
+		testJoystick.ButtonRightDPad().whileHeld(new DriveElevatorWithConstant(1.0));
 		testJoystick.ButtonRightBumper().whileHeld(new DriveGearIntakeRollerWithConstant(1.0));
 		testJoystick.ButtonLeftBumper().whileHeld(new DriveGearIntakeRollerWithConstant(-1.0));
 		testJoystick.ButtonStart().whileHeld(new DriveIndexerWithConstant(1.0));

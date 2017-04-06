@@ -1,4 +1,4 @@
-package org.team2168.commands.indexer;
+package org.team2168.commands.elevator;
 
 import org.team2168.Robot;
 
@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * Runs indexer until a ball is present
  * @author Wen Baid
  */
-public class RunIndexerUntilBallPresent extends Command {
+public class RunElevatorUntilBallPresent extends Command {
 	private double speed;
 	private boolean finished = false; 
 	
@@ -16,8 +16,8 @@ public class RunIndexerUntilBallPresent extends Command {
 	 * 
 	 * @param speed -1.0 to 1.0. Positive values bring a ball into the shooter.
 	 */
-    public RunIndexerUntilBallPresent(double speed) {
-    	requires(Robot.shooterIndexer);
+    public RunElevatorUntilBallPresent(double speed) {
+    	requires(Robot.ballConvelator);
     	this.speed = speed;
     }
 
@@ -29,7 +29,7 @@ public class RunIndexerUntilBallPresent extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (!finished) {
-    		Robot.shooterIndexer.setSpeed(speed);	
+    		Robot.ballConvelator.driveElevator(speed);	
     	}
     }
 
@@ -40,7 +40,7 @@ public class RunIndexerUntilBallPresent extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooterIndexer.setSpeed(0.0);
+    	Robot.ballConvelator.driveElevator(0.0);
     }
 
     // Called when another command which requires one or more of the same
