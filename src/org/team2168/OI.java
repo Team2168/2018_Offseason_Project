@@ -96,8 +96,8 @@ public class OI {
 		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
 		
 		//AirshipShot
-		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
-		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
+//		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
+//		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
 
 		//Fire
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(-0.75));
@@ -138,12 +138,14 @@ public class OI {
 		
 		//Climber
 		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstant(1.0));
-		
+		   
 		//Boiler Shot Angle
-		driverJoystick.ButtonLeftStick().whenPressed(new SetHoodToAngle(10.0));
-		driverJoystick.ButtonLeftStick().whenPressed(new RotateTurretAnglePIDZZZ(0.0, 0.7, 0.2, 0.2));
-		driverJoystick.ButtonLeftStick().whenPressed(new DriveShooterPIDSpeed(3000));
+		operatorJoystick.ButtonLeftStick().whenPressed(new SetHoodToAngle(45.0));
+		operatorJoystick.ButtonLeftStick().whenPressed(new RotateTurretAnglePIDZZZ(0.0, 0.7, 0.2, 0.2));
+		operatorJoystick.ButtonLeftStick().whenPressed(new DriveShooterPIDSpeed(2800));
 		
+		//Toggle Hopper
+		operatorJoystick.ButtonY().whileHeld(new ToggleBallIntakeArm());
 		
 		//////////////Test Joystick//////////////
 		testJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
@@ -163,31 +165,37 @@ public class OI {
 		
 		
 		//////////////PID Test Joystick//////////////
-		pidTestJoystick.ButtonA().whenPressed(new DriveStraightAndScoreCenter());
-		pidTestJoystick.ButtonB().whenPressed(new RotateXDistancePIDZZZ(25, 0.8, 0.25, 1));
-		pidTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.2));
-		pidTestJoystick.ButtonY().whenPressed(new DriveStraightAndScoreRight());
+//		pidTestJoystick.ButtonA().whenPressed(new DriveStraightAndScoreCenter());
+//		pidTestJoystick.ButtonB().whenPressed(new RotateXDistancePIDZZZ(25, 0.8, 0.25, 1));
+//		pidTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.2));
+//		pidTestJoystick.ButtonY().whenPressed(new DriveStraightAndScoreRight());
 		//Gear Assembly
-		pidTestJoystick.ButtonRightTrigger().whileHeld(new AutomaticGearIntake());
-		pidTestJoystick.ButtonRightTrigger().whenReleased(new RaiseGearArm());
-		pidTestJoystick.ButtonRightBumper().whenPressed(new LowerGearArm());
-		pidTestJoystick.ButtonRightBumper().whenReleased(new RaiseGearArm());
+//		pidTestJoystick.ButtonRightTrigger().whileHeld(new AutomaticGearIntake());
+//		pidTestJoystick.ButtonRightTrigger().whenReleased(new RaiseGearArm());
+//		pidTestJoystick.ButtonRightBumper().whenPressed(new LowerGearArm());
+//		pidTestJoystick.ButtonRightBumper().whenReleased(new RaiseGearArm());
 		
 		//PIDJoystick
 		//Turret to target with camera (Y)
-		pidTestJoystick.ButtonY().whenPressed(new TurretToAnglePIDZZZCameraWithPot(0, 0.7, 0.1, 0.2));
+		pidTestJoystick.ButtonY().whenPressed(new RotateTurretAnglePIDZZZ(0, 0.7, 0.1, 0.2));
 
 		//Turret to 20 off target with camera (X)
-		pidTestJoystick.ButtonX().whenPressed(new TurretToAnglePIDZZZCameraWithPot(20, 0.7, 0.1, 0.2));
+		pidTestJoystick.ButtonX().whenPressed(new RotateTurretAnglePIDZZZ(20, 0.7, 0.1, 0.2));
 		
 		//Turret -20 off target with camera (A)
-		pidTestJoystick.ButtonA().whenPressed(new TurretToAnglePIDZZZCameraWithPot(-20, 0.7, 0.1, 0.2));
+		pidTestJoystick.ButtonA().whenPressed(new RotateTurretAnglePIDZZZ(-20, 0.7, 0.1, 0.2));
 		
-		//Toggle ball intake
-		pidTestJoystick.ButtonB().whenPressed(new ToggleBallIntakeArm());
+		//Toggle ball intake (Right Bumper)
+		pidTestJoystick.ButtonRightBumper().whileHeld(new ToggleBallIntakeArm());
 		
-		//Camera Shot Align (Start Button)
+		//Turret (B)
+		pidTestJoystick.ButtonB().whenPressed(new TurretToAnglePIDZZZCameraWithPot(0, 0.7, 0.1, 0.2));
 		
+		//Turret movement
+		pidTestJoystick.ButtonRightDPad().whileHeld(new DriveTurretWithConstant(RobotMap.TURRET_MAX_DRIVE));
+		pidTestJoystick.ButtonLeftDPad().whileHeld(new DriveTurretWithConstant(-RobotMap.TURRET_MAX_DRIVE));
+		pidTestJoystick.ButtonUpDPad().whileHeld(new DriveHoodUpWithButton());
+		pidTestJoystick.ButtonDownDPad().whileHeld(new DriveHoodDownWithButton());
 		
 
 		//pidTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));

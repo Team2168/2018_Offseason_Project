@@ -10,25 +10,27 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ToggleBallIntakeArm extends Command {
 
-	private static double toggleRate;
+	private static double openTime, closedTime;
 	private static double nextToggleTime = 0.0;
-	
+
 	/**
 	 * 
-	 * @param rate Time in seconds to wait between toggling the intakes position.
+	 * @param openTime time the intake will stay in the opened position
+	 * @param closedTime time the intake will stay in the closed position
 	 */
-    public ToggleBallIntakeArm(double rate) {
+    public ToggleBallIntakeArm(double openTime, double closedTime) {
     	requires(Robot.ballIntakeArm);
     	
-        toggleRate = rate;
+        this.openTime = openTime;
+        this.closedTime = closedTime;
         nextToggleTime = Timer.getFPGATimestamp();
     }
     
     /**
-     * Create command with default toggle rate of 0.7 seconds between transitions
+     * Create command with default toggle rate (1.3s open and 0.4s shut)
      */
     public ToggleBallIntakeArm() {
-    	this(0.7);
+    	this(1.3, 0.4);
     }
 
     // Called just before this Command runs the first time
@@ -42,11 +44,11 @@ public class ToggleBallIntakeArm extends Command {
     	
     	//Have we waited long enough?
     	if(currentTime >= nextToggleTime) {
-    		nextToggleTime = currentTime + toggleRate;
-
     		if(Robot.ballIntakeArm.isArmLowered()) {
+        		nextToggleTime = currentTime + closedTime;
     			Robot.ballIntakeArm.Raise();
     		} else {
+        		nextToggleTime = currentTime + openTime;
     			Robot.ballIntakeArm.Lower();
     		}
     	}

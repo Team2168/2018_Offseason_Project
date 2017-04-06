@@ -56,7 +56,7 @@ public class TurretToAnglePIDZZZCameraWithPot extends Command {
     
 	protected void initialize() {
 		if (!absolute)
-			this.setPoint = Robot.turret.getPosition() - Robot.turret.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
+			this.setPoint = Robot.turret.getPosition() + Robot.turret.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
 		Robot.turret.rotateTurretCameraController.reset();
 		Robot.turret.rotateTurretCameraController.setSetPoint(setPoint);
 		Robot.turret.rotateTurretCameraController.setMaxPosOutput(maxSpeed);
@@ -74,7 +74,7 @@ public class TurretToAnglePIDZZZCameraWithPot extends Command {
 	protected void execute() {
 		
 		//keep robot moving until we are at center
-		Robot.turret.rotateTurretCameraController.setSetPoint(Robot.turret.getPosition() - Robot.turret.tcpCamSensor.getRotationAngle());
+		Robot.turret.rotateTurretCameraController.setSetPoint(Robot.turret.getPosition() + Robot.turret.tcpCamSensor.getRotationAngle());
 		Robot.turret.setSpeed(Robot.turret.rotateTurretCameraController.getControlOutput());
 		
 		
@@ -93,7 +93,8 @@ public class TurretToAnglePIDZZZCameraWithPot extends Command {
 //		
 		
 //		return Robot.drivetrain.rotateController.isFinished() || Math.abs(Robot.drivetrain.tcpCamSensor.getPos()) < error;
-		return Math.abs(Robot.turret.tcpCamSensor.getPos()) < error;
+		return false;
+		//return Math.abs(Robot.turret.tcpCamSensor.getPos()) < error;
     }
 
     // Called once after isFinished returns true
