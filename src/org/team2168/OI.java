@@ -142,7 +142,7 @@ public class OI {
 		//Boiler Shot Angle
 		operatorJoystick.ButtonLeftStick().whenPressed(new SetHoodToAngle(45.0));
 		operatorJoystick.ButtonLeftStick().whenPressed(new RotateTurretAnglePIDZZZ(0.0, 0.7, 0.2, 0.2));
-		operatorJoystick.ButtonLeftStick().whenPressed(new DriveShooterPIDSpeed(2800));
+		operatorJoystick.ButtonLeftStick().whenPressed(new DriveShooterPIDSpeed(3600));
 		
 		//Toggle Hopper
 		operatorJoystick.ButtonY().whileHeld(new ToggleBallIntakeArm());
