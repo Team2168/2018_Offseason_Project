@@ -210,7 +210,7 @@ public class RobotMap {
 	 *                         AGITATOR PARAMETERS
 	 *************************************************************************/
 	public static final boolean REVERSE_AGITATOR = false;
-	public static final double AGITATOR_SPEED_CONSTANT = -0.65; //XXX: figure out why motor inversion isn't working rights
+	public static final double AGITATOR_SPEED_CONSTANT = 0.65;
 	
 	/******************************************************************
 	 *                    CONVELATOR PARAMETERS

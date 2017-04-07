@@ -147,7 +147,7 @@ public class OI {
 		operatorJoystick.ButtonLeftStick().whenPressed(new DriveShooterPIDSpeed(3600));
 		
 		//Toggle Hopper
-		operatorJoystick.ButtonY().whileHeld(new ToggleBallIntakeArm());
+		//operatorJoystick.ButtonY().whileHeld(new ToggleBallIntakeArm());
 		
 		//////////////Test Joystick//////////////
 		testJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(1.0));
