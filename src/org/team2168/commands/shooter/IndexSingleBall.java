@@ -19,27 +19,26 @@ public class IndexSingleBall extends CommandGroup {
     public IndexSingleBall() {
     	//queue up a ball
     	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
-    	//addParallel(new DriveIntakeWithConstant(1.0));
     	addParallel(new DriveAgitatorWithConstant(RobotMap.AGITATOR_SPEED_CONSTANT));
-    	addSequential(new RunElevatorUntilBallPresent(RobotMap.ELEVATOR_SPEED_CONSTANT)); //XXX: need to drop this speed down a little.
+    	addSequential(new RunElevatorUntilBallPresent(RobotMap.ELEVATOR_SPEED_CONSTANT));
     	
     	//Stop moving for uno momento
-    	addParallel(new FuelMotorsStop());
-    	addSequential(new Sleep(), 0.2); //Let things settle
+    	addParallel(new FuelMotorsStop(), 0.01);
+    	addSequential(new Sleep(), 0.1); //Let things settle
     	
     	//fire the ball
     	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
     	//addParallel(new DriveIntakeWithConstant(1.0));
     	addParallel(new DriveAgitatorWithConstant(RobotMap.AGITATOR_SPEED_CONSTANT));
     	addSequential(new RunElevatorUntilBallNotPresent(RobotMap.ELEVATOR_SPEED_CONSTANT));
+    	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT), 0.1); //keep running the indexer a little so the ball clears out of shooter
     	
     	//queue up next a ball
     	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
-    	//addParallel(new DriveIntakeWithConstant(1.0));
     	addParallel(new DriveAgitatorWithConstant(RobotMap.AGITATOR_SPEED_CONSTANT));
     	addSequential(new RunElevatorUntilBallPresent(RobotMap.ELEVATOR_SPEED_CONSTANT));
     	
     	//Leave motors stopped
-    	addParallel(new FuelMotorsStop(), 0.01);
+    	addSequential(new FuelMotorsStop(), 0.01);
     }
 }

@@ -96,7 +96,7 @@ public class OI {
 //		//AirshipShot
 //		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
 //		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
-		operatorJoystick.ButtonY().whenPressed(new IndexSingleBall());
+		operatorJoystick.ButtonY().whileHeld(new IndexSingleBall());
 
 		//Fire
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.75));
@@ -146,8 +146,8 @@ public class OI {
 		testJoystick.ButtonB().whileHeld(new DriveIntakeWithConstant(-1.0));
 		testJoystick.ButtonX().whileHeld(new DriveClimberWithConstant(1.0));
 		testJoystick.ButtonY().whileHeld(new DriveClimberWithConstant(-1.0));
-		testJoystick.ButtonLeftDPad().whileHeld(new DriveElevatorWithConstant(-1.0));
-		testJoystick.ButtonRightDPad().whileHeld(new DriveElevatorWithConstant(1.0));
+		testJoystick.ButtonLeftDPad().whileHeld(new DriveElevatorWithConstant(1.0));
+		testJoystick.ButtonRightDPad().whileHeld(new DriveElevatorWithConstant(-1.0));
 		testJoystick.ButtonRightBumper().whileHeld(new DriveGearIntakeRollerWithConstant(1.0));
 		testJoystick.ButtonLeftBumper().whileHeld(new DriveGearIntakeRollerWithConstant(-1.0));
 		testJoystick.ButtonStart().whileHeld(new DriveIndexerWithConstant(1.0));

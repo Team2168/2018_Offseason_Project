@@ -18,6 +18,6 @@ public class FuelMotorsStop extends CommandGroup {
     	addParallel(new DriveIndexerWithConstant(0.0));
     	//addParallel(new DriveIntakeWithConstant(0.0));
     	addParallel(new DriveAgitatorWithConstant(0.0));
-    	addSequential(new RunElevatorUntilBallNotPresent(RobotMap.INDEXER_SPEED_CONSTANT));
+    	addParallel(new DriveElevatorWithConstant(0.0));
     }
 }
