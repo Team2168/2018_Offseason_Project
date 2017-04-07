@@ -202,7 +202,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         INDEXER PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.5;
+	public static final double INDEXER_SPEED_CONSTANT = 0.3;
 	public static final boolean REVERSE_INDEXER = false;
 	
 	/*************************************************************************
@@ -362,6 +362,7 @@ public class RobotMap {
 	 ******************************************************************/
 	public static final boolean REVERSE_CONVELATOR_WHEEL = true;
 	public static final boolean REVERSE_CONVELATOR_WHEEL_PBOT = true;
+	public static final double ELEVATOR_SPEED_CONSTANT = 0.6;
 
 
 	/******************************************************************
