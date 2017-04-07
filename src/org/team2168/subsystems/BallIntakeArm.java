@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class BallIntakeArm extends Subsystem {
 	
-	private DoubleSolenoid BallIntakeArmPiston;
+	private DoubleSolenoid ballIntakeArmPiston;
 	private DigitalInput BallIntakeHallEffectSensor;
 	
 	private static BallIntakeArm instance = null;
 	
 	private BallIntakeArm(){
-			BallIntakeArmPiston = new DoubleSolenoid(RobotMap.BALL_INTAKE_PISTON_EXTEND,
+			ballIntakeArmPiston = new DoubleSolenoid(RobotMap.BALL_INTAKE_PISTON_EXTEND,
 													 RobotMap.BALL_INTAKE_PISTON_RETRACT);
 
 			if(Robot.isPracticeRobot())
@@ -44,19 +44,25 @@ public class BallIntakeArm extends Subsystem {
 	}
 	
 	public void Raise(){
-		BallIntakeArmPiston.set(Value.kReverse);
+		ballIntakeArmPiston.set(Value.kReverse);
 	}
 	
 	public void Lower(){
-		BallIntakeArmPiston.set(Value.kForward);
+		ballIntakeArmPiston.set(Value.kForward);
 	}
 	
-	public boolean isArmRaised(){
-		return !BallIntakeHallEffectSensor.get();
+	public boolean isArmRaised() {
+		//When no sensor is installed, use last commanded value
+		return ballIntakeArmPiston.get() == DoubleSolenoid.Value.kReverse;
+		//When sensor is installed, use it
+		//return !BallIntakeHallEffectSensor.get();
 	}
 	
-	public boolean isArmLowered(){
-		return BallIntakeHallEffectSensor.get();
+	public boolean isArmLowered() {
+		//When no sensor is installed, use last commanded value
+		return ballIntakeArmPiston.get() == DoubleSolenoid.Value.kForward;
+		//When sensor is installed, use it
+		//return BallIntakeHallEffectSensor.get();
 	}
 	
 	public void initDefaultCommand() {

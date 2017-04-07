@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  * @author Vittorio
  */
-public class RotateTurrentAnglePIDZZZ extends Command {
+public class RotateTurretAnglePIDZZZ extends Command {
 
 	private double setPoint;
 	private double maxSpeed;
@@ -20,7 +20,7 @@ public class RotateTurrentAnglePIDZZZ extends Command {
 	private double error = 0.5;  // Rotational degree error, default 0 never ends.
 	private boolean absolute = false;
 	
-    public RotateTurrentAnglePIDZZZ() {
+    public RotateTurretAnglePIDZZZ() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.turret);
     	this.setPoint = Robot.turret.rotateTurretPOTController.getSetPoint();
@@ -28,28 +28,28 @@ public class RotateTurrentAnglePIDZZZ extends Command {
     	this.minSpeed = 0;
     }
 
-    public RotateTurrentAnglePIDZZZ(double setPoint){
+    public RotateTurretAnglePIDZZZ(double setPoint){
  	   this();
  	   this.setPoint = setPoint;
     }
 
-    public RotateTurrentAnglePIDZZZ(double setPoint, double maxSpeed){
+    public RotateTurretAnglePIDZZZ(double setPoint, double maxSpeed){
   	   this(setPoint);
   	   this.maxSpeed = maxSpeed;
      }
     
-    public RotateTurrentAnglePIDZZZ(double setPoint, double maxSpeed, double minSpeed){
+    public RotateTurretAnglePIDZZZ(double setPoint, double maxSpeed, double minSpeed){
    	   this(setPoint, maxSpeed);
    	   this.minSpeed = minSpeed;
       }    
 
-    public RotateTurrentAnglePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error) {
+    public RotateTurretAnglePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error) {
     	this(setPoint, maxSpeed, minSpeed);
     	this.error = error;
     	this.absolute = false;
     }
     
-    public RotateTurrentAnglePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
+    public RotateTurretAnglePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
     	this(setPoint, maxSpeed, minSpeed, error);
     	this.absolute = absolute;
     }
