@@ -11,6 +11,7 @@ import org.team2168.commands.flashlight.EnableFlashlight;
 import org.team2168.commands.gearintake.LowerGearArmDANGEROUS;
 import org.team2168.commands.gearintake.RaiseGearArm;
 import org.team2168.commands.indexer.DriveIndexerWithConstant;
+import org.team2168.commands.shooter.IndexSingleBall;
 import org.team2168.commands.shooter.SetHoodToAngle;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.WaitForShooterPIDToFinish;
@@ -20,15 +21,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * Drives straight out of launch pad
  */
-public class DriveStraightAndScoreCenterShooting extends CommandGroup {
+public class DriveStraightAndScoreCenterShootingIndexed extends CommandGroup {
 
-    public DriveStraightAndScoreCenterShooting() {
+    public DriveStraightAndScoreCenterShootingIndexed() {
     	//Drive up and align
         addSequential(new DriveXDistance(8.0,0.7,0.1));
         addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),1);
         //Drive into peg and drop gear
-    	addSequential(new DriveXDistance(0.7, 0.7,0.1),1.5);
-    	addSequential(new DriveXDistance(0.8, 0.7,0.1),0.7);
+    	addSequential(new DriveXDistance(0.7, 0.7,0.1),0.7);
+    	addSequential(new DriveXDistance(0.4, 0.7,0.1),0.7);
     	addSequential(new LowerGearArmDANGEROUS(),0.5);
     	//Back off bruh
     	addSequential(new Sleep(), 0.6);
@@ -37,12 +38,29 @@ public class DriveStraightAndScoreCenterShooting extends CommandGroup {
     	//Prepare for ripum gathering
     	addSequential(new EnableFlashlight());
     	addSequential(new LowerBallIntakeArm());
-    	addParallel(new SetHoodToAngle(160.0),2);
-    	addParallel(new DriveShooterPIDSpeed(3550));
+    	addParallel(new SetHoodToAngle(125),2);
+    	addParallel(new DriveShooterPIDSpeed(5500));
     	//Gather the ripums
     	addSequential(new WaitForShooterPIDToFinish());
     	addSequential(new Sleep(), 3);
-    	//Precipitate
+    	
+    	
+    	//Precipitate - there has to be a better way than calling this 10 times...
+    	//addParallel(new ToggleBallIntakeArm());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	addSequential(new IndexSingleBall());
+    	
+    	//Then just run it full out if there's time/balls left.
     	addParallel(new DriveElevatorWithConstant(1.0));
     	addParallel(new DriveIndexerWithConstant(1.0));
     	addParallel(new DriveIntakeWithConstant(1.0));

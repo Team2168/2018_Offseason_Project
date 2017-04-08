@@ -202,15 +202,22 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         INDEXER PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.5;
+	public static final double INDEXER_SPEED_CONSTANT = 0.7;
 	public static final boolean REVERSE_INDEXER = false;
+	
 	
 	/*************************************************************************
 	 *                         AGITATOR PARAMETERS
 	 *************************************************************************/
-	public static final boolean REVERSE_AGITATOR = true;
+	public static final boolean REVERSE_AGITATOR = false;
+	public static final double AGITATOR_SPEED_CONSTANT = 0.65;
 	
-	
+	/******************************************************************
+	 *                    CONVELATOR PARAMETERS
+	 ******************************************************************/
+	public static final boolean REVERSE_CONVELATOR_WHEEL = true;
+	public static final boolean REVERSE_CONVELATOR_WHEEL_PBOT = true;
+	public static final double ELEVATOR_SPEED_CONSTANT = 0.45;
 
 	/*************************************************************************
 	 *                         HOOD PARAMETERS
@@ -355,13 +362,6 @@ public class RobotMap {
 	public static final boolean PRINT_SD_DEBUG_DATA = true;
 	public static final long SmartDashThreadPeriod = 100; //ms
 	public static final long CONSOLE_PRINTER_LOG_RATE_MS = 100; //ms
-
-
-	/******************************************************************
-	 *                    CONVELATOR PARAMETERS
-	 ******************************************************************/
-	public static final boolean REVERSE_CONVELATOR_WHEEL = false;
-	public static final boolean REVERSE_CONVELATOR_WHEEL_PBOT = true;
 
 
 	/******************************************************************

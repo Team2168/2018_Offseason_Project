@@ -137,6 +137,23 @@ public class Turret extends Subsystem {
 				() -> {return Robot.turret.getPosition();}, true, false);
 		ConsolePrinter.putNumber("Turret Pot Raw", 
 				() -> {return Robot.turret.getRawPot();}, true, false);
+		
+		ConsolePrinter.putBoolean("Boiler Camera Status", 
+				() -> {return Robot.turret.tcpCamSensor.isCameraConnected();}, true, false);
+		ConsolePrinter.putBoolean("Boiler Bone Status", 
+				() -> {return Robot.turret.tcpCamSensor.isClientConnected();}, true, false);
+		ConsolePrinter.putBoolean("Boiler Processing Status", 
+				() -> {return Robot.turret.tcpCamSensor.isProcessingTreadRunning();}, true, false);
+		ConsolePrinter.putBoolean("Boiler MJPEG Status", 
+				() -> {return Robot.turret.tcpCamSensor.isMJPEGConnected();}, true, false);
+		ConsolePrinter.putNumber("Boiler Vision Target Dist", 
+				() -> {return Robot.turret.tcpCamSensor.getTargetDistance();}, true, false);
+		ConsolePrinter.putNumber("Boiler Vision Target Bearing", 
+				() -> {return Robot.turret.tcpCamSensor.getRotationAngle();}, true, false);
+		ConsolePrinter.putBoolean("Is Boiler Target Detected", 
+				() -> {return Robot.turret.tcpCamSensor.isTargetDetected();}, true, false);
+		ConsolePrinter.putBoolean("Is Boiler Target Scorable", 
+				() -> {return Robot.turret.tcpCamSensor.isTargetScorable();}, true, false);
     }
 
     /**

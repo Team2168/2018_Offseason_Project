@@ -254,6 +254,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+     
+        shooterHood.setAngle(0);
 
     	// Select the control style
         controlStyle = (int) controlStyleChooser.getSelected();
@@ -296,6 +298,7 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Score Gear Right", new DriveStraightAndScoreRight());
         autoChooser.addObject("Drive Over Baseline", new DriveOverBaseline());
         autoChooser.addObject("Gear Center and Shoot", new DriveStraightAndScoreCenterShooting());
+        autoChooser.addObject("Gear Center Indexed Shot", new DriveStraightAndScoreCenterShootingIndexed());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
     
