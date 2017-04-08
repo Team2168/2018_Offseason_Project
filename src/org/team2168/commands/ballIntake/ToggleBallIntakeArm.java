@@ -30,7 +30,7 @@ public class ToggleBallIntakeArm extends Command {
      * Create command with default toggle rate (1.3s open and 0.4s shut)
      */
     public ToggleBallIntakeArm() {
-    	this(1.3, 0.4);
+    	this(1.7, 0.4);
     }
 
     // Called just before this Command runs the first time
