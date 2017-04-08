@@ -34,7 +34,7 @@ public class DriveStraightAndScoreCenterShootingIndexed extends CommandGroup {
     	addSequential(new LowerGearArmDANGEROUS(),0.5);
     	//Back off bruh
     	addSequential(new Sleep(), 0.6);
-    	addSequential(new DriveXDistance(-3.0,0.7,0.1)); 
+    	addSequential(new DriveXDistance(-3.0,0.7,0.1), 2); 
     	addSequential(new RaiseGearArm());
     	//Prepare for ripum gathering
     	addSequential(new EnableFlashlight());

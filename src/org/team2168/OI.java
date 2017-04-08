@@ -18,6 +18,7 @@ import org.team2168.commands.elevator.DriveElevatorWithConstant;
 import org.team2168.commands.flashlight.DisableFlashlight;
 import org.team2168.commands.flashlight.EnableFlashlight;
 import org.team2168.commands.gearintake.AutomaticGearIntake;
+import org.team2168.commands.gearintake.AutomaticGearIntakeDANGEROUS;
 import org.team2168.commands.gearintake.DriveGearIntakeRollerWithConstant;
 import org.team2168.commands.gearintake.LowerGearArm;
 import org.team2168.commands.gearintake.LowerGearArmDANGEROUS;
@@ -94,7 +95,11 @@ public class OI {
 		//////////////Operator Joystick//////////////
 		
 		//Boiler Shot
-		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
+//		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
+		
+		//Emergency Gear Pickup
+		operatorJoystick.ButtonX().whenPressed(new AutomaticGearIntakeDANGEROUS());
+		operatorJoystick.ButtonX().whenReleased(new RaiseGearArm());
 
 //		//AirshipShot
 //		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
