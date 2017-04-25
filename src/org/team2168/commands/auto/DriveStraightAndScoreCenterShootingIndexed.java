@@ -4,6 +4,7 @@ import org.team2168.RobotMap;
 import org.team2168.commands.agitator.DriveAgitatorWithConstant;
 import org.team2168.commands.ballIntake.DriveIntakeWithConstant;
 import org.team2168.commands.ballIntake.LowerBallIntakeArm;
+import org.team2168.commands.ballIntake.ToggleBallIntakeArm;
 import org.team2168.commands.drivetrain.PIDCommands.DriveXDistance;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.elevator.DriveElevatorWithConstant;
@@ -28,25 +29,25 @@ public class DriveStraightAndScoreCenterShootingIndexed extends CommandGroup {
         addSequential(new DriveXDistance(8.0,0.7,0.1));
         addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),1);
         //Drive into peg and drop gear
-    	addSequential(new DriveXDistance(0.7, 0.7,0.1),0.7);
-    	addSequential(new DriveXDistance(0.4, 0.7,0.1),0.7);
+    	addSequential(new DriveXDistance(0.7, 0.7,0.1),1.5);
+    	addSequential(new DriveXDistance(0.8, 0.7,0.1),0.7);
     	addSequential(new LowerGearArmDANGEROUS(),0.5);
     	//Back off bruh
     	addSequential(new Sleep(), 0.6);
-    	addSequential(new DriveXDistance(-3.0,0.7,0.1)); 
+    	addSequential(new DriveXDistance(-3.0,0.7,0.1), 2); 
     	addSequential(new RaiseGearArm());
     	//Prepare for ripum gathering
     	addSequential(new EnableFlashlight());
     	addSequential(new LowerBallIntakeArm());
-    	addParallel(new SetHoodToAngle(125),2);
-    	addParallel(new DriveShooterPIDSpeed(5500));
+    	addParallel(new SetHoodToAngle(160.0),2);
+    	addParallel(new DriveShooterPIDSpeed(3550));
     	//Gather the ripums
     	addSequential(new WaitForShooterPIDToFinish());
     	addSequential(new Sleep(), 3);
     	
     	
     	//Precipitate - there has to be a better way than calling this 10 times...
-    	//addParallel(new ToggleBallIntakeArm());
+    	addParallel(new ToggleBallIntakeArm());
     	addSequential(new IndexSingleBall());
     	addSequential(new IndexSingleBall());
     	addSequential(new IndexSingleBall());
