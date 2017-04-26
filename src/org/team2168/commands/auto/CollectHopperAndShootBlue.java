@@ -20,17 +20,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * Goes to hopper to load fuel and then shoots into high boiler
  */
-public class CollectHopperAndShootRed extends CommandGroup {
+public class CollectHopperAndShootBlue extends CommandGroup {
 
-    public CollectHopperAndShootRed() {
+    public CollectHopperAndShootBlue() {
     	//TODO make this work right
     	//Drive to hopper and collect fuel
         addSequential(new DriveXDistance(8.0,0.7,0.1));
-        addSequential(new RotateXDistancePIDZZZ(90, 0, 0, 1.0),3);
+        addSequential(new RotateXDistancePIDZZZ(-90, 0, 0, 1.0),3);
         addSequential(new LowerBallIntakeArm());
         addSequential(new DriveXDistance(3.0,0.7,0.1),2);
         //Prepare for ripum gathering
-        addParallel(new SetTurretAngle(-79, 3.0));
+        addParallel(new SetTurretAngle(79, 3.0));
     	addParallel(new SetHoodToAngle(101.16),2);
     	addParallel(new DriveShooterPIDSpeed(3000));
     	//Gather the ripums
