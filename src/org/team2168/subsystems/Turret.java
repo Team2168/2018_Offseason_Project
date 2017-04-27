@@ -169,19 +169,19 @@ public class Turret extends Subsystem {
 
 	/**
 	 * Sets the speed of the motor
-	 * @param speed of -1.0 (left) to 1.0 (right)
+	 * @param speed of -1.0 (left/negative angles) to 1.0 (right/positive angles)
 	 */
 	public void setSpeed(double speed) {
-		if(((speed > 0) && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
+		if(RobotMap.REVERSE_TURRET){
+			speed = -speed;
+		}
+		if(((speed > 0) && (getRawPot() >= turretPotMax))||(speed < 0) && (getRawPot() <= turretPotMin)){
 			turretMotor.set(0);
 		}
-		if(((speed > 0) && (getRawPot() > turretPotMax))||(speed < 0) && (getRawPot() < turretPotMin)){
+		else if(((speed > 0) && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
 			turretMotor.set(0);
 		}
 		else {
-			if(RobotMap.REVERSE_TURRET){
-				speed = -speed;
-			}
 			turretMotor.set(speed);
 		}
 	}
