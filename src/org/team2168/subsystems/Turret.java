@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Subsystem class for Turret
@@ -47,6 +48,8 @@ public class Turret extends Subsystem {
     private double[][] turretRange = {{RobotMap.TURRET_POT_VOLTAGE_MIN,-90.0},
     		                          {RobotMap.TURRET_POT_VOLTAGE_0,0.0},
     		                          {RobotMap.TURRET_POT_VOLTAGE_MAX,90.0}};
+    
+    double lastSpeedValue;
     
     /**
      * Default constructor for Turret subsystem
@@ -154,6 +157,7 @@ public class Turret extends Subsystem {
 				() -> {return Robot.turret.tcpCamSensor.isTargetDetected();}, true, false);
 		ConsolePrinter.putBoolean("Is Boiler Target Scorable", 
 				() -> {return Robot.turret.tcpCamSensor.isTargetScorable();}, true, false);
+		ConsolePrinter.putNumber("Turret Speed", () -> {return Robot.turret.getSpeed();}, true, false);
     }
 
     /**
@@ -174,16 +178,24 @@ public class Turret extends Subsystem {
 	public void setSpeed(double speed) {
 		if(RobotMap.REVERSE_TURRET){
 			speed = -speed;
+			//Motor negative drives to positive angle
 		}
-		if(((speed > 0) && (getRawPot() >= turretPotMax))||(speed < 0) && (getRawPot() <= turretPotMin)){
+		if(((speed < 0) && (getRawPot() >= turretPotMax))||(speed > 0) && (getRawPot() <= turretPotMin)){
 			turretMotor.set(0);
 		}
-		else if(((speed > 0) && isLimitSwitchRightActive())||(speed < 0 && isLimitSwitchLeftActive())){
+		else if(((speed < 0) && isLimitSwitchRightActive())||(speed > 0 && isLimitSwitchLeftActive())){
 			turretMotor.set(0);
 		}
 		else {
 			turretMotor.set(speed);
 		}
+		
+		lastSpeedValue = speed;
+		
+	}
+	
+	public double getSpeed() {
+		return lastSpeedValue;
 	}
 
 	/**

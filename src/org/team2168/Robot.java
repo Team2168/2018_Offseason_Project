@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.*;
 import org.team2168.commands.auto.*;
+import org.team2168.commands.drivetrainIMU.DrivetrainIMUGlobalPosition;
 import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.utils.Debouncer;
 import org.team2168.utils.PowerDistribution;
@@ -72,6 +73,8 @@ public class Robot extends IterativeRobot {
     public static SendableChooser<Number> controlStyleChooser;
     
     TX1TurnON tx1;
+    
+    DrivetrainIMUGlobalPosition dtIMU;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -116,6 +119,8 @@ public class Robot extends IterativeRobot {
 		tx1 = new TX1TurnON(RobotMap.PDPThreadPeriod);
 		tx1.startThread();
 		
+		dtIMU = new DrivetrainIMUGlobalPosition(RobotMap.PDPThreadPeriod);
+		dtIMU.startThread();
 		
 		
         drivetrain.calibrateGyro();
@@ -226,6 +231,8 @@ public class Robot extends IterativeRobot {
 		matchStarted = true;
 		drivetrain.stopGyroCalibrating();
 		drivetrain.resetGyro();
+		
+		dtIMU.reset();
 		
 		autonomousCommand = (Command) autoChooser.getSelected();
     	
