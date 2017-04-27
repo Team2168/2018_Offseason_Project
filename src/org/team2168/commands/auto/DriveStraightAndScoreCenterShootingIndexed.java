@@ -26,10 +26,11 @@ public class DriveStraightAndScoreCenterShootingIndexed extends CommandGroup {
 
     public DriveStraightAndScoreCenterShootingIndexed() {
     	//Drive up and align
-        addSequential(new DriveXDistance(8.0,0.7,0.1));
+        addSequential(new DriveXDistance(8.6,0.7,0.15));
         addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),1);
         //Drive into peg and drop gear
     	addSequential(new DriveXDistance(0.7, 0.7,0.1),1.5);
+    	//Jerk it (if necesssary)
     	addSequential(new DriveXDistance(0.8, 0.7,0.1),0.7);
     	addSequential(new LowerGearArmDANGEROUS(),0.5);
     	//Back off bruh

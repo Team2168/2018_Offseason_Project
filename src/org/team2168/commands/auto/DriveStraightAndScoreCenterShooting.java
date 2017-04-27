@@ -24,7 +24,7 @@ public class DriveStraightAndScoreCenterShooting extends CommandGroup {
 
     public DriveStraightAndScoreCenterShooting() {
     	//Drive up and align
-        addSequential(new DriveXDistance(8.0,0.7,0.1));
+        addSequential(new DriveXDistance(8.6,0.7,0.15));
         addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),1);
         //Drive into peg and drop gear
     	addSequential(new DriveXDistance(0.7, 0.7,0.1),1.5);
