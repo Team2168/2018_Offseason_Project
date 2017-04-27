@@ -20,6 +20,7 @@ public class RobotMap {
 	// Joysticks///////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
+	public static final int DRIVER_OPERATOR_E_BACKUP = 2;
 	public static final int COMMANDS_TEST_JOYSTICK = 4;
 	public static final int PID_TEST_JOYSTICK = 5;
 	

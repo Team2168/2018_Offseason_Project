@@ -91,6 +91,10 @@ public class DrivetrainIMUGlobalPosition{
     	
     	SmartDashboard.putNumber("AngleToBoilerDeg", AngleToBoiler);
     	
+    	double TurretAngleToBoiler = -Robot.drivetrain.getHeading() - 90.0 - AngleToBoiler;
+    	
+    	SmartDashboard.putNumber("TurretAngleToBoilerDeg", TurretAngleToBoiler);
+    	
     }
     
     private class DTIMUTask extends TimerTask {
