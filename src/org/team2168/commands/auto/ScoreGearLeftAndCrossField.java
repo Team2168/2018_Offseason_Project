@@ -16,7 +16,7 @@ public class ScoreGearLeftAndCrossField extends CommandGroup {
 
     public ScoreGearLeftAndCrossField() {
         addSequential(new DriveXDistance(5.0,0.7,0.1));
-        addSequential(new RotateXDistancePIDZZZ(45,0.7,0.2),0.7);
+        addSequential(new RotateXDistancePIDZZZ(48,0.7,0.2),0.7);
         addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),1);
         addSequential(new DriveXDistance(7.0,0.7,0.1),2);
         addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 1.0),1);
@@ -26,7 +26,7 @@ public class ScoreGearLeftAndCrossField extends CommandGroup {
     	addSequential(new Sleep(), 0.4);
     	addSequential(new DriveXDistance(-3.0,0.7,0.1));
     	addSequential(new RaiseGearArm());
-    	addSequential(new RotateXDistancePIDZZZ(-45,0.7,0.2),0.7);
-    	addSequential(new DriveXDistance(20,0.7,0.3));
+    	addSequential(new RotateXDistancePIDZZZ(-48,0.7,0.2),0.7);
+    	addSequential(new DriveXDistance(32,0.7,0.3));
     }
 }

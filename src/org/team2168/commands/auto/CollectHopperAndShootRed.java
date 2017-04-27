@@ -14,6 +14,7 @@ import org.team2168.commands.shooter.SetHoodToAngle;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.WaitForShooterPIDToFinish;
 import org.team2168.commands.turret.SetTurretAngle;
+import org.team2168.commands.turret.PIDCommands.RotateTurretAnglePIDZZZ;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -28,9 +29,9 @@ public class CollectHopperAndShootRed extends CommandGroup {
         addSequential(new DriveXDistance(8.0,0.7,0.1));
         addSequential(new RotateXDistancePIDZZZ(90, 0, 0, 1.0),3);
         addSequential(new LowerBallIntakeArm());
-        addSequential(new DriveXDistance(3.0,0.7,0.1),2);
+        addSequential(new DriveXDistance(-3.0,0.7,0.1),2);
         //Prepare for ripum gathering
-        addParallel(new SetTurretAngle(-79, 3.0));
+        addParallel(new RotateTurretAnglePIDZZZ(-79,0.4,0.1));
     	addParallel(new SetHoodToAngle(101.16),2);
     	addParallel(new DriveShooterPIDSpeed(3000));
     	//Gather the ripums
