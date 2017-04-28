@@ -315,13 +315,28 @@ public boolean isMatchStart()
 }
 
 public double getRotationAngle() {
-	double message = Double.valueOf(dataReceived[1]).doubleValue();
-	return message;
+	
+	if (dataReceived[1].compareToIgnoreCase("inf") != 0)
+	{
+		double message = Double.valueOf(dataReceived[1]).doubleValue();
+		return message;
+	}
+	else 
+		return 0;
 }
 
 public double getTargetDistance() {
-	double message = Double.valueOf(dataReceived[2]).doubleValue();
-	return message;
+	
+	
+	
+	if (dataReceived[2].compareToIgnoreCase("inf") != 0)
+	{
+		double message = Double.valueOf(dataReceived[2]).doubleValue();
+		return message;
+	}
+	else
+		return 0;
+		
 }
 
 public boolean isClientConnected()
@@ -367,6 +382,7 @@ public boolean isCameraConnected()
 
 public boolean isMJPEGConnected()
 {
+	
 	int message = Integer.valueOf(dataReceived[7]).intValue();
 	
 	if (message == 1)

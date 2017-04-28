@@ -97,21 +97,19 @@ public class OI {
 		driverJoystick.ButtonA().whenPressed(new ShiftHigh());
 		
 		//////////////Operator Joystick//////////////
-		
-		//Boiler Shot
-//		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed());
+
 		
 		//Emergency Gear Pickup
 		operatorJoystick.ButtonX().whenPressed(new AutomaticGearIntakeDANGEROUS());
 		operatorJoystick.ButtonX().whenReleased(new RaiseGearArm());
 
-		//Red Hopper Shot Angle
+		//Blue Hopper Shot Angle
 		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(101.16));
-		operatorJoystick.ButtonY().whenPressed(new RotateTurretAnglePIDZZZ(79.7, 0.7, 0.2, 0.2,true));
+		operatorJoystick.ButtonY().whenPressed(new RotateTurretAnglePIDZZZ(-79.7, 0.7, 0.2, 0.2,true));
 		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3000));
 
 		//Fire
-		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.75));
+		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.45));
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(0.75));
 		operatorJoystick.ButtonA().whileHeld(new DriveIntakeWithConstant(0.75));
 		operatorJoystick.ButtonA().whileHeld(new DriveAgitatorWithConstant(0.75));

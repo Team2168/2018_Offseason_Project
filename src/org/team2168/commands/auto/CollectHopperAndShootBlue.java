@@ -26,13 +26,13 @@ public class CollectHopperAndShootBlue extends CommandGroup {
     public CollectHopperAndShootBlue() {
     	//TODO make this work right
     	//Drive to hopper and collect fuel
-        addSequential(new DriveXDistance(-12.5,0.7,0.1));
-        addSequential(new RotateXDistancePIDZZZ(-90, 0.3, 0.7, 1.0),3);
+        addSequential(new DriveXDistance(-8.3,0.7,0.1));
+        addSequential(new RotateXDistancePIDZZZ(-90, 0.3, 1.0, 1.0));
         addSequential(new LowerBallIntakeArm());
     	addParallel(new DriveShooterPIDSpeed(3000));
         addSequential(new DriveXDistance(-3.0,0.7,0.1),2);
         //Prepare for ripum gathering
-        //addParallel(new RotateTurretAnglePIDZZZ(79,0.4,0.1));
+        addParallel(new RotateTurretAnglePIDZZZ(-79.7,0.4,0.1));
     	addParallel(new SetHoodToAngle(101.16),2);
     	addParallel(new DriveShooterPIDSpeed(3000));
     	//Gather the ripums
