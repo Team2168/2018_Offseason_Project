@@ -37,8 +37,8 @@ public class DriveStraightAndScoreCenterShooting extends CommandGroup {
     	//Prepare for ripum gathering
     	addSequential(new EnableFlashlight());
     	addSequential(new LowerBallIntakeArm());
-    	addParallel(new SetHoodToAngle(148.0),2);
-    	addParallel(new DriveShooterPIDSpeed(3350));
+    	addParallel(new SetHoodToAngle(160.0),2);
+    	addParallel(new DriveShooterPIDSpeed(5500));
     	//Gather the ripums
     	addSequential(new WaitForShooterPIDToFinish());
     	addSequential(new Sleep(), 3);
