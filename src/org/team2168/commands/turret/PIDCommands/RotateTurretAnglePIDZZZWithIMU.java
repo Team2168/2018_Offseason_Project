@@ -81,8 +81,8 @@ public class RotateTurretAnglePIDZZZWithIMU extends Command {
     
 	protected void execute() {
 		
-		Robot.turret.setSpeed(Robot.dtIMU.getTurretAngleToBoiler());
-	
+		Robot.turret.rotateTurretPOTController.setSetPoint(Robot.dtIMU.getTurretAngleToBoiler());
+		Robot.turret.setSpeed(Robot.turret.rotateTurretPOTController.getControlOutput());
 		
     }
 
