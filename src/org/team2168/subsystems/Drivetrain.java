@@ -450,7 +450,7 @@ public class Drivetrain extends Subsystem {
      * @return double in inches of average distance traveled by both encoders
      */
     public double getAverageDistance() {
-    	return (getRightPosition() + getLeftPosition())/2.0;
+    	return imu.getPos();
     }
     
     /**

@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.*;
 import org.team2168.commands.auto.*;
+import org.team2168.commands.drivetrainIMU.DrivetrainIMUGlobalPosition;
 import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.utils.Debouncer;
 import org.team2168.utils.PowerDistribution;
@@ -72,6 +73,8 @@ public class Robot extends IterativeRobot {
     public static SendableChooser<Number> controlStyleChooser;
     
     TX1TurnON tx1;
+    
+    DrivetrainIMUGlobalPosition dtIMU;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -116,6 +119,8 @@ public class Robot extends IterativeRobot {
 		tx1 = new TX1TurnON(RobotMap.PDPThreadPeriod);
 		tx1.startThread();
 		
+		dtIMU = new DrivetrainIMUGlobalPosition(RobotMap.PDPThreadPeriod);
+		dtIMU.startThread();
 		
 		
         drivetrain.calibrateGyro();
@@ -227,6 +232,8 @@ public class Robot extends IterativeRobot {
 		drivetrain.stopGyroCalibrating();
 		drivetrain.resetGyro();
 		
+		dtIMU.reset();
+		
 		autonomousCommand = (Command) autoChooser.getSelected();
     	
         // schedule the autonomous command (example)
@@ -296,9 +303,14 @@ public class Robot extends IterativeRobot {
         autoChooser.addDefault("Do Nothing", new DoNothing());
         autoChooser.addObject("Score Gear Center", new DriveStraightAndScoreCenter()); 
         autoChooser.addObject("Score Gear Right", new DriveStraightAndScoreRight());
+        autoChooser.addObject("Score Gear Left", new DriveStraightAndScoreLeft());
         autoChooser.addObject("Drive Over Baseline", new DriveOverBaseline());
         autoChooser.addObject("Gear Center and Shoot", new DriveStraightAndScoreCenterShooting());
         autoChooser.addObject("Gear Center Indexed Shot", new DriveStraightAndScoreCenterShootingIndexed());
+        autoChooser.addObject("Hopper and Shoot Red", new CollectHopperAndShootRed());
+        autoChooser.addObject("Hopper and Shoot Blue", new CollectHopperAndShootBlue());
+        autoChooser.addObject("Score Gear Right and Cross", new ScoreGearRightAndCrossField());
+        autoChooser.addObject("Score Gear Left and Cross", new ScoreGearLeftAndCrossField());
         //  autoChooser.addObject("Do Something", new DoSomething());
     }
     

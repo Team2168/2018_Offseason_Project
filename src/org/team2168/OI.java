@@ -79,6 +79,8 @@ public class OI {
 	public static F310 driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 	public static F310 operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
 	
+	public static F310 driverOperatorEJoystick = new F310(RobotMap.DRIVER_OPERATOR_E_BACKUP);
+	
 	public static F310 testJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
 	public static F310 pidTestJoystick = new F310(RobotMap.PID_TEST_JOYSTICK);
 
@@ -101,10 +103,10 @@ public class OI {
 		operatorJoystick.ButtonX().whenPressed(new AutomaticGearIntakeDANGEROUS());
 		operatorJoystick.ButtonX().whenReleased(new RaiseGearArm());
 
-//		//AirshipShot
-//		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(76));
-//		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3500));
-		operatorJoystick.ButtonY().whileHeld(new IndexSingleBall());
+		//Red Hopper Shot Angle
+		operatorJoystick.ButtonY().whenPressed(new SetHoodToAngle(101.16));
+		operatorJoystick.ButtonY().whenPressed(new RotateTurretAnglePIDZZZ(79.7, 0.7, 0.2, 0.2,true));
+		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(3000));
 
 		//Fire
 		operatorJoystick.ButtonA().whileHeld(new DriveElevatorWithConstant(0.75));
@@ -115,6 +117,7 @@ public class OI {
 		
 		//Kill Shooter
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
+		operatorJoystick.ButtonB().whenPressed(new DriveTurretWithConstant(0.0));
 		
 		//turret
 		operatorJoystick.ButtonRightDPad().whileHeld(new DriveTurretWithConstant(RobotMap.TURRET_MAX_DRIVE));
@@ -138,10 +141,12 @@ public class OI {
 		
 		
 		//Ball Intake Assembly
-		//operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIntakeWithConstant(1));
-		//operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveAgitatorWithConstant(1));
 		operatorJoystick.ButtonLeftTrigger().whenPressed(new LowerBallIntakeArm());
+//		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIntakeWithConstant(1.0));
+//		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveAgitatorWithConstant(1.0));
 		operatorJoystick.ButtonLeftBumper().whenReleased(new RaiseBallIntakeArm());
+//		operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIntakeWithConstant(-1.0));
+//		operatorJoystick.ButtonLeftBumper().whileHeld(new DriveAgitatorWithConstant(-1.0));
 		
 		//Climber
 		operatorJoystick.ButtonBack().whileHeld(new DriveClimberWithConstant(1.0));

@@ -20,6 +20,7 @@ public class RobotMap {
 	// Joysticks///////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
+	public static final int DRIVER_OPERATOR_E_BACKUP = 2;
 	public static final int COMMANDS_TEST_JOYSTICK = 4;
 	public static final int PID_TEST_JOYSTICK = 5;
 	
@@ -247,9 +248,9 @@ public class RobotMap {
 
 	public static final double TURRET_POT_VOLTAGE_MAX = 2.866; //90 degrees
 	public static final double TURRET_POT_ANGLE_MAX = 90.0;
-	public static final double TURRET_POT_VOLTAGE_0 = 1.641; //0 degrees
+	public static final double TURRET_POT_VOLTAGE_0 = 1.599; //0 degrees
 	public static final double TURRET_POT_ANGLE_0 = 0.0;
-	public static final double TURRET_POT_VOLTAGE_MIN = 0.399; //-90 degrees
+	public static final double TURRET_POT_VOLTAGE_MIN = 0.406; //-90 degrees
 	public static final double TURRET_POT_ANGLE_MIN = -90.0;
 	
 	public static final double TURRET_POT_VOLTAGE_MAX_PBOT = 3.06; //90 degrees
