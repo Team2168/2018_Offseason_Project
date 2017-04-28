@@ -74,7 +74,7 @@ public class Robot extends IterativeRobot {
     
     TX1TurnON tx1;
     
-    DrivetrainIMUGlobalPosition dtIMU;
+    public static DrivetrainIMUGlobalPosition dtIMU;
     
     public static boolean blue;
 
