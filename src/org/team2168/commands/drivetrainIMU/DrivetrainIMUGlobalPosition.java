@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * IMU for drivetrain, used for dead reckoning of turret
+ * @author Wen Baid
  */
 public class DrivetrainIMUGlobalPosition{
 	
@@ -57,17 +58,17 @@ public class DrivetrainIMUGlobalPosition{
     // Called repeatedly when this Command is scheduled to run
     private void run() {
 
-    	boolean blue = DriverStation.getInstance().getAlliance() == DriverStation.getInstance().getAlliance().Blue;
+    	boolean blue = Robot.onBlueAlliance();
     	
     	SmartDashboard.putBoolean("Blue Alliance", blue);
     	
     	if (blue){
-    		BOILER_X = 0;
-    		BOILER_Y = 0;
+    		BOILER_X = 0.1;
+    		BOILER_Y = 0.1;
     	}
     	else {
-    		BOILER_X = 24;
-    		BOILER_Y = 0;
+    		BOILER_X = 27.0;
+    		BOILER_Y = 0.1;
     	}
     	
     	double difLeftEncoder;
@@ -91,7 +92,14 @@ public class DrivetrainIMUGlobalPosition{
     	
     	SmartDashboard.putNumber("AngleToBoilerDeg", AngleToBoiler);
     	
-    	double TurretAngleToBoiler = -Robot.drivetrain.getHeading() - 90.0 - AngleToBoiler;
+    	double TurretAngleToBoiler;
+    	
+    	if(blue) {
+    		TurretAngleToBoiler = -Robot.drivetrain.getHeading() + 90.0 - AngleToBoiler;
+    	}
+    	else {
+    		TurretAngleToBoiler = -Robot.drivetrain.getHeading() - 90.0 - AngleToBoiler;
+    	}
     	
     	SmartDashboard.putNumber("TurretAngleToBoilerDeg", TurretAngleToBoiler);
     	

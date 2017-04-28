@@ -75,6 +75,8 @@ public class Robot extends IterativeRobot {
     TX1TurnON tx1;
     
     DrivetrainIMUGlobalPosition dtIMU;
+    
+    public static boolean blue;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -234,6 +236,13 @@ public class Robot extends IterativeRobot {
 		
 		dtIMU.reset();
 		
+		if(turret.getPosition() >= 20.0){
+			blue = true;
+		}
+		else if(turret.getPosition() <= -20.0) {
+			blue = false;
+		}
+		
 		autonomousCommand = (Command) autoChooser.getSelected();
     	
         // schedule the autonomous command (example)
@@ -358,5 +367,12 @@ public class Robot extends IterativeRobot {
 	 */
 	public static boolean isPracticeRobot() {
 		return !practiceBot.get();
+	}
+	
+	/**
+	 * returns whether we are on blue or red (true or false)
+	 */
+	public static boolean onBlueAlliance(){
+		return blue;
 	}
 }
