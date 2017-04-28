@@ -32,6 +32,7 @@ import org.team2168.commands.shooter.SetHoodToAngle;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
 import org.team2168.commands.turret.DriveTurretWithConstant;
+import org.team2168.commands.turret.PIDCommands.EnableTurretAnglePIDZZZ;
 import org.team2168.commands.turret.PIDCommands.RotateTurretAnglePIDZZZ;
 import org.team2168.commands.turret.PIDCommands.TurretToAnglePIDZZZCameraWithPot;
 import org.team2168.utils.F310;
@@ -189,13 +190,13 @@ public class OI {
 		
 		//PIDJoystick
 		//Turret to target with camera (Y)
-		pidTestJoystick.ButtonY().whenPressed(new RotateTurretAnglePIDZZZ(0, 0.7, 0.1, 0.2));
+		pidTestJoystick.ButtonY().whenPressed(new EnableTurretAnglePIDZZZ(0, 0.7, 0.1, 0.2,true));
 
 		//Turret to 20 off target with camera (X)
-		pidTestJoystick.ButtonX().whenPressed(new RotateTurretAnglePIDZZZ(20, 0.7, 0.1, 0.2));
+		pidTestJoystick.ButtonX().whenPressed(new EnableTurretAnglePIDZZZ(60, 0.7, 0.1, 0.2,true));
 		
 		//Turret -20 off target with camera (A)
-		pidTestJoystick.ButtonA().whenPressed(new RotateTurretAnglePIDZZZ(-20, 0.7, 0.1, 0.2));
+		pidTestJoystick.ButtonA().whenPressed(new EnableTurretAnglePIDZZZ(-60, 0.7, 0.1, 0.2,true));
 		
 		//Toggle ball intake (Right Bumper)
 		pidTestJoystick.ButtonRightBumper().whileHeld(new ToggleBallIntakeArm());
