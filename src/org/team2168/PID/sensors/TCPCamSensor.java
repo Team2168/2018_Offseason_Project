@@ -316,7 +316,9 @@ public boolean isMatchStart()
 
 public double getRotationAngle() {
 	
-	if (dataReceived[1].compareToIgnoreCase("inf") != 0)
+	if (dataReceived[1].compareToIgnoreCase("inf") != 0 &&
+		dataReceived[1].compareToIgnoreCase("-inf") != 0 &&
+		dataReceived[1].compareToIgnoreCase("+inf") != 0)
 	{
 		double message = Double.valueOf(dataReceived[1]).doubleValue();
 		return message;
@@ -329,7 +331,9 @@ public double getTargetDistance() {
 	
 	
 	
-	if (dataReceived[2].compareToIgnoreCase("inf") != 0)
+	if (dataReceived[2].compareToIgnoreCase("inf") != 0 &&
+			dataReceived[2].compareToIgnoreCase("-inf") != 0 &&
+			dataReceived[2].compareToIgnoreCase("+inf") != 0)
 	{
 		double message = Double.valueOf(dataReceived[2]).doubleValue();
 		return message;
