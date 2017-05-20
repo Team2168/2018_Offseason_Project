@@ -146,8 +146,8 @@ public class RobotMap {
 	public static final AverageEncoder.SpeedReturnType DRIVE_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.FPS;
 	public static final int DRIVE_ENCODER_MIN_RATE = 0;
 	public static final int DRIVE_ENCODER_MIN_PERIOD = 1;
-	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE = false;
-	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE = false;
+	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE = true;
+	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE = true;
 	public static final boolean LEFT_DRIVE_TRAIN_ENCODER_REVERSE_PBOT = true;
 	public static final boolean RIGHT_DRIVE_TRAIN_ENCODER_REVERSE_PBOT = true;
 	public static final int DRIVE_AVG_ENCODER_VAL = 5;
