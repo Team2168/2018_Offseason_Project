@@ -104,6 +104,7 @@ public class RobotMap {
 
 
 	//TODO: Confirm PDP Ports
+	//TODO: Should be changed to match the new configuration 
 	//PDP Channels/////////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 12;
 	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 3;
@@ -197,7 +198,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final double GEAR_INTAKE_IR_THRESHOLD = 1.4;
 	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
-	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = false;
+	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = true;
 	public static final boolean REVERSE_GEAR_INTAKE_WHEEL_PBOT = false;
 
 	/*************************************************************************
