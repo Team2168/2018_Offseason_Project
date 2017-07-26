@@ -28,6 +28,8 @@ public class DrivetrainIMUGlobalPosition{
 	double BOILER_X = 24;
 	double BOILER_Y = 0;
 
+	double TurretAngleToBoiler;
+
     public DrivetrainIMUGlobalPosition(long period) {
     	
     	this.period = period;
@@ -92,7 +94,6 @@ public class DrivetrainIMUGlobalPosition{
     	
     	SmartDashboard.putNumber("AngleToBoilerDeg", AngleToBoiler);
     	
-    	double TurretAngleToBoiler;
     	
     	if(blue) {
     		TurretAngleToBoiler = -Robot.drivetrain.getHeading() + 90.0 - AngleToBoiler;
@@ -103,6 +104,10 @@ public class DrivetrainIMUGlobalPosition{
     	
     	SmartDashboard.putNumber("TurretAngleToBoilerDeg", TurretAngleToBoiler);
     	
+    }
+    
+    public double getTurretAngleToBoiler() {
+    	return TurretAngleToBoiler;
     }
     
     private class DTIMUTask extends TimerTask {

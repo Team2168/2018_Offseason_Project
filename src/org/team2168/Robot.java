@@ -74,7 +74,7 @@ public class Robot extends IterativeRobot {
     
     TX1TurnON tx1;
     
-    DrivetrainIMUGlobalPosition dtIMU;
+    public static DrivetrainIMUGlobalPosition dtIMU;
     
     public static boolean blue;
 
@@ -309,12 +309,12 @@ public class Robot extends IterativeRobot {
      */
     public void autoSelectInit() {
         autoChooser = new SendableChooser<Command>();
-        autoChooser.addDefault("Do Nothing", new DoNothing());
+        autoChooser.addObject("Do Nothing", new DoNothing());
         autoChooser.addObject("Score Gear Center", new DriveStraightAndScoreCenter()); 
         autoChooser.addObject("Score Gear Right", new DriveStraightAndScoreRight());
         autoChooser.addObject("Score Gear Left", new DriveStraightAndScoreLeft());
         autoChooser.addObject("Drive Over Baseline", new DriveOverBaseline());
-        autoChooser.addObject("Gear Center and Shoot", new DriveStraightAndScoreCenterShooting());
+        autoChooser.addDefault("Gear Center and Shoot", new DriveStraightAndScoreCenterShooting());
         autoChooser.addObject("Gear Center Indexed Shot", new DriveStraightAndScoreCenterShootingIndexed());
         autoChooser.addObject("Hopper and Shoot Red", new CollectHopperAndShootRed());
         autoChooser.addObject("Hopper and Shoot Blue", new CollectHopperAndShootBlue());
