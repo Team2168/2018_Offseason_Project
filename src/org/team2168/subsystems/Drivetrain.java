@@ -576,7 +576,8 @@ public class Drivetrain extends Subsystem {
 	 * @return Potentiometer position
 	 */
 	public double getGunStyleXValue() {
-		return gunStyleInterpolator.interpolate(Robot.oi.driverJoystick.getLeftStickRaw_X());
+		//return gunStyleInterpolator.interpolate(Robot.oi.driverJoystick.getLeftStickRaw_X());
+		return -Robot.oi.driverJoystick.getLeftStickRaw_X();
 	}
     
 }

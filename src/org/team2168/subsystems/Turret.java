@@ -45,9 +45,9 @@ public class Turret extends Subsystem {
 
     private static LinearInterpolator turretInterpolator;
     //TODO get these values plez format for points: (volts, degrees)
-    private double[][] turretRange = {{RobotMap.TURRET_POT_VOLTAGE_MIN,-90.0},
+    private double[][] turretRange = {{RobotMap.TURRET_POT_VOLTAGE_MIN,-85.0},
     		                          {RobotMap.TURRET_POT_VOLTAGE_0,0.0},
-    		                          {RobotMap.TURRET_POT_VOLTAGE_MAX,90.0}};
+    		                          {RobotMap.TURRET_POT_VOLTAGE_MAX,85.0}};
     
     double lastSpeedValue;
     
@@ -183,9 +183,12 @@ public class Turret extends Subsystem {
 		if(((speed < 0) && (getRawPot() >= turretPotMax))||(speed > 0) && (getRawPot() <= turretPotMin)){
 			turretMotor.set(0);
 		}
-		else if(((speed < 0) && isLimitSwitchRightActive())||(speed > 0 && isLimitSwitchLeftActive())){
-			turretMotor.set(0);
-		}
+		//else if(((speed < 0) && isLimitSwitchRightActive())||(speed > 0 && isLimitSwitchLeftActive())){
+		//	turretMotor.set(0);
+		//}
+		
+		// removed code above for the change to no longer use the pturret limit switches on the re-wired robot for IRI
+		
 		else {
 			turretMotor.set(speed);
 		}
