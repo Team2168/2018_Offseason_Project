@@ -230,7 +230,7 @@ public class OI {
 		ConsolePrinter.putNumber("Operator Left Trigger Raw Value", () -> {return Robot.oi.operatorJoystick.getLeftTriggerAxisRaw();}, true, false);
 		ConsolePrinter.putNumber("Operator Right Trigger Raw Value", () -> {return Robot.oi.operatorJoystick.getRightTriggerAxisRaw();}, true, false);
 
-	
+		
 	
 	}
 

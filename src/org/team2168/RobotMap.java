@@ -189,8 +189,8 @@ public class RobotMap {
 	 *                       BALL INTAKE PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
-	public static final boolean REVERSE_BALL_INTAKE_WHEEL = true;
-	public static final boolean REVERSE_BALL_INTAKE_WHEEL_PBOT = false;
+	public static final boolean REVERSE_BALL_INTAKE_WHEEL = false;
+	public static final boolean REVERSE_BALL_INTAKE_WHEEL_PBOT = true;
 
 
 	/*************************************************************************
@@ -199,7 +199,7 @@ public class RobotMap {
 	public static final double GEAR_INTAKE_IR_THRESHOLD = 1.4;
 	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
 	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = true;
-	public static final boolean REVERSE_GEAR_INTAKE_WHEEL_PBOT = false;
+	public static final boolean REVERSE_GEAR_INTAKE_WHEEL_PBOT = true;
 
 	/*************************************************************************
 	 *                         INDEXER PARAMETERS
@@ -234,7 +234,7 @@ public class RobotMap {
 	 *                       CLIMBER PARAMETERS
 	 *************************************************************************/
 	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = false;
-	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = true;
+	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
 	public static final double CLIMBER_MOTOR_SPEED = 0.8;
 	
 	public static final double CLIMBER_MAX_CURRENT = 15;
@@ -247,12 +247,12 @@ public class RobotMap {
 	public static final double TURRET_MAX_DRIVE = 0.5; //TODO Tune
 	public static final boolean REVERSE_TURRET = true;
 
-	public static final double TURRET_POT_VOLTAGE_MAX = 2.866; //90 degrees
-	public static final double TURRET_POT_ANGLE_MAX = 90.0;
+	public static final double TURRET_POT_VOLTAGE_MAX = 2.67; //85 degrees
+	public static final double TURRET_POT_ANGLE_MAX = 85.0;
 	public static final double TURRET_POT_VOLTAGE_0 = 1.599; //0 degrees
 	public static final double TURRET_POT_ANGLE_0 = 0.0;
-	public static final double TURRET_POT_VOLTAGE_MIN = 0.406; //-90 degrees
-	public static final double TURRET_POT_ANGLE_MIN = -90.0;
+	public static final double TURRET_POT_VOLTAGE_MIN = 0.479; //-85 degrees
+	public static final double TURRET_POT_ANGLE_MIN = -85.0;
 	
 	public static final double TURRET_POT_VOLTAGE_MAX_PBOT = 3.06; //90 degrees
 	public static final double TURRET_POT_ANGLE_MAX_PBOT = 90.0;
