@@ -1,4 +1,4 @@
-# 2017_Main_Robot
+# 2018_Prototype_Robot
 Code for the Steamworks game. This readme provide all of the information required to get started and programming for the 2017 season. 
 
 ## Requirements for Robot
@@ -49,64 +49,24 @@ Our repository and workflow loosely follows the gitflow workflow. This workflow 
 
 #Robot Design
 ## Subsystems
-### Drivetrain (Aiden)
-The drivetrain for 2017, will be largely based off the 2016 drivetrain with minimal changes. Use the 2016 Drivetrain as a reference when developing the 2017 drivetrain. The Drivetrain will have the following member variables
-- 4 Victor SP Motor Controllers
+### Drivetrain
+The drivetrain for 2018, will be largely based off the 2017 drivetrain with minimal changes. Use the 2017 Drivetrain as a reference when developing the 2018 drivetrain. The Drivetrain will have the following member variables
+- 6 Victor SP Motor Controllers
 - 2 AverageEncoders (one right, one left)
 - 1 Gyro (ADRX453) to sense heading of robot 
-- 1 Doublesholenoid for shifting between low/high gears
+- 1 Double solenoid for shifting between low/high gears
 
-### Shooter Wheel (Krystina)
-The shooter for 2017 will be largely based off the 2016 shooter with minimal changes. Use the 2016 Shooter subsystem as a reference when developing the 2017 shooter code. The Shooter will have the following features:
-- 2 Talon SRX Motor Controller
-- 1 AverageEncoder 
-
-### Shooter Hood (Peter)
-- 1 linear servo actuator
-
-### Turret (Ben)
-- 1 Spark Motor Controller
+### Telescopic Arm
+This will be based off 2015 Lift subsystem: https://github.com/Team2168/2015_Main_Robot/blob/master/src/org/team2168/subsystems/Lift.java
+- 3 Talon SR Motor Controller
+- 1 double solenoid for brake
 - 1 Analog Input - potentiometer for rotational position feedback (turret angle)
 - 2 Digital inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
 
-### Shooter Indexer (Ben)
-- 1 Spark Motor Controller for the indexer roller
-- 2 Digital Inputs. Wired to Infrared poximity sensors that identify ball presence/abscence. Ball present = sensor1 OR sensor2. Ball abscent = !sensor1 AND !sensor2
 
-### Ball Intake Roller (Kyle)
-The Fuel Ball Intake will be largely based off the 2016 intake with minimal changes. Use the 2016 intake subsystem as a reference when developing the 2017 intake code. The intake will have the following features:
-- 1 Spark Motor controller for intake roller
-
-### Ball Intake Arm (Kyle)
-- 1 Double Solenoid to extend/retract the intake
-- 1 Digital Input - Hall effect sensor - that indicates when the intake is in the retracted position. (this will be used to interlock gear manipulator actuation)
-
-### Gear Intake Roller (Elijah)
-- 1 Spark Motor Controller for intaking a gear 
-- 1 Analog Input - Sharp IR distance sensor for detecting the presence of a gear in the intake. This sensor will be used to automatically run the intake motors and to auto-raise the intake after capturing the gear.
-
-### Gear Intake Arm (Elijah)
-- 1 Double Solenoid. This raises and lowers the gear intake allowing it to be picked up from the floow & scored on the peg
-- 1 Digital Input - Hall effect sensor - indicates when the gear manipulator is in the raised position. (this will be used to interlock lowering the intake)
-
-### Conveyor (Nick)
-This is a roller system in the bellypan of the robot which feeds balls from the hopper into the lift
-- 1 Spark Motor controller
-
-### Elevator (David)
-This is a vertical roller system that takes balls from the conveyor and brings them up into the indexer, and ultimately the shooter wheel.
-- 1 Spark Motor Controller
-- 2 Analog SHARP IR sensors, for ball detection. These are TBD, contingency - not sure if we're goign to need them.
-
-### Climber (John)
-This is a simple drum roller that will lift the robot off the ground.
-It can only rotate in one direction. So make sure negative values commanded don't actually go out to a motor controller.
-- 2 Victor SP Motor Controllers to raise the robot
-
-### Flashlight
-- 1 Spike Relay Controller to turn the flashlight on/off.
-
-### ArduinoLights (Elijah)
-
-
-### Vision (Peter, David)
+### Pivot Arm 
+Based of 2017 turret code
+- 2 Victor Motor Controller
+- 1 double solenoid for telescopic brake
+- 1 Analog Input - potentiometer for rotational position feedback (turret angle)
+- 2 Digital inputs (limit switches) for end of travel detection. These should prevent further rotation in the direction of travel that was triggered. 
