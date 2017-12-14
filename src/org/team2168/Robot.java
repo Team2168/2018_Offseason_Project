@@ -31,21 +31,10 @@ public class Robot extends IterativeRobot {
 	
 	private static DigitalInput practiceBot;
 
-	public static Agitator agitator; 
-	public static BallConvelator ballConvelator;
-	public static BallIntakeArm ballIntakeArm;
-	public static BallIntakeRoller ballIntakeRoller;
-	public static Climber climber;
+
 	public static Drivetrain drivetrain;
 	public static DrivetrainShifter drivetrainShifter;
-	public static Flashlight flashlight;
-	public static GearIntakeArm gearIntakeArm;
-	public static GearIntakeRoller gearIntakeRoller;
-	public static Pneumatics pneumatics;
-	public static ShooterHood shooterHood;
-	public static ShooterIndexer shooterIndexer;
-	public static ShooterWheel shooterWheel;
-	public static Turret turret;
+
 	
 
 	
