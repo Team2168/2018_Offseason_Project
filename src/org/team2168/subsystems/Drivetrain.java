@@ -3,8 +3,7 @@ package org.team2168.subsystems;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.VictorSP;
-
+import edu.wpi.first.wpilibj.TalonSRX;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.controllers.PIDPosition;
@@ -23,14 +22,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Subsystem class for the Drivetrain
- * @author Aidan Sullivan
+ * @author Not Aidan Sullivan
  */
 public class Drivetrain extends Subsystem {
 	
-	private static VictorSP leftMotor1;
-	private static VictorSP leftMotor2;
-	private static VictorSP rightMotor1;
-	private static VictorSP rightMotor2;
+	private static TalonSRX leftMotor1;
+	private static TalonSRX leftMotor2;
+	private static TalonSRX leftMotor3;
+	private static TalonSRX rightMotor1;
+	private static TalonSRX rightMotor2;
+	private static TalonSRX rightMotor3;
 
 	private ADXRS453Gyro gyroSPI;
 	private AverageEncoder drivetrainLeftEncoder;
@@ -71,18 +72,23 @@ public class Drivetrain extends Subsystem {
 	
 	public volatile double leftMotor1Voltage;
 	public volatile double leftMotor2Voltage;
+	public volatile double leftMotor3Voltage;
 	public volatile double rightMotor1Voltage;
 	public volatile double rightMotor2Voltage;
+	public volatile double rightMotor3Voltage;
 	
 	
 	/**
 	 * Default constructors for Drivetrain
 	 */
 	private Drivetrain() {
-		leftMotor1 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_1);
-		leftMotor2 = new VictorSP(RobotMap.LEFT_DRIVE_MOTOR_2);
-		rightMotor1 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_1);
-		rightMotor2 = new VictorSP(RobotMap.RIGHT_DRIVE_MOTOR_2);
+		leftMotor1 = new TalonSRX(RobotMap.LEFT_DRIVE_MOTOR_1);
+		leftMotor2 = new TalonSRX(RobotMap.LEFT_DRIVE_MOTOR_2);
+		leftMotor3 = new TalonSRX(RobotMap.LEFT_DRIVE_MOTOR_3);
+		rightMotor1 = new TalonSRX(RobotMap.RIGHT_DRIVE_MOTOR_1);
+		rightMotor2 = new TalonSRX(RobotMap.RIGHT_DRIVE_MOTOR_2);
+		rightMotor3 = new TalonSRX(RobotMap.RIGHT_DRIVE_MOROR_3);
+		
 		
     	gunStyleInterpolator = new LinearInterpolator(gunStyleRange);
 		
@@ -361,6 +367,13 @@ public class Drivetrain extends Subsystem {
     	leftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
+    private void driveleftMotor3(double speed) {
+    	if(RobotMap.DT_REVERSE_LEFT)
+    		speed = -speed;
+    	leftMotor3.set(speed);
+    	leftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
+    }
+    
     /**
      * Take in double speed and sets it to left motors 1, 2, and 3
      * @param speed is a double between -1 and 1
@@ -369,6 +382,7 @@ public class Drivetrain extends Subsystem {
     public void driveLeft(double speed) {
     	driveleftMotor1(speed);
     	driveleftMotor2(speed);
+    	driveleftMotor3(speed);
     }
     
     /**
@@ -402,6 +416,22 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
+     * Calls right motor 2 and creates a local variable "speed"
+     * Refers to boolean in Robot map and if true, speed = - speed
+     * Uses set() command to assign the new speed to right motor 2
+     * @param double speed between -1 and 1
+     * negative is reverse, positive if forward, 0 is stationary
+     */
+     private void driverightMotor3(double speed) {
+     	if(RobotMap.DT_REVERSE_RIGHT)
+         	speed = -speed;
+     	
+     	rightMotor3.set(speed);
+     	rightMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
+     }
+    
+    
+    /**
      * Takes in a double speed and sets it to their right motors 1, 2, and 3
      * @param speed is a double  between -1 and 1
      * negative is reverse, positive if forward, 0 is stationary
@@ -409,6 +439,7 @@ public class Drivetrain extends Subsystem {
     public void driveRight(double speed) {
     	driverightMotor1(speed);
     	driverightMotor2(speed);
+    	driverightMotor3(speed);
     }
     
     /**
@@ -543,6 +574,14 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
+     * Returns the last commanded voltage of left Motor 2
+     * @return Double in volts between 0 and 12
+     */
+    public double getleftMotor3Voltage() {
+    	return leftMotor3Voltage;
+    }
+    
+    /**
      * Returns the last commanded voltage of right Motor 1
      * @return Double in volts between 0 and 12
      */
@@ -558,6 +597,14 @@ public class Drivetrain extends Subsystem {
     	return rightMotor2Voltage;
     }
     
+    /**
+     * Returns the last commanded voltage of right Motor 2
+     * @return Double in volts between 0 and 12
+     */
+    
+    public double getrightMotor3Voltage() {
+    	return rightMotor3Voltage;
+    }
     public double getRightEncoderRate() {
     	return drivetrainRightEncoder.getRate();
     }
