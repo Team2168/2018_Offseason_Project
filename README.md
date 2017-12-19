@@ -32,8 +32,8 @@ Code for the Steamworks game. This readme provide all of the information require
 2. Python dash (if it installed) will open if "default" dashboard is selected from drivestation menu
 3. If smartdashboard doesn't update, but you have robot comms, in smart dash preferences toggle "use mDNS" until it does. 
 
-#Repository Guidelines
-##Branches
+# Repository Guidelines
+## Branches
 Our repository and workflow loosely follows the gitflow workflow. This workflow is simple and is one of the most popular workflows when using git with a large number of developers. More info: https://www.atlassian.com/git/tutorials/comparing-workflows#gitflow-workflow
 - The master branch contains code that is known-working, has been tested, and can be deployed to a competition ready robot.
 - The develop branch is our sandbox for integrating and testing new features and fixing problems. This isi the latests and greatest code, but it may have problems and needs to be checked out on the robot before being pushed into master. 
@@ -47,7 +47,7 @@ Our repository and workflow loosely follows the gitflow workflow. This workflow 
 - NEver push to the master branch 
 - After pushing your changes to the repo, verify you can see your changes in GitHub from a web browser.
 
-#Robot Design
+# Robot Design
 ## Subsystems
 ### Drivetrain
 The drivetrain for 2018, will be largely based off the 2017 drivetrain with minimal changes. Use the 2017 Drivetrain as a reference when developing the 2018 drivetrain. The Drivetrain will have the following member variables
