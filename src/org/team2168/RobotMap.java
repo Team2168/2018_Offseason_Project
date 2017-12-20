@@ -88,9 +88,9 @@ public class RobotMap {
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
 	public static final int ARM_POSITION = 0;
-	public static final int PIVOT_POSITION = 1;
+	public static final int PIVOT_POSITION = 3;
 	public static final int DRIVETRAIN_IR_SENSOR = 2;
-	public static final int PRESSURE_SENSOR = 3;
+	public static final int PRESSURE_SENSOR = 1;
 
 
 	//Channels 4-7 on MXP
