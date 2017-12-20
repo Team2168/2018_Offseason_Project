@@ -110,6 +110,7 @@ public class RobotMap {
 	public final static int ARM_MOTOR_1_PDP = 5;
 	public final static int ARM_MOTOR_2_PDP = 6;
 	public final static int ARM_MOTOR_3_PDP = 7;
+	public final static int PCM_POWER = 8;
 	
 	
 	
@@ -162,6 +163,7 @@ public class RobotMap {
 	public static final int GEAR_CAMERA_LISTEN_PORT = 41234; 
 	public static final int BOILER_CAMERA_LISTEN_PORT = 51234;		
 	public static final int CAMERA_SENSOR_PERIOD = 100;
+	public static final int CAMERA_OFFSET_ANGLE = 0;
 
 	/*************************************************************************
 	 *                            PDP PARAMETERS

@@ -1,7 +1,11 @@
 package org.team2168;
 
 import org.team2168.commands.drivetrain.PIDCommands.DriveSraightXDistancePIDZZZCameraWithGyro;
+import org.team2168.commands.PivotArm.DisablePivotBrake;
+import org.team2168.commands.PivotArm.EnablePivotBrake;
 import org.team2168.commands.PivotArm.PivotArmWithConstant;
+import org.team2168.commands.TelescopicArm.DisableTelescopicBrake;
+import org.team2168.commands.TelescopicArm.EnableTelescopicBrake;
 import org.team2168.commands.TelescopicArm.OperateTelescopicArmWithConstant;
 import org.team2168.commands.drivetrain.DriveWithJoystickEmergencyJoystick;
 import org.team2168.commands.drivetrain.ShiftHigh;
@@ -67,11 +71,19 @@ public class OI {
 		
 		//////////////Operator Joystick//////////////
 
-		//Telescopic
+		//Telescopic & Pivot
 		operatorJoystick.ButtonDownDPad().whileHeld(new OperateTelescopicArmWithConstant(-1));
 		operatorJoystick.ButtonUpDPad().whileHeld(new OperateTelescopicArmWithConstant(1));
 		operatorJoystick.ButtonRightDPad().whileHeld(new PivotArmWithConstant(1));
 		operatorJoystick.ButtonLeftDPad().whileHeld(new PivotArmWithConstant(-1));
+		
+		//Brakes
+		operatorJoystick.ButtonLeftBumper().whileHeld(new EnablePivotBrake());
+		operatorJoystick.ButtonLeftBumper().whenReleased(new DisablePivotBrake());
+		operatorJoystick.ButtonLeftTrigger().whileHeld(new EnableTelescopicBrake());
+		operatorJoystick.ButtonLeftTrigger().whenReleased(new DisableTelescopicBrake());
+		
+		
 		
 
 

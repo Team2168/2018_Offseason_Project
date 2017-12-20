@@ -2,6 +2,7 @@ package org.team2168.subsystems;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.commands.PivotArm.PivotArmWithJoystick;
 import org.team2168.utils.LinearInterpolator;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -147,7 +148,7 @@ public class PivotArm extends Subsystem {
     
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new PivotArmWithJoystick());
     }
 }
 
