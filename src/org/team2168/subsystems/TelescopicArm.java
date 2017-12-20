@@ -110,7 +110,7 @@ public class TelescopicArm extends Subsystem {
 		if((speed > 0 && isArmFullyDown())||(speed < 0 && isArmFullyUp())){
 			armMotor1.set(0);
 			armMotor2.set(0);
-			armMotor3.set(speed);
+			armMotor3.set(0);
 		}
 		else {
 			armMotor1.set(speed);

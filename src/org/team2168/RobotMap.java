@@ -105,7 +105,6 @@ public class RobotMap {
 	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 15;
 	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 1;
 	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 0;
-	public final static int PCM_POWER = 7;
 	public final static int PIVOT_MOTOR_1_PDP = 3;
 	public final static int PIVOT_MOTOR_2_PDP = 2;
 	public final static int ARM_MOTOR_1_PDP = 5;
