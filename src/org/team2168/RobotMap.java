@@ -79,10 +79,10 @@ public class RobotMap {
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
-	public final static int DRIVETRAIN_LOW_GEAR= 1;
-	public final static int ARM_BRAKE_FORWARD = 2;
-	public final static int ARM_BRAKE_REVERSE = 3;
-	public final static int PIVOT_BRAKE_FORWARD = 4;
+	public final static int DRIVETRAIN_LOW_GEAR= 7;
+	public final static int ARM_BRAKE_FORWARD = 1;
+	public final static int ARM_BRAKE_REVERSE = 6;
+	public final static int PIVOT_BRAKE_FORWARD = 2;
 	public final static int PIVOT_BRAKE_REVERSE = 5;
 
 	//Analog Input Channels////////////////////////////////////////////////////
