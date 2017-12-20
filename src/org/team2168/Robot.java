@@ -3,6 +3,7 @@ package org.team2168;
 
 import org.team2168.subsystems.*;
 import org.team2168.commands.drivetrainIMU.DrivetrainIMUGlobalPosition;
+import org.team2168.commands.Pneumatics.StartCompressor;
 import org.team2168.utils.Debouncer;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.utils.TX1TurnON;
@@ -32,7 +33,10 @@ public class Robot extends IterativeRobot {
 
 	public static Drivetrain drivetrain;
 	public static DrivetrainShifter drivetrainShifter;
-
+	public static PivotArm pivotArm;
+	public static TelescopicArm telescopicArm;
+	public static Pneumatics pneumatics;
+	
 	
 	
 
@@ -79,13 +83,18 @@ public class Robot extends IterativeRobot {
     	// instantiate the commands used for the autonomous period
     	drivetrain = Drivetrain.getInstance();
     	drivetrainShifter = DrivetrainShifter.getInstance();
+    	telescopicArm = TelescopicArm.GetInstance();
+    	pneumatics = Pneumatics.getInstance();
+    	pivotArm = PivotArm.GetInstance();
+    	
     	
     	
 
     	
         oi = OI.getInstance();
         
-       
+      //run compressor
+        new StartCompressor();
 
         autoSelectInit();
         controlStyleSelectInit();

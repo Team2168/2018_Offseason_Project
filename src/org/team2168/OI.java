@@ -1,6 +1,8 @@
 package org.team2168;
 
 import org.team2168.commands.drivetrain.PIDCommands.DriveSraightXDistancePIDZZZCameraWithGyro;
+import org.team2168.commands.PivotArm.PivotArmWithConstant;
+import org.team2168.commands.TelescopicArm.OperateTelescopicArmWithConstant;
 import org.team2168.commands.drivetrain.DriveWithJoystickEmergencyJoystick;
 import org.team2168.commands.drivetrain.ShiftHigh;
 import org.team2168.commands.drivetrain.ShiftLow;
@@ -65,6 +67,11 @@ public class OI {
 		
 		//////////////Operator Joystick//////////////
 
+		//Telescopic
+		operatorJoystick.ButtonDownDPad().whileHeld(new OperateTelescopicArmWithConstant(-1));
+		operatorJoystick.ButtonUpDPad().whileHeld(new OperateTelescopicArmWithConstant(1));
+		operatorJoystick.ButtonRightDPad().whileHeld(new PivotArmWithConstant(1));
+		operatorJoystick.ButtonLeftDPad().whileHeld(new PivotArmWithConstant(-1));
 		
 
 

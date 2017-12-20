@@ -3,6 +3,7 @@ package org.team2168.subsystems;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.TalonSRX;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
@@ -26,12 +27,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	
-	private static TalonSRX leftMotor1;
-	private static TalonSRX leftMotor2;
-	private static TalonSRX leftMotor3;
-	private static TalonSRX rightMotor1;
-	private static TalonSRX rightMotor2;
-	private static TalonSRX rightMotor3;
+	private static Talon leftMotor1;
+	private static Talon leftMotor2;
+	private static Talon leftMotor3;
+	private static Talon rightMotor1;
+	private static Talon rightMotor2;
+	private static Talon rightMotor3;
 
 	private ADXRS453Gyro gyroSPI;
 	private AverageEncoder drivetrainLeftEncoder;
@@ -82,12 +83,12 @@ public class Drivetrain extends Subsystem {
 	 * Default constructors for Drivetrain
 	 */
 	private Drivetrain() {
-		leftMotor1 = new TalonSRX(RobotMap.LEFT_DRIVE_MOTOR_1);
-		leftMotor2 = new TalonSRX(RobotMap.LEFT_DRIVE_MOTOR_2);
-		leftMotor3 = new TalonSRX(RobotMap.LEFT_DRIVE_MOTOR_3);
-		rightMotor1 = new TalonSRX(RobotMap.RIGHT_DRIVE_MOTOR_1);
-		rightMotor2 = new TalonSRX(RobotMap.RIGHT_DRIVE_MOTOR_2);
-		rightMotor3 = new TalonSRX(RobotMap.RIGHT_DRIVE_MOROR_3);
+		leftMotor1 = new Talon(RobotMap.LEFT_DRIVE_MOTOR_1);
+		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_MOTOR_2);
+		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_MOTOR_3);
+		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_1);
+		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_2);
+		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_MOROR_3);
 		
 		
     	gunStyleInterpolator = new LinearInterpolator(gunStyleRange);
@@ -518,7 +519,7 @@ public class Drivetrain extends Subsystem {
      * @return double between 0 degrees and 360 degrees
      */
     public double getHeading() {
-    	return gyroSPI.getPos();		
+    	return -gyroSPI.getPos();	//negative because gyro is upside down	
     }
     
     /**

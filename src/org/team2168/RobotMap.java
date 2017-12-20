@@ -33,11 +33,16 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio/////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
-	public static final int RIGHT_DRIVE_MOROR_3 = 2;
-	public static final int LEFT_DRIVE_MOTOR_1 = 3;
-	public static final int LEFT_DRIVE_MOTOR_2 = 4;
-	public static final int LEFT_DRIVE_MOTOR_3 = 5;
-	
+	public static final int RIGHT_DRIVE_MOROR_3 = 1;
+	public static final int LEFT_DRIVE_MOTOR_1 = 2;
+	public static final int LEFT_DRIVE_MOTOR_2 = 3;
+	public static final int LEFT_DRIVE_MOTOR_3 = 3;
+	public static final int ARM_MOTOR_1 = 4;
+	public static final int ARM_MOTOR_2 = 5;
+	public static final int ARM_MOTOR_3 = 6;
+	public static final int PIVOT_MOTOR_1 = 7;
+	public static final int PIVOT_MOTOR_2 = 8;
+	public static final int TELESCOPIC_POT = 9;
 		// More PWM channels in common PWM/DIO MXP section below.
 
 
@@ -47,6 +52,13 @@ public class RobotMap {
 	public static final int RIGHT_DRIVE_ENCODER_B = 1;	
 	public static final int LEFT_DRIVE_ENCODER_B = 4;
 	public static final int LEFT_DRIVE_ENCODER_A = 5;
+	public static final int ARM_RAISED = 6;
+	public static final int ARM_LOWERED = 7;
+	public static final int PIVOT_ARM_LEFT = 8;
+	public static final int PIVOT_ARM_RIGHT = 9;
+	
+	
+	
 	public static final int TX1_TURN_ON = 8;
 	public static final int TX1_ON_STATUS = 9;
 	public static final int PRACTICE_BOT_JUMPER = 24;
@@ -68,9 +80,15 @@ public class RobotMap {
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
 	public final static int DRIVETRAIN_LOW_GEAR= 1;
+	public final static int ARM_BRAKE_FORWARD = 2;
+	public final static int ARM_BRAKE_REVERSE = 3;
+	public final static int PIVOT_BRAKE_FORWARD = 4;
+	public final static int PIVOT_BRAKE_REVERSE = 5;
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
+	public static final int ARM_POSITION = 0;
+	public static final int PIVOT_POSITION = 1;
 	public static final int DRIVETRAIN_IR_SENSOR = 2;
 	public static final int PRESSURE_SENSOR = 3;
 
@@ -82,10 +100,19 @@ public class RobotMap {
 	//TODO: Should be changed to match the new configuration 
 	//PDP Channels/////////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 12;
-	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 3;
-	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 1;
-	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 2;
-	public final static int PCM_POWER = 7;;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 13;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 14;
+	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 15;
+	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 1;
+	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 0;
+	public final static int PCM_POWER = 7;
+	public final static int PIVOT_MOTOR_1_PDP = 3;
+	public final static int PIVOT_MOTOR_2_PDP = 2;
+	public final static int ARM_MOTOR_1_PDP = 5;
+	public final static int ARM_MOTOR_2_PDP = 6;
+	public final static int ARM_MOTOR_3_PDP = 7;
+	
+	
 	
 	//CAN Device IDs///////////////////////////////////////////////////////////
 
@@ -121,9 +148,15 @@ public class RobotMap {
 	public static final double AUTO_NORMAL_SPEED = 0.5;
 	public static final double WHEEL_BASE = 2; //units must match PositionReturnType (feet)
 
-
+	/*************************************************************************
+	 *                        TELESCOPIC ARM PARAMETERS
+	 *************************************************************************/
+	public static final boolean ARM_MOTOR_REVERSED = false;
 	
-	
+	/*************************************************************************
+	 *                        TELESCOPIC ARM PARAMETERS
+	 *************************************************************************/
+	public static final boolean PIVOT_ARM_MOTOR_REVERSED = false;
 	/*************************************************************************
 	 *                        VISION PARAMETERS
 	 *************************************************************************/
@@ -232,6 +265,10 @@ public class RobotMap {
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 	
+	/******************************************************************
+	 *                        Aiden PARAMETERS                        *
+	 ******************************************************************/
+	public static final boolean PUSHED_IT = false;
 	
 	/******************************************************************
 	 *                         Lights I2C                             *
