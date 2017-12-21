@@ -73,10 +73,10 @@ public class Drivetrain extends Subsystem {
 	
 	public volatile double leftMotor1Voltage;
 	public volatile double leftMotor2Voltage;
-	public volatile double leftMotor3Voltage;
+	
 	public volatile double rightMotor1Voltage;
 	public volatile double rightMotor2Voltage;
-	public volatile double rightMotor3Voltage;
+	
 	
 	
 	/**
@@ -85,10 +85,8 @@ public class Drivetrain extends Subsystem {
 	private Drivetrain() {
 		leftMotor1 = new Talon(RobotMap.LEFT_DRIVE_MOTOR_1);
 		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_MOTOR_2);
-		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_MOTOR_3);
 		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_2);
-		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_MOROR_3);
 		
 		
     	gunStyleInterpolator = new LinearInterpolator(gunStyleRange);
@@ -366,12 +364,12 @@ public class Drivetrain extends Subsystem {
     	leftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
-    private void driveleftMotor3(double speed) {
-    	if(RobotMap.DT_REVERSE_LEFT)
-    		speed = -speed;
-    	leftMotor3.set(speed);
-    	leftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
-    }
+//    private void driveleftMotor3(double speed) {
+//    	if(RobotMap.DT_REVERSE_LEFT)
+//    		speed = -speed;
+//    	leftMotor3.set(speed);
+//    	leftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
+//    }
     
     /**
      * Take in double speed and sets it to left motors 1, 2, and 3
@@ -381,7 +379,7 @@ public class Drivetrain extends Subsystem {
     public void driveLeft(double speed) {
     	driveleftMotor1(speed);
     	driveleftMotor2(speed);
-    	driveleftMotor3(speed);
+    	//driveleftMotor3(speed);
     }
     
     /**
@@ -414,20 +412,20 @@ public class Drivetrain extends Subsystem {
     	rightMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
     }
     
-    /**
-     * Calls right motor 2 and creates a local variable "speed"
-     * Refers to boolean in Robot map and if true, speed = - speed
-     * Uses set() command to assign the new speed to right motor 2
-     * @param double speed between -1 and 1
-     * negative is reverse, positive if forward, 0 is stationary
-     */
-     private void driverightMotor3(double speed) {
-     	if(RobotMap.DT_REVERSE_RIGHT)
-         	speed = -speed;
-     	
-     	rightMotor3.set(speed);
-     	rightMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
-     }
+//    /**
+//     * Calls right motor 2 and creates a local variable "speed"
+//     * Refers to boolean in Robot map and if true, speed = - speed
+//     * Uses set() command to assign the new speed to right motor 2
+//     * @param double speed between -1 and 1
+//     * negative is reverse, positive if forward, 0 is stationary
+//     */
+//     private void driverightMotor3(double speed) {
+//     	if(RobotMap.DT_REVERSE_RIGHT)
+//         	speed = -speed;
+//     	
+//     	rightMotor3.set(speed);
+//     	rightMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
+//     }
     
     
     /**
@@ -438,7 +436,7 @@ public class Drivetrain extends Subsystem {
     public void driveRight(double speed) {
     	driverightMotor1(speed);
     	driverightMotor2(speed);
-    	driverightMotor3(speed);
+    	//driverightMotor3(speed);
     }
     
     /**
@@ -566,13 +564,13 @@ public class Drivetrain extends Subsystem {
     	return leftMotor2Voltage;
     }
     
-    /**
-     * Returns the last commanded voltage of left Motor 2
-     * @return Double in volts between 0 and 12
-     */
-    public double getleftMotor3Voltage() {
-    	return leftMotor3Voltage;
-    }
+//    /**
+//     * Returns the last commanded voltage of left Motor 2
+//     * @return Double in volts between 0 and 12
+//     */
+//    public double getleftMotor3Voltage() {
+//    	return leftMotor3Voltage;
+//    }
     
     /**
      * Returns the last commanded voltage of right Motor 1
@@ -595,9 +593,9 @@ public class Drivetrain extends Subsystem {
      * @return Double in volts between 0 and 12
      */
     
-    public double getrightMotor3Voltage() {
-    	return rightMotor3Voltage;
-    }
+//    public double getrightMotor3Voltage() {
+//    	return rightMotor3Voltage;
+//    }
     public double getRightEncoderRate() {
     	return drivetrainRightEncoder.getRate();
     }

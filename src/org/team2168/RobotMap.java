@@ -33,10 +33,10 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio/////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
-	public static final int RIGHT_DRIVE_MOROR_3 = 1;
+	//public static final int RIGHT_DRIVE_MOROR_3 = 1;
 	public static final int LEFT_DRIVE_MOTOR_1 = 2;
 	public static final int LEFT_DRIVE_MOTOR_2 = 3;
-	public static final int LEFT_DRIVE_MOTOR_3 = 3;
+	//public static final int LEFT_DRIVE_MOTOR_3 = 3;
 	public static final int ARM_MOTOR_1 = 4;
 	public static final int ARM_MOTOR_2 = 5;
 	public static final int ARM_MOTOR_3 = 6;
@@ -50,12 +50,11 @@ public class RobotMap {
 	//Channels 0-9 on RoboRio
 	public static final int RIGHT_DRIVE_ENCODER_A = 0;
 	public static final int RIGHT_DRIVE_ENCODER_B = 1;	
-	public static final int LEFT_DRIVE_ENCODER_B = 4;
-	public static final int LEFT_DRIVE_ENCODER_A = 5;
+	public static final int LEFT_DRIVE_ENCODER_B = 2;
+	public static final int LEFT_DRIVE_ENCODER_A = 3;
 	public static final int ARM_RAISED = 6;
 	public static final int ARM_LOWERED = 7;
-	public static final int PIVOT_ARM_LEFT = 8;
-	public static final int PIVOT_ARM_RIGHT = 9;
+
 	
 	
 	

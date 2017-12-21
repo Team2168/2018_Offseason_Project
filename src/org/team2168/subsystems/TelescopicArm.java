@@ -3,7 +3,7 @@ package org.team2168.subsystems;
 import org.team2168.OI;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
-import org.team2168.commands.TelescopicArm.operateTelescopicArmWithJoysticks;
+import org.team2168.commands.TelescopicArm.DriveTelescopicArmWithJoysticks;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -40,7 +40,7 @@ public class TelescopicArm extends Subsystem {
 		armBrake = new DoubleSolenoid(RobotMap.ARM_BRAKE_FORWARD, RobotMap.ARM_BRAKE_REVERSE);
 		fullyUp = new DigitalInput(RobotMap.ARM_RAISED);
 		fullyDown = new DigitalInput(RobotMap.ARM_LOWERED);
-		potentiometer = new AnalogInput(RobotMap.PIVOT_POSITION_POT);
+		potentiometer = new AnalogInput(RobotMap.ARM_POSITION_POT);
 	}
     
 	/**
@@ -152,7 +152,7 @@ public class TelescopicArm extends Subsystem {
 	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new operateTelescopicArmWithJoysticks(OI.operatorJoystick));
+        setDefaultCommand(new DriveTelescopicArmWithJoysticks(OI.getInstance().operatorJoystick));
     }
 }
 

@@ -1,8 +1,9 @@
 package org.team2168.subsystems;
 
+import org.team2168.OI;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
-import org.team2168.commands.PivotArm.PivotArmWithJoystick;
+import org.team2168.commands.PivotArm.DrivePivotArmWithJoystick;
 import org.team2168.utils.LinearInterpolator;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -42,9 +43,8 @@ public class PivotArm extends Subsystem {
 		pivotMotor1 = new Victor(RobotMap.PIVOT_MOTOR_1);
 		pivotMotor2 = new Victor(RobotMap.PIVOT_MOTOR_2);
 		pivotBrake = new DoubleSolenoid(RobotMap.PIVOT_BRAKE_FORWARD, RobotMap.PIVOT_BRAKE_REVERSE);
-		fullyLeft = new DigitalInput(RobotMap.ARM_RAISED);
-		fullyRight = new DigitalInput(RobotMap.PIVOT_ARM_RIGHT);
-		potentiometer = new AnalogInput(RobotMap.PIVOT_ARM_LEFT);
+
+		potentiometer = new AnalogInput(RobotMap.PIVOT_POSITION_POT);
 		pivotInterpolator = new LinearInterpolator(pivotRange);
 	}
     
@@ -148,7 +148,7 @@ public class PivotArm extends Subsystem {
     
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new PivotArmWithJoystick());
+        setDefaultCommand(new DrivePivotArmWithJoystick(OI.getInstance().operatorJoystick));
     }
 }
 

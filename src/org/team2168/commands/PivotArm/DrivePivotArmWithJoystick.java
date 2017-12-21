@@ -1,4 +1,4 @@
-package org.team2168.commands.TelescopicArm;
+package org.team2168.commands.PivotArm;
 
 import org.team2168.Robot;
 import org.team2168.utils.F310;
@@ -6,15 +6,16 @@ import org.team2168.utils.F310;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Operates telescopic Arm with Joysticks
+ * Operate Pivot Arm with joysticks
  */
-public class operateTelescopicArmWithJoysticks extends Command {
+public class DrivePivotArmWithJoystick extends Command {
 	private F310 joystick;
 	private double speed;
-   
-	public operateTelescopicArmWithJoysticks(F310 joystick) {
+
+    public DrivePivotArmWithJoystick(F310 joystick) {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.telescopicArm);
+        this.joystick = joystick;
+    	requires(Robot.pivotArm);
     }
 
     // Called just before this Command runs the first time
@@ -23,10 +24,9 @@ public class operateTelescopicArmWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double value = joystick.getRightStickRaw_Y();
+    	double value = joystick.getLeftStickRaw_Y();
     	
-    	Robot.telescopicArm.driveAllMotors(value);
-    	
+    	Robot.pivotArm.drivePivotMotors(value);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +35,8 @@ public class operateTelescopicArmWithJoysticks extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() { Robot.telescopicArm.driveAllMotors(0);
+    protected void end() {
+    	Robot.pivotArm.drivePivotMotors(0);
     }
 
     // Called when another command which requires one or more of the same
