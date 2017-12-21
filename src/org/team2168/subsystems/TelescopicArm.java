@@ -40,7 +40,7 @@ public class TelescopicArm extends Subsystem {
 		armBrake = new DoubleSolenoid(RobotMap.ARM_BRAKE_FORWARD, RobotMap.ARM_BRAKE_REVERSE);
 		fullyUp = new DigitalInput(RobotMap.ARM_RAISED);
 		fullyDown = new DigitalInput(RobotMap.ARM_LOWERED);
-		potentiometer = new AnalogInput(RobotMap.PIVOT_POSITION);
+		potentiometer = new AnalogInput(RobotMap.PIVOT_POSITION_POT);
 	}
     
 	/**

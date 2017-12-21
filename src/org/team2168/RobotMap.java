@@ -42,7 +42,7 @@ public class RobotMap {
 	public static final int ARM_MOTOR_3 = 6;
 	public static final int PIVOT_MOTOR_1 = 7;
 	public static final int PIVOT_MOTOR_2 = 8;
-	public static final int TELESCOPIC_POT = 9;
+	
 		// More PWM channels in common PWM/DIO MXP section below.
 
 
@@ -87,10 +87,9 @@ public class RobotMap {
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
-	public static final int ARM_POSITION = 0;
-	public static final int PIVOT_POSITION = 3;
-	public static final int DRIVETRAIN_IR_SENSOR = 2;
-	public static final int PRESSURE_SENSOR = 1;
+	public static final int ARM_POSITION_POT = 3;
+	public static final int PIVOT_POSITION_POT = 2;
+	public static final int PRESSURE_SENSOR = 0;
 
 
 	//Channels 4-7 on MXP
@@ -276,4 +275,5 @@ public class RobotMap {
 	 ******************************************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 	public static final int I2C_ADDRESS = 10;
+	
 }

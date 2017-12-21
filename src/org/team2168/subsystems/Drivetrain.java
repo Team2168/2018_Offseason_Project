@@ -38,7 +38,7 @@ public class Drivetrain extends Subsystem {
 	private AverageEncoder drivetrainLeftEncoder;
 	private AverageEncoder drivetrainRightEncoder;
 	
-	private static AnalogInput DrivetrainIRSensor;
+
 	
 	public IMU imu;
 	public TCPCamSensor tcpCamSensor;
@@ -149,7 +149,7 @@ public class Drivetrain extends Subsystem {
 
 		tcpCamSensor = new TCPCamSensor("GearCam", RobotMap.GEAR_CAMERA_LISTEN_PORT, RobotMap.CAMERA_SENSOR_PERIOD);
 		
-		DrivetrainIRSensor = new AnalogInput(RobotMap.DRIVETRAIN_IR_SENSOR);
+
 		
 		//DriveStraight Controller
 				rotateController = new PIDPosition(
@@ -293,8 +293,6 @@ public class Drivetrain extends Subsystem {
 				ConsolePrinter.putBoolean("Is Target Scorable", 
 						() -> {return Robot.drivetrain.tcpCamSensor.isTargetScorable();}, true, false);
 				
-				ConsolePrinter.putNumber("Drivetrain raw IR", 
-						() -> {return Robot.drivetrain.getIRVoltage();}, true, false);
 								
 				ConsolePrinter.putBoolean("Left Motor One Trip", () -> {return !Robot.pdp.isLeftMotorOneTrip();}, true, false);
 				ConsolePrinter.putBoolean("Left Motor Two Trip", () -> {return !Robot.pdp.isLeftMotorTwoTrip();}, true, false);
@@ -506,13 +504,7 @@ public class Drivetrain extends Subsystem {
     	resetRightPosition();
     }
     
-	/**
-	 * Gets the voltage given by the Sharp IR sensor on the Gear Intake.
-	 * @return the raw voltage from the gear presence sensor
-	 */
-	public double getIRVoltage(){
-		return DrivetrainIRSensor.getVoltage();
-	}
+
     
     /**
      * returns heading of robot
