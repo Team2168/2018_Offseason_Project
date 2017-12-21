@@ -78,10 +78,10 @@ public class OI {
 		operatorJoystick.ButtonLeftDPad().whileHeld(new PivotArmWithConstant(-1));
 		
 		//Brakes
-		operatorJoystick.ButtonLeftBumper().whileHeld(new EnablePivotBrake());
-		operatorJoystick.ButtonLeftBumper().whenReleased(new DisablePivotBrake());
-		operatorJoystick.ButtonLeftTrigger().whileHeld(new EnableTelescopicBrake());
-		operatorJoystick.ButtonLeftTrigger().whenReleased(new DisableTelescopicBrake());
+		operatorJoystick.ButtonLeftBumper().whileHeld(new DisablePivotBrake());
+		operatorJoystick.ButtonLeftBumper().whenReleased(new EnablePivotBrake());
+		operatorJoystick.ButtonLeftTrigger().whileHeld(new DisableTelescopicBrake());
+		operatorJoystick.ButtonLeftTrigger().whenReleased(new EnableTelescopicBrake());
 		
 		
 		

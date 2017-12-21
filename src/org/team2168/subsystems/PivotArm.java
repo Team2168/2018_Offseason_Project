@@ -133,6 +133,7 @@ public class PivotArm extends Subsystem {
 	 *
 	 * @return True when brake is disabled
 	 */
+	
 	public boolean isBrakeDisabled() {
 		return pivotBrake.get() == Value.kReverse;
 	}	

@@ -108,15 +108,26 @@ public class TelescopicArm extends Subsystem {
 	 */
 	public void driveAllMotors(double speed) {
 		if((speed > 0 && isArmFullyDown())||(speed < 0 && isArmFullyUp())){
+			
+			enableBrake();
 			armMotor1.set(0);
 			armMotor2.set(0);
 			armMotor3.set(0);
 		}
-		else {
+		else if (Math.abs(speed) > 0.2)
+		{	
+			disableBrake();
 			armMotor1.set(speed);
 			armMotor2.set(speed);
 			armMotor3.set(speed);
 		}
+	else
+	{
+		enableBrake();
+		armMotor1.set(0);
+		armMotor2.set(0);
+		armMotor3.set(0);
+	}
 	}
 	
 	/**
