@@ -85,7 +85,7 @@ public class PivotArm extends Subsystem {
 	public void drivePivotMotors(double speed) {
 			drivePivotMotor1(speed);
 			drivePivotMotor2(speed);
-			if (Math.abs(speed) > 0.2)
+		if (Math.abs(speed) > 0.2)
 			{	
 				disableBrake();
 				drivePivotMotor1(speed);

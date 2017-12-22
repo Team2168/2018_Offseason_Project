@@ -156,13 +156,13 @@ public class RobotMap {
 	public static final boolean ARM_MOTOR_REVERSED1 = false;
 	public static final boolean ARM_MOTOR_REVERSED2 = true;
 	public static final boolean ARM_MOTOR_REVERSED3 = false;
-	public static final double ARM_MAX_SPEED = 0.5;
+	public static final double ARM_MAX_SPEED = 1.0;
 	/*************************************************************************
 	 *                        TELESCOPIC ARM PARAMETERS
 	 *************************************************************************/
 	public static final boolean PIVOT_ARM_MOTOR_REVERSED1 = true;
 	public static final boolean PIVOT_ARM_MOTOR_REVERSED2 = true;
-	public static final double PIVOT_MAX_SPEED = 0.5;
+	public static final double PIVOT_MAX_SPEED = 1.0;
 	/*************************************************************************
 	 *                        VISION PARAMETERS
 	 *************************************************************************/
