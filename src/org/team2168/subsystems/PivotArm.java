@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,12 +21,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class PivotArm extends Subsystem {
 
 	private static PivotArm instance = null;
-	private Victor pivotMotor1;
-	private Victor pivotMotor2;
+	private Spark pivotMotor1;
+	private Spark pivotMotor2;
 	private DoubleSolenoid pivotBrake;
 	private AnalogInput potentiometer;
-	private static DigitalInput fullyLeft;
-	private static DigitalInput fullyRight;
+	
+	
 	private static LinearInterpolator pivotInterpolator;
 	
 	private double[][] pivotRange = {{-1.0,-100.0},
@@ -40,8 +41,8 @@ public class PivotArm extends Subsystem {
 	 * Default Constructer for telescopic arm
 	 */
 	private PivotArm() {
-		pivotMotor1 = new Victor(RobotMap.PIVOT_MOTOR_1);
-		pivotMotor2 = new Victor(RobotMap.PIVOT_MOTOR_2);
+		pivotMotor1 = new Spark(RobotMap.PIVOT_MOTOR_1);
+		pivotMotor2 = new Spark(RobotMap.PIVOT_MOTOR_2);
 		pivotBrake = new DoubleSolenoid(RobotMap.PIVOT_BRAKE_FORWARD, RobotMap.PIVOT_BRAKE_REVERSE);
 
 		potentiometer = new AnalogInput(RobotMap.PIVOT_POSITION_POT);
@@ -57,27 +58,13 @@ public class PivotArm extends Subsystem {
 		return instance;
 	}
 	
-	/**
-	 * Checks to see if arm is fully right
-	 * @return true if pressed, false if not
-	 */
-	public boolean isArmFullyRight() {
-		return !fullyRight.get();
-	}
 	
-	/**
-	 * Checks to see if arm is fully left
-	 * @return true if pressed, false if not
-	 */
-	public boolean isArmFullyLeft() {
-		return !fullyLeft.get();
-	}
 	/**
 	 * Drives the first Arm Motor at a speed from -1 to 1 where 1 is forward and negative 1 is backwards
 	 * @param speed
 	 */
 	private void drivePivotMotor1(double speed) {
-		if(RobotMap.PIVOT_ARM_MOTOR_REVERSED)
+		if(RobotMap.PIVOT_ARM_MOTOR_REVERSED1)
 			speed = -speed;
 		pivotMotor1.set(speed);
 		pivotMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
@@ -88,7 +75,7 @@ public class PivotArm extends Subsystem {
 	 * @param speed
 	 */
 	private void drivePivotMotor2(double speed) {
-		if(RobotMap.PIVOT_ARM_MOTOR_REVERSED)
+		if(RobotMap.PIVOT_ARM_MOTOR_REVERSED2)
 			speed = -speed;
 		pivotMotor2.set(speed);
 		pivotMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
@@ -96,16 +83,21 @@ public class PivotArm extends Subsystem {
 	
 	
 	public void drivePivotMotors(double speed) {
-		if((speed > 0 && isArmFullyRight())||(speed < 0 && isArmFullyLeft())){
-			pivotMotor1.set(0);
-			pivotMotor2.set(0);
-		}
-		else {
-			pivotMotor1.set(speed);
-			pivotMotor2.set(speed);
+			drivePivotMotor1(speed);
+			drivePivotMotor2(speed);
+			if (Math.abs(speed) > 0.2)
+			{	
+				disableBrake();
+				drivePivotMotor1(speed);
+				drivePivotMotor2(speed);
+			}
+		else
+		{
+			enableBrake();
+			drivePivotMotor1(0);
+			drivePivotMotor2(0);
 		}
 	}
-	
 	/**
 	 * Enables the pneumatic brake
 	 */

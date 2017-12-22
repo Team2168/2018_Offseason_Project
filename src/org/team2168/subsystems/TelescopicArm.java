@@ -77,7 +77,7 @@ public class TelescopicArm extends Subsystem {
 	 * @param speed
 	 */
 	private void driveArmMotor1(double speed) {
-		if(RobotMap.ARM_MOTOR_REVERSED)
+		if(RobotMap.ARM_MOTOR_REVERSED1)
 			speed = -speed;
 		armMotor1.set(speed);
 		telescopicMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
@@ -87,7 +87,7 @@ public class TelescopicArm extends Subsystem {
 	 * @param speed
 	 */
 	private void driveArmMotor2(double speed) {
-		if(RobotMap.ARM_MOTOR_REVERSED)
+		if(RobotMap.ARM_MOTOR_REVERSED2)
 			speed = -speed;
 		armMotor2.set(speed);
 	telescopicMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
@@ -97,7 +97,7 @@ public class TelescopicArm extends Subsystem {
 	 * @param speed
 	 */
 	private void driveArmMotor3(double speed) {
-		if(RobotMap.ARM_MOTOR_REVERSED)
+		if(RobotMap.ARM_MOTOR_REVERSED3)
 			speed = -speed;
 		armMotor3.set(speed);
 		telescopicMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
@@ -110,16 +110,16 @@ public class TelescopicArm extends Subsystem {
 		if((speed > 0 && isArmFullyDown())||(speed < 0 && isArmFullyUp())){
 			
 			enableBrake();
-			armMotor1.set(0);
-			armMotor2.set(0);
-			armMotor3.set(0);
+			driveArmMotor1(0);
+			driveArmMotor2(0);
+			driveArmMotor3(0);
 		}
 		else if (Math.abs(speed) > 0.2)
 		{	
 			disableBrake();
-			armMotor1.set(speed);
-			armMotor2.set(speed);
-			armMotor3.set(speed);
+			driveArmMotor1(speed);
+			driveArmMotor2(speed);
+			driveArmMotor3(speed);
 		}
 	else
 	{

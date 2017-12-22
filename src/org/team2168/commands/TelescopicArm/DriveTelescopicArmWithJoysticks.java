@@ -1,6 +1,7 @@
 package org.team2168.commands.TelescopicArm;
 
 import org.team2168.Robot;
+import org.team2168.RobotMap;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,7 +27,7 @@ public class DriveTelescopicArmWithJoysticks extends Command {
     protected void execute() {
     	double value = joystick.getRightStickRaw_Y();
     	
-    	Robot.telescopicArm.driveAllMotors(value);
+    	Robot.telescopicArm.driveAllMotors(value * RobotMap.ARM_MAX_SPEED);
     	
     }
 

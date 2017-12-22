@@ -123,8 +123,12 @@ public class RobotMap {
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean DT_REVERSE_RIGHT = true;
-	public static final boolean DT_REVERSE_LEFT = false;
+	public static final boolean DT_REVERSE_RIGHT1 = true;
+	public static final boolean DT_REVERSE_RIGHT2 = true;
+	public static final boolean DT_REVERSE_RIGHT3 = true;
+	public static final boolean DT_REVERSE_LEFT1 = false;
+	public static final boolean DT_REVERSE_LEFT2 = false;
+	public static final boolean DT_REVERSE_LEFT3 = false;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
@@ -149,12 +153,16 @@ public class RobotMap {
 	/*************************************************************************
 	 *                        TELESCOPIC ARM PARAMETERS
 	 *************************************************************************/
-	public static final boolean ARM_MOTOR_REVERSED = false;
-	
+	public static final boolean ARM_MOTOR_REVERSED1 = false;
+	public static final boolean ARM_MOTOR_REVERSED2 = true;
+	public static final boolean ARM_MOTOR_REVERSED3 = false;
+	public static final double ARM_MAX_SPEED = 0.5;
 	/*************************************************************************
 	 *                        TELESCOPIC ARM PARAMETERS
 	 *************************************************************************/
-	public static final boolean PIVOT_ARM_MOTOR_REVERSED = false;
+	public static final boolean PIVOT_ARM_MOTOR_REVERSED1 = true;
+	public static final boolean PIVOT_ARM_MOTOR_REVERSED2 = true;
+	public static final double PIVOT_MAX_SPEED = 0.5;
 	/*************************************************************************
 	 *                        VISION PARAMETERS
 	 *************************************************************************/

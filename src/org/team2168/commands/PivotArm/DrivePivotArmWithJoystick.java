@@ -1,6 +1,7 @@
 package org.team2168.commands.PivotArm;
 
 import org.team2168.Robot;
+import org.team2168.RobotMap;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,7 +27,7 @@ public class DrivePivotArmWithJoystick extends Command {
     protected void execute() {
     	double value = joystick.getLeftStickRaw_Y();
     	
-    	Robot.pivotArm.drivePivotMotors(value);
+    	Robot.pivotArm.drivePivotMotors(value * RobotMap.PIVOT_MAX_SPEED );
     }
 
     // Make this return true when this Command no longer needs to run execute()
