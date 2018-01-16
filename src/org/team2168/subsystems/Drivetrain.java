@@ -1,10 +1,6 @@
 package org.team2168.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.TalonSRX;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.controllers.PIDPosition;
@@ -29,10 +25,8 @@ public class Drivetrain extends Subsystem {
 	
 	private static Talon leftMotor1;
 	private static Talon leftMotor2;
-	private static Talon leftMotor3;
 	private static Talon rightMotor1;
 	private static Talon rightMotor2;
-	private static Talon rightMotor3;
 
 	private ADXRS453Gyro gyroSPI;
 	private AverageEncoder drivetrainLeftEncoder;
@@ -54,14 +48,6 @@ public class Drivetrain extends Subsystem {
 	public PIDSpeed leftSpeedController;
 	
 	private static Drivetrain instance = null;
-	
-    private static LinearInterpolator gunStyleInterpolator;
-    //These values represent the x axis on the gun style controller
-    //TODO test whether values should be ascending or descending
-    private double[][] gunStyleRange = {{-0.921,1.0},
-    		                          {0.09,0.0},
-    		                          {0.12,0.0},
-    		                          {0.551,-1.0}};
 	
 	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
 	TCPSocketSender TCPdrivePosController;
@@ -88,11 +74,7 @@ public class Drivetrain extends Subsystem {
 		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_2);
 		
-		
-    	gunStyleInterpolator = new LinearInterpolator(gunStyleRange);
-		
-		if(Robot.isPracticeRobot())
-		{
+		if(Robot.isPracticeRobot()) {
 			drivetrainRightEncoder = new AverageEncoder(
 					RobotMap.RIGHT_DRIVE_ENCODER_A_PBOT,
 					RobotMap.RIGHT_DRIVE_ENCODER_B_PBOT,
