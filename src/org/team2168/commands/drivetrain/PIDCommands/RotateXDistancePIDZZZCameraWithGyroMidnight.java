@@ -81,7 +81,7 @@ public class RotateXDistancePIDZZZCameraWithGyroMidnight extends Command {
     
 	protected void execute() {
 		
-		Robot.flashlight.disableFlashlight();
+		//Robot.flashlight.disableFlashlight();
 		//keep robot moving until we are at center
 		
 		camDebouncer.update(Math.abs(Robot.drivetrain.tcpCamSensor.getPos()) < error);
@@ -117,7 +117,7 @@ public class RotateXDistancePIDZZZCameraWithGyroMidnight extends Command {
     // Called once after isFinished returns true
     
 	protected void end() {
-		Robot.flashlight.enableFlashlight();
+		//Robot.flashlight.enableFlashlight();
 		Robot.drivetrain.rotateController.Pause();
     }
 

@@ -171,34 +171,8 @@ public class PowerDistribution {
 			return false;
 	}
 	
-	public boolean isBallIntakeMotorTrip() {
-		if (channelError[RobotMap.BALL_INTAKE_MOTOR_PDP] == 2) 
-			return true;
-		else
-			return false;
-	}
 	
-	public boolean isIndexMotorTrip() {
-		if (channelError[RobotMap.INDEXER_WHEEL_PDP] == 2) 
-			return true;
-		else
-			return false;
-	}
 	
-	public boolean isShooterMotorLeftTrip() {
-		
-		if (channelError[RobotMap.SHOOTER_MOTOR_LEFT_PDP] == 2)
-			return true;
-		else
-			return false;
-	}
-	
-	public boolean isShooterMotorRightTrip() {
-		if (channelError[RobotMap.SHOOTER_MOTOR_RIGHT_PDP] == 2)
-			return true;
-		else
-			return false;
-	}
 	
 	public boolean isLeftMotorOneTrip() {
 		if (channelError[RobotMap.DRIVETRAIN_LEFT_MOTOR_1_PDP] == 2) 
@@ -209,21 +183,6 @@ public class PowerDistribution {
 	
 	public boolean isLeftMotorTwoTrip() {
 		if (channelError[RobotMap.DRIVETRAIN_LEFT_MOTOR_2_PDP] == 2) 
-			return true;
-		else
-			return false;
-	}
-	
-	
-	public boolean isLeftHangerMotorTrip() {
-		if (channelError[RobotMap.CLIMBER_MOTOR_LEFT_PDP] == 1) 
-			return true;
-		else
-			return false;
-	}
-	
-	public boolean isRighttHangerMotorTrip() {
-		if (channelError[RobotMap.CLIMBER_MOTOR_RIGHT_PDP] == 1) 
 			return true;
 		else
 			return false;

@@ -73,7 +73,7 @@ public class DriveSraightXDistancePIDZZZCameraWithGyro extends Command {
     
 	protected void execute() {
 		
-		Robot.flashlight.disableFlashlight();
+		//Robot.flashlight.disableFlashlight();
 		//keep robot moving until we are at center
 		Robot.drivetrain.rotateController.setSetPoint(Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle());
 		Robot.drivetrain.tankDrive(Robot.drivetrain.rotateController.getControlOutput(),-Robot.drivetrain.rotateController.getControlOutput());
@@ -100,7 +100,7 @@ public class DriveSraightXDistancePIDZZZCameraWithGyro extends Command {
     // Called once after isFinished returns true
     
 	protected void end() {
-		Robot.flashlight.enableFlashlight();
+		//Robot.flashlight.enableFlashlight();
 		Robot.drivetrain.rotateController.Pause();
     }
 

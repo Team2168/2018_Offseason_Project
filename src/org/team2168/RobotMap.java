@@ -33,71 +33,62 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio/////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_MOTOR_1 = 0;
 	public static final int RIGHT_DRIVE_MOTOR_2 = 1;
+	//public static final int RIGHT_DRIVE_MOROR_3 = 1;
 	public static final int LEFT_DRIVE_MOTOR_1 = 2;
-	public static final int LEFT_DRIVE_MOTOR_2 = 3;	
-	public static final int BALL_INTAKE_MOTOR = 4;
-	public static final int CLIMBER_MOTOR_LEFT = 5;
-	public static final int CLIMBER_MOTOR_RIGHT = 6;
-	public static final int SHOOTER_WHEEL_LEFT = 7;
-	public static final int SHOOTER_WHEEL_RIGHT = 8;
-
-	public static final int SHOOTER_HOOD_SERVO = 9;
-	// More PWM channels in common PWM/DIO MXP section below.
+	public static final int LEFT_DRIVE_MOTOR_2 = 3;
+	//public static final int LEFT_DRIVE_MOTOR_3 = 3;
+	public static final int ARM_MOTOR_1 = 4;
+	public static final int ARM_MOTOR_2 = 5;
+	public static final int ARM_MOTOR_3 = 6;
+	public static final int PIVOT_MOTOR_1 = 7;
+	public static final int PIVOT_MOTOR_2 = 8;
+	
+		// More PWM channels in common PWM/DIO MXP section below.
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
 	public static final int RIGHT_DRIVE_ENCODER_A = 0;
 	public static final int RIGHT_DRIVE_ENCODER_B = 1;	
-	public static final int BALL_INTAKE_ARM_HALL_EFFECT = 2;
-	public static final int GEAR_INTAKE_ARM_HALL_EFECT = 3;
-	public static final int LEFT_DRIVE_ENCODER_B = 4;
-	public static final int LEFT_DRIVE_ENCODER_A = 5;
-	public static final int INDEXER_LOWER_BALL_PRESENT = 6;
-	public static final int INDEXER_UPPER_BALL_PRESENT = 7;
+	public static final int LEFT_DRIVE_ENCODER_B = 2;
+	public static final int LEFT_DRIVE_ENCODER_A = 3;
+	public static final int ARM_RAISED = 6;
+	public static final int ARM_LOWERED = 7;
+
+	
+	
+	
 	public static final int TX1_TURN_ON = 8;
 	public static final int TX1_ON_STATUS = 9;
+	public static final int PRACTICE_BOT_JUMPER = 24;
 
 
 	//Channels 10-25 on MXP (PWM and DIO)
-	public static final int CONVELATOR_MOTOR = 10;
-	public static final int TURRET_MOTOR = 11;
-	public static final int GEAR_INTAKE_MOTOR = 12;
-	public static final int INDEXER_WHEEL = 13;
-	public static final int AGITATOR_WHEEL = 14;
-	public static final int TURRET_LIMIT_SWITCH_RIGHT = 19; //PWM 15 on board
-	public static final int TURRET_LIMIT_SWITCH_LEFT = 20; //PWM 16 on board
-	public static final int SHOOTER_ENCODER_A = 21; //PWM 17 on board
-	public static final int SHOOTER_ENCODER_B = 22; //PWM 18 on board
-	public static final int PRACTICE_BOT_JUMPER = 24;
-	
 	//PBOT Differences
-	public static final int GEAR_INTAKE_ARM_HALL_EFECT_PBOT = 0;
-	public static final int LEFT_DRIVE_ENCODER_B_PBOT = 1;
-	public static final int LEFT_DRIVE_ENCODER_A_PBOT = 2;
-	public static final int RIGHT_DRIVE_ENCODER_A_PBOT = 3;
-	public static final int RIGHT_DRIVE_ENCODER_B_PBOT = 4;
-	public static final int BALL_INTAKE_ARM_HALL_EFFECT_PBOT = 5;
-	public static final int SHOOTER_ENCODER_A_PBOT = 6; 
-	public static final int SHOOTER_ENCODER_B_PBOT = 7;
-	public static final int INDEXER_LOWER_BALL_PRESENT_PBOT = 21; //PWM 17 on board
-	public static final int INDEXER_UPPER_BALL_PRESENT_PBOT = 22; //PWM 18 on board
-	
+		public static final int GEAR_INTAKE_ARM_HALL_EFECT_PBOT = 0;
+		public static final int LEFT_DRIVE_ENCODER_B_PBOT = 1;
+		public static final int LEFT_DRIVE_ENCODER_A_PBOT = 2;
+		public static final int RIGHT_DRIVE_ENCODER_A_PBOT = 3;
+		public static final int RIGHT_DRIVE_ENCODER_B_PBOT = 4;
+		public static final int BALL_INTAKE_ARM_HALL_EFFECT_PBOT = 5;
+		public static final int SHOOTER_ENCODER_A_PBOT = 6; 
+		public static final int SHOOTER_ENCODER_B_PBOT = 7;
+		public static final int INDEXER_LOWER_BALL_PRESENT_PBOT = 21; //PWM 17 on board
+		public static final int INDEXER_UPPER_BALL_PRESENT_PBOT = 22; //PWM 18 on board
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_HIGH_GEAR = 0;
-	public final static int DRIVETRAIN_LOW_GEAR= 1;
-	public final static int GEAR_INTAKE_PISTON_EXTEND = 2;
-	public final static int GEAR_INTAKE_PISTON_RETRACT = 3;
-	public final static int BALL_INTAKE_PISTON_EXTEND = 4;
-	public final static int BALL_INTAKE_PISTON_RETRACT = 5;
+	public final static int DRIVETRAIN_LOW_GEAR= 7;
+	public final static int ARM_BRAKE_FORWARD = 1;
+	public final static int ARM_BRAKE_REVERSE = 6;
+	public final static int PIVOT_BRAKE_FORWARD = 2;
+	public final static int PIVOT_BRAKE_REVERSE = 5;
 
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
-	public static final int TURRET_POTENTIOMETER = 0;
-	public static final int GEAR_INTAKE_ROLLER_IR = 1;
-	public static final int DRIVETRAIN_IR_SENSOR = 2;
-	public static final int PRESSURE_SENSOR = 3;
+	public static final int ARM_POSITION_POT = 3;
+	public static final int PIVOT_POSITION_POT = 2;
+	public static final int PRESSURE_SENSOR = 0;
 
 
 	//Channels 4-7 on MXP
@@ -107,20 +98,19 @@ public class RobotMap {
 	//TODO: Should be changed to match the new configuration 
 	//PDP Channels/////////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 12;
-	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 3;
-	public static final int BALL_INTAKE_MOTOR_PDP = 11;
-	public static final int TURRET_MOTOR_PDP = 5;
-	public static final int CLIMBER_MOTOR_LEFT_PDP = 13;
-	public static final int CLIMBER_MOTOR_RIGHT_PDP = 14;
-	public static final int ELEVATOR_MOTOR_PDP = 4;
-	public final static int GEAR_INTAKE_MOTOR_PDP = 6;
-	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 1;
-	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 2;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 13;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 14;
+	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 15;
+	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 1;
+	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 0;
+	public final static int PIVOT_MOTOR_1_PDP = 3;
+	public final static int PIVOT_MOTOR_2_PDP = 2;
+	public final static int ARM_MOTOR_1_PDP = 5;
+	public final static int ARM_MOTOR_2_PDP = 6;
+	public final static int ARM_MOTOR_3_PDP = 7;
+	public final static int PCM_POWER = 8;
 	
-	public static final int INDEXER_WHEEL_PDP = 10;
-	public final static int SHOOTER_MOTOR_LEFT_PDP = 0;
-	public final static int SHOOTER_MOTOR_RIGHT_PDP = 15;
-	public final static int PCM_POWER = 7;;
+	
 	
 	//CAN Device IDs///////////////////////////////////////////////////////////
 
@@ -133,8 +123,12 @@ public class RobotMap {
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean DT_REVERSE_RIGHT = true;
-	public static final boolean DT_REVERSE_LEFT = false;
+	public static final boolean DT_REVERSE_RIGHT1 = true;
+	public static final boolean DT_REVERSE_RIGHT2 = true;
+	public static final boolean DT_REVERSE_RIGHT3 = true;
+	public static final boolean DT_REVERSE_LEFT1 = false;
+	public static final boolean DT_REVERSE_LEFT2 = false;
+	public static final boolean DT_REVERSE_LEFT3 = false;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
@@ -156,121 +150,26 @@ public class RobotMap {
 	public static final double AUTO_NORMAL_SPEED = 0.5;
 	public static final double WHEEL_BASE = 2; //units must match PositionReturnType (feet)
 
-
 	/*************************************************************************
-	 *                         Shooter PARAMETERS
+	 *                        TELESCOPIC ARM PARAMETERS
 	 *************************************************************************/
-	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_LEFT= true;
-	public static final boolean REVERSE_SHOOTER_WHEEL_RIGHT= false;
-
-	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
-	//TODO find ratio
-	private static final double SHOOTER_GEAR_RATIO = 1.0/1.0; //ratio between wheel over encoder
-	private static final double SHOOTER_WHEEL_DIAMETER = 4;
-	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
-	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);
-	public static final CounterBase.EncodingType SHOOTER_ENCODING_TYPE = CounterBase.EncodingType.k1X; //count only the rising edge
-	public static final AverageEncoder.PositionReturnType SHOOTER_POS_RETURN_TYPE = AverageEncoder.PositionReturnType.FEET;
-	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.RPM;
-	public static final double SHOOTER_ENCODER_MIN_RATE = 0.1; //minimum inch per second
-	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
-	public static final boolean SHOOTER_ENCODER_REVERSE = false;
-	public static final int SHOOTER_AVG_ENCODER_VAL = 120;
-	public static final double MIN_SHOOTER_SPEED = 0.2;
-	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
-	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
-	//TODO get correct values
-	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 0.2;
-	public static final double SHOOTER_CONSTANT_SPEED = 0.2;
-	public static double CAMERA_OFFSET_ANGLE = 0; //degrees, camera in center of shooter
-
+	public static final boolean ARM_MOTOR_REVERSED1 = false;
+	public static final boolean ARM_MOTOR_REVERSED2 = true;
+	public static final boolean ARM_MOTOR_REVERSED3 = false;
+	public static final double ARM_MAX_SPEED = 1.0;
 	/*************************************************************************
-	 *                       BALL INTAKE PARAMETERS
+	 *                        TELESCOPIC ARM PARAMETERS
 	 *************************************************************************/
-	public static final double INTAKE_SPEED_CONSTANT = 0.5;
-	public static final boolean REVERSE_BALL_INTAKE_WHEEL = false;
-	public static final boolean REVERSE_BALL_INTAKE_WHEEL_PBOT = true;
-
-
-	/*************************************************************************
-	 *                      GEAR INTAKE PARAMETERS
-	 *************************************************************************/
-	public static final double GEAR_INTAKE_IR_THRESHOLD = 1.4;
-	public static final double GEAR_INTAKE_SPEED_CONSTANT = 1;
-	public static final boolean REVERSE_GEAR_INTAKE_WHEEL = true;
-	public static final boolean REVERSE_GEAR_INTAKE_WHEEL_PBOT = true;
-
-	/*************************************************************************
-	 *                         INDEXER PARAMETERS
-	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.7;
-	public static final boolean REVERSE_INDEXER = false;
-	
-	
-	/*************************************************************************
-	 *                         AGITATOR PARAMETERS
-	 *************************************************************************/
-	public static final boolean REVERSE_AGITATOR = false;
-	public static final double AGITATOR_SPEED_CONSTANT = 0.65;
-	
-	/******************************************************************
-	 *                    CONVELATOR PARAMETERS
-	 ******************************************************************/
-	public static final boolean REVERSE_CONVELATOR_WHEEL = true;
-	public static final boolean REVERSE_CONVELATOR_WHEEL_PBOT = true;
-	public static final double ELEVATOR_SPEED_CONSTANT = 0.45;
-
-	/*************************************************************************
-	 *                         HOOD PARAMETERS
-	 *************************************************************************/
-	public static final double HOOD_JOYSTICK_MULTIPLIER = 1;
-	public static final double MIN_HOOD_VALUE = 115;
-	public static final double MAX_HOOD_VALUE = 180;
-	public static final double SHOOTER_DEGREE_PER_BUTTON_RATE = 2.0;
-
-
-	/*************************************************************************
-	 *                       CLIMBER PARAMETERS
-	 *************************************************************************/
-
-	public static final boolean CLIMB_MOTOR_REVERSE_LEFT = true;
-	public static final boolean CLIMB_MOTOR_REVERSE_RIGHT = false;
-	public static final double CLIMBER_MOTOR_SPEED = 0.8;
-	
-	public static final double CLIMBER_MAX_CURRENT = 15;
-
-
-
-	/******************************************************************
-	 * 				               TURRET
-	 ******************************************************************/
-	public static final double TURRET_MAX_DRIVE = 0.5; //TODO Tune
-	public static final boolean REVERSE_TURRET = true;
-
-	public static final double TURRET_POT_VOLTAGE_MAX = 2.67; //85 degrees
-	public static final double TURRET_POT_ANGLE_MAX = 85.0;
-	public static final double TURRET_POT_VOLTAGE_0 = 1.599; //0 degrees
-	public static final double TURRET_POT_ANGLE_0 = 0.0;
-	public static final double TURRET_POT_VOLTAGE_MIN = 0.479; //-85 degrees
-	public static final double TURRET_POT_ANGLE_MIN = -85.0;
-	
-	public static final double TURRET_POT_VOLTAGE_MAX_PBOT = 3.06; //90 degrees
-	public static final double TURRET_POT_ANGLE_MAX_PBOT = 90.0;
-	public static final double TURRET_POT_VOLTAGE_0_PBOT = 1.840; //0 degrees
-	public static final double TURRET_POT_ANGLE_0_PBOT = 0.0;
-	public static final double TURRET_POT_VOLTAGE_MIN_PBOT = 0.594; //-90 degrees
-	public static final double TURRET_POT_ANGLE_MIN_PBOT = -90.0;
-	
-	public static final int TURRET_AVG_ENCODER_VAL = 5;
-
-	
+	public static final boolean PIVOT_ARM_MOTOR_REVERSED1 = true;
+	public static final boolean PIVOT_ARM_MOTOR_REVERSED2 = true;
+	public static final double PIVOT_MAX_SPEED = 1.0;
 	/*************************************************************************
 	 *                        VISION PARAMETERS
 	 *************************************************************************/
 	public static final int GEAR_CAMERA_LISTEN_PORT = 41234; 
 	public static final int BOILER_CAMERA_LISTEN_PORT = 51234;		
 	public static final int CAMERA_SENSOR_PERIOD = 100;
+	public static final int CAMERA_OFFSET_ANGLE = 0;
 
 	/*************************************************************************
 	 *                            PDP PARAMETERS
@@ -323,9 +222,9 @@ public class RobotMap {
 		public static final double ROTATE_POSITION_I_Drive_Straight = 0.001;
 		public static final double ROTATE_POSITION_D_Drive_Straight = 0.0064778888124088;
 		
-		public static final double ROTATE_TURRET_P = 0.024;
-		public static final double ROTATE_TURRET_I = 0.027;
-		public static final double ROTATE_TURRET_D = 0.000000067;
+//		public static final double ROTATE_TURRET_P = 0.024;
+//		public static final double ROTATE_TURRET_I = 0.027;
+//		public static final double ROTATE_TURRET_D = 0.000000067;
 
 		//Shooter PID Speed
 		//Bandwidth =
@@ -335,15 +234,15 @@ public class RobotMap {
 //		public static final double SHOOTER_SPEED_D = 0.0000011838;
 //		public static final double SHOOTER_SPEED_N = 6.8807;
 		
-		public static final double SHOOTER_SPEED_P = 0.0000727;
-		public static final double SHOOTER_SPEED_I = 0.000093; 
-		public static final double SHOOTER_SPEED_D = 0.0000015838;
-		public static final double SHOOTER_SPEED_N = 100;
+	//	public static final double SHOOTER_SPEED_P = 0.0000727;
+	//	public static final double SHOOTER_SPEED_I = 0.000093; 
+	//	public static final double SHOOTER_SPEED_D = 0.0000015838;
+	//	public static final double SHOOTER_SPEED_N = 100;
 		
 		
 		//Turret Period
-		public static final long TURRET_PID_PERIOD = 20;
-		public static final int TURRET_PID_ARRAY_SIZE = 30;
+	//	public static final long TURRET_PID_PERIOD = 20;
+	//	public static final int TURRET_PID_ARRAY_SIZE = 30;
 		
 
 	/****************************************************************
@@ -373,10 +272,15 @@ public class RobotMap {
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false; //debatable
 	
+	/******************************************************************
+	 *                        Aiden PARAMETERS                        *
+	 ******************************************************************/
+	public static final boolean PUSHED_IT = false;
 	
 	/******************************************************************
 	 *                         Lights I2C                             *
 	 ******************************************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 	public static final int I2C_ADDRESS = 10;
+	
 }

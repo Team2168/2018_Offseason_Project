@@ -2,9 +2,8 @@
 package org.team2168;
 
 import org.team2168.subsystems.*;
-import org.team2168.commands.auto.*;
 import org.team2168.commands.drivetrainIMU.DrivetrainIMUGlobalPosition;
-import org.team2168.commands.pneumatics.StartCompressor;
+import org.team2168.commands.Pneumatics.StartCompressor;
 import org.team2168.utils.Debouncer;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.utils.TX1TurnON;
@@ -34,7 +33,11 @@ public class Robot extends IterativeRobot {
 
 	public static Drivetrain drivetrain;
 	public static DrivetrainShifter drivetrainShifter;
-
+	public static PivotArm pivotArm;
+	public static TelescopicArm telescopicArm;
+	public static Pneumatics pneumatics;
+	
+	
 	
 
 	
@@ -78,27 +81,19 @@ public class Robot extends IterativeRobot {
     	practiceBot = new DigitalInput(RobotMap.PRACTICE_BOT_JUMPER);
 
     	// instantiate the commands used for the autonomous period
-    	agitator = Agitator.getInstance();
-    	ballConvelator = BallConvelator.getInstance();
-    	ballIntakeArm = BallIntakeArm.getInstance();
-    	ballIntakeRoller = BallIntakeRoller.getInstance();
-    	climber = Climber.getInstance();
     	drivetrain = Drivetrain.getInstance();
     	drivetrainShifter = DrivetrainShifter.getInstance();
-    	flashlight = Flashlight.getInstance();
-    	gearIntakeArm = GearIntakeArm.getInstance();
-    	gearIntakeRoller = GearIntakeRoller.getInstance();
+    	telescopicArm = TelescopicArm.GetInstance();
     	pneumatics = Pneumatics.getInstance();
-    	shooterHood = ShooterHood.getInstance();
-    	shooterIndexer = ShooterIndexer.getInstance();
-    	shooterWheel = ShooterWheel.getInstance();
-    	turret = Turret.getInstance();
+    	pivotArm = PivotArm.GetInstance();
+    	
+    	
     	
 
     	
         oi = OI.getInstance();
         
-        //run compressor
+      //run compressor
         new StartCompressor();
 
         autoSelectInit();
@@ -123,7 +118,7 @@ public class Robot extends IterativeRobot {
 		ConsolePrinter.putString("Control Style Name", () -> {return Robot.getControlStyleName();}, true, false);
 		//ConsolePrinter.putBoolean("isPracticeBot", Robot.isPracticeRobot());
 		ConsolePrinter.putNumber("gameClock", () -> {return DriverStation.getInstance().getMatchTime();}, true, false);
-        ConsolePrinter.putNumber("Robot Pressure", () -> {return Robot.pneumatics.getPSI();}, true, false);
+        
         
 
         
@@ -225,12 +220,7 @@ public class Robot extends IterativeRobot {
 		
 		dtIMU.reset();
 		
-		if(turret.getPosition() >= 20.0){
-			blue = true;
-		}
-		else if(turret.getPosition() <= -20.0) {
-			blue = false;
-		}
+		
 		
 		autonomousCommand = (Command) autoChooser.getSelected();
     	
@@ -260,8 +250,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
      
-        shooterHood.setAngle(0);
-
+        
     	// Select the control style
         controlStyle = (int) controlStyleChooser.getSelected();
     }
@@ -298,18 +287,7 @@ public class Robot extends IterativeRobot {
      */
     public void autoSelectInit() {
         autoChooser = new SendableChooser<Command>();
-        autoChooser.addObject("Do Nothing", new DoNothing());
-        autoChooser.addObject("Score Gear Center", new DriveStraightAndScoreCenter()); 
-        autoChooser.addObject("Score Gear Right", new DriveStraightAndScoreRight());
-        autoChooser.addObject("Score Gear Left", new DriveStraightAndScoreLeft());
-        autoChooser.addObject("Drive Over Baseline", new DriveOverBaseline());
-        autoChooser.addDefault("Gear Center and Shoot", new DriveStraightAndScoreCenterShooting());
-        autoChooser.addObject("Gear Center Indexed Shot", new DriveStraightAndScoreCenterShootingIndexed());
-        autoChooser.addObject("Hopper and Shoot Red", new CollectHopperAndShootRed());
-        autoChooser.addObject("Hopper and Shoot Blue", new CollectHopperAndShootBlue());
-        autoChooser.addObject("Score Gear Right and Cross", new ScoreGearRightAndCrossField());
-        autoChooser.addObject("Score Gear Left and Cross", new ScoreGearLeftAndCrossField());
-        //  autoChooser.addObject("Do Something", new DoSomething());
+        
     }
     
     /**
