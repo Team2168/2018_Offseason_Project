@@ -89,6 +89,7 @@ public class RobotMap {
 	public static final int ARM_POSITION_POT = 3;
 	public static final int PIVOT_POSITION_POT = 2;
 	public static final int PRESSURE_SENSOR = 0;
+	public static final int DRIVETRAIN_IR_SENSOR = 1;
 
 
 	//Channels 4-7 on MXP

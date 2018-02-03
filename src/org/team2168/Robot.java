@@ -193,7 +193,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("GunStyleYValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_Y());
         SmartDashboard.putNumber("GunStyleXValueMakingThisLongSoWeCanFindIt", Robot.oi.driverJoystick.getLeftStickRaw_X());
         SmartDashboard.putNumber("GunStyleXInterpolatedValueMakingThisLongSoWeCanFindIt", Robot.drivetrain.getGunStyleXValue());
-		
+        
         getControlStyleInt();
         controlStyle = (int) controlStyleChooser.getSelected();
 

@@ -1,5 +1,6 @@
 package org.team2168.subsystems;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Talon;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
@@ -31,7 +32,7 @@ public class Drivetrain extends Subsystem {
 	private ADXRS453Gyro gyroSPI;
 	private AverageEncoder drivetrainLeftEncoder;
 	private AverageEncoder drivetrainRightEncoder;
-	
+	private AnalogInput drivetrainSensor;
 
 	
 	public IMU imu;
@@ -73,7 +74,7 @@ public class Drivetrain extends Subsystem {
 		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_MOTOR_2);
 		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_1);
 		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_MOTOR_2);
-		
+		drivetrainSensor = new AnalogInput(RobotMap.DRIVETRAIN_IR_SENSOR);
 		if(Robot.isPracticeRobot()) {
 			drivetrainRightEncoder = new AverageEncoder(
 					RobotMap.RIGHT_DRIVE_ENCODER_A_PBOT,
@@ -272,6 +273,8 @@ public class Drivetrain extends Subsystem {
 						() -> {return Robot.drivetrain.tcpCamSensor.isTargetDetected();}, true, false);
 				ConsolePrinter.putBoolean("Is Target Scorable", 
 						() -> {return Robot.drivetrain.tcpCamSensor.isTargetScorable();}, true, false);
+				ConsolePrinter.putNumber("Drivetrain raw IR", 
+						() -> {return Robot.drivetrain.getIRVoltage();}, true, false);
 				
 								
 				ConsolePrinter.putBoolean("Left Motor One Trip", () -> {return !Robot.pdp.isLeftMotorOneTrip();}, true, false);
@@ -314,7 +317,14 @@ public class Drivetrain extends Subsystem {
 		
 		return instance;
 	}
-    
+	
+	/**
+	 * Gets the voltage given by the Sharp IR sensor on the Gear Intake.
+	 * @return the raw voltage from the gear presence sensor
+	 */
+	public double getIRVoltage(){
+		return drivetrainSensor.getVoltage();
+}
 	/**
      * Calls left motor 1 and creates a local variable "speed"
      * Refers to boolean in Robot map and if true, speed = - speed
